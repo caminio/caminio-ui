@@ -1,0 +1,13 @@
+{
+  "name": "caminio-ui",
+  "description": "(end)user interface for caminio",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "caminio": "~1.99.2",
+    "caminio-auth": "~0.0.1",
+    "grunt": "~0.4.2"
+  },
+  "main": "index.js",
+  "license": "MIT"
+}
