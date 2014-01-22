@@ -7,55 +7,63 @@ module.exports = function(grunt) {
 
     pkg: grunt.file.readJSON('package.json'),
 
-    mochaTest: {
-      test: {
+    bower: {
+      target: {
+        rjsConfig: 'assets/javascripts/config.js',
         options: {
-          globals: ['should'],
-          timeout: 3000,
-          bail: true,
-          ignoreLeaks: false,
-          ui: 'bdd',
-          reporter: 'spec'
-        },
-        src: ['test/**/*.test.js']
+          baseUrl: './'
+        }
+      }
+    },
+
+    copy: {
+      main: {
+        src: 'assets/stylesheets/*',
+        dest: 'public/stylesheets/caminio-ui/',
+        flatten: true,
+        expand: true
+      }
+    },
+
+    clean: {
+      build: ['public']
+    },
+
+    requirejs: {
+      compile: {
+        options: {
+          name: "config",
+          baseUrl: "assets/javascripts",
+          mainConfigFile: "assets/javascripts/config.js",
+          //out: "public/javascripts/caminio-ui/config.js",
+          fileExclusionRegExp: /^\.|node_modules|Gruntfile|\.md|package.json|bower.json|component.json|composer.json/,
+          dir: 'public/javascripts/caminio-ui/',
+          optimize: 'none'
+        }
+      }
+    },
+
+    watch: {
+      files: ['assets/javascripts/**/*.js'],
+      tasks: [ 'build' ],
+      options: {
+        interrupt: true
       }
     }
+
   });
 
-  // Load the plugin that provides the "uglify" task.
-  //grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-mocha-test');
-
-  grunt.registerTask('testAll', 'runs all tests', function(){
-    grunt.task.run('clearLogs');
-    grunt.config('mochaTest.test.src', ['test/**/*.test.js']);
-    grunt.task.run('mochaTest');
-  });
-
-  grunt.registerTask('testUnit', 'runs only unit tests', function(){
-    grunt.task.run('clearLogs');
-    grunt.config('mochaTest.test.src', ['test/**/*.unit.test.js']);
-    grunt.task.run('mochaTest');
-  });
-
-  grunt.registerTask('testModels', 'runs only model tests', function(){
-    grunt.task.run('clearLogs');
-    grunt.config('mochaTest.test.src', ['test/**/*model.unit.test.js']);
-    grunt.task.run('mochaTest');
-  });
-
-  grunt.registerTask('testApi', 'runs only api tests', function(){
-    grunt.task.run('clearLogs');
-    grunt.config('mochaTest.test.src', ['test/**/*.api.test.js']);
-    grunt.task.run('mochaTest');
-  });
-
-  grunt.registerTask('clearLogs', function(){
-    if( fs.existsSync('test.log') )
-      fs.unlinkSync('test.log');
-  });
+  grunt.loadNpmTasks('grunt-contrib-requirejs');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-clean');
   
-  // Default task(s).
-  grunt.registerTask('default', ['testAll']);
+  grunt.loadNpmTasks('grunt-bower-requirejs');
+
+  grunt.registerTask('build', ['clean', 'bower', 'requirejs']);
+  grunt.registerTask('default', ['build']);
+
+  grunt.registerTask('production', 'lint requirejs:production');
+  grunt.registerTask('development', 'lint requirejs:development');
 
 };

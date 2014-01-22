@@ -9,5 +9,13 @@
     "grunt": "~0.4.2"
   },
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "~1.2.8",
+    "grunt-bower-requirejs": "~0.8.3",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-watch": "~0.5.3"
+  }
 }

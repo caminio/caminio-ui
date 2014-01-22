@@ -5,7 +5,8 @@
   <title>{% block title %}camin.io{% endblock %}</title>
 
   {% block head %}
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="caminio-ui.css" />
+  <script type="text/javascript" src="/javascripts/caminio-ui/config.js"></script>
   {% endblock %}
 
 </head>
@@ -22,5 +23,7 @@
       </div>
     </div>
   {% endblock %}
+
+  <script type="text/javascript" src="/socket.io/socket.io.js" />
 </body>
 </html>
