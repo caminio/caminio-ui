@@ -1,0 +1,19 @@
+{
+  "name": "caminio-ui",
+  "main": "api/assets/javascripts/config.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/tastenwerk/caminio-ui",
+  "authors": [
+    "quaqua <quaqua@tastenwerk.com>"
+  ],
+  "description": "caminio (end)user interface",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "api/assets/javascripts/components",
+    "test",
+    "tests"
+  ]
+}
