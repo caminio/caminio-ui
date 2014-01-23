@@ -6,7 +6,8 @@
   "dependencies": {
     "caminio": "~1.99.2",
     "caminio-auth": "~0.0.1",
-    "grunt": "~0.4.2"
+    "grunt": "~0.4.2",
+    "express-hbs": "git+https://github.com/barc/express-hbs#0.7.5"
   },
   "main": "index.js",
   "license": "MIT",

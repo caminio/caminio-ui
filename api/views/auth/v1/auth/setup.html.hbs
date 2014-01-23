@@ -1,0 +1,55 @@
+{{#contentFor 'content'}}
+<div class="modal fade" data-backdrop="static">
+  <form class="auth caminio modal-dialog" action="/caminio_setup" method="post">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{t 'setup.title'}}</h4>
+      </div>
+      <div class="modal-body">
+        {{#if message}}
+        <div class="error message">{{message}}</div>
+        {{/if}}
+        <div class="message">{{t 'setup.desc'}}</div>
+
+        <img src="/images/caminio-ui/brand_100x100.png" class="brand pull-left" />
+
+        <div class="brand-space">
+          <input type="hidden" name="_csrf" value="" />
+          <div class="field floatless">
+            <label>{{t 'setup.domain_name'}}</label><br />
+            <input type="text" name="domain_name" class="span400px" placeholder="{{t 'setup.domain_name_desc'}}" required />
+          </div>
+          <div class="field floatless">
+            <label>{{t 'setup.choose_email'}}</label><br />
+            <input type="text" name="username" class="span400px" placeholder="{{t 'auth.email'}}" required />
+          </div>
+          <div class="field floatless">
+            <label>{{t 'setup.choose_pwd'}}</label><br />
+            <input type="password" name="password" class="span400px" placeholder="{{t 'auth.password'}}" required />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn primary" data-submit="form">
+          <i class="fa fa-arrow-right"></i>
+          {{t 'create'}}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+{{/contentFor}}
+
+{{#contentFor 'head'}}
+  <script type="text/javascript">
+    $(function(){
+      $('.modal').modal();
+      $('.modal').on('shown.bs.modal', function(){
+        $(this).find('input[type=text]:first').focus();
+      });
+      $('[data-submit=form]').on('click', function(){
+        $('form.auth').submit();
+      })
+    })
+  </script>
+{{/contentFor}}

@@ -1,19 +1,22 @@
 <!doctype html>
-<html lang="{{ i18n.locale() }}">
+<html>
 <head>
   <meta charset="utf-8">
-  <title>{% block title %}camin.io &middot; authorization{% endblock %}</title>
+  <title>{{#if title}}{{ title }}{{else}}camin.io &middot; authorization{{/if}}</title>
 
-  {% block head %}
   <link rel="stylesheet" href="/stylesheets/caminio-ui/components/bootstrap.css" />
+  <link rel="stylesheet" href="/stylesheets/caminio-ui/components/opensans.css" />
+  <link rel="stylesheet" href="/stylesheets/caminio-ui/components/font-awesome.css" />
   <link rel="stylesheet" href="/stylesheets/caminio-ui.css" />
   <script type="text/javascript" src="/javascripts/caminio-ui/direct/jquery.js"></script>
   <script type="text/javascript" src="/javascripts/caminio-ui/direct/bootstrap.js"></script>
-  {% endblock %}
+  {{{block 'head'}}}
 
 </head>
 <body>
-  {% block content %}
-  {% endblock %}
+  <header>{{{block 'header'}}}</header>
+
+  {{{block 'content'}}}
+
 </body>
 </html>

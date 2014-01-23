@@ -1,0 +1,38 @@
+<header class="top-panel fixed">
+
+  <div class="brand pull-left">
+    <a id="toggle-side-panel" class="btn transparent toggle-side-panel borderless float-left">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a class="pull-left" href="/">
+      <img src="/images/caminio-ui/brand_100x100.png" />
+    </a>
+
+    <ul class="ctrl pull-right">
+    <li class="pull-right">
+      <a class="ctrl-btn icn pull-right" href="/logout">
+    </li>
+    <li class="pull-right">
+      <a class="account-info ctrl-btn pull-right" href="/accounts/{{currentUser.id}}/edit">
+        <img class="avatar pull-left" src="/images/avatar.png" />
+        <span class="pull-left username">{{currentUser.name.full}}
+      </a>
+    </li>
+    <li class="pull-right">
+      <a class="dropdown-toggle dropdown-hover domain ctrl-btn pull-right" data-toggle="dropdown">
+        <span class="pull-left domainname">{{currentDomain}}</span>
+        <i class="fa fa-caret-down"></i>
+      </a>
+      <ul class="dropdown-menu" role="menu">
+        {{#each currentUser.domains}}
+        <li role="presentation">
+          <a href="/?change_domain_id={{id}}">{{name}}</a>
+        </li>
+        {{/each}}
+      </ul>
+    </li>
+    </ul>
+  </div>
+
+</header>
+

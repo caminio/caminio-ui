@@ -1,40 +1,49 @@
-{% extends '../../../layouts/authorize.html.swig' %}
-{% block content %}
-
-  <div class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">{{ t('authorization_required') }}</h4>
+{{#contentFor 'content'}}
+<div class="modal fade" data-backdrop="static">
+  <form class="auth caminio modal-dialog" action="/login" method="post">
+    <div class="modal-content">
+      <div class="modal-header">
+        {{! <button type="button" class="pull-right close" data-dismiss="modal" aria-hidden="true">&times;</button> !}}
+        <h4 class="modal-title">{{t 'auth.title'}}</h4>
+      </div>
+      <div class="modal-body">
+        {{#if message}}
+        <div class="error message">{{message}}</div>
+        {{/if}}
+        <img src="/images/caminio-ui/brand_100x100.png" class="brand pull-left" />
+        <input type="hidden" name="_csrf" value="" />
+        <div class="field">
+          <input type="text" name="username" class="span400px" placeholder="{{t 'auth.email'}}" />
         </div>
-        <div class="modal-body">
-          <form id="login" action="/login" method="post">
-            <input type="hidden" name="_csrf" value="{{ csrf }}" />
-            <div class="field-box">
-              <label>{{ t('username_email') }}</label>
-              <input type="text" name="username" />
-            </div>
-            <div class="field-box">
-              <label>{{ t('password') }}</label>
-              <input type="text" name="password" />
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+        <div class="field">
+          <input type="password" name="password" class="span400px" placeholder="{{t 'auth.password'}}" />
         </div>
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn pale">
+          <i class="fa fa-refresh"></i>
+          {{t 'forgot_password'}}
+        </button>
+        <button type="button" class="btn primary" data-submit="form">
+          <i class="fa fa-arrow-right"></i>
+          {{t 'login'}}
+        </button>
+      </div>
     </div>
-  </div>
+  </form>
+</div>
+{{/contentFor}}
 
-{% endblock %}
-
-{% block appendhead %}
-<script type="text/javascript">
-  $(function(){
-    $('.modal').modal();
-  })
-</script>
-{% endblock %}
+{{#contentFor 'head'}}
+  <script type="text/javascript">
+    $(function(){
+      $('.modal').modal();
+      $('.modal').on('shown.bs.modal', function(){
+        $(this).find('input[type=text]:first').focus();
+      });
+      $('[data-submit=form]').on('click', function(){
+        $('form.auth').submit();
+      })
+    })
+  </script>
+{{/contentFor}}

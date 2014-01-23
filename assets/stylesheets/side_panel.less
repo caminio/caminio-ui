@@ -1,0 +1,79 @@
+
+/*
+ * ---------------------------------------------- side panel
+ */
+
+#side-panel{
+  background-color: #373737;
+  position: fixed;
+  left: 0;
+  width: 230px;
+  top: 50px;
+  bottom: 0;
+  display: none;
+  z-index: 2;
+}
+body.side-panel-active #side-panel{
+  display: block;
+}
+#side-panel .account-info{
+  padding: 10px;
+}
+#side-panel .avatar{
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  background-color: #f5f5f5;
+  padding: 3px;
+  margin: 5px 15px 5px 5px;
+}
+#side-panel .username{
+  font-size: 14px;
+  font-weight: 600;
+  margin: 15px 0 0;
+  color: #eee;
+  width: 140px;
+}
+#side-panel .notification{
+  font-size: 10px;
+  color: #999;
+  width: 30px;
+  margin-top: 6px;
+  margin-right: 5px;
+}
+#side-panel .notification .fa{
+  float: left;
+  margin: 1px 5px 0 0;
+}
+#side-panel ul.nav{
+  margin-top: 60px;
+}
+#side-panel ul.nav a{
+  width: 227px;
+  color: #fff;
+  padding: 15px 0;
+  border-bottom: 1px solid #2a2a2a;
+  border-left: 3px solid transparent;
+  text-decoration: none;
+  transition: all 0.7s;
+}
+#side-panel ul.nav li:first-child a{
+  border-top: 1px solid #2a2a2a;
+}
+#side-panel ul.nav a .fa{
+  font-size: 18px;
+  margin: -3px 10px 0 15px;
+  text-align: center;
+  width: 25px;
+  color: #fff;
+}
+#side-panel ul.nav a .title{
+  font-size: 14px;
+  font-weight: 600;
+}
+#side-panel ul.nav li.active a,
+#side-panel ul.nav li:hover a{
+  border-left-color: #d55;
+  background-color: #2a2a2a;
+  transition: all 0.3s;
+}
