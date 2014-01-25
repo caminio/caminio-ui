@@ -1,8 +1,8 @@
 {
   "name": "caminio-ui",
-  "main": "api/assets/javascripts/config.js",
+  "main": "api/assets/javascripts/caminio-ui.js",
   "version": "0.0.1",
-  "homepage": "https://github.com/tastenwerk/caminio-ui",
+  "homepage": "https://github.com/caminio/caminio-ui",
   "authors": [
     "quaqua <quaqua@tastenwerk.com>"
   ],
@@ -11,9 +11,11 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
-    "api/assets/javascripts/components",
-    "test",
-    "tests"
-  ]
+    "assets/javascripts/components",
+    "test"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "bootstrap": "~3.0.3"
+  }
 }

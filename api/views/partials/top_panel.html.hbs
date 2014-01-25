@@ -21,12 +21,12 @@
         <span class="pull-left username">{{currentUser.name.full}}</span>
       </a>
     </li>
-    <li class="pull-right">
+    <li class="pull-right dropdown">
       <a class="dropdown-toggle dropdown-hover domain ctrl-btn pull-right" data-toggle="dropdown">
         <span class="pull-left domainname">{{currentDomain.name}}</span>
         <i class="fa fa-caret-down"></i>
       </a>
-      <ul class="dropdown-menu" role="menu">
+      <ul class="dropdown-menu pull-right" role="menu">
         {{#each currentUser.domains}}
         <li role="presentation">
           <a href="/?change_domain_id={{id}}">{{name}}</a>

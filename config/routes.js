@@ -2,6 +2,8 @@
 // define your routes here
 module.exports.routes = {
   
-  '/caminio': 'DashboardController#index'
+  '/caminio': 'DashboardController#index',
 
-}
+  '/admin': 'AdminController#index'
+
+};

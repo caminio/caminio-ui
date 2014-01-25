@@ -9,18 +9,21 @@
   <link rel="stylesheet" href="/stylesheets/caminio-ui/components/opensans.css" />
   <link rel="stylesheet" href="/stylesheets/caminio-ui/components/font-awesome.css" />
   <link rel="stylesheet" href="/stylesheets/caminio-ui/components/bootstrap.css" />
-  <link rel="stylesheet" href="/stylesheets/caminio-ui/components/durandal.css" />
-  <link rel="stylesheet" href="/stylesheets/caminio-ui.css" />
   <script type="text/javascript" src="/javascripts/caminio-ui/direct/jquery.js"></script>
-  <script type="text/javascript" src="/javascripts/caminio-ui/direct/bootstrap.js"></script>
 
   {{{block 'head'}}}
 
 </head>
-<body>
-  {{> 'top_nav.html' }}
+<body class="side-panel-active">
+  {{> 'top_panel.html' }}
+  {{> 'side_panel.html' }}
+
 
   {{{block 'content'}}}
+
+
+  <script type="text/javascript" src="/javascripts/caminio-ui/direct/bootstrap.js"></script>
+  {{{block 'foot'}}}
 
 </body>
 </html>

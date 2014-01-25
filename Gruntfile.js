@@ -7,63 +7,109 @@ module.exports = function(grunt) {
 
     pkg: grunt.file.readJSON('package.json'),
 
-    bower: {
-      target: {
-        rjsConfig: 'assets/javascripts/config.js',
+    clean: {
+      build: ['public']
+    },
+
+    cssmin: {
+      add_banner: {
         options: {
-          baseUrl: './'
+          banner: '/* camin.io */'
+        },
+      },
+      combine: {
+        files: {
+          'public/stylesheets/caminio-3rdparty.min.css': ['assets/stylesheets/components/*.css'],
+          'public/stylesheets/caminio-ui.min.css': ['assets/stylesheets/caminio-ui/*.css']
         }
       }
     },
 
     copy: {
-      main: {
-        src: 'assets/stylesheets/*',
-        dest: 'public/stylesheets/caminio-ui/',
-        flatten: true,
-        expand: true
+      img: {
+        files: [
+          { 
+            expand: true, 
+            flatten: true,
+            src: ['assets/images/*'], 
+            dest: 'public/images/'
+          }
+        ]
+      },
+      fonts: {
+        files: [
+          { 
+            expand: true,
+            flatten: true,
+            src: ['assets/fonts/*'], 
+            dest: 'public/fonts/'
+          }
+        ]
       }
     },
 
-    clean: {
-      build: ['public']
-    },
-
-    requirejs: {
-      compile: {
-        options: {
-          name: "config",
-          baseUrl: "assets/javascripts",
-          mainConfigFile: "assets/javascripts/config.js",
-          //out: "public/javascripts/caminio-ui/config.js",
-          fileExclusionRegExp: /^\.|node_modules|Gruntfile|\.md|package.json|bower.json|component.json|composer.json/,
-          dir: 'public/javascripts/caminio-ui/',
-          optimize: 'none'
+    'bower-install': {
+      target: {
+        src: ['api/views/dashboard/index.html.hbs','api/views/admin/index.html.hbs'],
+        fileTypes: {
+          hbs: {
+            block: /(([\s\t]*)<!--\s*bower:*(\S*)\s*-->)(\n|\r|.)*?(<!--\s*endbower\s*-->)/gi,
+            detect: {
+              js: /<script.*src=['"](.+)['"]>/gi,
+              css: /<link.*href=['"](.+)['"]/gi
+            },
+            replace: {
+              js: '<script src="{{filePath}}"></script>',
+              css: '<link rel="stylesheet" href="{{filePath}}" />'
+            }
+          }
         }
       }
     },
 
-    watch: {
-      files: ['assets/javascripts/**/*.js'],
-      tasks: [ 'build' ],
+    concat: {
       options: {
-        interrupt: true
+        stripBanners: true,
+        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+          '<%= grunt.template.today("yyyy-mm-dd") %> */'
+      },
+      dist: {
+        src: ['/assets/javascripts/caminio-ui/**/*.js'],
+        dest: 'public/javascripts/caminio-ui.min.js'
+      }
+    },
+
+    jshint: {
+      all: ['Gruntfile.js', 'api/**/*.js', 'config/**/*.js'],
+      options: {
+        "laxcomma": true
+      }
+    },
+
+    bower_concat: {
+      all: {
+        dest: 'public/javascripts/caminio-ui-bower.min.js',
+        exclude: [
+            'jquery',
+            'modernizr'
+        ],
+        mainFiles: {
+          //'jquery': 'jquery.js'
+        }
       }
     }
 
   });
 
-  grunt.loadNpmTasks('grunt-contrib-requirejs');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-bower-install');
+  grunt.loadNpmTasks('grunt-bower-concat');
   
-  grunt.loadNpmTasks('grunt-bower-requirejs');
-
-  grunt.registerTask('build', ['clean', 'bower', 'requirejs']);
+  grunt.registerTask('build', ['jshint', 'clean','cssmin','concat','copy:img','copy:fonts','bower-install']);
   grunt.registerTask('default', ['build']);
-
-  grunt.registerTask('production', 'lint requirejs:production');
-  grunt.registerTask('development', 'lint requirejs:development');
 
 };

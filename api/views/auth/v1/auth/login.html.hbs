@@ -1,3 +1,7 @@
+{{#contentFor 'head'}}
+  <link rel="stylesheet" href="/stylesheets/caminio-ui.css" />
+{{/contentFor}}
+
 {{#contentFor 'content'}}
 <div class="modal fade" data-backdrop="static">
   <form class="auth caminio modal-dialog" action="/login" method="post">
@@ -7,7 +11,6 @@
         <h4 class="modal-title">{{t 'auth.title'}}</h4>
       </div>
       <div class="modal-body">
-        <input type="submit" class="hide" />
         {{#if message}}
         <div class="error message">{{message}}</div>
         {{/if}}
@@ -25,7 +28,7 @@
           <i class="fa fa-refresh"></i>
           {{t 'forgot_password'}}
         </button>
-        <button type="button" class="btn primary" data-submit="form">
+        <button type="submit" class="btn primary" data-submit="form">
           <i class="fa fa-arrow-right"></i>
           {{t 'login'}}
         </button>

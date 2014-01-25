@@ -47,7 +47,8 @@ body.side-panel-active #side-panel{
   margin: 1px 5px 0 0;
 }
 #side-panel ul.nav{
-  margin-top: 60px;
+  margin: 60px 0 0 0;
+  padding: 0;
 }
 #side-panel ul.nav a{
   width: 227px;
@@ -63,7 +64,7 @@ body.side-panel-active #side-panel{
 }
 #side-panel ul.nav a .fa{
   font-size: 18px;
-  margin: -3px 10px 0 15px;
+  margin: 1px 10px 0 15px;
   text-align: center;
   width: 25px;
   color: #fff;
