@@ -1,0 +1,29 @@
+doctype html
+html(lang=i18n.locale())
+  head
+    title camin.io
+    
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge, chrome=1')
+
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+    link(rel='apple-touch-startup-image', href='/images/ios-startup-images-landscape.png', media='(orientation:landscape)')
+    link(rel='apple-touch-startup-image', href='/images/ios-startup-images-portrait.png', media='(orientation:portrait)')
+
+    link(rel='apple-touch-icon', href='/images/icon.png')
+
+    link(rel='stylesheet', href='/stylesheets/src/static/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/src/static/opensans.css')
+    link(rel='stylesheet', href='/stylesheets/src/static/font-awesome.css')
+
+    script(type='text/javascript', src='/javascripts/src/static/jquery.js')
+
+    block head
+
+    body.side-panel-active
+
+      block content
+
+      script(type='text/javascript', src='/javascripts/src/static/bootstrap.js')
+      block foot

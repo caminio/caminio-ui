@@ -18,21 +18,18 @@ block content
         .modal-body
           if message
             .error.message=message
-          .message=t('setup.desc')
           img.brand.pull-left(src='/images/brand_100x100.png')
-          .field.floatless
-            label=t('setup.domain_name')
-            input.span400px(type='text',name='domain_name',placeholder=t('setup.domain_name_desc'))
-          .field.floatless
-            label=t('setup.choose_email')
-            input.span400px(type='password',name='password',placeholder=t('auth.email'))
-          .field.floatless
-            label=t('setup.choose_pwd')
+          .field
+            input.span400px(type='text',name='username',placeholder=t('auth.email'))
+          .field
             input.span400px(type='password',name='password',placeholder=t('auth.password'))
         .modal-footer
+          button.btn.pale(type='button')
+            i.fa.fa-refresh
+            span=t('forgot_password')
           button.btn.primary(type='submit',data-submit='form')
             i.fa.fa-arrow-right
-            span=t('create')
+            span=t('login')
 
 block foot
   script(type='text/javascript').
@@ -44,4 +41,4 @@ block foot
       $('[data-submit=form]').on('click', function(){
         $('form.auth').submit();
       })
-    });
+    })

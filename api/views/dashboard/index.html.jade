@@ -1,0 +1,34 @@
+extends ../layouts/application
+
+append head
+  if env === 'production'
+    link( rel='stylesheet', href='/stylesheets/caminio-ui.min.css' )
+  else
+    link( rel='stylesheet', href='/stylesheets/src/caminio-ui/bootstrap-overrides.css' )
+    link( rel='stylesheet', href='/stylesheets/src/caminio-ui/common.css' )
+    link( rel='stylesheet', href='/stylesheets/src/caminio-ui/form.css' )
+    link( rel='stylesheet', href='/stylesheets/src/caminio-ui/side_panel.css' )
+    link( rel='stylesheet', href='/stylesheets/src/caminio-ui/top_panel.css' )
+    link( rel='stylesheet', href='/stylesheets/src/caminio-ui/main.css' )
+
+append foot
+  // bower:js
+  
+  script(type="text/javascript", src="/javascripts/components/handlebars/handlebars.js")
+  script(type="text/javascript", src="/javascripts/components/ember/ember.js")
+  script(type="text/javascript", src="/javascripts/components/ember-data/ember-data.js")
+  // endbower
+  script(type='text/javascript', src='/javascripts/caminio-ui/main.min.js')
+
+block content
+  style.
+    .main-view {
+      margin: 0;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      margin: 50px auto 40px auto; width: 600px; text-align: center; 
+    }
+
+    .main-view h1 { width: 800px; position:relative; left: -100px; letter-spacing: -1px; line-height: 60px; font-size: 60px; font-weight: 100; margin: 0px 0 50px 0; text-shadow: 0 1px 0 #fff; }
+
+  .main-view
+    h1 here

@@ -1,0 +1,23 @@
+header.top-panel.fixed
+  .brand.pull-left
+    a#toggle-side-panel.btn.transparent.toggle-side-panel.borderless.pull-left
+      i.fa.fa-bars
+    a.pull-left(href='/')
+      img(src='/images/brand_90x18.png')
+
+  ul.ctrl.pull-right
+    li.pull-right
+      a.ctrl-btn.icn.pull-right(href='/logout')
+        i.fa.fa-sign-out
+    li.pull-right
+      a.account-info.ctrl-btn.pull-right( href='/accounts/'+currentUser.id+'/edit' )
+        img.avatar.pull-left( src='/images/avatar_100x100.png' )
+        span.pull-left.username=currentUser.fullName
+    li.pull-right.dropdown
+      a.dropdown-toggle.dropdown-hover.domain.ctrl-btn.pull-right( data-toggle='dropdown' )
+        span.pull-left.domainname=(currentDomain ? currentDomain.name : 'no domain')
+        i.fa.fa-caret-down
+      ul.dropdown-menu( role='menu' )
+        each domain in currentUser.domains
+          li( role='presentation' )
+            a(href='/?change_domain_id='+domain.id)=domain.name

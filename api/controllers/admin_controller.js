@@ -6,13 +6,7 @@ module.exports = function AdminController( caminio, policies, middleware ){
   return {
 
     _before: {
-      // set up your before filters here
-      // typical before filters are policies.ensureLogin or 
-      // policies.requireAdmin
-      //
-      // e.g.: '*': policies.ensureLogin,
-      //       'index,show': [ policies.requireAdmin, myCustomCheck ]
-      //
+      '*': policies.ensureLogin
     },
 
     /**

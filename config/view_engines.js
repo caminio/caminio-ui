@@ -3,6 +3,11 @@ var hbs = require('express-hbs')
 
 module.exports.viewEngines = {
   
+  'jade': {
+    ext: [ 'jade' ],
+    default: 'jade'
+  },
+
   /**
    * @module ui
    * @class HandlebarsHelpers
@@ -13,7 +18,7 @@ module.exports.viewEngines = {
       partialsDir: join(__dirname,'..','api','views','partials') 
     }),
     ext: [ 'hbs' ],
-    default: 'hbs',
+    //default: 'hbs',
     exec: function( caminio, req, res, cb ){
 
       //
@@ -58,6 +63,8 @@ module.exports.viewEngines = {
       hbs.registerHelper('env', function(conditional, options){
         if( conditional === caminio.env )
           return options.fn(this);
+        if( options.inverse )
+          return options.inverse(this);
       });
 
       cb();

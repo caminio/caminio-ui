@@ -29,9 +29,9 @@ module.exports = function(grunt) {
       img: {
         files: [
           { 
-            expand: true, 
-            flatten: true,
-            src: ['assets/images/*'], 
+            expand: true,
+            cwd: 'assets/images',
+            src: ['**/*'], 
             dest: 'public/images/'
           }
         ]
@@ -40,9 +40,39 @@ module.exports = function(grunt) {
         files: [
           { 
             expand: true,
-            flatten: true,
-            src: ['assets/fonts/*'], 
+            cwd: 'assets/fonts/',
+            src: ['**/*'], 
             dest: 'public/fonts/'
+          }
+        ]
+      },
+      cssSrc: {
+        files: [
+          {
+            expand: true,
+            cwd: 'assets/stylesheets/',
+            src: ['**/*'],
+            dest: 'public/stylesheets/src/'
+          }
+        ]
+      },
+      jsSrc: {
+        files: [
+          {
+            expand: true,
+            cwd: 'assets/javascripts/',
+            src: ['**/*'],
+            dest: 'public/javascripts/src/'
+          }
+        ]
+      },
+      bowerComponents: {
+        files: [
+          {
+            expand: true,
+            cwd: 'assets/javascripts/components/',
+            src: ['**/*'],
+            dest: 'public/javascripts/components/'
           }
         ]
       }
@@ -50,17 +80,19 @@ module.exports = function(grunt) {
 
     'bower-install': {
       target: {
-        src: ['api/views/dashboard/index.html.hbs','api/views/admin/index.html.hbs'],
+        src: ['api/views/dashboard/index.html.jade','api/views/admin/index.html.jade'],
+        exclude: ['jquery','bootstrap'],
+        ignorePath: 'assets/',
         fileTypes: {
-          hbs: {
-            block: /(([\s\t]*)<!--\s*bower:*(\S*)\s*-->)(\n|\r|.)*?(<!--\s*endbower\s*-->)/gi,
+          jade: {
+            block: /(([\s\t]*)\/\/\s*bower:*(\S*)\s*)(|\r|.)*?(\/\/\s*endbower\s*)/gi,
             detect: {
-              js: /<script.*src=['"](.+)['"]>/gi,
-              css: /<link.*href=['"](.+)['"]/gi
+              js: /script\(.*src=['"](.+)['"]/gi,
+              css: /link\(.*href=['"](.+)['"]/gi
             },
             replace: {
-              js: '<script src="{{filePath}}"></script>',
-              css: '<link rel="stylesheet" href="{{filePath}}" />'
+              js: 'script(type="text/javascript", src="/{{filePath}}")',
+              css: 'link(rel="stylesheet", href="/{{filePath}}")'
             }
           }
         }
@@ -75,7 +107,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: ['/assets/javascripts/caminio-ui/**/*.js'],
-        dest: 'public/javascripts/caminio-ui.min.js'
+        dest: 'public/javascripts/caminio-ui.js'
       }
     },
 
@@ -86,19 +118,6 @@ module.exports = function(grunt) {
       }
     },
 
-    bower_concat: {
-      all: {
-        dest: 'public/javascripts/caminio-ui-bower.min.js',
-        exclude: [
-            'jquery',
-            'modernizr'
-        ],
-        mainFiles: {
-          //'jquery': 'jquery.js'
-        }
-      }
-    }
-
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -107,9 +126,19 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-bower-install');
-  grunt.loadNpmTasks('grunt-bower-concat');
   
-  grunt.registerTask('build', ['jshint', 'clean','cssmin','concat','copy:img','copy:fonts','bower-install']);
+  grunt.registerTask('build', [
+    'jshint',
+    'clean',
+    'cssmin',
+    'concat',
+    'copy:img',
+    'copy:jsSrc',
+    'copy:fonts',
+    'copy:cssSrc',
+    'copy:bowerComponents',
+    'bower-install'
+  ]);
   grunt.registerTask('default', ['build']);
 
 };

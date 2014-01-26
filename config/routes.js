@@ -4,6 +4,8 @@ module.exports.routes = {
   
   '/caminio': 'DashboardController#index',
 
-  '/admin': 'AdminController#index'
+  '/admin': 'AdminController#index',
+
+  'autorest /users': 'User'
 
 };

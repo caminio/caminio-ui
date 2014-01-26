@@ -1,0 +1,19 @@
+<div class="main-ctrl align-right">
+  <div class="search">
+    <form>
+      <input type="text" id="search-query" name="query">
+      <button>
+        <i class="fa fa-search"></i>
+      </button>
+    </form>
+  </div>
+  <a href="#events/new" class="btn primary"><i class="fa fa-plus"></i> <span data-i18n="caminio:ticketeer.event.new">Neuer Termin</span></a>
+</div>
+
+<ul id="users-list">
+  {{#each}}
+    <li>
+      {{fullName}}: {{lastRequestAt}}
+    </li>
+  {{/each}}
+</ul>

@@ -28,7 +28,7 @@
 /* ------------------------------------------------ widgets */
 
 .btn{
-  padding: 5px 15px;
+  padding: 6px 15px;
   color: #fff;
   border-radius: 2px;
   border: none;
@@ -202,8 +202,10 @@ div.btn.icon-only{
   font-size: 14px;
   float: right;
   position: absolute;
-  top: 8px;
+  top: 3px;
   right: 4px;
+  width: 25px;
+  height: 25px;
   color: #777;
 }
 .search input[type=text]:hover,
