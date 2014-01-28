@@ -4,6 +4,8 @@ module.exports.routes = {
   
   '/caminio': 'DashboardController#index',
 
+  '/locales/:lang': 'DashboardController#locales',
+
   '/admin': 'AdminController#index',
 
   'autorest /users': 'User'

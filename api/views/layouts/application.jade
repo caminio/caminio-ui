@@ -8,28 +8,31 @@ html(lang=i18n.locale())
 
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
 
-    link(rel='apple-touch-startup-image', href='/images/ios-startup-images-landscape.png', media='(orientation:landscape)')
-    link(rel='apple-touch-startup-image', href='/images/ios-startup-images-portrait.png', media='(orientation:portrait)')
+    //link(rel='apple-touch-startup-image', href='/images/ios-startup-images-landscape.png', media='(orientation:landscape)')
+    //link(rel='apple-touch-startup-image', href='/images/ios-startup-images-portrait.png', media='(orientation:portrait)')
+    //link(rel='apple-touch-icon', href='/images/icon.png')
 
-    link(rel='apple-touch-icon', href='/images/icon.png')
+    if env === 'production'
+      link(resl='stylesheet', href='/stylesheets/caminio-ui.min.css')
+    else
+      link(rel='stylesheet', href='/stylesheets/caminio-ui-static/bootstrap.css')
+      link(rel='stylesheet', href='/stylesheets/caminio-ui-static/opensans.css')
+      link(rel='stylesheet', href='/stylesheets/caminio-ui-static/font-awesome.css')
 
-    link(rel='stylesheet', href='/stylesheets/src/static/bootstrap.css')
-    link(rel='stylesheet', href='/stylesheets/src/static/opensans.css')
-    link(rel='stylesheet', href='/stylesheets/src/static/font-awesome.css')
-
-    script(type='text/javascript', src='/javascripts/src/static/jquery.js')
+    script(type='text/javascript', src='/javascripts/jquery.min.js')
 
     block head
 
-    body.side-panel-active
-      include ../common/top_panel
-      include ../common/side_panel
+  body.side-panel-active
+    include ../common/top_panel
+    include ../common/side_panel
 
-      block content
+    block content
+      
+    script(type='text/javascript').
+      caminioHostname = '!{caminioHostname}';
+      window.currentLang = '!{i18n.locale()}';
+      window.currentUser = JSON.parse('!{JSON.stringify(currentUser)}');
+      window.currentDomain = JSON.parse('!{JSON.stringify(currentDomain)}');
 
-      script(type='text/javascript', src='/javascripts/src/static/bootstrap.js')
-        
-      script(type='text/javascript').
-        window.caminioHostname = '!{caminioHostname}';
-
-      block foot
+    block foot

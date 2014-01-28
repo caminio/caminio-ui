@@ -4,31 +4,29 @@ append head
   if env === 'production'
     link( rel='stylesheet', href='/stylesheets/caminio-ui.min.css' )
   else
-    link( rel='stylesheet', href='/stylesheets/src/caminio-ui/bootstrap-overrides.css' )
-    link( rel='stylesheet', href='/stylesheets/src/caminio-ui/common.css' )
-    link( rel='stylesheet', href='/stylesheets/src/caminio-ui/form.css' )
-    link( rel='stylesheet', href='/stylesheets/src/caminio-ui/side_panel.css' )
-    link( rel='stylesheet', href='/stylesheets/src/caminio-ui/top_panel.css' )
-    link( rel='stylesheet', href='/stylesheets/src/caminio-ui/main.css' )
+    link( rel='stylesheet', href='/stylesheets/caminio-ui/bootstrap-overrides.css' )
+    link( rel='stylesheet', href='/stylesheets/caminio-ui/common.css' )
+    link( rel='stylesheet', href='/stylesheets/caminio-ui/form.css' )
+    link( rel='stylesheet', href='/stylesheets/caminio-ui/table.css' )
+    link( rel='stylesheet', href='/stylesheets/caminio-ui/side_panel.css' )
+    link( rel='stylesheet', href='/stylesheets/caminio-ui/top_panel.css' )
+    link( rel='stylesheet', href='/stylesheets/caminio-ui/loader.css' )
+    link( rel='stylesheet', href='/stylesheets/caminio-ui/message.css' )
+    link( rel='stylesheet', href='/stylesheets/caminio-ui/main.css' )
 
 append foot
-  // bower:js
-  
-  script(type="text/javascript", src="/javascripts/components/handlebars/handlebars.js")
-  script(type="text/javascript", src="/javascripts/components/ember/ember.js")
-  script(type="text/javascript", src="/javascripts/components/ember-data/ember-data.js")
-  // endbower
   if env === 'production'
-    script(type='text/javascript', src='/javascripts/caminio-ui.js')
+    script(type='text/javascript', src='/javascripts/caminio-ui/app/main.min.js')
   else
-    script(type='text/javascript', src='/javascripts/src/caminio-ui/main.js')
-    script(type='text/javascript', src='/javascripts/src/caminio-ui/routes.js')
-    script(type='text/javascript', src='/javascripts/src/caminio-ui/models/user.js')
-    //script(type='text/javascript', src='/javascripts/src/caminio-ui/controllers/users_controller.js')
+    script(type='text/javascript', src='/javascripts/caminio-ui/components/requirejs/require.js', data-main='/javascripts/caminio-ui/app/main')
 
 block content
-  script(type='text/x-handlebars')
-    include hbs/main.hbs
-
-  script(type='text/x-handlebars', id="users")
-    include hbs/users.hbs
+  #applicationHost.main-view
+    #splash
+      .text=t('initializing_application')
+      .loader
+        .circle
+        .circle
+        .circle
+        .circle
+        .circle

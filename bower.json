@@ -15,9 +15,13 @@
     "test"
   ],
   "dependencies": {
-    "jquery": "~2.0.0",
+    "jquery": "~1.9.1",
     "bootstrap": "~3.0.3",
-    "ember": "~1.3.1",
-    "ember-data": "~1.0.0-BETA.5"
+    "i18next": "~1.7.1",
+    "moment": "~2.5.1",
+    "durandal": "~2.0.1",
+    "jquery-migrate": "~1.2.1",
+    "durandal-almond": "git@github.com:BlueSpire/almond.git#master",
+    "inflection": "~1.3.3"
   }
 }

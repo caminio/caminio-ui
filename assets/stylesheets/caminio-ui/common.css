@@ -28,14 +28,14 @@
 /* ------------------------------------------------ widgets */
 
 .btn{
-  padding: 6px 15px;
+  padding: 8px 16px;
   color: #fff;
   border-radius: 2px;
   border: none;
   background-color: #454545;
   transition: all 0.8s;
   opacity: 1;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .btn[disabled]{
