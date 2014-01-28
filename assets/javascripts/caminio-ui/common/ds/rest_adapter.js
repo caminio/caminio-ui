@@ -9,7 +9,8 @@ define(function(require) {
    * @class RESTAdapter
    */
   return {
-    init: initStore
+    init: initStore,
+    exec: exec
   };
 
   /**
@@ -21,6 +22,21 @@ define(function(require) {
   function initStore( url ){
     console.log('initialized rest datastore with url', url);
     this.url = url;
+  }
+
+  /**
+   * executes the query
+   *
+   * @method exec
+   *
+   * @param {Query} query
+   * @param {Function} callback
+   * @param {Object} callback.err an error object
+   * @param {Array} results
+   *
+   */
+  function exec( query, cb ){
+    cb( null, [] );
   }
 
 });

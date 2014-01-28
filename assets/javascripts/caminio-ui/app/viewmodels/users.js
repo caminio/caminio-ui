@@ -5,7 +5,7 @@ define(function(require) {
   var User        = require('models/user');
 
   var usersController = {
-    //items: User.find().exec(),
+    items: User.find(),
     activate: function(){
     }
   };

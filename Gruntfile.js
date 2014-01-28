@@ -1,7 +1,12 @@
 var _ = require('lodash');
 
+// the whole setup is inspired by:
+// https://github.com/RainerAtSpirit/HTMLStarterKitPro/blob/master/Gruntfile.js
+//
 module.exports = function(grunt) {
-  
+
+  /*jshint scripturl:true*/
+
   var requireConfig = {
     baseUrl: 'assets/javascripts/caminio-ui/app/',
     paths: {
@@ -46,9 +51,6 @@ module.exports = function(grunt) {
       }
     },
     
-    // inspired by:
-    // https://github.com/RainerAtSpirit/HTMLStarterKitPro/blob/master/Gruntfile.js
-    //
     durandal: {
       main: {
         src: [ 'assets/javascripts/caminio-ui/app/**/*.*', 
@@ -99,55 +101,12 @@ module.exports = function(grunt) {
             dest: 'public/fonts/'
           }
         ]
-      },
-
-      // bowerComponents: {
-      //   files: [
-      //     {
-      //       expand: true,
-      //       cwd: 'assets/javascripts/components/',
-      //       src: ['**/*'],
-      //       dest: 'public/javascripts/components/'
-      //     }
-      //   ]
-      // }
-    },
-
-/*
-    'bower-install': {
-      target: {
-        src: ['api/views/dashboard/index.html.jade','api/views/admin/index.html.jade'],
-        exclude: ['jquery','bootstrap'],
-        ignorePath: 'assets/',
-        fileTypes: {
-          jade: {
-            block: /(([\s\t]*)\/\/\s*bower:*(\S*)\s*)(|\r|\n|.)*?(\/\/\s*endbower\s*)/gi,
-            detect: {
-              js: /script\(.*src=['"](.+)['"]/gi,
-              css: /link\(.*href=['"](.+)['"]/gi
-            },
-            replace: {
-              js: 'script(type="text/javascript", src="/{{filePath}}")',
-              css: 'link(rel="stylesheet", href="/{{filePath}}")'
-            }
-          }
-        }
       }
     },
-*/
 
-
-    // concat: {
-    //   options: {
-    //     stripBanners: true,
-    //     banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-    //       '<%= grunt.template.today("yyyy-mm-dd") %> */'
-    //   },
-    //   dist: {
-    //     src: ['/assets/javascripts/caminio-ui/**/*.js'],
-    //     dest: 'public/javascripts/caminio-ui.js'
-    //   }
-    // },
+    mocha_phantomjs: {
+      all: ['test/**/*.html']
+    },
 
     jshint: {
       all: ['Gruntfile.js', 'api/**/*.js', 'config/**/*.js', 'assets/javascripts/caminio-ui/app'],
@@ -155,17 +114,6 @@ module.exports = function(grunt) {
         "laxcomma": true
       }
     },
-
-    // requirejs: {
-    //   compile: {
-    //     options: {
-    //       baseUrl: "path/to/base",
-    //       mainConfigFile: "path/to/config.js",
-    //       name: "path/to/almond", // assumes a production build using almond
-    //       out: "path/to/optimized.js"
-    //     }
-    //   }
-    // }
 
   });
 
@@ -175,9 +123,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-durandal');
-  //grunt.loadNpmTasks('grunt-contrib-concat');
-  //grunt.loadNpmTasks('grunt-bower-install');
-  //grunt.loadNpmTasks('grunt-contrib-requirejs');
+
+  // tests
+  grunt.loadNpmTasks('grunt-mocha-phantomjs');
   
   grunt.registerTask('build', [
     'jshint',
@@ -192,6 +140,35 @@ module.exports = function(grunt) {
     //'bower-install'
   ]);
 
+  grunt.registerTask('startServer', function(){
+    process.env.NODE_ENV = 'test';
+    
+    var done = this.async();    
+    
+    var caminio = require('caminio');
+    var Gear = require('caminio/gear');
+    require('caminio-auth'); // require this gear
+    require('./'); // require this gear
+    new Gear({ api: true, absolutePath: __dirname+'/test/support/app' });
+
+    caminio.init({ 
+      config: { 
+        root: __dirname+'/test/support/app',
+        log: {
+          filename: process.cwd()+'/test.log'
+        }
+      }
+    });
+
+    caminio.on('ready', done );
+
+  });
+
   grunt.registerTask('default', ['build']);
+  grunt.registerTask('test', [
+    'jshint',
+    'startServer',
+    'mocha_phantomjs'
+    ]);
 
 };
