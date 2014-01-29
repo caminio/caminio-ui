@@ -105,7 +105,7 @@ module.exports = function(grunt) {
     },
 
     mocha_phantomjs: {
-      all: ['test/**/*.html']
+      all: ['test/browser/unit/**/*.html']
     },
 
     jshint: {
@@ -131,13 +131,10 @@ module.exports = function(grunt) {
     'jshint',
     'clean',
     'cssmin',
-    //'concat',
     'copy:img',
     'copy:fonts',
-    //'copy:bowerComponents',
     'durandal',
     'uglify'
-    //'bower-install'
   ]);
 
   grunt.registerTask('startServer', function(){

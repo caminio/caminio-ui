@@ -32,8 +32,9 @@ define( function(require) {
           if( i in this )
             this[i]( attrs[i] );
         }
-      } else {
-        for( i in attrs )
+      }
+      for( i in attrs ){
+        if( !(i in this) )
           this[i] = attrs[i];
       }
     };
@@ -41,10 +42,14 @@ define( function(require) {
       Model.prototype = schema.methods || {};
       Model.constructor = Model;
     }
+    Model.url = function modelUrl(){
+      var url = Model.adapter ? Model.adapter.hostURI : '';
+      return url+'/'+inflection.pluralize(inflection.underscore(name));
+    };
     Model.find = find;
+    Model.create = create;
     Model.findOne = find;
     Model.adapter = options.adapter;
-    Model.url = options.url || '/'+inflection.pluralize(inflection.underscore(name));
     Model.modelName = inflection.classify(name);
     return Model;
   }
@@ -61,19 +66,48 @@ define( function(require) {
    *
    */
   function find( query, cb ){
+    if( arguments.length < 2 ){
+      cb = query;
+      query = {};
+    } else if( !query ){
+      query = {};
+    }
     var Model = this;
     var array = ko.observableArray();
     Model.adapter
-      .exec( query || {}, function( err, res ){
+      .exec( Model.url(), query, function( err, res ){
         if( err ){ return cb(err); }
         if( !(res instanceof Array) ){ return('wrong response. expected array'); }
-        res.forEach( function( item ){
-          array.push( new Model(item) );
+        res.forEach( function( resource ){
+          array.push( new Model(resource) );
         });
         if( typeof(cb) === 'function' )
           cb( null, array );
       });
     return array;
+  }
+
+  /**
+   * create a model and post it to the server
+   *
+   * @method create
+   * @param {Object} attrs
+   * @param {Function} callback
+   * @param {Object} callback.err an error object
+   * @param {Document} an instantiated Model if operation was successful
+   */
+  function create( attrs, cb ){
+    var Model = this;
+    if( Object.keys(attrs).length < 1 )
+      throw Error('cannot create new resource without any attributes');
+    var preparedAttrs = {};
+    preparedAttrs[ inflection.underscore(Model.modelName) ] = attrs;
+    Model.adapter
+      .save( true, Model.url(), preparedAttrs, function( err, res ){
+        if( err ){ return cb(err); }
+        if( !res ){ return('failed to create resource'); }
+        cb( null, new Model(res) );
+      });
   }
 
 });

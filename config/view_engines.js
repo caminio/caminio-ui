@@ -1,10 +1,11 @@
-var hbs = require('express-hbs')
-  , join = require('path').join;
+var hbs = require('express-hbs');
+var join = require('path').join;
 
 module.exports.viewEngines = {
   
   'jade': {
     ext: [ 'jade' ],
+    engine: require('jade').__express,
     default: 'jade'
   },
 

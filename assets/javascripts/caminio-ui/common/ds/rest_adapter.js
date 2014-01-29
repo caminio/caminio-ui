@@ -4,13 +4,15 @@ define(function(require) {
   /*jshint validthis:true */
 
   var store         = require('ds/store');
+  var $             = require('jquery');
 
   /**
    * @class RESTAdapter
    */
   return {
     init: initStore,
-    exec: exec
+    exec: exec,
+    save: save
   };
 
   /**
@@ -18,10 +20,10 @@ define(function(require) {
    * with this adapter
    * 
    * @method init
+   * @param {String} uri the host uri
    */
-  function initStore( url ){
-    console.log('initialized rest datastore with url', url);
-    this.url = url;
+  function initStore( uri ){
+    this.hostURI = uri;
   }
 
   /**
@@ -29,14 +31,56 @@ define(function(require) {
    *
    * @method exec
    *
+   * @param {String} url the url
    * @param {Query} query
    * @param {Function} callback
    * @param {Object} callback.err an error object
    * @param {Array} results
    *
    */
-  function exec( query, cb ){
-    cb( null, [] );
+  function exec( url, query, cb ){
+    $.ajax({
+      url: url,
+      type: 'get',
+      dataType: 'json'
+    })
+    .done( function(json){
+      cb( null, json );
+    })
+    .fail( function( xhr, status, err ){ processError( xhr, status, err, cb ); });
   }
+
+  /**
+   * save a model
+   *
+   * @method save
+   *
+   * @param {Boolean} newResource
+   * @param {String} url
+   * @param {Object} attributes
+   * @param {Function} callback
+   * @param {Object} callback.err an error object
+   * @param {Object} callback.resource the returned resource object from server
+   *
+   */
+  function save( newResource, url, attrs, cb ){
+    var type = newResource ? 'post' : 'put';
+    $.ajax({
+      url: url,
+      type: type,
+      data: attrs,
+      dataType: 'json'
+    })
+    .done( function(json){
+      cb( null, json );
+    })
+    .fail( function( xhr, status, err ){ processError( xhr, status, err, cb ); });
+  }
+
+  function processError( xhr, status, err, cb ){
+    if( xhr.status < 1 ){ return cb('failed to communicate with server? Maybe missing Access-Control-Allow-Origin in header?'); }
+    cb( xhr.status );
+  }
+
 
 });

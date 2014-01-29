@@ -4,25 +4,17 @@
 
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="../support/lib/mocha/mocha.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="../../../assets/javascripts/caminio-ui/components/mocha/mocha.css" type="text/css" media="screen" title="no title" charset="utf-8">
 
   </head>
   <body>
 
     <div id="mocha"></div>
+    <script src="../../../assets/javascripts/caminio-ui/components/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../assets/javascripts/caminio-ui/components/mocha/mocha.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../assets/javascripts/caminio-ui/components/chai/chai.js" type="text/javascript" charset="utf-8"></script>
 
-    <script src="../support/lib/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../support/lib/mocha/mocha.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../support/lib/chai/chai.js" type="text/javascript" charset="utf-8"></script>
-
-    <script src="./config.js" type="text/javascript" charset="utf-8"></script>
-
-    <script src="./shell.spec.js" type="text/javascript" charset="utf-8"></script>
-
-    <script type="text/javascript">
-      if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
-      else { mocha.run(); }
-    </script>
+    <script src="../../../assets/javascripts/caminio-ui/components/requirejs/require.js" data-main="./config.js" type="text/javascript" charset="utf-8"></script>
 
   </body>
 </html>
