@@ -1,7 +1,7 @@
 {
   "name": "caminio-ui",
   "description": "(end)user interface for caminio",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "dependencies": {
     "caminio": "~1.1.0",
@@ -13,6 +13,9 @@
     "async": "~0.2.10"
   },
   "main": "index.js",
+  "scripts": {
+    "test": "grunt test --verbose"
+  },
   "license": "MIT",
   "devDependencies": {
     "bower": "~1.2.8",

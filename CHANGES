@@ -1,0 +1,3 @@
+0.0.2
+  - travis activated
+  - tests for data_service (client side) written and passing
