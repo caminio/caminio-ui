@@ -23,7 +23,7 @@ define( function( require ){
       expect(this.TestModel.url()).to.be.eql( hostURI+'/tests' );
     });
 
-    describe('#find', function(){
+    describe('#find (empty)', function(){
 
       it('returns a ko.observable', function(){
         var results = this.TestModel.find();
@@ -40,6 +40,55 @@ define( function( require ){
 
     });
 
+    describe('#create', function(){
+
+      it('creates a new TestModel and gets the model data returned', function(done){
+        var test = this;
+        this.TestModel.create({name:'testmodel1'}, function( err, resource ){
+          expect(err).to.be.null;
+          expect(resource).to.have.property('name');
+          expect(resource).to.have.property('id');
+          expect(resource.name).to.eql('testmodel1');
+          test.id = resource.id;
+          done();
+        });
+      });
+
+      it('finds the resource on server', function(done){
+        this.TestModel.findOne({id: this.id}, function( err, resource ){
+          expect(err).to.be.null;
+          expect(resource).to.have.property('name');
+          expect(resource.name).to.eql('testmodel1');
+          done();
+        });
+      });
+
+    });
+
+    describe('#update', function(){
+
+      before(function(done){
+        var test = this;
+        this.TestModel.create({name:'testmodel1'}, function( err, resource ){
+          test.resource = resource;
+          done();
+        });
+      })
+
+      it('updates attributes of a model and saves them', function(done){
+        var test = this;
+        this.resource.name = 'name2';
+        this.resource.save(function(err){
+          expect(err).to.be.null;
+          test.resource.findOne({id: test.resource.id}, function( err, resource ){
+            expect(err).to.be.null;
+            expect(resource.name).to.eql('name2');
+            done();
+          })
+        });
+      });
+
+    });
   });
 
 });

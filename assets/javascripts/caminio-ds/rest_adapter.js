@@ -39,12 +39,19 @@ define(function(require) {
    *
    */
   function exec( url, query, cb ){
-    $.ajax({
+    var xhrOptions = {
       url: url,
       type: 'get',
       dataType: 'json'
-    })
+    };
+    if( query && Object.keys(query).length > 0 &&
+        typeof(query[Object.keys(query)[0]]) === 'object' &&
+        Object.keys(query[Object.keys(query)[0]]).length > 0 ){ 
+      xhrOptions['data'] = query; 
+    }
+    $.ajax( xhrOptions )
     .done( function(json){
+      //console.log('finished', xhrOptions, cb );
       cb( null, json );
     })
     .fail( function( xhr, status, err ){ processError( xhr, status, err, cb ); });
@@ -65,6 +72,7 @@ define(function(require) {
    */
   function save( newResource, url, attrs, cb ){
     var type = newResource ? 'post' : 'put';
+    console.log( type, url, attrs );
     $.ajax({
       url: url,
       type: type,

@@ -26,7 +26,7 @@ requirejs.config({
     'inflection': '../../../assets/javascripts/caminio-ui/components/inflection/lib/inflection',
 
     // caminio stuff
-    'ds': '../../../assets/javascripts/caminio-ui/common/ds',
+    'ds': '../../../assets/javascripts/caminio-ds',
     'models': '../../../assets/javascripts/caminio-ui/app/models',
     'caminio': '../../../assets/javascripts/caminio-ui/common/caminio'
   }

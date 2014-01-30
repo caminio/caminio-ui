@@ -25,6 +25,7 @@ define( function(require) {
   function defineModel( name, options, schema ){
     var Model = function( attrs ){
       var i;
+      this._definedAttributes = schema && schema.attributes ? Object.keys(schema.attributes) : [];
       if( schema && schema.attributes ){
         for( i in schema.attributes )
           this[i] = schema.attributes[i];
@@ -34,21 +35,24 @@ define( function(require) {
         }
       }
       for( i in attrs ){
-        if( !(i in this) )
+        if( !(i in this) ){
           this[i] = attrs[i];
+          this._definedAttributes.push(i);
+        }
       }
     };
     if( schema ){
       Model.prototype = schema.methods || {};
       Model.constructor = Model;
     }
+    Model.prototype.save = save;
     Model.url = function modelUrl(){
       var url = Model.adapter ? Model.adapter.hostURI : '';
       return url+'/'+inflection.pluralize(inflection.underscore(name));
     };
     Model.find = find;
     Model.create = create;
-    Model.findOne = find;
+    Model.findOne = findOne;
     Model.adapter = options.adapter;
     Model.modelName = inflection.classify(name);
     return Model;
@@ -59,7 +63,7 @@ define( function(require) {
    * all items will be returned to promies
    *
    * @method find
-   * @param {Query} a query object
+   * @param {Query} query a query object
    * @param {Function} callback [optional] a callback to be executed when query is finished
    * @param {Object} callback.err an error will be passed to the callback function if any
    * @return {ko.observableArray} an empty observable array which will be filled with data, as soon as data is available
@@ -74,10 +78,17 @@ define( function(require) {
     }
     var Model = this;
     var array = ko.observableArray();
+    var preparedQuery = {};
+    var url = Model.url();
+    if( query.id ){
+      url = url+'/'+query.id;
+      delete query['id'];
+    }
+    preparedQuery[inflection.underscore(Model.modelName)] = query;
     Model.adapter
-      .exec( Model.url(), query, function( err, res ){
+      .exec( url, preparedQuery, function( err, res ){
         if( err ){ return cb(err); }
-        if( !(res instanceof Array) ){ return('wrong response. expected array'); }
+        if( !(res instanceof Array) ){ throw Error('wrong response. expected array'); }
         res.forEach( function( resource ){
           array.push( new Model(resource) );
         });
@@ -85,6 +96,36 @@ define( function(require) {
           cb( null, array );
       });
     return array;
+  }
+
+  /**
+   * find one model
+   *
+   * @method findOne
+   * @param {Query} query a query object
+   * @Param {Function} callback [optional] a callback to be executed when query is finished
+   */
+  function findOne( query, cb ){
+    if( arguments.length < 2 ){
+      cb = query;
+      query = {};
+    } else if( !query ){
+      query = {};
+    }
+    var Model = this;
+    var preparedQuery = {};
+    var url = Model.url();
+    if( query.id ){
+      url = url+'/'+query.id;
+      delete query['id'];
+    }
+    preparedQuery[inflection.underscore(Model.modelName)] = query;
+    Model.adapter
+      .exec( url, preparedQuery, function( err, res ){
+        if( err ){ return cb(err); }
+        if( typeof(cb) === 'function' )
+          cb( null, new Model(res) );
+      });
   }
 
   /**
@@ -107,6 +148,33 @@ define( function(require) {
         if( err ){ return cb(err); }
         if( !res ){ return('failed to create resource'); }
         cb( null, new Model(res) );
+      });
+  }
+
+  /**
+   * save a model and put it to the server
+   *
+   * @method save
+   * @param {Function} callback
+   * @param {Object} callback.err an error object
+   */
+  function save( cb ){
+    var self = this;
+    var preparedAttrs = {};
+    preparedAttrs[ inflection.underscore(this.constructor.modelName) ];
+    var modelName = inflection.underscore(self.constructor.modelName);
+    preparedAttrs[modelName] = {};
+    self._definedAttributes.forEach( function( attr ){
+      if( attr === 'id' ) return;
+      preparedAttrs[modelName][attr] = typeof(self[attr]) === 'function' ? self[attr]() : self[attr];
+    });
+    var url = this.constructor.url()+'/';
+    url += typeof(this.id) === 'function' ? this.id() : this.id;
+    this.constructor.adapter
+      .save( false, url, preparedAttrs, function( err, res ){
+        if( err ){ return cb(err); }
+        if( !res ){ return('failed to save resource') }
+          cb( null, self );
       });
   }
 
