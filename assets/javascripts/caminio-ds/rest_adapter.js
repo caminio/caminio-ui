@@ -12,7 +12,8 @@ define(function(require) {
   return {
     init: initStore,
     exec: exec,
-    save: save
+    save: save,
+    destroy: destroy
   };
 
   /**
@@ -44,14 +45,10 @@ define(function(require) {
       type: 'get',
       dataType: 'json'
     };
-    if( query && Object.keys(query).length > 0 &&
-        typeof(query[Object.keys(query)[0]]) === 'object' &&
-        Object.keys(query[Object.keys(query)[0]]).length > 0 ){ 
-      xhrOptions['data'] = query; 
-    }
+    if( query && Object.keys(query).length > 0 )
+      xhrOptions.data = query;
     $.ajax( xhrOptions )
     .done( function(json){
-      //console.log('finished', xhrOptions, cb );
       cb( null, json );
     })
     .fail( function( xhr, status, err ){ processError( xhr, status, err, cb ); });
@@ -72,7 +69,6 @@ define(function(require) {
    */
   function save( newResource, url, attrs, cb ){
     var type = newResource ? 'post' : 'put';
-    console.log( type, url, attrs );
     $.ajax({
       url: url,
       type: type,
@@ -81,6 +77,27 @@ define(function(require) {
     })
     .done( function(json){
       cb( null, json );
+    })
+    .fail( function( xhr, status, err ){ processError( xhr, status, err, cb ); });
+  }
+
+  /**
+   * destroys a model
+   *
+   * @method destroy
+   *
+   * @param {String} url
+   * @param {Function} callback
+   * @param {Object} callback.err an error object
+   */
+  function destroy( url, cb ){
+    $.ajax({
+      url: url,
+      type: 'delete',
+      dataType: 'json'
+    })
+    .done( function(json){
+      cb( null );
     })
     .fail( function( xhr, status, err ){ processError( xhr, status, err, cb ); });
   }

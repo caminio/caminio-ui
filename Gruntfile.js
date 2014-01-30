@@ -1,4 +1,5 @@
-var _ = require('lodash');
+var _         = require('lodash');
+var async     = require('async');
 
 // the whole setup is inspired by:
 // https://github.com/RainerAtSpirit/HTMLStarterKitPro/blob/master/Gruntfile.js
@@ -157,7 +158,15 @@ module.exports = function(grunt) {
       }
     });
 
-    caminio.on('ready', done );
+    // clean up database;
+    caminio.on('ready', function(){
+      async.each( Object.keys(caminio.models), function(modelName, next){
+        caminio.models[modelName].remove({}, function(err){
+          if( err ) console.log(err);
+          next();
+        });
+      }, done );
+    });
 
   });
 

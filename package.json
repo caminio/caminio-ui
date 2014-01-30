@@ -9,7 +9,8 @@
     "grunt": "~0.4.2",
     "express-hbs": "git+https://github.com/barc/express-hbs#0.7.5",
     "jade": "~1.1.5",
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "async": "~0.2.10"
   },
   "main": "index.js",
   "license": "MIT",
