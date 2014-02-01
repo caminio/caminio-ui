@@ -1,0 +1,21 @@
+extends ../../../layouts/authorization
+
+block content
+
+  .login-box-wrap
+    section.login-box
+      form.auth.clearfix( action='/login', method='post' )
+
+        if message
+          .message(class=(error ? 'error' : ''))=message
+
+        .password-container
+          input(type='password', placeholder=t('auth.password'), name='password' )
+        .password-container
+          input(type='password', placeholder=t('auth.confirm_password'), name='password_confirm' )
+
+        button.btn(type='submit', title=t('login'))
+          i.fa.fa-arrow-right
+        input(type='hidden', name='_csrf', value=csrf)
+        section.meta-wrap
+          a(href='/login')=t('back_to_login')
