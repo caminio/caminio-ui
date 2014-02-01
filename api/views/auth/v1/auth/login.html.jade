@@ -1,44 +1,20 @@
 extends ../../../layouts/authorization
 
-append head
-  if env === 'production'
-    link( rel='stylesheet', href='/stylesheets/caminio-ui.min.css' )
-  else
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/bootstrap-overrides.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/common.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/form.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/authorization.css' )
-
 block content
-  .modal.fade(data-backdrop='static')
-    form.auth.caminio.modal-dialog(action='/login',method='post')
-      .modal-content
-        .modal-header
-          h4.modal-title=t('auth.title')
-        .modal-body
-          if message
-            .error.message=message
-          img.brand.pull-left(src='/images/brand_100x100.png')
-          .field
-            input.span400px(type='text',name='username',placeholder=t('auth.email'))
-          .field
-            input.span400px(type='password',name='password',placeholder=t('auth.password'))
-        .modal-footer
-          button.btn.pale(type='button')
-            i.fa.fa-refresh
-            span=t('forgot_password')
-          button.btn.primary(type='submit',data-submit='form')
-            i.fa.fa-arrow-right
-            span=t('login')
 
-block foot
-  script(type='text/javascript').
-    $(function(){
-      $('.modal').modal();
-      $('.modal').on('shown.bs.modal', function(){
-        $(this).find('input[type=text]:first').focus();
-      });
-      $('[data-submit=form]').on('click', function(){
-        $('form.auth').submit();
-      })
-    })
+  .login-box-wrap
+    section.login-box
+      form.auth.clearfix( action='/login', method='post' )
+
+        if message
+          .message(class=(error ? 'error' : ''))=message
+
+        .email-container
+          input(type='text', placeholder=t('auth.email_address'), autocapitalize='off', autocorrect='off', name='username' )
+        .password-container
+          input(type='password', placeholder=t('auth.password'), name='password' )
+        button.btn(type='submit', title=t('login'))
+          i.fa.fa-arrow-right
+        input(type='hidden', name='_csrf', value=csrf)
+        section.meta-wrap
+          a.forgotten-password(href='/reset_password')=t('forgotten_password')

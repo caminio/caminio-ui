@@ -5,8 +5,10 @@ html(lang=i18n.locale())
     
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge, chrome=1')
-
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv="cleartype", content="on")
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0')
+    meta(name="application-name", content="caminio")
+    meta(name='csrf-param', content=csrf)
 
     //link(rel='apple-touch-startup-image', href='/images/ios-startup-images-landscape.png', media='(orientation:landscape)')
     //link(rel='apple-touch-startup-image', href='/images/ios-startup-images-portrait.png', media='(orientation:portrait)')
@@ -18,6 +20,10 @@ html(lang=i18n.locale())
       link(rel='stylesheet', href='/stylesheets/caminio-ui-static/bootstrap.css')
       link(rel='stylesheet', href='/stylesheets/caminio-ui-static/opensans.css')
       link(rel='stylesheet', href='/stylesheets/caminio-ui-static/font-awesome.css')
+      link( rel='stylesheet', href='/stylesheets/caminio-ui/bootstrap-overrides.css' )
+      link( rel='stylesheet', href='/stylesheets/caminio-ui/form.css' )
+      link( rel='stylesheet', href='/stylesheets/caminio-ui/common.css' )
+      link( rel='stylesheet', href='/stylesheets/caminio-ui/authorization.css' )
 
     script(type='text/javascript', src='/javascripts/jquery.min.js')
     script(type='text/javascript', src='/javascripts/bootstrap.min.js')
@@ -29,3 +35,10 @@ html(lang=i18n.locale())
       block content
 
       block foot
+
+      script(type='text/javascript').
+        jQuery(function($){
+          $('.login-box-wrap').fadeIn(500, function(){
+            $(this).find('input[type=text]:first').focus();
+          });
+        })

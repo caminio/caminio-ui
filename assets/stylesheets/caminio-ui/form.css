@@ -2,7 +2,7 @@ input[type=text],
 input[type=password],
 textarea{
   padding: 6px;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
 }
 
 form.caminio .field{
@@ -30,8 +30,9 @@ form.caminio textarea{
   border: 1px solid #ddd;
   border-radius: 2px;
 }
-form.caminio input:focus{
-  outline: none;
+form.caminio input:focus,
+form.caminio button:focus{
+  outline: none !important;
 }
 form.caminio textarea{
   padding-bottom: 0;

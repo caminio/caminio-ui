@@ -1,24 +1,112 @@
+body, html{
+  height: 100%;
+  font-size: 12px;
+}
+
+
+.login-box-wrap{
+  display: none;
+  height: 100%;
+}
+
+.login-box{
+  max-width: 500px;
+  display: table;
+  height: 90%;
+  margin: 0 auto;
+}
+
+.message{
+  background: #5BC0DE;
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 2px;
+  color: #fff;
+  font-weight: 600;
+  max-width: 485px;
+}
+
+.message.error{
+  background: #d55;
+}
+
 form.auth{
-  width: 580px;
-}
-.auth .brand{
-  margin-top: 0px;
-}
-.auth .brand-space{
-  margin-left: 120px;
+  margin: auto;
+  display: table-cell;
+  vertical-align: middle;
 }
 
-.auth .modal-title{
-  font-size: 20px;
-  color: #777;
-  font-weight: 400;
+.meta-wrap{
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
 }
 
-.auth .message{
-  padding: 10px;
-  margin: 0 8px 20px 8px;
+.meta-wrap a{
+  color: #aaa;
 }
 
-.auth .error.message{
-  color: #d55;
+.meta-wrap a:hover{
+  color: #333;
+}
+
+.email-container,
+.password-container{
+  display: inline-block;
+  position: relative;
+}
+
+.email-container:before,
+.password-container:before{
+  font-family: 'FontAwesome';
+  font-weight: normal;
+  font-style: normal;
+  vertical-align: -7%;
+  text-transform: none;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  content: "\f003";
+  font-size: 1.1rem;
+  position: absolute;
+  bottom: 11px;
+  left: 8px;
+  z-index: 100;
+  color: #aaa;
+}
+
+.password-container:before{
+  content: "\f023";
+  left: 10px;
+  bottom: 10px;
+}
+
+
+form.auth button{
+  padding: 5px 12px 8px;
+  font-size: 16px;
+}
+
+form.auth button.btn:hover,
+form.auth button.btn:focus{
+  outline: none !important;
+  background-color: #5CB85C;
+  transition: all 0.3s;
+}
+
+form.auth input[type=text],
+form.auth input[type=password]{
+  border-radius: 2px;
+  width: 220px;
+  text-indent: 2.2rem;
+  padding: 9px 0 8px;
+  transition: all 0.5s;
+}
+
+form.auth input[type=text]:focus,
+form.auth input[type=password]:focus{
+  border-radius: 2px;
+  border-color: #999;
+  background-color: #fafafa;
+  outline: none !important;
+  transition: all 0.5s;
 }
