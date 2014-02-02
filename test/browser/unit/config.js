@@ -36,6 +36,7 @@ define( function(require) {
 
   require('ds.spec');
   require('model.spec');
+  require('model.schema.spec');
 
   if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
   else { mocha.run(); }

@@ -9,13 +9,13 @@ define( function( require ){
   describe('Model', function() {
 
     before( function(done){
-      RESTAdapter.init( hostURI );
-      this.TestModel = Model.define('Test', { adapter: RESTAdapter });
+      this.host1 = new RESTAdapter( hostURI );
+      this.TestModel = Model.define('Test', { adapter: this.host1 });
       this.TestModel.create({ name: 'test' }, done );
     });
 
     it('defines a new model', function(){
-      var TestModel = Model.define('Test', { adapter: RESTAdapter });
+      var TestModel = Model.define('Test', { adapter: this.RESTAdapter });
       expect(TestModel).to.be.a('function');
     });
 
@@ -91,7 +91,7 @@ define( function( require ){
         var test = this;
         this.TestModel.findOne( function( err, resource ){
           expect(err).to.be.null;
-          expect( resource ).to.be.an.instanceOf(test.TestModel)
+          expect( resource ).to.be.an.instanceOf(test.TestModel);
         });
       });
 

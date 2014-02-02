@@ -28,7 +28,7 @@ define( function(require) {
       this._definedAttributes = schema && schema.attributes ? Object.keys(schema.attributes) : [];
       if( schema && schema.attributes ){
         for( i in schema.attributes )
-          this[i] = schema.attributes[i];
+          this[i] = createType( schema.attributes[i] );
         for( i in attrs ){
           if( i in this )
             this[i]( attrs[i] );
@@ -40,10 +40,10 @@ define( function(require) {
           this._definedAttributes.push(i);
         }
       }
+      this.constructor = Model;
     };
     if( schema ){
       Model.prototype = schema.methods || {};
-      Model.constructor = Model;
     }
     Model.prototype.save = save;
     Model.prototype.destroy = destroy;
@@ -176,7 +176,6 @@ define( function(require) {
    *
    */
   function destroy( cb ){
-    var self = this;
     var url = this.constructor.url()+'/';
     url += typeof(this.id) === 'function' ? this.id() : this.id;
     this.constructor.adapter.destroy( url, cb );
@@ -218,6 +217,11 @@ define( function(require) {
    */
   function processQuery( query ){
     return query;
+  }
+
+  function createType( type ){
+    console.log('type', type);
+    return ko.observable();
   }
 
 });

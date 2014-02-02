@@ -8,23 +8,14 @@ define(function(require) {
 
   /**
    * @class RESTAdapter
-   */
-  return {
-    init: initStore,
-    exec: exec,
-    save: save,
-    destroy: destroy
-  };
-
-  /**
-   * initialize the datastore
-   * with this adapter
-   * 
    * @method init
    * @param {String} uri the host uri
    */
-  function initStore( uri ){
+  function RESTAdapter( uri, options ){
     this.hostURI = uri;
+    options = options || {};
+    if( options.csrf )
+      this.csrf = csrf;
   }
 
   /**
@@ -39,7 +30,7 @@ define(function(require) {
    * @param {Array} results
    *
    */
-  function exec( url, query, cb ){
+  RESTAdapter.prototype.exec = function exec( url, query, cb ){
     var xhrOptions = {
       url: url,
       type: 'get',
@@ -52,7 +43,7 @@ define(function(require) {
       cb( null, json );
     })
     .fail( function( xhr, status, err ){ processError( xhr, status, err, cb ); });
-  }
+  };
 
   /**
    * save a model
@@ -67,7 +58,7 @@ define(function(require) {
    * @param {Object} callback.resource the returned resource object from server
    *
    */
-  function save( newResource, url, attrs, cb ){
+  RESTAdapter.prototype.save = function save( newResource, url, attrs, cb ){
     var type = newResource ? 'post' : 'put';
     $.ajax({
       url: url,
@@ -79,7 +70,7 @@ define(function(require) {
       cb( null, json );
     })
     .fail( function( xhr, status, err ){ processError( xhr, status, err, cb ); });
-  }
+  };
 
   /**
    * destroys a model
@@ -90,7 +81,7 @@ define(function(require) {
    * @param {Function} callback
    * @param {Object} callback.err an error object
    */
-  function destroy( url, cb ){
+  RESTAdapter.prototype.destroy = function destroy( url, cb ){
     $.ajax({
       url: url,
       type: 'delete',
@@ -100,12 +91,13 @@ define(function(require) {
       cb( null );
     })
     .fail( function( xhr, status, err ){ processError( xhr, status, err, cb ); });
-  }
+  };
 
   function processError( xhr, status, err, cb ){
     if( xhr.status < 1 ){ return cb('failed to communicate with server? Maybe missing Access-Control-Allow-Origin in header?'); }
     cb( xhr.status );
   }
 
+  return RESTAdapter;
 
 });

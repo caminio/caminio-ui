@@ -4,7 +4,7 @@ block content
 
   .login-box-wrap
     section.login-box
-      form.auth.clearfix( action='/caminio_setup', method='post' )
+      form.auth.clearfix( action='/caminio/initial_setup', method='post' )
 
         if message
           .message(class=(error ? 'error' : ''))=message

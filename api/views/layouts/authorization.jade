@@ -39,6 +39,9 @@ html(lang=i18n.locale())
       script(type='text/javascript').
         jQuery(function($){
           $('.login-box-wrap').fadeIn(500, function(){
-            $(this).find('input[type=text]:first').focus();
+            if( $(this).find('input[type=text]:first').length )
+              $(this).find('input[type=text]:first').focus();
+            else
+              $(this).find('input[type=password]:first').focus();
           });
         })

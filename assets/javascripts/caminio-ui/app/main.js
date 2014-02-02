@@ -15,8 +15,9 @@ requirejs.config({
     'inflection': '../components/inflection/lib/inflection',
 
     // caminio stuff
-    'ds': '../common/ds',
+    'ds': '../../caminio-ds',
     'models': 'models',
+    'adapters': 'adapters',
     'caminio': '../common/caminio'
   },
   shim: {
@@ -39,11 +40,10 @@ define(function(require) {
   var app         = require('durandal/app');
   var viewLocator = require('durandal/viewLocator');
   var caminio     = require('caminio');
-  var RESTAdapter = require('ds/rest_adapter');
 
   caminio.init( function(){
 
-    RESTAdapter.init( window.caminioHostname );
+    app.title = 'camin.io';
 
     app.start().then(function() {
 

@@ -1,13 +1,18 @@
-extends ../../../layouts/authorization
+extends ../layouts/authorization
 
 block content
 
   .login-box-wrap
     section.login-box
-      form.auth.clearfix( action='/login', method='post' )
+      form.auth.clearfix( action='/caminio/accounts/'+userId+'/reset/'+key, method='post' )
 
         if message
-          .message(class=(error ? 'error' : ''))=message
+          if message.info
+            .message=message.info
+          if message.error
+            .message.error=message.error
+        else
+          .message=t('auth.enter_new_password')
 
         .password-container
           input(type='password', placeholder=t('auth.password'), name='password' )
@@ -18,4 +23,4 @@ block content
           i.fa.fa-arrow-right
         input(type='hidden', name='_csrf', value=csrf)
         section.meta-wrap
-          a(href='/login')=t('back_to_login')
+          a(href='/caminio/login')=t('back_to_login')

@@ -8,10 +8,22 @@ body .modal-header .close{
   background: none;
   border: none;
 }
+
+body .modal-header h3{
+  margin: 0;
+  line-height: 1em;
+  color: #555;
+  font-size: 1.2rem;
+}
+
 body .modal-header .close:hover{
   text-shadow: 0 0 2px rgba(0,0,0,0.3);
   font-weight: 600;
   font-size: 2em;
   margin-top: -0.45em;
   margin-right: -0.15em;
+}
+
+body .modal-footer{
+  padding: 10px 20px;
 }

@@ -14,9 +14,13 @@ module.exports = function( t ){
   t.email = 'Email';
 
   t.nr = 'No.';
+  t.yes = 'Yes';
+  t.no = 'No';
 
   t.actions = 'Actions';
   t.create = 'Create';
+  t.close = 'Close';
+  t.undo = 'Undo';
 
   // USERS
   t.users = t.users || {};

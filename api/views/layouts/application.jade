@@ -10,14 +10,11 @@ html(lang=i18n.locale())
     meta(name="application-name", content="caminio")
     meta(name='csrf-param', content=csrf)
     
-    //link(rel='apple-touch-startup-image', href='/images/ios-startup-images-landscape.png', media='(orientation:landscape)')
-    //link(rel='apple-touch-startup-image', href='/images/ios-startup-images-portrait.png', media='(orientation:portrait)')
-    //link(rel='apple-touch-icon', href='/images/icon.png')
-
     if env === 'production'
       link(resl='stylesheet', href='/stylesheets/caminio-ui.min.css')
     else
       link(rel='stylesheet', href='/stylesheets/caminio-ui-static/bootstrap.css')
+      link(rel='stylesheet', href='/stylesheets/caminio-ui-static/durandal.css')
       link(rel='stylesheet', href='/stylesheets/caminio-ui-static/opensans.css')
       link(rel='stylesheet', href='/stylesheets/caminio-ui-static/font-awesome.css')
 
@@ -36,5 +33,6 @@ html(lang=i18n.locale())
       window.currentLang = '!{i18n.locale()}';
       window.currentUser = JSON.parse('!{JSON.stringify(currentUser)}');
       window.currentDomain = JSON.parse('!{JSON.stringify(currentDomain)}');
+      window.csrf = '!{csrf}';
 
     block foot

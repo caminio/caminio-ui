@@ -31,7 +31,7 @@ define( function( require ){
 
   return {
     init: initCaminio
-  }
+  };
 
   function initCaminio( cb ){
 
@@ -45,12 +45,15 @@ define( function( require ){
       dialog: true
     });
 
-    app.title = 'camin.io';
-
     moment.lang( window.currentLang || 'en' );
     
     i18next.init( i18NOptions, function(t){
       cb();
+    });
+
+    $(document).on('ajaxSend', function(elm, xhr, s){
+      if (s.type.match(/POST|PUT|PATH|DELETE/) )
+        xhr.setRequestHeader('X-CSRF-Token', window.csrf);
     });
 
   }

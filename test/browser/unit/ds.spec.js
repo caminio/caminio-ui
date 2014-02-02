@@ -8,8 +8,8 @@ define( function( require ){
   describe('DS', function() {
 
     it('initializes a new datastore', function(){
-      RESTAdapter.init( hostURI );
-      expect(RESTAdapter.hostURI).to.eql( hostURI );
+      var host1 = new RESTAdapter( hostURI );
+      expect(host1.hostURI).to.eql( hostURI );
     });
 
   });

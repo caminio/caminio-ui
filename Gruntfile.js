@@ -23,8 +23,9 @@ module.exports = function(grunt) {
       //'select2': '../components/select2/select2',
       'moment': '../components/moment/moment',
       'caminio': '../common/caminio',
-      'ds': '../common/ds',
+      'ds': '../../caminio-ds',
       'models': 'models',
+      'adapters': 'adapters',
       'almond': '../components/durandal-almond/almond'
     }
   };
