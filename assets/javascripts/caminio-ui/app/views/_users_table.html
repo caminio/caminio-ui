@@ -1,0 +1,31 @@
+<table class="caminio">
+  <thead>
+    <tr>
+      <th data-bind="text: $.i18n.t('nr')" class="nr"></th>
+      <th data-bind="text: $.i18n.t('name')"></th>
+      <th data-bind="text: $.i18n.t('email')"></th>
+      <th style="width: 20px"></th>
+      <th data-bind="text: $.i18n.t('user.last_login')"></th>
+      <th data-i18n='caminio:action' class="align-right"></th>
+    </tr>
+  </thead>
+
+  <tbody data-bind="foreach: users">
+    <tr>
+      <td data-bind="text: $index()+1" class="nr"></td>
+      <td data-bind="text: fullName"></td>
+      <td data-bind="text: email"></td>
+      <td data-bind="if: admin, attr: {title: $.i18n.t('user.admin')} ">
+        <span class="lbl danger"><i class="fa fa-gears"></i></span>
+      </td>
+      <td data-bind="text: $parent.date(lastLoginAt)"></td>
+      <td class="actions">
+        <div class="btn-group">
+          <a class="btn small" data-bind="attr: { href: '#users/'+id, title: $.i18n.t('users.edit') }"><i class="fa fa-pencil"></i></a>
+          <a class="btn small" data-bind="click: $parent.lockUser, attr: { title: $.i18n.t('users.lock') }"><i class="fa fa-lock"></i></a>
+          <a class="btn danger small" data-bind="click: $parent.destroyUser, attr: { title: $.i18n.t('users.delete') }"><i class="fa fa-times"></i></a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

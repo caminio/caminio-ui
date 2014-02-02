@@ -1,9 +1,13 @@
+body{
+  font: 13px 'OpenSans', 'Open Sans', sans-serif;
+}
 .main-view{ 
   position: absolute;
   top: 50px;
   left: 0;
   right: 0;
   bottom: 0;
+  background: #ddd;
 }
 body.side-panel-active .main-view{
   left: 230px;
@@ -55,6 +59,7 @@ body.side-panel-active .main-view{
   font-size: 14px;
   transition: background 0.6s;
 }
+
 .navbar li a:active,
 .navbar li a.active{
   background: #d55 !important;
@@ -62,7 +67,7 @@ body.side-panel-active .main-view{
   transition: background 0.6s;
 }
 .navbar li a:hover{
-  background: #ddd;
+  background: #eee;
   transition: background 0.3s;
 }
 
@@ -73,6 +78,8 @@ body.side-panel-active .main-view{
   right: 10px;
   bottom: 10px;
   overflow-y: auto;
+  background: #fafafa;
+  padding: 10px;
 }
 
 .main-ctrl{
@@ -97,4 +104,29 @@ body.side-panel-active .main-view{
 }
 .main-content header.with-ctrl h1{
   margin-top: 20px;
+}
+
+.sub-header{
+  font-size: 2rem;
+  border-bottom: 1px dotted #ccc;
+  padding-bottom: 5px;
+  margin-bottom: 30px;
+  font-weight: 100;
+}
+
+.main-header{
+  margin: 40px 0;
+}
+
+.main-header h1{
+  font-weight: 100;
+  font-size: 3.5rem;
+  color: #d55;
+  margin: 0 20px;
+}
+.main-header h2{
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: #777;
+  margin: 5px 20px 0;
 }

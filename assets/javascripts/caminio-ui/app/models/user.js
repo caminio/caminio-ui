@@ -8,8 +8,12 @@ define(function(require) {
   userSchema.attributes = {
     firstName: 'string',
     lastName: 'string',
+    fullName: 'string',
     email: 'string',
+    password: 'string',
+    password_confirm: 'string',
     admin: 'boolean',
+    superuser: 'boolean',
     lastLoginAt: 'date'
   };
 

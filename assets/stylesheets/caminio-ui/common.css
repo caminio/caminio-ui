@@ -28,9 +28,9 @@
 /* ------------------------------------------------ widgets */
 
 .btn{
-  padding: 8px 16px;
+  padding: 5px 15px 6px;
   color: #fff;
-  border-radius: 2px;
+  border-radius: 0;
   border: none;
   background-color: #454545;
   transition: all 0.8s;
@@ -46,8 +46,9 @@
 }
 
 .btn:hover{
-  opacity: 0.9;
+  opacity: 0.8;
   transition: opacity 0.3s;
+  color: #fff;
 }
 
 a.btn,
@@ -55,9 +56,6 @@ button.btn,
 .btn a{
   cursor: pointer;
   text-decoration: none;
-}
-button.btn{
-  padding: 5px 15px 6px;
 }
 div.btn{
   display: inline-block;
@@ -89,22 +87,45 @@ div.btn.icon-only{
   background-color: #5cb85c;
 }
 
-.btn.danger{
-  background-color: #d55;
+.btn.danger,
+.lbl.danger{
+  background-color: #D9534F;
+}
+
+.btn.warning,
+.lbl.warning{
+  background-color: #F0AD4E;
 }
 
 .btn.light{
   background-color: #ccc;
 }
-.btn.info{
+
+.btn.info,
+.lbl.info{
   background-color: #5BC0DE;
 }
-.btn.success{
+
+.btn.success,
+.lbl.success{
   background-color: #5CB85C;
 }
 
 .btn.transparent{
   background: none;
+  color: #444;
+}
+
+.btn.transparent:hover{
+  background-color: #ddd;
+  transition: background-color 0.5s;
+}
+
+.lbl{
+  padding: 2px 5px;
+  border-radius: 2px;
+  color: #fff;
+  background-color: #ddd;
 }
 
 .icon-text .fa{

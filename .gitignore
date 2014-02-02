@@ -6,5 +6,5 @@ npm-debug.log
 doc
 .tmp
 test.log
-public
+build
 assets/javascripts/components

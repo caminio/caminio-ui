@@ -22,7 +22,7 @@ module.exports = function(grunt) {
       'inflection': '../components/inflection/lib/inflection',
       //'select2': '../components/select2/select2',
       'moment': '../components/moment/moment',
-      'caminio': '../common/caminio',
+      'caminio': '../../caminio',
       'ds': '../../caminio-ds',
       'models': 'models',
       'adapters': 'adapters',
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     clean: {
-      build: ['public']
+      build: ['build']
     },
 
     cssmin: {
@@ -47,8 +47,9 @@ module.exports = function(grunt) {
       },
       combine: {
         files: {
-          'public/stylesheets/caminio-ui.min.css': [ 'assets/stylesheets/caminio-ui-static/*.css', 
-                                                      'assets/stylesheets/caminio-ui/*.css' ]
+          'build/stylesheets/caminio-ui.min.css': [ 'assets/stylesheets/caminio-ui-static/*.css', 
+                                                    'assets/stylesheets/caminio-ui/*.css' ],
+          'build/stylesheets/caminio-auth.min.css': [ 'assets/stylesheets/caminio-ui/authorization.css' ]
         }
       }
     },
@@ -64,7 +65,7 @@ module.exports = function(grunt) {
           paths: requireConfig.paths,
           exclude: [],
           optimize: 'none',
-          out: 'public/javascripts/caminio-ui/app/main.js'
+          out: 'build/javascripts/caminio-ui/app/main.js'
         }
       }
     },
@@ -78,8 +79,8 @@ module.exports = function(grunt) {
             '*/\n'
       },
       build: {
-        src: 'public/javascripts/caminio-ui/app/main.js',
-        dest: 'public/javascripts/caminio-ui/app/main.min.js'
+        src: 'build/javascripts/caminio-ui/app/main.js',
+        dest: 'build/javascripts/caminio-ui/app/main.min.js'
       }
     },
 
@@ -90,7 +91,7 @@ module.exports = function(grunt) {
             expand: true,
             cwd: 'assets/images',
             src: ['**/*'], 
-            dest: 'public/images/'
+            dest: 'build/images/'
           }
         ]
       },
@@ -100,7 +101,7 @@ module.exports = function(grunt) {
             expand: true,
             cwd: 'assets/fonts/',
             src: ['**/*'], 
-            dest: 'public/fonts/'
+            dest: 'build/fonts/'
           }
         ]
       }

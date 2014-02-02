@@ -5,8 +5,9 @@ define( function( require ){
   var router        = require('plugins/router');
   var app           = require('durandal/app');
   var i18n          = require('i18next');
+  var ko            = require('knockout');
 
-  return {
+  var shell = {
     router: router,
     search: function() {
       //It's really easy to show a message box.
@@ -18,9 +19,7 @@ define( function( require ){
         //{ route: '', title: i18n.t('navbar.overview'), moduleId: 'viewmodels/overview', nav: true },
         { route: '', title: i18n.t('navbar.users'), moduleId: 'viewmodels/users', nav: true },
         { route: 'users', title: i18n.t('navbar.users_groups'), moduleId: 'viewmodels/users', nav: false },
-        //{ route: 'users/:id', moduleId: 'viewmodels/user', nav: false },
-
-
+        { route: 'users/:id', moduleId: 'viewmodels/user', nav: false },
         //{ route: 'api_keys', title: i18n.t('navbar.api_keys'), moduleId: 'viewmodels/api_keys', nav: true },
         { route: 'domains', title: i18n.t('navbar.domains'),
                             moduleId: 'viewmodels/domains',
@@ -32,5 +31,11 @@ define( function( require ){
       return router.activate();
     }
   };
+
+  // quickfix to make parents active if child route in hash
+  shell.windowHash = ko.observable(window.location.hash);
+  window.onhashchange = function(){ shell.windowHash(window.location.hash); };
+
+  return shell;
 
 });

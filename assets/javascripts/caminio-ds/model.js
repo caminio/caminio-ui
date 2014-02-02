@@ -30,7 +30,7 @@ define( function(require) {
         for( i in schema.attributes )
           this[i] = createType( schema.attributes[i] );
         for( i in attrs ){
-          if( i in this )
+          if( i in this && typeof(this[i]) === 'function' )
             this[i]( attrs[i] );
         }
       }
@@ -47,6 +47,7 @@ define( function(require) {
     }
     Model.prototype.save = save;
     Model.prototype.destroy = destroy;
+    Model.cache = {};
     Model.url = function modelUrl(){
       var url = Model.adapter ? Model.adapter.hostURI : '';
       return url+'/'+inflection.pluralize(inflection.underscore(name));
@@ -98,7 +99,7 @@ define( function(require) {
    * find one model
    *
    * @method findOne
-   * @param {Query} query a query object
+   * @param {Query|Id} query a query object or the ide of the model
    * @Param {Function} callback [optional] a callback to be executed when query is finished
    */
   function findOne( query, cb ){
@@ -108,13 +109,23 @@ define( function(require) {
     } else if( !query ){
       query = {};
     }
+    if( typeof(query) === 'string' )
+      query = { id: query };
     var Model = this;
+    // return immediately if Model is in cache
+    if( query.id && Model.cache[query.id] )
+      return cb( Model.cache[query.id] );
+
     var url = processUrl( Model.url(), query );
     Model.adapter
       .exec( url, processQuery(query), function( err, res ){
         if( err ){ return cb(err); }
-        if( typeof(cb) === 'function' )
-          cb( null, ( res ? new(Model)(res) : null) );
+        if( typeof(cb) === 'function' ){
+          var m = ( res ? new(Model)(res) : null);
+          if( m )
+            Model.cache[m.id] = m;
+            cb( null, m );
+        }
       });
   }
 
@@ -220,7 +231,6 @@ define( function(require) {
   }
 
   function createType( type ){
-    console.log('type', type);
     return ko.observable();
   }
 

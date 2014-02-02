@@ -5,12 +5,13 @@ define(function(require) {
   var User        = require('models/user');
   var app         = require('durandal/app');
   var notify      = require('caminio/notify');
+  var factory     = require('caminio/factory');
 
-  var usersController = {
+  var usersController = factory.createViewModel({
     users: User.find(),
     destroyUser: destroyUser,
     lockUser: lockUser
-  };
+  });
 
   return usersController;
 

@@ -21,6 +21,7 @@ module.exports = function( t ){
   t.create = 'Create';
   t.close = 'Close';
   t.undo = 'Undo';
+  t.back = 'back';
 
   // USERS
   t.users = t.users || {};
@@ -31,12 +32,16 @@ module.exports = function( t ){
   
   // USER
   t.user = t.user || {};
-  t.user.full_name = 'Name';
-  t.user.full_name_exmpl = 'e.g.: Elisabeth Queen';
+  t.user.settings = 'Account settings'; 
+  t.user.editing_as_admin = 'You are editing this settings with <span class="lbl danger">administrator</span> privileges';
+  t.user.firstname = 'Firstname';
+  t.user.lastname = 'Lastname';
   t.user.last_login = 'Last login';
-  t.user.email_exmpl = 'e.g.: elisabeth@example.com';
+  t.user.email_desc = 'We will contact you through this email address';
+  t.user.security = 'Security';
   t.user.password = 'Password';
-  t.user.password_confirm = 'Repeat';
+  t.user.password_confirm = 'Repeat password';
+  t.user.password_requirements = 'The password must have at least 6 characters and contain at least one uppercase, one lowercase character and one digit';
   t.user.password_exmpl = 'at least 6 characters';
   t.user.password_res = 'Password is:';
   t.user.send_link_to_set_pwd = 'Generate a link';
@@ -50,9 +55,11 @@ module.exports = function( t ){
   t.user.password_too_short = 'The given password is too short (6 charachters required)';
   t.user.lang = 'Language';
   t.user.edit_profile = 'Edit profile';
-  t.user.profile = t.user.profile || {};
-  t.user.profile.general = 'General';
-  t.user.profile.password = 'Password';
-
+  t.user.danger_zone = 'Danger zone';
+  t.user.lock = 'Lock this account';
+  t.user.lock_desc = 'The user will not be able to log into the system any more.';
+  t.user.destroy = 'Delete this account';
+  t.user.destroy_desc = 'This will permanently delete the user anything private to the user (like profile photos, comments and messages).';
+  t.user.general = 'General';
 
 };

@@ -18,7 +18,7 @@ requirejs.config({
     'ds': '../../caminio-ds',
     'models': 'models',
     'adapters': 'adapters',
-    'caminio': '../common/caminio'
+    'caminio': '../../caminio'
   },
   shim: {
     'jquery': {
@@ -31,6 +31,10 @@ requirejs.config({
     'bootstrap': {
       deps: ['jquery'],
       exports: 'jQuery'
+    },
+    'i18next': {
+      deps: ['jquery'],
+      exports: 'jQuery'
     }
   }
 });
@@ -39,9 +43,9 @@ define(function(require) {
 
   var app         = require('durandal/app');
   var viewLocator = require('durandal/viewLocator');
-  var caminio     = require('caminio');
+  var caminioOpts = require('caminio/options');
 
-  caminio.init( function(){
+  caminioOpts.init( function(){
 
     app.title = 'camin.io';
 
