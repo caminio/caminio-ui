@@ -5,6 +5,7 @@ define( function(require) {
 
   var ko                = require('knockout');
   var inflection        = require('inflection');
+  var validation        = require('validation');
 
   return {
     define: defineModel
@@ -28,7 +29,7 @@ define( function(require) {
       this._definedAttributes = schema && schema.attributes ? Object.keys(schema.attributes) : [];
       if( schema && schema.attributes ){
         for( i in schema.attributes )
-          this[i] = createType( schema.attributes[i] );
+          this[i] = this.createType( i, schema.attributes[i] );
         for( i in attrs ){
           if( i in this && typeof(this[i]) === 'function' )
             this[i]( attrs[i] );
@@ -47,6 +48,7 @@ define( function(require) {
     }
     Model.prototype.save = save;
     Model.prototype.destroy = destroy;
+    Model.prototype.createType = createType;
     Model.cache = {};
     Model.url = function modelUrl(){
       var url = Model.adapter ? Model.adapter.hostURI : '';
@@ -114,7 +116,7 @@ define( function(require) {
     var Model = this;
     // return immediately if Model is in cache
     if( query.id && Model.cache[query.id] )
-      return cb( Model.cache[query.id] );
+      return cb( null, Model.cache[query.id] );
 
     var url = processUrl( Model.url(), query );
     Model.adapter
@@ -171,10 +173,12 @@ define( function(require) {
     var url = this.constructor.url()+'/';
     url += typeof(this.id) === 'function' ? this.id() : this.id;
     this.constructor.adapter
-      .save( false, url, preparedAttrs, function( err, res ){
+      .save( (typeof(this.id) === 'undefined'), url, preparedAttrs, function( err, res ){
         if( err ){ return cb(err); }
         if( !res ){ return('failed to save resource'); }
-          cb( null, self );
+        if( self.id in self.constructor.cache )
+          self.contructor.cache[ self.id ] = self;
+        cb( null, self );
       });
   }
 
@@ -187,9 +191,15 @@ define( function(require) {
    *
    */
   function destroy( cb ){
+    var self = this;
     var url = this.constructor.url()+'/';
     url += typeof(this.id) === 'function' ? this.id() : this.id;
-    this.constructor.adapter.destroy( url, cb );
+    this.constructor.adapter.destroy( url, function( err ){
+      if( err ){ return cb(err); }
+      if( self.id in self.constructor.cache )
+        delete self.constructor.cache[ self.id ];
+      cb( null );
+    });
   }
 
   /**
@@ -230,7 +240,15 @@ define( function(require) {
     return query;
   }
 
-  function createType( type ){
+  function createType( name, type ){
+    if( typeof(type) === 'object' ){
+      if( type.required )
+        this.validations.push( new Validation( name, function(val){ 
+            if( this[name]() && this[name]().length > 0 )
+              return true;
+            return false; 
+            }, 'required') );
+    }
     return ko.observable();
   }
 

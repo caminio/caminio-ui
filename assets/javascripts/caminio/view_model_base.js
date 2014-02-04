@@ -22,7 +22,9 @@ define( function( require ){
 
   // ----------------------------- controller actions
   function saveResource( form ){
-    console.log( this.resource() );
+    this.resource().save( function(err){
+      console.log('saving done', err);
+    });
   }
 
   function destroyResource( item, e ){

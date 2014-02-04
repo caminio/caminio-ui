@@ -50,12 +50,14 @@ form.auth{
   color: #333;
 }
 
+.domain-container,
 .email-container,
 .password-container{
   display: inline-block;
   position: relative;
 }
 
+.domain-container:before,
 .email-container:before,
 .password-container:before{
   font-family: 'FontAwesome';
@@ -79,6 +81,16 @@ form.auth{
   content: "\f023";
   left: 10px;
   bottom: 10px;
+}
+
+.domain-container:before{
+  content: "\f015";
+  left: 10px;
+  bottom: 10px;
+}
+
+.domain-container{
+  margin-bottom: 5px;
 }
 
 

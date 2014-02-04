@@ -10,17 +10,21 @@ define(function(require) {
   var userController = factory.createViewModel({
 
     // resource
-    resource: ko.observable(),
+    resource: ko.observable(new User()),
 
     // controller
     lockUser: lockUser,
     destroyUser: destroyUser,
 
     activate: function( id ){
-      User.findOne( id, function(err,user){
-        if( err ){ notify('error', err); }
-        userController.resource( user );
-      });
+      if( id !== 'new' )
+        User.findOne( id, function(err,user){
+          if( err ){ notify('error', err); }
+          userController.resource( user );
+        });
+      setTimeout( function(){
+        $('input[type=text]:first').focus();
+      }, 500 ); // 500ms is length of animation
     }
   });
 

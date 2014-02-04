@@ -18,6 +18,6 @@ header.top-panel.fixed
         span.pull-left.domainname=(currentDomain ? currentDomain.name : 'no domain')
         i.fa.fa-caret-down
       ul.dropdown-menu( role='menu' )
-        each domain in currentUser.domains
+        each camDomain in currentUser.camDomains
           li( role='presentation' )
-            a(href='/?change_domain_id='+domain.id)=domain.name
+            a(href='/?change_domain_id='+camDomain.id)=camDomain.name

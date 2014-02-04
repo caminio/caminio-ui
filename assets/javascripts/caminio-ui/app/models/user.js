@@ -9,7 +9,7 @@ define(function(require) {
     firstName: 'string',
     lastName: 'string',
     fullName: 'string',
-    email: 'string',
+    email: { type: 'string', required: true },
     password: 'string',
     password_confirm: 'string',
     admin: 'boolean',
