@@ -5,6 +5,6 @@
   ul.nav
     each app in allowedApps
       li.clearfix(class=(app.name === controllerName.replace('Controller','').toLowerCase() ? 'active' : ''))
-        a.pull-left(href='/'+app.path)
+        a.pull-left(href=app.path)
           i.pull-left.fa(class='fa-'+app.icon)
           span.title=t('navbar.'+app.name)

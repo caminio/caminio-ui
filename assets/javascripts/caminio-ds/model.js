@@ -5,7 +5,7 @@ define( function(require) {
 
   var ko                = require('knockout');
   var inflection        = require('inflection');
-  var validation        = require('validation');
+  var Validation        = require('ds/validation');
 
   return {
     define: defineModel
@@ -49,6 +49,9 @@ define( function(require) {
     Model.prototype.save = save;
     Model.prototype.destroy = destroy;
     Model.prototype.createType = createType;
+    Model.prototype.isValid = function(){
+      return Validation.run( Model.validations, this ) === null;
+    };
     Model.cache = {};
     Model.url = function modelUrl(){
       var url = Model.adapter ? Model.adapter.hostURI : '';
@@ -59,6 +62,8 @@ define( function(require) {
     Model.findOne = findOne;
     Model.adapter = options.adapter;
     Model.modelName = inflection.classify(name);
+    Model.validations = [];
+    Model.hooks = { before: [], after: [] };
     return Model;
   }
 
@@ -145,6 +150,7 @@ define( function(require) {
     if( Object.keys(attrs).length < 1 )
       throw new Error('cannot create new resource without any attributes');
     var preparedAttrs = {};
+    //if( !this.isValid() ){ return cb( err ); }
     preparedAttrs[ inflection.underscore(Model.modelName) ] = attrs;
     Model.adapter
       .save( true, Model.url(), preparedAttrs, function( err, res ){
@@ -162,18 +168,21 @@ define( function(require) {
    * @param {Object} callback.err an error object
    */
   function save( cb ){
+    var Model = this.constructor;
     var self = this;
     var preparedAttrs = {};
-    var modelName = inflection.underscore(self.constructor.modelName);
+    var modelName = inflection.underscore(Model.modelName);
+    //if( !this.isValid() ){ return cb(this.errors); }
+    if( err ){ return cb( err ); }
     preparedAttrs[modelName] = {};
     self._definedAttributes.forEach( function( attr ){
       if( attr === 'id' ) return;
       preparedAttrs[modelName][attr] = typeof(self[attr]) === 'function' ? self[attr]() : self[attr];
     });
-    var url = this.constructor.url()+'/';
-    url += typeof(this.id) === 'function' ? this.id() : this.id;
-    this.constructor.adapter
-      .save( (typeof(this.id) === 'undefined'), url, preparedAttrs, function( err, res ){
+    var url = Model.url()+'/';
+    url += typeof(self.id) === 'function' ? self.id() : self.id;
+    Model.adapter
+      .save( (typeof(self.id) === 'undefined'), url, preparedAttrs, function( err, res ){
         if( err ){ return cb(err); }
         if( !res ){ return('failed to save resource'); }
         if( self.id in self.constructor.cache )
@@ -243,7 +252,7 @@ define( function(require) {
   function createType( name, type ){
     if( typeof(type) === 'object' ){
       if( type.required )
-        this.validations.push( new Validation( name, function(val){ 
+        this.constructor.validations.push( new Validation( name, function(val){ 
             if( this[name]() && this[name]().length > 0 )
               return true;
             return false; 

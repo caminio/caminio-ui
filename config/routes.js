@@ -4,10 +4,12 @@ module.exports.routes = {
   
   '/caminio': 'DashboardController#index',
 
-  '/locales/:lang': 'DashboardController#locales',
+  '/caminio/locales/:lang': 'DashboardController#locales',
 
-  '/admin': 'AdminController#index',
+  '/caminio/admin': 'AdminController#index',
 
-  'autorest /users': 'User'
+  'get /caminio/users/migrate': 'UsersController#migrate',
+
+  'autorest /caminio/users': 'User'
 
 };
