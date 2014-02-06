@@ -13,6 +13,7 @@ requirejs.config({
   paths: {
     'jquery': '../../../assets/javascripts/caminio-ui/components/jquery/jquery',
     'knockout': '../../../assets/javascripts/caminio-ui/components/knockout.js/knockout-2.3.0.debug',
+    'knockout.validation': '../../../assets/javascripts/caminio-ui/components/knockout.validation/Dist/knockout.validation',
     'text': '../../../assets/javascripts/caminio-ui/components/requirejs-text/text',
     'durandal': '../../../assets/javascripts/caminio-ui/components/durandal/js',
     'plugins': '../../../assets/javascripts/caminio-ui/components/durandal/js/plugins',

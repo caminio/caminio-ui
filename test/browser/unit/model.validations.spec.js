@@ -19,11 +19,30 @@ define( function( require ){
       this.TestModel = Model.define('Test', { adapter: this.host1 }, schema );
     });
 
-    it('does not pass validation without a name', function(){
-      var test = new this.TestModel();
-      expect(test.isValid()).to.be.false;
+    describe('string', function(){
+
+      it('does not pass validation without a name', function(){
+        var test = new this.TestModel();
+        expect(test.isValid()).to.be.false;
+      });
+      
+      it('passes with a name', function(){
+        var test = new this.TestModel({name: 'test'});
+        expect(test.isValid()).to.be.true;
+      });
+
     });
-    
+
+    describe('number', function(){
+
+      it('creates a valid number', function(){
+        var number = new this.TestModel({amount: '50', name: 'h'});
+        console.log(number.toJS());
+        expect(number.amount()).to.be.a('number');
+      });
+
+    });
+
   });
 
 });

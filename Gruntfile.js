@@ -13,6 +13,7 @@ module.exports = function(grunt) {
     paths: {
       'jquery': '../components/jquery/jquery.min',
       'knockout': '../components/knockout.js/knockout-2.3.0.debug',
+      'knockout.validation': '../components/knockout.validation/Dist/knockout.validation',
       'text': '../components/requirejs-text/text',
       'durandal': '../components/durandal/js',
       'plugins': '../components/durandal/js/plugins',

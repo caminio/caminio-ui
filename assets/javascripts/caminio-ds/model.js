@@ -4,8 +4,18 @@ define( function(require) {
   /*jshint validthis:true */
 
   var ko                = require('knockout');
+  var validation        = require('knockout.validation');
   var inflection        = require('inflection');
-  var Validation        = require('ds/validation');
+
+  var createTypeNumber  = require('ds/types/number');
+
+  ko.validation.configure({
+    registerExtenders: true,
+    messagesOnModified: true,
+    insertMessages: true,
+    parseInputAttributes: true,
+    messageTemplate: null
+  });
 
   return {
     define: defineModel
@@ -24,12 +34,13 @@ define( function(require) {
    * @return {Model} a DS.Model object
    */
   function defineModel( name, options, schema ){
-    var Model = function( attrs ){
+    function Model( attrs ){
+      this.constructor = Model;
       var i;
       this._definedAttributes = schema && schema.attributes ? Object.keys(schema.attributes) : [];
       if( schema && schema.attributes ){
         for( i in schema.attributes )
-          this[i] = this.createType( i, schema.attributes[i] );
+          parseType.call(this, i, schema.attributes[i] );
         for( i in attrs ){
           if( i in this && typeof(this[i]) === 'function' )
             this[i]( attrs[i] );
@@ -41,17 +52,17 @@ define( function(require) {
           this._definedAttributes.push(i);
         }
       }
-      this.constructor = Model;
+      this.errors = ko.validation.group(this);
     };
     if( schema ){
       Model.prototype = schema.methods || {};
     }
     Model.prototype.save = save;
     Model.prototype.destroy = destroy;
-    Model.prototype.createType = createType;
-    Model.prototype.isValid = function(){
-      return Validation.run( Model.validations, this ) === null;
+    Model.prototype.toJS = function(){
+      return JSON.parse(ko.toJSON(this, this._definedAttributes));
     };
+    //Model.prototype.isValid = function(){ console.log('e',this.errors(),this.name()); return (Object.keys(this.errors()).length === 0); }
     Model.cache = {};
     Model.url = function modelUrl(){
       var url = Model.adapter ? Model.adapter.hostURI : '';
@@ -62,7 +73,6 @@ define( function(require) {
     Model.findOne = findOne;
     Model.adapter = options.adapter;
     Model.modelName = inflection.classify(name);
-    Model.validations = [];
     Model.hooks = { before: [], after: [] };
     return Model;
   }
@@ -150,7 +160,6 @@ define( function(require) {
     if( Object.keys(attrs).length < 1 )
       throw new Error('cannot create new resource without any attributes');
     var preparedAttrs = {};
-    //if( !this.isValid() ){ return cb( err ); }
     preparedAttrs[ inflection.underscore(Model.modelName) ] = attrs;
     Model.adapter
       .save( true, Model.url(), preparedAttrs, function( err, res ){
@@ -172,8 +181,6 @@ define( function(require) {
     var self = this;
     var preparedAttrs = {};
     var modelName = inflection.underscore(Model.modelName);
-    //if( !this.isValid() ){ return cb(this.errors); }
-    if( err ){ return cb( err ); }
     preparedAttrs[modelName] = {};
     self._definedAttributes.forEach( function( attr ){
       if( attr === 'id' ) return;
@@ -249,16 +256,22 @@ define( function(require) {
     return query;
   }
 
-  function createType( name, type ){
-    if( typeof(type) === 'object' ){
-      if( type.required )
-        this.constructor.validations.push( new Validation( name, function(val){ 
-            if( this[name]() && this[name]().length > 0 )
-              return true;
-            return false; 
-            }, 'required') );
+  function parseType( name, type ){
+    this[name] = createType.call(this, (typeof(type) === 'object' ? type.type : type), name );
+    if(typeof(type) === 'object'){
+      if( type.required ){
+        this[name].extend({ required: true });
+      }
     }
-    return ko.observable();
+  }
+
+  function createType( type, name ){
+    switch( type ){
+      case 'number':
+        return createTypeNumber.call(this, name, ko);
+      default:
+        return ko.observable();
+    }
   }
 
 });
