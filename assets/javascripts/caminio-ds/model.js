@@ -10,13 +10,14 @@ define( function(require) {
   var createTypeNumber  = require('ds/types/number');
   var createTypeFloat  = require('ds/types/float');
   var createTypeDate  = require('ds/types/date');
+  var createTypePasswordConfirmation  = require('ds/types/password_confirmation');
+  var createTypePassword  = require('ds/types/password');
 
   ko.validation.configure({
-    registerExtenders: true,
-    messagesOnModified: true,
-    insertMessages: true,
+    decorateElement: true,
     parseInputAttributes: true,
-    messageTemplate: null
+    errorClass: 'field-with-error',
+    registerExtenders: true
   });
 
   return {
@@ -59,6 +60,7 @@ define( function(require) {
     }
     Model.prototype.save = save;
     Model.prototype.destroy = destroy;
+    Model.prototype.isNew = isNew;
     Model.prototype.toJS = function(){
       return JSON.parse(ko.toJSON(this, this._definedAttributes));
     };
@@ -75,6 +77,18 @@ define( function(require) {
     Model.modelName = inflection.classify(name);
     Model.hooks = { before: [], after: [] };
     return Model;
+  }
+
+  /**
+   * return if this resource is new or has been saved
+   * to the database already. This does not tell you, if
+   * the model ist currently in a persisted state or not.
+   *
+   * @method isNew
+   * @return {Boolean} if the record is new or not
+   */
+  function isNew(){
+    return !(this.id && this.id.length > 0 );
   }
 
   /**
@@ -186,8 +200,14 @@ define( function(require) {
       if( attr === 'id' ) return;
       preparedAttrs[modelName][attr] = typeof(self[attr]) === 'function' ? self[attr]() : self[attr];
     });
+    console.log(this.isValid(), this.errors().length);
+    if( !this.isValid() ){
+      this.errors.showAllMessages();
+      return;
+    }
     var url = Model.url()+'/';
-    url += typeof(self.id) === 'function' ? self.id() : self.id;
+    if( self.id )
+      url += typeof(self.id) === 'function' ? self.id() : self.id;
     Model.adapter
       .save( (typeof(self.id) === 'undefined'), url, preparedAttrs, function( err, res ){
         if( err ){ return cb(err); }
@@ -276,9 +296,9 @@ define( function(require) {
     if( ns ){
       if( !this[ns] )
         this[ns] = {};
-      this[ns][name] = createType.call(this, dataType, name );
+      this[ns][name] = createType.call(this, dataType, name, type );
     } else {
-      this[name] = createType.call(this, dataType, name );
+      this[name] = createType.call(this, dataType, name, type );
     }
     if(typeof(type) === 'object'){
       if( type.required ){
@@ -303,7 +323,7 @@ define( function(require) {
 
   }
 
-  function createType( type, name ){
+  function createType( type, name, options ){
     switch( type ){
       case 'number':
         return createTypeNumber.call(this, name, ko);
@@ -311,9 +331,32 @@ define( function(require) {
         return createTypeFloat.call(this, name, ko);
       case 'date':
         return createTypeDate.call(this, name, ko);
+      case 'passwordConfirmation':
+        return createTypePasswordConfirmation.call(this,name,ko);
+      case 'password':
+        return createTypePassword.call(this,name,ko);
       default:
-        return ko.observable();
+        var ret = ko.observable();
+        if( options.type )
+          ret.extend( getPattern( options ) );
+        return ret;
     }
+  }
+
+  function getPattern( options ){
+    var pattern = {};
+    if( typeof(options.onlyIf) === 'function' )
+      pattern.onlyIf = options.onlyIf;
+    if( options.validator )
+      pattern.validation = { validator: options.validator };
+    if( options.pattern )
+      pattern.pattern = options.pattern;
+    if( options.required )
+      pattern.required = true;
+    if( options.email )
+      pattern.email = true;
+    pattern.message = (options && options.message ? options.message : 'Does not match pattern');
+    return pattern;
   }
 
 });

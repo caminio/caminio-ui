@@ -17,6 +17,18 @@ form.caminio .form-actions{
   margin: 10px;
 }
 
+form.caminio span.field-with-error{
+  color: #d00;
+  font-size: 1rem;
+  line-height: 1.2rem;
+}
+
+form.caminio textarea.field-with-error,
+form.caminio input.field-with-error{
+  border-color: #d00;
+  background: #fdd;
+}
+
 label{
   font-weight: 500;
 }

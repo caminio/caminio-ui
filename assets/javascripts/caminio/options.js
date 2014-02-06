@@ -25,7 +25,7 @@ define( function( require ){
     lng: window.currentLang || 'en',
     fallbackLng: 'en',
     ns: 'caminio',
-    resGetPath: '/locales/__lng__',
+    resGetPath: '/caminio/locales/__lng__',
     useCookie: false
   };
 

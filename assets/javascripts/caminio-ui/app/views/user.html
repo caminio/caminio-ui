@@ -47,10 +47,11 @@
     <div class="form-group">
       <label for="example-text-input" class="col-md-2 control-label" data-bind="text: $.i18n.t('user.password_confirm')"></label>
       <div class="col-md-3">
-        <input type="text" data-bind="value: resource().password_confirm" class="form-control" />
+        <input type="text" data-bind="value: resource().passwordConfirmation" class="form-control" />
       </div>
     </div>
 
+    <!-- ko ifnot: resource().isNew() -->
     <h4 class="sub-header" data-bind="text: $.i18n.t('user.danger_zone')"></h4>
 
     <div class="form-group">
@@ -70,6 +71,6 @@
         <span class="help-block" data-bind="text: $.i18n.t('user.destroy_desc')"></span>
       </div>
     </div>
-
+    <!-- /ko -->
   </form>
 </section>
