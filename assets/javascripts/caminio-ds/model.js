@@ -8,6 +8,8 @@ define( function(require) {
   var inflection        = require('inflection');
 
   var createTypeNumber  = require('ds/types/number');
+  var createTypeFloat  = require('ds/types/float');
+  var createTypeDate  = require('ds/types/date');
 
   ko.validation.configure({
     registerExtenders: true,
@@ -41,10 +43,8 @@ define( function(require) {
       if( schema && schema.attributes ){
         for( i in schema.attributes )
           parseType.call(this, i, schema.attributes[i] );
-        for( i in attrs ){
-          if( i in this && typeof(this[i]) === 'function' )
-            this[i]( attrs[i] );
-        }
+        for( i in attrs )
+          parseAttrs.call(this, i, attrs[i]);
       }
       for( i in attrs ){
         if( !(i in this) ){
@@ -256,8 +256,30 @@ define( function(require) {
     return query;
   }
 
-  function parseType( name, type ){
-    this[name] = createType.call(this, (typeof(type) === 'object' ? type.type : type), name );
+  /**
+   * parses a field for types
+   * if type is object
+   * a.) checks if type has a 'type' key and considers it as a fine definition
+   * b.) if no 'type', considers it as nested datastructure and recursively parses children
+   */
+  function parseType( name, type, ns ){
+    var dataType = type;
+    if( typeof(dataType) === 'object' ){
+      if( 'type' in dataType )
+        dataType = type.type;
+      else{
+        for( var i in dataType )
+          parseType.call(this, i, dataType[i], (ns ? ns+'.' : '')+name );
+        return;
+      }
+    }
+    if( ns ){
+      if( !this[ns] )
+        this[ns] = {};
+      this[ns][name] = createType.call(this, dataType, name );
+    } else {
+      this[name] = createType.call(this, dataType, name );
+    }
     if(typeof(type) === 'object'){
       if( type.required ){
         this[name].extend({ required: true });
@@ -265,10 +287,30 @@ define( function(require) {
     }
   }
 
+  function parseAttrs( key, val, ns ){
+    if( typeof(val) === 'object' )
+      for( var i in val )
+        parseAttrs.call(this, i, val[i], key);
+
+    if( ns ){
+      if( key in this[ns] && typeof(this[ns][key]) === 'function' )
+        this[ns][key](val);
+    }
+    else{
+      if( key in this && typeof(this[key]) === 'function' )
+        this[key]( val );
+    }
+
+  }
+
   function createType( type, name ){
     switch( type ){
       case 'number':
         return createTypeNumber.call(this, name, ko);
+      case 'float':
+        return createTypeFloat.call(this, name, ko);
+      case 'date':
+        return createTypeDate.call(this, name, ko);
       default:
         return ko.observable();
     }

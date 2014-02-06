@@ -1,8 +1,10 @@
 define( function(require) {
 
-  return TypeNumber;
+  var moment = require('moment');
 
-  function TypeNumber( name, ko ){
+  return TypeDate;
+
+  function TypeDate( name, ko ){
 
     this['_'+name] = ko.observable();
 
@@ -11,9 +13,9 @@ define( function(require) {
         return this['_'+name]();
       },
       write: function(newValue){
-        if( isNaN(newValue) )
+        if( !moment(newValue).isValid() )
           return;
-        this['_'+name](parseInt(newValue));
+        this['_'+name](moment(newValue).toDate());
       },
       owner: this
     });

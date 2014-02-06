@@ -1,8 +1,8 @@
 define( function(require) {
 
-  return TypeNumber;
+  return TypeFloat;
 
-  function TypeNumber( name, ko ){
+  function TypeFloat( name, ko ){
 
     this['_'+name] = ko.observable();
 
@@ -11,9 +11,11 @@ define( function(require) {
         return this['_'+name]();
       },
       write: function(newValue){
+        if( typeof(newValue) === 'string' )
+          newValue = newValue.replace(',','.');
         if( isNaN(newValue) )
           return;
-        this['_'+name](parseInt(newValue));
+        this['_'+name](parseFloat(newValue));
       },
       owner: this
     });
