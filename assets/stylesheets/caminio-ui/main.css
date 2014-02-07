@@ -78,6 +78,7 @@ body.side-panel-active .main-view{
   right: 10px;
   bottom: 10px;
   overflow-y: auto;
+  overflow-x: hidden;
   background: #fafafa;
   padding: 10px;
 }

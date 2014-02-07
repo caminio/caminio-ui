@@ -2,9 +2,9 @@ define( function(require) {
 
   return TypeNumber;
 
-  function TypeNumber( name, ko ){
+  function TypeNumber( name, options, ko ){
 
-    this['_'+name] = ko.observable();
+    this['_'+name] = ko.observable( options.default );
 
     return ko.computed({
       read: function(){

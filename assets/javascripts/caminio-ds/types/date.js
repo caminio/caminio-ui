@@ -4,9 +4,9 @@ define( function(require) {
 
   return TypeDate;
 
-  function TypeDate( name, ko ){
+  function TypeDate( name, options, ko ){
 
-    this['_'+name] = ko.observable();
+    this['_'+name] = ko.observable( options.default );
 
     return ko.computed({
       read: function(){

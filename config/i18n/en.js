@@ -7,7 +7,7 @@ module.exports = function( t ){
   t.navbar.users = 'Users';
   t.navbar.domains = 'Domains';
 
-  t.initializing_application = 'Initializing Application';
+  t.initializing_application = 'Loading data';
   
   t.email = 'Email';
   t.name = 'Name';
@@ -23,12 +23,17 @@ module.exports = function( t ){
   t.undo = 'Undo';
   t.back = 'back';
 
+  // GENERAL ERRORS
+  t.errors = t.errors || {};
+  t.errors.duplicate_key = 'An entry named __name__ already exists';
+
   // USERS
   t.users = t.users || {};
   t.users.edit = 'Edit user';
   t.users.lock = 'Lock user';
   t.users.delete = 'Delete user';
   t.users.new = 'New user';
+  t.users.listing = 'User accounts';
   
   // USER
   t.user = t.user || {};
@@ -36,7 +41,6 @@ module.exports = function( t ){
   t.user.editing_as_admin = 'You are editing this settings with <span class="lbl danger">administrator</span> privileges';
   t.user.firstname = 'Firstname';
   t.user.lastname = 'Lastname';
-  t.user.last_login = 'Last login';
   t.user.email_desc = 'We will contact you through this email address';
   t.user.security = 'Security';
   t.user.password = 'Password';
@@ -44,11 +48,14 @@ module.exports = function( t ){
   t.user.password_requirements = 'The password must have at least 6 characters and contain at least one uppercase, one lowercase character and one digit';
   t.user.password_exmpl = 'at least 6 characters';
   t.user.password_res = 'Password is:';
-  t.user.send_link_to_set_pwd = 'Generate a link';
+  t.user.send_link_to_set_password = 'Send a link to set password';
+  t.user.send_link_to_set_password_again = 'Send a link to set password once more';
+  t.user.send_link_desc = 'The user will get an email containing a link where they an set their password on their own.';
+  t.user.generate_password = 'Generate';
   t.user.suggest_pwd = 'Suggest';
   t.user.created = 'User has been created!';
   t.user.creation_failed = 'User failed to create!';
-  t.user.saved = 'User has been saved';
+  t.user.saved = 'User __name__ has been saved';
   t.user.saving_failed = 'Failed to save user';
   t.user.admin = 'Administrative privileges';
   t.user.passwords_missmatch = 'Passwords missmatch';
@@ -61,5 +68,12 @@ module.exports = function( t ){
   t.user.destroy = 'Delete this account';
   t.user.destroy_desc = 'This will permanently delete the user anything private to the user (like profile photos, comments and messages).';
   t.user.general = 'General';
+  t.user.password_saved = 'Your new password has been saved';
+  t.user.really_delete = 'Really delete __name__?';
+  t.user.last_login = 'Last seen';
+  t.user.deleted = '__name__ has been deleted';
+  t.user.errors = t.user.errors || {};
+  t.user.errors.too_short = 'The entered password is too short (6 characters at least)';
+  t.user.errors.requirements_not_met = 'The password must contain at least one digit, at least one lower case character, at least one uppercase character';
 
 };

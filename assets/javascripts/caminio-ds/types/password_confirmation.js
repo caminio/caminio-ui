@@ -4,13 +4,15 @@ define( function(require) {
 
   return TypePasswordConfirmation;
 
-  function TypePasswordConfirmation( name, ko ){
+  function TypePasswordConfirmation( name, options, ko ){
 
     var self = this;
 
     return ko.observable().extend({
       validation: {
-        validator: function(confirmedPwd){ console.log('here'); return confirmedPwd === self.password() },
+        validator: function(confirmedPwd){ 
+          return confirmedPwd === self.password(); 
+        },
         message: $.i18n.t('user.passwords_missmatch')
       }
     });

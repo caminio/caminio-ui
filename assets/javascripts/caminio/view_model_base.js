@@ -1,8 +1,13 @@
 define( function( require ){
 
   'use strict';
+  /*jshint validthis: true */
 
-  var moment = require('moment');
+  var moment        = require('moment');
+  var inflection    = require('inflection');
+  var router        = require('plugins/router');
+  var notify        = require('caminio/notify');
+  var $             = require('jquery');
 
   return viewModelBase;
 
@@ -22,8 +27,11 @@ define( function( require ){
 
   // ----------------------------- controller actions
   function saveResource( form ){
-    this.resource().save( function(err){
-      console.log('saving done', err);
+    var resource = this.resource();
+    resource.save( function(err){
+      if( err ){ return notify.processError(err.response); }
+      notify('info', $.i18n.t( inflection.underscore(resource.constructor.modelName+'.saved'), {name: resource.getName()} ) );
+      router.navigateBack();
     });
   }
 

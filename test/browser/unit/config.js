@@ -29,7 +29,7 @@ requirejs.config({
     // caminio stuff
     'ds': '../../../assets/javascripts/caminio-ds',
     'models': '../../../assets/javascripts/caminio-ui/app/models',
-    'caminio': '../../../assets/javascripts/caminio-ui/common/caminio'
+    'caminio': '../../../assets/javascripts/caminio'
   }
 });
 

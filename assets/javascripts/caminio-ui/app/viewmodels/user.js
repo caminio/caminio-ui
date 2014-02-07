@@ -6,6 +6,7 @@ define(function(require) {
   var app         = require('durandal/app');
   var notify      = require('caminio/notify');
   var factory     = require('caminio/factory');
+  var util        = require('caminio/util');
 
   var userController = factory.createViewModel({
 
@@ -15,9 +16,13 @@ define(function(require) {
     // controller
     lockUser: lockUser,
     destroyUser: destroyUser,
+    genPassword: genPassword,
+    toggleAutoPassword: toggleAutoPassword,
 
     activate: function( id ){
-      if( id !== 'new' )
+      if( id === 'new' )
+        userController.resource( new User() );
+      else
         User.findOne( id, function(err,user){
           if( err ){ notify('error', err); }
           userController.resource( user );
@@ -32,7 +37,24 @@ define(function(require) {
 
   // controller
   function lockUser( item, e ){
-    console.log('lock');
+    item.locked.at = new Date();
+  }
+
+  /**
+   * generate a password and sets it
+   * in the Password field
+   * @method genPassword
+   */
+  function genPassword( item, e ){
+    e.preventDefault();
+    var password = util.generatePassword(8);
+    userController.resource().password(password);
+    userController.resource().passwordConfirmation(password);
+    userController.resource().generatedPassword(password);
+  }
+
+  function toggleAutoPassword( item, e ){
+    userController.resource().autoPassword( !userController.resource().autoPassword() );
   }
 
   function destroyUser( item, e ){

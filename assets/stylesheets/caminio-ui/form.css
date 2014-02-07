@@ -32,3 +32,13 @@ form.caminio input.field-with-error{
 label{
   font-weight: 500;
 }
+
+form.caminio .checkbox-field{
+  cursor: pointer;
+  margin: 7px 0;
+}
+
+form.caminio .checkbox-field .fa{
+  margin: 1px 8px 0 0;
+  font-size: 18px;
+}

@@ -6,10 +6,12 @@ define(function(require) {
   var app         = require('durandal/app');
   var notify      = require('caminio/notify');
   var factory     = require('caminio/factory');
+  var router      = require('plugins/router');
 
   var usersController = factory.createViewModel({
     users: User.find(),
     destroyUser: destroyUser,
+    showForm: showForm,
     lockUser: lockUser
   });
 
@@ -17,6 +19,10 @@ define(function(require) {
 
   function lockUser( item, e ){
 
+  }
+
+  function showForm( item, e ){
+    router.navigate('#users/'+item.id);
   }
 
   /**

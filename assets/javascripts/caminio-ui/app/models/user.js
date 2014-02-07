@@ -7,15 +7,26 @@ define(function(require) {
 
   var userSchema = {};
   userSchema.attributes = {
-    firstName: 'string',
-    lastName: 'string',
-    fullName: 'string',
+    name: {
+      first: 'string',
+      last: 'string',
+      full: 'string'
+    },
     email: { type: 'string', email: true, required: true },
     password: 'password',
     passwordConfirmation: 'passwordConfirmation',
-    admin: 'boolean',
+    autoPassword: { type: 'boolean', default: true },
+    generatedPassword: 'string',
+    admin: { type: 'boolean', default: false },
     superuser: 'boolean',
-    lastLoginAt: 'date'
+    lastLoginAt: 'date',
+    locked: {
+      at: 'date'
+    }
+  };
+
+  userSchema.methods = {
+    getName: function(){ return this.name.full(); }
   };
 
   var User = Model.define( 'user', { adapter: caminioREST }, userSchema );

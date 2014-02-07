@@ -4,8 +4,6 @@ define( function( require ){
 
   var $         = require('jquery');
 
-  return notify;
-
   /**
    * notify - a small notification handler
    *
@@ -43,6 +41,18 @@ define( function( require ){
     $notification.slideDown();
   }
 
+  notify.processError = function notifyProcessError( obj ){
+    if( typeof(obj.details) === 'object' ){
+      console.log('enterhere' , obj.details, obj.details.code, obj.details.err.split(' dup key: { :')[1].replace(/[\\\\"\}]*/g,''));
+      if( obj.details.code && obj.details.code === 11000 )
+        notify( 'error', $.i18n.t('errors.duplicate_key', {name: obj.details.err.split(' dup key: { :')[1].replace(/[\\\\"\}]*/g,'')}));
+      else
+        notify( 'error', obj.details );
+    } else {
+      notify( 'error', obj.details );
+    }
+  }
+
   function checkNotificationCollection(){
     if( $('#notifications .notifications-collection').length )
       return;
@@ -67,9 +77,12 @@ define( function( require ){
     var $close = $('<a/>').addClass('close').attr('href','#');
     $close.html('<span class="hide">'+$.i18n.t('close')+'</span>');
     $close.on('click', function closeNotification(e){
+      e.preventDefault();
       $(this).closest('.notification').remove();
     });
     return $close;
   }
+
+  return notify;
 
 });

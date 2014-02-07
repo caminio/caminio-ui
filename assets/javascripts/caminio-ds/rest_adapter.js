@@ -95,7 +95,7 @@ define(function(require) {
 
   function processError( xhr, status, err, cb ){
     if( xhr.status < 1 ){ return cb('failed to communicate with server? Maybe missing Access-Control-Allow-Origin in header?'); }
-    cb( xhr.status );
+    cb( { status: xhr.status, response: JSON.parse(xhr.responseText) } );
   }
 
   return RESTAdapter;

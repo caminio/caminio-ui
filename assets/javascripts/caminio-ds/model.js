@@ -10,6 +10,7 @@ define( function(require) {
   var createTypeNumber  = require('ds/types/number');
   var createTypeFloat  = require('ds/types/float');
   var createTypeDate  = require('ds/types/date');
+  var createTypeBoolean  = require('ds/types/boolean');
   var createTypePasswordConfirmation  = require('ds/types/password_confirmation');
   var createTypePassword  = require('ds/types/password');
 
@@ -54,7 +55,8 @@ define( function(require) {
         }
       }
       this.errors = ko.validation.group(this);
-    };
+      this.getName = this.getName || function(){ return this.name(); };
+    }
     if( schema ){
       Model.prototype = schema.methods || {};
     }
@@ -200,7 +202,6 @@ define( function(require) {
       if( attr === 'id' ) return;
       preparedAttrs[modelName][attr] = typeof(self[attr]) === 'function' ? self[attr]() : self[attr];
     });
-    console.log(this.isValid(), this.errors().length);
     if( !this.isValid() ){
       this.errors.showAllMessages();
       return;
@@ -213,7 +214,7 @@ define( function(require) {
         if( err ){ return cb(err); }
         if( !res ){ return('failed to save resource'); }
         if( self.id in self.constructor.cache )
-          self.contructor.cache[ self.id ] = self;
+          Model.cache[ self.id ] = self;
         cb( null, self );
       });
   }
@@ -293,18 +294,24 @@ define( function(require) {
         return;
       }
     }
+    var computedType = createType.call(this, dataType, name, type );
+    if( typeof(dataType) === 'function' )
+      computedType = dataType.call(this);
+
     if( ns ){
       if( !this[ns] )
         this[ns] = {};
-      this[ns][name] = createType.call(this, dataType, name, type );
-    } else {
-      this[name] = createType.call(this, dataType, name, type );
-    }
+      this[ns][name] = computedType;
+    } else
+      this[name] = computedType;
+
+    // still required?
     if(typeof(type) === 'object'){
       if( type.required ){
         this[name].extend({ required: true });
       }
     }
+
   }
 
   function parseAttrs( key, val, ns ){
@@ -313,6 +320,8 @@ define( function(require) {
         parseAttrs.call(this, i, val[i], key);
 
     if( ns ){
+      if( !this[ns] )
+        this[ns] = {};
       if( key in this[ns] && typeof(this[ns][key]) === 'function' )
         this[ns][key](val);
     }
@@ -324,19 +333,22 @@ define( function(require) {
   }
 
   function createType( type, name, options ){
+    options = typeof(options) === 'object' ? options : {};
     switch( type ){
       case 'number':
-        return createTypeNumber.call(this, name, ko);
+        return createTypeNumber.call(this, name, options, ko);
       case 'float':
-        return createTypeFloat.call(this, name, ko);
+        return createTypeFloat.call(this, name, options, ko);
       case 'date':
-        return createTypeDate.call(this, name, ko);
+        return createTypeDate.call(this, name, options, ko);
+      case 'boolean':
+        return createTypeBoolean.call(this, name, options, ko);
       case 'passwordConfirmation':
-        return createTypePasswordConfirmation.call(this,name,ko);
+        return createTypePasswordConfirmation.call(this,name,options,ko);
       case 'password':
-        return createTypePassword.call(this,name,ko);
+        return createTypePassword.call(this,name, options, ko);
       default:
-        var ret = ko.observable();
+        var ret = ko.observable( options.default );
         if( options.type )
           ret.extend( getPattern( options ) );
         return ret;
