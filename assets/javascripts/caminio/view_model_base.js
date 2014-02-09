@@ -28,9 +28,14 @@ define( function( require ){
   // ----------------------------- controller actions
   function saveResource( form ){
     var resource = this.resource();
+    var self = this;
     resource.save( function(err){
       if( err ){ return notify.processError(err.response); }
       notify('info', $.i18n.t( inflection.underscore(resource.constructor.modelName+'.saved'), {name: resource.getName()} ) );
+      if( resource.justCreated && self.resources && self.resources.insert ){
+        delete resource.justCreated;
+        self.resources.insert( resource );
+      }
       router.navigateBack();
     });
   }

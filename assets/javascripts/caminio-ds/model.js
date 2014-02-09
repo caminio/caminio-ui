@@ -56,6 +56,8 @@ define( function(require) {
       }
       this.errors = ko.validation.group(this);
       this.getName = this.getName || function(){ return this.name(); };
+      if( schema && schema.skipAttrs )
+        this.skipAttrs = schema.skipAttrs;
     }
     if( schema ){
       Model.prototype = schema.methods || {};
@@ -181,7 +183,9 @@ define( function(require) {
       .save( true, Model.url(), preparedAttrs, function( err, res ){
         if( err ){ return cb(err); }
         if( !res ){ return('failed to create resource'); }
-        cb( null, new Model(res) );
+        var newModel = new Model(res);
+        newModel.justCreated = true;
+        cb( null, newModel );
       });
   }
 
@@ -193,6 +197,7 @@ define( function(require) {
    * @param {Object} callback.err an error object
    */
   function save( cb ){
+    var action = this.isNew() ? 'create' : 'update';
     var Model = this.constructor;
     var self = this;
     var preparedAttrs = {};
@@ -200,7 +205,14 @@ define( function(require) {
     preparedAttrs[modelName] = {};
     self._definedAttributes.forEach( function( attr ){
       if( attr === 'id' ) return;
-      preparedAttrs[modelName][attr] = typeof(self[attr]) === 'function' ? self[attr]() : self[attr];
+      if( self.skipAttrs && attr in self.skipAttrs && self.skipAttrs[attr].indexOf(action) >= 0 )
+        return;
+      if( typeof(self[attr]) === 'function' && 
+          typeof(self[attr]()) === 'object' && 
+          ('_definedAttributes' in self[attr]()) )
+        preparedAttrs[modelName][attr] = self[attr]().toJS();
+      else
+        preparedAttrs[modelName][attr] = typeof(self[attr]) === 'function' ? self[attr]() : self[attr];
     });
     if( !this.isValid() ){
       this.errors.showAllMessages();
@@ -213,8 +225,11 @@ define( function(require) {
       .save( (typeof(self.id) === 'undefined'), url, preparedAttrs, function( err, res ){
         if( err ){ return cb(err); }
         if( !res ){ return('failed to save resource'); }
+        updateAttributes( self, res );
         if( self.id in self.constructor.cache )
           Model.cache[ self.id ] = self;
+        if( action === 'create' )
+          self.justCreated = true;
         cb( null, self );
       });
   }
@@ -369,6 +384,19 @@ define( function(require) {
       pattern.email = true;
     pattern.message = (options && options.message ? options.message : 'Does not match pattern');
     return pattern;
+  }
+
+  function updateAttributes( field, attrs ){
+    for( var i in attrs ){
+      if( typeof(field[i]) === 'function' ){
+        if( typeof(field[i]()) === 'object' )
+          updateAttributes(field[i], attrs[i]);
+        else
+          field[i]( attrs[i] );
+      } else {
+        field[i] = attrs[i];
+      }
+    }
   }
 
 });

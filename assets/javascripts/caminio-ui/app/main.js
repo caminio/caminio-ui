@@ -45,10 +45,11 @@ define(function(require) {
   var app         = require('durandal/app');
   var viewLocator = require('durandal/viewLocator');
   var caminioOpts = require('caminio/options');
+  var router      = require('plugins/router');
 
   caminioOpts.init( function(){
 
-    app.title = 'camin.io';
+    app.title = siteName;
 
     app.start().then(function() {
 

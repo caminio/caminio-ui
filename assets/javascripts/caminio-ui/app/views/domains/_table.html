@@ -1,0 +1,25 @@
+<table class="caminio">
+  <thead>
+    <tr>
+      <th data-bind="text: $.i18n.t('nr')" class="nr"></th>
+      <th data-bind="text: $.i18n.t('name')"></th>
+      <th data-bind="text: $.i18n.t('domain.owner')"></th>
+      <th data-bind="text: $.i18n.t('domain.plan')"></th>
+      <th data-bind="text: $.i18n.t('created_at')"></th>
+      <th data-i18n='caminio:action' class="align-right"></th>
+    </tr>
+  </thead>
+
+  <tbody data-bind="foreach: domains">
+    <tr data-bind="event: { dblclick: $parent.showForm }">
+      <td data-bind="text: $index()+1" class="nr"></td>
+      <td data-bind="text: name"></td>
+      <td data-bind="text: owner().name.full"></td>
+      <td data-bind="text: plan"></td>
+      <td data-bind="text: $parent.date(created().at)"></td>
+      <td class="actions align-right">
+        <a class="btn small icon-text" data-bind="attr: { href: '#domains/'+id, title: $.i18n.t('domain.edit') }"><i class="fa fa-pencil"></i> <span data-bind="text: $.i18n.t('edit') "></span></a>
+      </td>
+    </tr>
+  </tbody>
+</table>

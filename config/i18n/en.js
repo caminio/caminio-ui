@@ -11,6 +11,8 @@ module.exports = function( t ){
   
   t.email = 'Email';
   t.name = 'Name';
+  t.title = 'Title';
+  t.description = 'Description';
   t.email = 'Email';
 
   t.nr = 'No.';
@@ -19,13 +21,18 @@ module.exports = function( t ){
 
   t.actions = 'Actions';
   t.create = 'Create';
+  t.edit = 'Edit';
   t.close = 'Close';
   t.undo = 'Undo';
   t.back = 'back';
 
+  t.created_at = 'created at';
+  t.updated_at = 'updated_at';
+
   // GENERAL ERRORS
   t.errors = t.errors || {};
   t.errors.duplicate_key = 'An entry named __name__ already exists';
+  t.errors.db_field = 'Field __name__: __message__';
 
   // USERS
   t.users = t.users || {};
@@ -37,6 +44,7 @@ module.exports = function( t ){
   
   // USER
   t.user = t.user || {};
+  t.user.create_new = 'Create a new account';
   t.user.settings = 'Account settings'; 
   t.user.editing_as_admin = 'You are editing this settings with <span class="lbl danger">administrator</span> privileges';
   t.user.firstname = 'Firstname';
@@ -75,5 +83,22 @@ module.exports = function( t ){
   t.user.errors = t.user.errors || {};
   t.user.errors.too_short = 'The entered password is too short (6 characters at least)';
   t.user.errors.requirements_not_met = 'The password must contain at least one digit, at least one lower case character, at least one uppercase character';
+
+  t.domains = t.domains || {};
+  t.domains.new = 'New domain';
+
+  t.domain = t.domain || {};
+  t.domain.create_new = 'Create a new domain';
+  t.domain.last_activity = 'Last activity';
+  t.domain.edit = 'Edit this domain';
+  t.domain.owner = 'Owner';
+  t.domain.plan = 'Plan';
+  t.domain.settings = 'Domain settings';
+  t.domain.name_exmpl = 'example.com';
+
+  t.domain.errors = t.domain.errors || {};
+  t.domain.errors.not_a_valid_domainname = 'Not a valid domain name';
+  t.domain.saved = 'Domain __name__ has been saved';
+
 
 };

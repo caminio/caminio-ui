@@ -43,15 +43,22 @@ define( function( require ){
 
   notify.processError = function notifyProcessError( obj ){
     if( typeof(obj.details) === 'object' ){
-      console.log('enterhere' , obj.details, obj.details.code, obj.details.err.split(' dup key: { :')[1].replace(/[\\\\"\}]*/g,''));
       if( obj.details.code && obj.details.code === 11000 )
         notify( 'error', $.i18n.t('errors.duplicate_key', {name: obj.details.err.split(' dup key: { :')[1].replace(/[\\\\"\}]*/g,'')}));
+      else if( obj.details.errors ){
+        for( var key in obj.details.errors ){
+          var err = obj.details.errors[key];
+          notify( 'error', $.i18n.t('errors.db_field', {name: err.path, message: err.message}) );
+        }
+      }
+      else if( obj.details.message )
+        notify( 'error', obj.details.message );
       else
         notify( 'error', obj.details );
     } else {
       notify( 'error', obj.details );
     }
-  }
+  };
 
   function checkNotificationCollection(){
     if( $('#notifications .notifications-collection').length )

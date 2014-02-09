@@ -20,13 +20,11 @@ define(function(require) {
     admin: { type: 'boolean', default: false },
     superuser: 'boolean',
     lastLoginAt: 'date',
-    locked: {
-      at: 'date'
-    }
+    locked: 'object'
   };
 
   userSchema.methods = {
-    getName: function(){ return this.name.full(); }
+    getName: function(){ console.log('here', this); return this.name.full(); }
   };
 
   var User = Model.define( 'user', { adapter: caminioREST }, userSchema );

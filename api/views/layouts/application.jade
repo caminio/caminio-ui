@@ -27,10 +27,11 @@ html(lang=i18n.locale())
     block content
       
     script(type='text/javascript').
-      caminioHostname = '!{caminioHostname}';
+      window.caminioHostname = '!{caminioHostname}';
+      window.siteName = '!{site.name}';
       window.currentLang = '!{i18n.locale()}';
-      window.currentUser = JSON.parse('!{JSON.stringify(currentUser)}');
-      window.currentDomain = JSON.parse('!{JSON.stringify(currentDomain)}');
+      window.currentUser = !{JSON.stringify(currentUser)};
+      window.currentDomain = !{JSON.stringify(currentDomain)};
       window.csrf = '!{csrf}';
 
     block foot

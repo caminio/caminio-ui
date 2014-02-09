@@ -16,16 +16,16 @@ define( function( require ){
     },
     activate: function () {
       router.map([
-        //{ route: '', title: i18n.t('navbar.overview'), moduleId: 'viewmodels/overview', nav: true },
-        { route: '', title: i18n.t('navbar.users'), moduleId: 'viewmodels/users', nav: true },
-        { route: 'users', title: i18n.t('navbar.users_groups'), moduleId: 'viewmodels/users', nav: false },
-        { route: 'users/:id', moduleId: 'viewmodels/user', nav: false },
+        //{ route: '', title: i18n.t('navbar.overview'), moduleId: 'viewmodels/overview' },
+        { route: '', title: i18n.t('navbar.users'), moduleId: 'viewmodels/users' },
+        { route: 'users', title: i18n.t('navbar.users'), moduleId: 'viewmodels/users', nav: true },
+        { route: 'users/:id', moduleId: 'viewmodels/user' },
         //{ route: 'api_keys', title: i18n.t('navbar.api_keys'), moduleId: 'viewmodels/api_keys', nav: true },
         { route: 'domains', title: i18n.t('navbar.domains'),
                             moduleId: 'viewmodels/domains',
                             nav: (window.currentUser.superuser ? true : false) },
 
-        //{ route: 'domains/:id', title: i18n.t('navbar.domains'), moduleId: 'viewmodels/domain', nav: false },
+        { route: 'domains/:id', moduleId: 'viewmodels/domain' },
       ]).buildNavigationModel();
 
       return router.activate();

@@ -12,7 +12,7 @@ header.top-panel.fixed
     li.pull-right
       a.account-info.ctrl-btn.pull-right( href='/accounts/'+currentUser.id+'/edit' )
         img.avatar.pull-left( src='/images/avatar_100x100.png' )
-        span.pull-left.username=currentUser.fullName
+        span.pull-left.username=currentUser.name.full
     li.pull-right.dropdown
       a.dropdown-toggle.dropdown-hover.domain.ctrl-btn.pull-right( data-toggle='dropdown' )
         span.pull-left.domainname=(currentDomain ? currentDomain.name : 'no domain')
