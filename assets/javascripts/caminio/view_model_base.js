@@ -5,6 +5,7 @@ define( function( require ){
 
   var moment        = require('moment');
   var inflection    = require('inflection');
+  var app           = require('durandal/app');
   var router        = require('plugins/router');
   var notify        = require('caminio/notify');
   var $             = require('jquery');
@@ -41,7 +42,30 @@ define( function( require ){
   }
 
   function destroyResource( item, e ){
-    console.log('destroy');
+    var resource = item.resource();
+    var resources = item.resources && item.resources.resources ? item.resources.resources : null;
+    var yes = $.i18n.t('yes');
+    var no = $.i18n.t('no');
+    var underscoreName = inflection.underscore(resource.constructor.modelName);
+    app.showMessage( $.i18n.t('really_delete', { name: resource.name() }), 
+                      $.i18n.t('delete_name', { name: resource.name() }), 
+                      [yes,no])
+        .then( function( decision ){
+          if( decision === no )
+            return;
+          resource.destroy( function( err, response ){
+            if( err ){ return notify.processError(err.response); }
+            notify('info', $.i18n.t( underscoreName+'.destroyed', {name: resource.getName()} ) );
+            
+            if( resources )
+              ko.utils.arrayFirst( resources(), function(arrItem) {
+                if( resource.id === arrItem.id )
+                  resources.remove( arrItem );
+              });
+
+            router.navigate('#'+inflection.pluralize(underscoreName));
+          });
+        });
   }
 
   // ----------------------------- helpers

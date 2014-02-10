@@ -75,10 +75,12 @@ table.caminio tbody tr.selected:nth-child(even){
   background-color: #09f;
   color: #fff;
 }
+
 table.caminio:not(.no-hover) tbody tr:hover,
 table.caminio:not(.no-hover) tbody tr:hover:nth-child(even){
   background-color: #ffe;
 }
+
 table.caminio tbody tr.selected .fa,
 table.caminio tbody tr.selected a{
   color: #fff;

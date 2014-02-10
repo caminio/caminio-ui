@@ -9,8 +9,7 @@ define(function(require) {
   var router      = require('plugins/router');
 
   var domainsController = factory.createViewModel({
-    domains: Domain.find(),
-    destroyDomain: destroyDomain,
+    resources: Domain.find(),
     showForm: showForm,
     lockDomain: lockDomain,
     insert: insertDomain
@@ -27,27 +26,6 @@ define(function(require) {
   }
 
   /**
-   * destroys a domain after confirmed
-   *
-   * @method destroy
-   */
-  function destroyDomain( item, e ){
-    var yes = $.i18n.t('yes');
-    var no = $.i18n.t('no');
-    app.showMessage( $.i18n.t('domain.really_delete', { name: item.fullName }), $.i18n.t('domain.delete_domain'), [yes, no])
-      .then( function( decision ){
-        if( decision === yes ){
-          item.destroy( function( err ){
-            if( err ){ notify('error', err ); }
-            var itemId = item.id;
-            domainsController.domains.remove( item );
-            notify('info', $.i18n.t('domain.deleted',{name: item.fullName}), { undo: function(){ undoDestroyDomain( itemId ); } });
-          });
-        }
-      });
-  }
-
-  /**
    * @method undoDestroyDomain
    * @private
    */
@@ -60,7 +38,7 @@ define(function(require) {
    * @private
    */
   function insertDomain( domain ){
-    domainsController.domains.push( domain );
+    domainsController.resources.push( domain );
   }
 
 });

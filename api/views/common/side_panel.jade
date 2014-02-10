@@ -1,7 +1,7 @@
 #side-panel
   .account-info
     img(src='/images/avatar_100x100.png', class='avatar pull-left')
-    .pull-left.username=currentUser.fullName
+    .pull-left.username=currentUser.name.full
   ul.nav
     each app in allowedApps
       li.clearfix(class=(app.name === controllerName.replace('Controller','').toLowerCase() ? 'active' : ''))

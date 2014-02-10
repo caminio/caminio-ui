@@ -88,7 +88,7 @@ define(function(require) {
       dataType: 'json'
     })
     .done( function(json){
-      cb( null );
+      cb( null, json );
     })
     .fail( function( xhr, status, err ){ processError( xhr, status, err, cb ); });
   };

@@ -68,6 +68,10 @@ div.btn.icon-only{
   padding: 3px 5px;
 }
 
+.btn.large{
+  padding: 10px;
+}
+
 .btn.tiny{
   padding: 2px 5px;
   font-size: 10px;

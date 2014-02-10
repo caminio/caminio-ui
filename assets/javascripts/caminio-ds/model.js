@@ -246,11 +246,11 @@ define( function(require) {
     var self = this;
     var url = this.constructor.url()+'/';
     url += typeof(this.id) === 'function' ? this.id() : this.id;
-    this.constructor.adapter.destroy( url, function( err ){
+    this.constructor.adapter.destroy( url, function( err, response ){
       if( err ){ return cb(err); }
       if( self.id in self.constructor.cache )
         delete self.constructor.cache[ self.id ];
-      cb( null );
+      cb( null, response );
     });
   }
 

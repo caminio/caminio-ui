@@ -25,6 +25,7 @@ requirejs.config({
     'select2': '../../../assets/javascripts/caminio-ui/components/select2/select2',
     'moment': '../../../assets/javascripts/caminio-ui/components/moment/moment',
     'inflection': '../../../assets/javascripts/caminio-ui/components/inflection/lib/inflection',
+    'ace': '../../../assets/javascripts/caminio-ui/components/ace/lib/ace/ace',
 
     // caminio stuff
     'ds': '../../../assets/javascripts/caminio-ds',

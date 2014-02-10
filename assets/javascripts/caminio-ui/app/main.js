@@ -14,6 +14,7 @@ requirejs.config({
     'select2': '../components/select2/select2',
     'moment': '../components/moment/moment',
     'inflection': '../components/inflection/lib/inflection',
+    'ace': '../components/ace/lib/ace',
 
     // caminio stuff
     'ds': '../../caminio-ds',
@@ -46,6 +47,8 @@ define(function(require) {
   var viewLocator = require('durandal/viewLocator');
   var caminioOpts = require('caminio/options');
   var router      = require('plugins/router');
+
+  require('bootstrap');
 
   caminioOpts.init( function(){
 

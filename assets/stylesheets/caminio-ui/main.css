@@ -107,12 +107,18 @@ body.side-panel-active .main-view{
   margin-top: 20px;
 }
 
+.main-content .nav{
+  margin-top: 1em;
+  border-top: 1px dotted #ccc;
+}
+
 .sub-header{
   font-size: 2rem;
   border-bottom: 1px dotted #ccc;
   padding-bottom: 5px;
   margin-bottom: 30px;
   font-weight: 100;
+  margin-left: 1em;
 }
 
 .main-header{

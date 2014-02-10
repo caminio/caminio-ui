@@ -21,6 +21,7 @@ module.exports = function(grunt) {
       'bootstrap': '../components/bootstrap/dist/js',
       'i18next': '../components/i18next/release/i18next.amd-1.7.1.min',
       'inflection': '../components/inflection/lib/inflection',
+      'ace': '../components/ace/lib/ace/ace',
       //'select2': '../components/select2/select2',
       'moment': '../components/moment/moment',
       'caminio': '../../caminio',

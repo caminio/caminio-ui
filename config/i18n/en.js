@@ -26,8 +26,11 @@ module.exports = function( t ){
   t.undo = 'Undo';
   t.back = 'back';
 
-  t.created_at = 'created at';
-  t.updated_at = 'updated_at';
+  t.created_at = 'Created at';
+  t.updated_at = 'Updated at';
+
+  t.really_delete = 'Do you really want to delete __name__?';
+  t.delete_name = 'Delete __name__';
 
   // GENERAL ERRORS
   t.errors = t.errors || {};
@@ -93,12 +96,24 @@ module.exports = function( t ){
   t.domain.edit = 'Edit this domain';
   t.domain.owner = 'Owner';
   t.domain.plan = 'Plan';
+  t.domain.danger_zone = 'Danger zone';
+  t.domain.really_delete = 'Do you really want to delete <strong>__name__</strong>? This action cannot be undone!';
+  t.domain.current_plan = 'Current plan';
   t.domain.settings = 'Domain settings';
   t.domain.name_exmpl = 'example.com';
 
   t.domain.errors = t.domain.errors || {};
   t.domain.errors.not_a_valid_domainname = 'Not a valid domain name';
   t.domain.saved = 'Domain __name__ has been saved';
+  t.domain.destroy = 'Delete __name__';
+  t.domain.destroy_desc = 'This will permanently delete this domain and all its users (apart if they are registered to other domains as well';
+  t.domain.destroyed = 'Domain __name__ has been deleted (__affected__ related users have been deleted)';
+
+  t.domain.general = 'General';
+  t.domain.settings = 'Settings';
+
+  t.domain.switch_to = 'Switch to';
+  t.domain.current = 'Current';
 
 
 };

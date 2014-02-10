@@ -16,6 +16,10 @@ body .modal-header h3{
   font-size: 1.2rem;
 }
 
+body a{
+  color: #d55;
+}
+
 body .modal-header .close:hover{
   text-shadow: 0 0 2px rgba(0,0,0,0.3);
   font-weight: 600;
@@ -26,4 +30,19 @@ body .modal-header .close:hover{
 
 body .modal-footer{
   padding: 10px 20px;
+}
+
+body .nav-pills > li.active > a, 
+body .nav-pills > li.active > a:hover, 
+body .nav-pills > li.active > a:focus{
+  color: #d55;
+  background: none;
+  font-weight: 600;
+}
+
+body .nav-pills > li > a, 
+body .nav-pills > li > a:hover, 
+body .nav-pills > li > a:focus{
+  background: none;
+  color: #777;
 }
