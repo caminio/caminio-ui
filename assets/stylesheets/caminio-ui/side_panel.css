@@ -34,6 +34,9 @@ body.side-panel-active #side-panel{
   margin: 15px 0 0;
   color: #eee;
   width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 #side-panel .notification{
   font-size: 10px;

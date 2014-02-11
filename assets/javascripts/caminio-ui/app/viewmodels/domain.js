@@ -43,11 +43,14 @@ define(function(require) {
             height: $('.main-view').height()-300
           });
           var editor = ace.edit('domain-settings-editor');
-          editor.setValue(domainController.resource().preferences());
+          editor.setValue( JSON.stringify(domainController.resource().preferences(), null, 2) );
           editor.getSession().setTabSize(2);
           editor.getSession().on('change', function(e){
-            if( editor.getSession().getAnnotations().length < 1 )
-              domainController.resource().preferences( JSON.parse(editor.getValue()) );
+            if( editor.getSession().getAnnotations().length < 1 ){
+              try{
+                domainController.resource().preferences( JSON.parse(editor.getValue()) );
+              }catch(ex){}
+            }
           });
           editor.setTheme("ace/theme/chrome");
           editor.getSession().setMode("ace/mode/json");

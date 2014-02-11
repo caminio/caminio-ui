@@ -24,6 +24,7 @@ define( function( require ){
         { route: 'domains', title: i18n.t('navbar.domains'),
                             moduleId: 'viewmodels/domains',
                             nav: (window.currentUser.superuser ? true : false) },
+        { route: 'preferences', title: i18n.t('navbar.preferences'), moduleId: 'viewmodels/preferences', nav: true },
 
         { route: 'domains/:id', moduleId: 'viewmodels/domain' },
       ]).buildNavigationModel();

@@ -6,6 +6,7 @@ module.exports = function( t ){
   t.navbar.admin = 'Administration';
   t.navbar.users = 'Users';
   t.navbar.domains = 'Domains';
+  t.navbar.preferences = 'Preferences';
 
   t.initializing_application = 'Loading data';
   
@@ -115,5 +116,10 @@ module.exports = function( t ){
   t.domain.switch_to = 'Switch to';
   t.domain.current = 'Current';
 
+  t.preferences = t.preferences || {};
+  t.preferences.global = 'Global preferences';
+  t.preferences.global_desc = 'Configure your domain here';
+  t.preferences.your_plan = 'Your current plan';
+  t.preferences.monthly_price = 'Monthly price';
 
 };

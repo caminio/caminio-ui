@@ -121,8 +121,11 @@ define( function(require) {
         if( err ){ return cb(err); }
         if( !(res instanceof Array) ){ throw new Error('wrong response. expected array'); }
         res.forEach( function( resource ){
-          if( resource )
-            array.push( new Model(resource) );
+          if( resource ){
+            var m = new Model(resource);
+            Model.cache[m.id] = m;
+            array.push( m );
+          }
         });
         if( typeof(cb) === 'function' )
           cb( null, array );
@@ -308,6 +311,10 @@ define( function(require) {
           parseType.call(this, i, dataType[i], (ns ? ns+'.' : '')+name );
         return;
       }
+    }
+    console.log('func', name, type);
+    if( typeof(type) === 'function' ){
+      return type();
     }
     var computedType = createType.call(this, dataType, name, type );
     if( typeof(dataType) === 'function' )

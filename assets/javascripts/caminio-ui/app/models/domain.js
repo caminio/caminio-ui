@@ -16,14 +16,19 @@ define(function(require) {
             }
     },
     owner: { type: 'object', default: new(User)(), skip: ['update'] },
-    plan: 'string',
+    selectedApps: 'object',
     planPrice: 'float',
     title: 'string',
     description: 'string',
     preferences: { type: 'object', default: {} },
     updated: 'object',
     created: 'object',
-    locked: 'object'
+    locked: 'object',
+    totalPrice: function(){
+      return ko.computed( function(){
+        return 0.0;
+      },this);
+    }
   };
 
   domainSchema.skipAttrs = {owner: ['update']};
