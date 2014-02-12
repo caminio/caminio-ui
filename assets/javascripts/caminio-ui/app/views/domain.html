@@ -20,6 +20,7 @@
 
       <ul class="sub-navbar nav nav-pills">
         <li class="active"><a href="#general" data-toggle="tab" data-bind="text: $.i18n.t('domain.general')"></a></li>
+        <li><a href="#apps" data-toggle="tab" data-bind="text: $.i18n.t('domain.apps')"></a></li>
         <li><a href="#settings" data-toggle="tab" data-bind="text: $.i18n.t('domain.settings')"></a></li>
       </ul>
 
@@ -86,6 +87,17 @@
         <!-- /ko -->
 
       </div> <!-- tab-content -->
+
+      <div class="tab-pane fade" id="apps">
+
+        <div class="form-group">
+          <label for="example-text-input" class="col-md-2 control-label" data-bind="text: $.i18n.t('domain.apps')"></label>
+          <div class="col-md-6">
+            <input type="text" data-bind="value: resource().allowedAppNamesAsString" class="form-control" />
+          </div>
+        </div>
+
+      </div>
 
       <div class="tab-pane fade" id="settings">
 

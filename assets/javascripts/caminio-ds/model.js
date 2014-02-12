@@ -58,10 +58,11 @@ define( function(require) {
       this.getName = this.getName || function(){ return this.name(); };
       if( schema && schema.skipAttrs )
         this.skipAttrs = schema.skipAttrs;
+      if( schema && typeof(schema.afterBuild) === 'function' )
+        schema.afterBuild.call(this);
     }
-    if( schema ){
+    if( schema )
       Model.prototype = schema.methods || {};
-    }
     Model.prototype.save = save;
     Model.prototype.destroy = destroy;
     Model.prototype.isNew = isNew;
@@ -79,7 +80,6 @@ define( function(require) {
     Model.findOne = findOne;
     Model.adapter = options.adapter;
     Model.modelName = inflection.classify(name);
-    Model.hooks = { before: [], after: [] };
     return Model;
   }
 
@@ -312,10 +312,6 @@ define( function(require) {
         return;
       }
     }
-    console.log('func', name, type);
-    if( typeof(type) === 'function' ){
-      return type();
-    }
     var computedType = createType.call(this, dataType, name, type );
     if( typeof(dataType) === 'function' )
       computedType = dataType.call(this);
@@ -369,6 +365,8 @@ define( function(require) {
         return createTypePasswordConfirmation.call(this,name,options,ko);
       case 'password':
         return createTypePassword.call(this,name, options, ko);
+      case 'array':
+        return ko.observableArray( options.default );
       default:
         var ret = ko.observable( options.default );
         if( options.type )

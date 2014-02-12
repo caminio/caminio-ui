@@ -17,7 +17,7 @@ define(function(require) {
     },
     owner: { type: 'object', default: new(User)(), skip: ['update'] },
     selectedApps: 'object',
-    planPrice: 'float',
+    allowedAppNames: 'array',
     title: 'string',
     description: 'string',
     preferences: { type: 'object', default: {} },
@@ -29,6 +29,19 @@ define(function(require) {
         return 0.0;
       },this);
     }
+  };
+
+  domainSchema.afterBuild = function setupAllowedAppNamesAsString(){
+    console.log('computed app names', this.allowedAppNames() );
+    this.allowedAppNamesAsString = ko.computed({
+      read: function(){
+        return this.allowedAppNames().join(',');
+      },
+      write: function(val){
+        this.allowedAppNames( val.split(',') );
+      },
+      owner: this
+    });
   };
 
   domainSchema.skipAttrs = {owner: ['update']};

@@ -4,8 +4,7 @@
       <th data-bind="text: $.i18n.t('nr')" class="nr"></th>
       <th data-bind="text: $.i18n.t('name')"></th>
       <th data-bind="text: $.i18n.t('domain.owner')"></th>
-      <th data-bind="text: $.i18n.t('domain.plan')"></th>
-      <th data-bind="text: $.i18n.t('domain.price')"></th>
+      <th data-bind="text: $.i18n.t('domain.apps')"></th>
       <th data-bind="text: $.i18n.t('created_at')"></th>
       <th class="align-right" style="width: 150px"></th>
     </tr>
@@ -26,8 +25,7 @@
         <!-- /ko -->
       </td>
       <td data-bind="text: owner().name.full"></td>
-      <td data-bind="text: plan"></td>
-      <td data-bind="text: planPrice"></td>
+      <td data-bind="text: allowedAppNames().join(',')"></td>
       <td data-bind="text: $parent.date(created().at)"></td>
       <td class="actions align-right">
         <!-- ko if: id !== currentDomain.id -->
