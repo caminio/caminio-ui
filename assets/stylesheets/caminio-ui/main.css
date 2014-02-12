@@ -83,6 +83,10 @@ body.side-panel-active .main-view{
   padding: 10px;
 }
 
+.main-content.no-subnav{
+  top: 10px;
+}
+
 .main-ctrl{
   margin-bottom: 20px;
   padding: 10px 0;
