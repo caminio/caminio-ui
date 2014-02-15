@@ -48,6 +48,9 @@ define( function( require ){
     moment.lang( window.currentLang || 'en' );
     
     i18next.init( i18NOptions, function(t){
+      // binder.binding = function (obj, view) {
+      //   $(view).i18n();
+      // };
       if( !$.i18n ){ $.i18n = i18next; }
       cb();
     });

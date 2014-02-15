@@ -18,10 +18,10 @@ module.exports = function(grunt) {
       'durandal': '../components/durandal/js',
       'plugins': '../components/durandal/js/plugins',
       'transitions': '../components/durandal/js/transitions',
-      'bootstrap': '../components/bootstrap/dist/js',
+      'bootstrap': '../components/bootstrap/dist/js/bootstrap',
       'i18next': '../components/i18next/release/i18next.amd-1.7.1.min',
       'inflection': '../components/inflection/lib/inflection',
-      'ace': '../components/ace/lib/ace/ace',
+      'ace': '../components/ace/lib/ace',
       //'select2': '../components/select2/select2',
       'moment': '../components/moment/moment',
       'caminio': '../../caminio',
@@ -49,8 +49,7 @@ module.exports = function(grunt) {
       },
       combine: {
         files: {
-          'build/stylesheets/caminio-ui.min.css': [ 'assets/stylesheets/caminio-ui-static/*.css', 
-                                                    'assets/stylesheets/caminio-ui/*.css' ],
+          'build/stylesheets/caminio-ui.min.css': [ 'assets/stylesheets/**/*.css' ],
           'build/stylesheets/caminio-auth.min.css': [ 'assets/stylesheets/caminio-ui/authorization.css' ]
         }
       }
@@ -67,7 +66,7 @@ module.exports = function(grunt) {
           paths: requireConfig.paths,
           exclude: [],
           optimize: 'none',
-          out: 'build/javascripts/caminio-ui/app/main.js'
+          out: 'build/javascripts/caminio-ui.js'
         }
       }
     },
@@ -81,8 +80,8 @@ module.exports = function(grunt) {
             '*/\n'
       },
       build: {
-        src: 'build/javascripts/caminio-ui/app/main.js',
-        dest: 'build/javascripts/caminio-ui/app/main.min.js'
+        src: 'build/javascripts/caminio-ui.js',
+        dest: 'build/javascripts/caminio-ui.min.js'
       }
     },
 

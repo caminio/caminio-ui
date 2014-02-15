@@ -32,9 +32,8 @@ define(function(require) {
       if( id === 'new' )
         domainController.resource( new Domain() );
       else
-        Domain.findOne( id, function(err,domain){
+        domainController.resource = Domain.findOne( id, function(err,domain){
           if( err ){ notify('error', err); }
-          domainController.resource( domain );
         });
       setTimeout( function(){
         $('input[type=text]:first').focus();

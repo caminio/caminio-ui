@@ -122,8 +122,8 @@ define( function(require) {
         if( !(res instanceof Array) ){ throw new Error('wrong response. expected array'); }
         res.forEach( function( resource ){
           if( resource ){
-            var m = new Model(resource);
-            Model.cache[m.id] = m;
+            var m = ko.observable(new Model(resource));
+            Model.cache[resource.id] = m;
             array.push( m );
           }
         });
@@ -151,20 +151,24 @@ define( function(require) {
       query = { id: query };
     var Model = this;
     // return immediately if Model is in cache
-    if( query.id && Model.cache[query.id] )
-      return cb( null, Model.cache[query.id] );
+    if( query.id && Model.cache[query.id] ){
+      cb( null, Model.cache[query.id] );
+      return Model.cache[query.id];
+    }
 
+    var m = ko.observable();
     var url = processUrl( Model.url(), query );
     Model.adapter
       .exec( url, processQuery(query), function( err, res ){
         if( err ){ return cb(err); }
         if( typeof(cb) === 'function' ){
-          var m = ( res ? new(Model)(res) : null);
-          if( m )
+          m( res ? new(Model)(res) : null);
+          if( m() )
             Model.cache[m.id] = m;
             cb( null, m );
         }
       });
+    return m;
   }
 
   /**
@@ -182,14 +186,17 @@ define( function(require) {
       throw new Error('cannot create new resource without any attributes');
     var preparedAttrs = {};
     preparedAttrs[ inflection.underscore(Model.modelName) ] = attrs;
+    var m = ko.observable();
     Model.adapter
       .save( true, Model.url(), preparedAttrs, function( err, res ){
         if( err ){ return cb(err); }
         if( !res ){ return('failed to create resource'); }
-        var newModel = new Model(res);
+        m( new Model(res) );
+        Model.cache[res.id] = m;
         newModel.justCreated = true;
-        cb( null, newModel );
+        cb( null, m );
       });
+    return m;
   }
 
   /**
@@ -229,8 +236,8 @@ define( function(require) {
         if( err ){ return cb(err); }
         if( !res ){ return('failed to save resource'); }
         updateAttributes( self, res );
-        if( self.id in self.constructor.cache )
-          Model.cache[ self.id ] = self;
+        //if( self.id in self.constructor.cache )
+        //  Model.cache[ self.id ] = self;
         if( action === 'create' )
           self.justCreated = true;
         cb( null, self );

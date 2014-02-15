@@ -23,9 +23,8 @@ define(function(require) {
       if( id === 'new' )
         userController.resource( new User() );
       else
-        User.findOne( id, function(err,user){
+        userController.resource = User.findOne( id, function(err,user){
           if( err ){ notify('error', err); }
-          userController.resource( user );
         });
       setTimeout( function(){
         $('input[type=text]:first').focus();

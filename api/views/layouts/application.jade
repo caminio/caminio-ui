@@ -11,7 +11,7 @@ html(lang=i18n.locale())
     meta(name='csrf-param', content=csrf)
     
     if env === 'production'
-      link(resl='stylesheet', href='/stylesheets/caminio-ui.min.css')
+      link(rel='stylesheet', href='/stylesheets/caminio-ui.min.css')
     else
       link(rel='stylesheet', href='/stylesheets/caminio-ui-static/bootstrap.css')
       link(rel='stylesheet', href='/stylesheets/caminio-ui-static/durandal.css')

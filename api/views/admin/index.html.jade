@@ -1,26 +1,14 @@
 extends ../layouts/application
 
-append head
-  if env === 'production'
-    link( rel='stylesheet', href='/stylesheets/caminio-ui.min.css' )
-  else
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/bootstrap-overrides.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/durandal-overrides.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/common.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/form.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/table.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/side_panel.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/top_panel.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/loader.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/notifications.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/main.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/admin.css' )
-
 append foot
   if env === 'production'
-    script(type='text/javascript', src='/javascripts/caminio-ui/app/main.min.js')
+    script(type='text/javascript', src='/javascripts/caminio-ui.min.js')
   else
     script(type='text/javascript', src='/javascripts/caminio-ui/components/requirejs/require.js', data-main='/javascripts/caminio-ui/app/main')
+
+if env !== 'production'
+  append head
+    link( rel='stylesheet', href='/stylesheets/caminio-ui/admin.css' )
 
 block content
   #applicationHost.main-view

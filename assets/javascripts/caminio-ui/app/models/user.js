@@ -24,7 +24,7 @@ define(function(require) {
   };
 
   userSchema.methods = {
-    getName: function(){ console.log('here', this); return this.name.full(); }
+    getName: function(){ console.log('here', this); return this.name.full; }
   };
 
   var User = Model.define( 'user', { adapter: caminioREST }, userSchema );
