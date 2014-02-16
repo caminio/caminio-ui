@@ -86,6 +86,7 @@ table.caminio tbody tr.selected a{
   color: #fff;
 }
 
+table.caminio th.actions,
 table.caminio td.actions{
   width: 120px;
   opacity: 0.5;

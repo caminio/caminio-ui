@@ -59,9 +59,9 @@
 }
 .notifications .close:after{
   color: #fff;
-  content: "";
+  content: "\f057";
   display: inline-block;
-  font-family: FontAwesome;
+  font-family: 'FontAwesome';
   font-size: 17px;
   font-weight: 500;
 }
