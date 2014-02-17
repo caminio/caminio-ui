@@ -46,7 +46,7 @@
       else if( obj.details.errors ){
         for( var key in obj.details.errors ){
           var err = obj.details.errors[key];
-          notify( 'error', Ember.I18n.t('errors.db_field', {name: err.path, message: err.message}) );
+          notify( 'error', Ember.I18n.t(err.message, {value: err.value}) );
         }
       }
       else if( obj.details.message )
