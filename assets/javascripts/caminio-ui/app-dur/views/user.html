@@ -1,0 +1,98 @@
+<section class="main-content">
+
+  <form class="form-horizontal caminio" data-bind="submit: saveResource">
+
+    <header class="main-header">
+      <div class="form-actions">
+        <a href="#users" data-bind="title: $.i18n.t('back')" class="btn icon-text transparent">
+          <i class="fa fa-arrow-left"></i>
+          <span data-bind="text: $.i18n.t('back')"></span>
+        </a>
+        <button type="submit" data-bind="text: $.i18n.t('save')" class="btn success"></button>
+      </div>
+      <h1 data-bind="text: $.i18n.t('user.settings')"></h1>
+      <h2 data-bind="html: $.i18n.t('user.editing_as_admin')"></h2>
+    </header>
+
+    <h4 class="sub-header" data-bind="text: $.i18n.t('user.general')"></h4>
+
+    <div class="form-group">
+      <label for="example-text-input" class="col-md-2 control-label" data-bind="text: $.i18n.t('name')"></label>
+      <div class="col-md-3">
+        <input type="text" data-bind="attr: { placeholder: $.i18n.t('user.firstname') }, value: resource().name.first" class="form-control" />
+      </div>
+      <div class="col-md-3">
+        <input type="text" data-bind="attr: { placeholder: $.i18n.t('user.lastname') }, value: resource().name.last" class="form-control" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="example-text-input" class="col-md-2 control-label" data-bind="text: $.i18n.t('email')"></label>
+      <div class="col-md-6">
+        <input type="text" data-bind="attr: { placeholder: $.i18n.t('email') }, value: resource().email" class="form-control" />
+        <span class="help-block" data-bind="text: $.i18n.t('user.email_desc')"></span>
+      </div>
+    </div>
+
+    <h4 class="sub-header" data-bind="text: $.i18n.t('user.security')"></h4>
+
+    <div class="form-group">
+      <div class="col-md-3 col-md-offset-2">
+        <div class="checkbox-field" data-bind="click: toggleAutoPassword">
+          <i class="fa pull-left" data-bind="css: { 'fa-square-o': !resource().autoPassword(), 'fa-check-square-o': resource().autoPassword }"></i>
+          <!-- ko if: resource().isNew() -->
+          <span data-bind="text: $.i18n.t('user.send_link_to_set_password')"></span>
+          <!-- /ko -->
+          <!-- ko ifnot: resource().isNew() -->
+          <span data-bind="text: $.i18n.t('user.send_link_to_set_password_again')"></span>
+          <!-- /ko -->
+        </div>
+        <span class="help-block" data-bind="text: $.i18n.t('user.send_link_desc')"></span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="example-text-input" class="col-md-2 control-label" data-bind="text: $.i18n.t('user.password')"></label>
+      <div class="col-md-3">
+        <input type="password" data-bind="value: resource().password" class="form-control" />
+        <span class="help-block" data-bind="text: $.i18n.t('user.password_requirements')"></span>
+      </div>
+      <div class="col-md-3">
+        <a href="#" class="btn icon-text transparent" data-bind="click: genPassword" tabindex="-1">
+          <i class="fa fa-gears"></i>
+          <span data-bind="text: $.i18n.t('user.generate_password')"></span>
+        </a>
+        <tt data-bind="text: resource().generatedPassword()"></tt>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="example-text-input" class="col-md-2 control-label" data-bind="text: $.i18n.t('user.password_confirm')"></label>
+      <div class="col-md-3">
+        <input type="password" data-bind="value: resource().passwordConfirmation" class="form-control" />
+      </div>
+    </div>
+
+    <!-- ko ifnot: resource().isNew() -->
+    <h4 class="sub-header" data-bind="text: $.i18n.t('user.danger_zone')"></h4>
+
+    <div class="form-group">
+      <div class="col-md-3 col-md-offset-2">
+        <button data-bind="text: $.i18n.t('user.lock'), click: lockUser" class="btn large warning" style="display: inline-block; width: 170px" />
+      </div>
+      <div class="col-md-6">
+        <span class="help-block" data-bind="text: $.i18n.t('user.lock_desc')"></span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-3 col-md-offset-2">
+        <button data-bind="text: $.i18n.t('user.destroy'), click: destroyResource" class="btn large danger" style="display: inline-block; width: 170px" />
+      </div>
+      <div class="col-md-6">
+        <span class="help-block" data-bind="text: $.i18n.t('user.destroy_desc')"></span>
+      </div>
+    </div>
+    <!-- /ko -->
+  </form>
+</section>

@@ -1,0 +1,44 @@
+<section class="main-content">
+
+  <div class="main-ctrl align-right">
+    {{#link-to 'users.new' class="btn primary icon-text"}}
+      <i class="fa fa-plus-square"></i>
+      {{t 'user.new'}}
+    {{/link-to}}
+  </div>
+
+  <table class="caminio">
+    <thead>
+      <tr>
+        <th>{{t user.name}}</th>
+        <th>{{t user.email}}</td>
+        <th class="actions align-right"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+    {{#each controller}}
+      <tr>
+        <td {{action goToContact this on='doubleClick'}}>
+          {{fullname}}
+          {{#if isAdmin user=this}}
+            <span class="lbl danger"><i class="fa fa-gears"></i></span>
+          {{/if}}
+        </td>
+        <td {{action goToContact this on='doubleClick'}}>{{email}}</td>
+        <td class="actions align-right">
+          <div class="btn-group">
+            <a class="btn small" {{action goToContact this}} {{translateAttr title='edit'}}>
+              <i class="fa fa-pencil"></i>
+            </a>
+            <a class="btn small" {{action remove this}} {{translateAttr title='remove'}}>
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </td>
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>
+
+</section>
