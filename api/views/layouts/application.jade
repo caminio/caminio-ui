@@ -45,4 +45,20 @@ html(lang=i18n.locale())
       window.currentDomain = !{JSON.stringify(currentDomain)};
       window.csrf = '!{csrf}';
 
+
+    // foot scripts
+    script(type='text/javascript', src='/javascripts/3rdparty/jquery-1.10.2.js')
+    script(type='text/javascript', src='/javascripts/bootstrap.min.js')
+    script(type='text/javascript', src='/javascripts/3rdparty/handlebars-1.1.2.js')
+    script(type='text/javascript', src='/javascripts/3rdparty/ember-1.3.2.js')
+    script(type='text/javascript', src='/javascripts/3rdparty/ember-data-1.0.0-beta6.js')
+    script(type='text/javascript', src='/javascripts/3rdparty/ember-i18n.js')
+    script(type='text/javascript', src='/javascripts/3rdparty/moment.min.js')
+    if i18n.locale() !== 'en'
+      script(type='text/javascript', src='/javascripts/3rdparty/moment/#{i18n.locale()}.js')
+
+    script(type='text/javascript', src='/javascripts/caminio/notifications.js')
+    script(type='text/javascript', src='/javascripts/caminio/helpers/date_helper.js')
+    script(type='text/javascript', src='/javascripts/caminio/helpers/current_user.js')
+
     block foot
