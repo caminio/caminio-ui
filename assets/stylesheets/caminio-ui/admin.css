@@ -1,3 +1,13 @@
 .domain-settings-editor{
   width: 100%;
 }
+.check-box-lbl{
+  padding-top: 6px;
+}
+
+.check-box-lbl .lbl{
+  cursor: pointer;
+}
+.check-box-lbl .lbl.disabled{
+  opacity: 0.5;
+}

@@ -19,16 +19,16 @@
     <tbody>
     {{#each controller}}
       <tr>
-        <td {{action goToContact this on='doubleClick'}}>
+        <td {{action goToUser this on='doubleClick'}}>
           {{fullname}}
-          {{#if isAdmin user=this}}
+          {{#isAdmin this}}
             <span class="lbl danger"><i class="fa fa-gears"></i></span>
-          {{/if}}
+          {{/isAdmin}}
         </td>
-        <td {{action goToContact this on='doubleClick'}}>{{email}}</td>
+        <td {{action goToUser this on='doubleClick'}}>{{email}}</td>
         <td class="actions align-right">
           <div class="btn-group">
-            <a class="btn small" {{action goToContact this}} {{translateAttr title='edit'}}>
+            <a class="btn small" {{action goToUser this}} {{translateAttr title='edit'}}>
               <i class="fa fa-pencil"></i>
             </a>
             <a class="btn small" {{action remove this}} {{translateAttr title='remove'}}>

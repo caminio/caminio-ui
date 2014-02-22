@@ -3,6 +3,7 @@
   window.App.Router.map( function(){
     this.resource( 'users', { path: '/users' }, function(){
       this.route( 'new' );
+      this.resource('user.edit', { 'path' : '/:id' });
     });
   });
 
@@ -12,13 +13,10 @@
     }
   });
 
-  window.App.UserRoute = Ember.Route.extend({
-    model: function(params) {
-      var model = this.store.find('user', params.id);
-      var history = this.store.createRecord('history', { type: 'note', createdAt: new(Date)() });
-      model.then( function(){
-        model.get('history').unshiftObject( history );
-      });
+  window.App.UserEditRoute = Ember.Route.extend({
+    model: function(prefix, options) {
+      console.log('args', arguments);
+      var model = this.store.find('user', options.params.id);
       return model;
     }
   });
@@ -42,19 +40,25 @@
         this.transitionTo( 'users' );
       },
       goToUser: function( model ) {
-        this.transitionTo( 'user', model );
+        this.transitionTo( 'user.edit', model );
       },
       edit: function( model ) {
         this.transitionTo( 'user.edit', model.copy() );
       },
       create: function( model ) {
         var self = this;
+        //return notify('error', Ember.I18n.t('user.errors.prohibited_save'));
         model.save().then(function(){
           self.transitionTo( 'users' );
           notify('info', Ember.I18n.t('user.created', {name: model.get('fullname')}) );
         }).catch(function(err){
+          var errors = err.responseJSON.errors;
+          for( var i in errors )
+            errors[i] = Ember.I18n.t('errors.'+errors[i]);
+          model.set('errors', errors );
           notify.processError( err.responseJSON );
         });
+
       },
       update: function( model ) {
         var self = this;

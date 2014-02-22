@@ -7,6 +7,8 @@
     firstname: DS.attr('string'),
     lastname: DS.attr('string'),
     email: DS.attr('string'),
+    admin: DS.attr('boolean'),
+    superuser: DS.attr('boolean'),
     fullname: function(){
       var name = '';
       if( this.get('firstname') && this.get('firstname').length > 0 )
@@ -15,6 +17,8 @@
         name += ' ';
       if( this.get('lastname') && this.get('lastname').length > 0 )
         name += this.get('lastname');
+      if( name.length < 1 )
+        name += Ember.I18n.t('unknown');
       return name;
     }.property('firstname', 'lastname')
   });

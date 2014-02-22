@@ -53,6 +53,9 @@
         notify( 'error', obj.details.message );
       else
         notify( 'error', obj.details );
+    } else if( obj.errors ){
+      for( var field in obj.errors )
+        notify( 'error', Ember.I18n.t('errors.db_field', {name: field, message: obj.errors[field]}) );
     } else {
       notify( 'error', obj.details );
     }

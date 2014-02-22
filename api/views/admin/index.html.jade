@@ -4,7 +4,7 @@ append head
   if env === 'production'
     link( rel='stylesheet', href='/stylesheets/caminio-users.min.css' )
   else
-    link( rel='stylesheet', href='/stylesheets/caminio-users/users.css' )
+    link( rel='stylesheet', href='/stylesheets/caminio-ui/admin.css' )
 
 
 append foot
@@ -12,6 +12,7 @@ append foot
   script(type='text/javascript', src='/javascripts/caminio-ui/app.js')
   script(type='text/javascript', src='/javascripts/caminio-ui/router.js')
   script(type='text/javascript', src='/javascripts/caminio-ui/models/user.js')
+  script(type='text/javascript', src='/javascripts/caminio-ui/controllers/user_controller.js')
   //- script(type='text/javascript', src='/javascripts/caminio-users/controllers/user_controller.js')
   //- script(type='text/javascript', src='/javascripts/caminio-users/controllers/users_new_controller.js')
 
@@ -28,8 +29,8 @@ block content
   script(type="text/x-handlebars", data-template-name="users/new")
     include hbs/users/new.hbs
 
-  script(type="text/x-handlebars", data-template-name="users/edit")
+  script(type="text/x-handlebars", data-template-name="user/edit")
     include hbs/users/edit.hbs
 
-  script(type="text/x-handlebars", data-template-name="users/form")
-    include hbs/users/_form.hbs
+  script(type="text/x-handlebars", data-template-name="user/general")
+    include hbs/users/_general.hbs
