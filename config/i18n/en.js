@@ -8,6 +8,8 @@ module.exports = function( t ){
   t.navbar.domains = 'Domains';
   t.navbar.preferences = 'Preferences';
 
+  t.system_status = 'System status';
+
   t.initializing_application = 'Loading data';
   
   t.email = 'Email';

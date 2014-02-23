@@ -8,3 +8,9 @@
         a.pull-left(href=app.path)
           i.pull-left.fa(class='fa-'+app.icon)
           span.title=t('navbar.'+app.name)
+  aside.sideinfo
+    header
+      =t('system_status')
+
+    each sideinfobox in sideinfoBoxes
+      !=sideinfobox
