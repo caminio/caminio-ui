@@ -1,0 +1,54 @@
+<div class="">
+
+  <div class="form-group">
+    <label for="example-text-input" class="col-md-2 control-label required">{{t domain.name}}</label>
+    <div {{bind-attr class=":col-md-4 nameError:field-with-error"}}>
+      {{input valueBinding='model.name' class='form-control' placeholderTranslation='domain.name'}}
+      {{#if nameError}}<span class="help-block">{{errors.name}}</span>{{/if}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="example-text-input" class="col-md-2 control-label">{{t domain.description}}</label>
+    <div class="col-md-4">
+      {{textarea valueBinding='model.description' class='form-control'}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="required-exp col-md-offset-2 col-md-4">
+      <span style="color: #d00">*</span>{{t required_fields}}
+    </div>
+  </div>
+
+  <h4 class="sub-header">{{t domain.owner}}</h4>
+
+  <div class="form-group">
+    <label for="example-text-input" class="col-md-2 control-label required">{{t user.email}}</label>
+    <div {{bind-attr class=":col-md-4 emailError:field-with-error"}}>
+      {{input valueBinding='model.user.email' class='form-control'}}
+      {{#if emailError}}<span class="help-block">{{errors.email}}</span>{{/if}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="example-text-input" class="col-md-2 control-label">{{t user.password}}</label>
+    <div class="col-md-4">
+      {{input valueBinding='model.user.password' class='form-control'}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="example-text-input" class="col-md-2 control-label">{{t user.password_confirmation}}</label>
+    <div class="col-md-4">
+      {{input valueBinding='model.user.passwordConfirmation' class='form-control'}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="required-exp col-md-offset-2 col-md-4">
+      <span style="color: #d00">*</span>{{t required_fields}}
+    </div>
+  </div>
+
+</div>

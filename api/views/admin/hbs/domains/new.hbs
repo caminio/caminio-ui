@@ -1,0 +1,26 @@
+<section class="main-content">
+
+  <form class="form-horizontal caminio">
+
+    <header class="main-header">
+      <div class="form-actions">
+        <a href="#" {{action goToDomains}} class="btn icon-text transparent">
+          <i class="fa fa-arrow-left"></i>
+          {{t back}}
+        </a>
+        <button class="btn success" {{action create this}}>{{t domain.create}}</button>
+      </div>
+
+      <h1>{{t domain.new}}</h1>
+
+    </header>
+
+    <div>
+
+      {{partial 'domain/form'}}
+
+    </div>
+
+  </form>
+
+</section>

@@ -17,7 +17,7 @@ body .modal-header h3{
 }
 
 body a{
-  color: #d55;
+  color: #f91;
 }
 
 body .modal-header .close:hover{
@@ -35,7 +35,7 @@ body .modal-footer{
 body .nav-pills > li.active > a, 
 body .nav-pills > li.active > a:hover, 
 body .nav-pills > li.active > a:focus{
-  color: #d55;
+  color: #f91;
   background: none;
   font-weight: 600;
 }

@@ -13,8 +13,8 @@ Em.I18n.translations = {
   'remove': 'remove',
   'user.name': 'Name',
   'user.save': 'Save',
-  'user.created': 'Contact {{name}} has been created successfully',
-  'user.saved': 'Contact {{name}} has been saved',
+  'user.created': 'User {{name}} has been created successfully',
+  'user.saved': 'User {{name}} has been saved',
   'user.create': 'Create',
   'user.new': 'Create new user',
   'user.edit': 'Edit user',
@@ -44,6 +44,20 @@ Em.I18n.translations = {
   'errors.db_field': '{{name}}: {{message}}',
   'errors.required': 'This field is required',
   'errors.invalid_email_address': 'The email address is invalid',
-  'errors.duplicate_key': '{{name}} is duplicate and can\'t be saved twice'
+  'errors.duplicate_key': '{{name}} is duplicate and can\'t be saved twice',
+
+  'domain.name': 'Domainname',
+  'domain.owner': 'Owner',
+  'domain.new': 'New domain',
+  'domain.save': 'Save domain',
+  'domain.saved': 'Domain {{name}} has been saved',
+  'domain.created': 'Domain {{name}} has been created successfully',
+
+  'domain.switch': 'Switch to this domain',
+
+  'domain.description': 'Description',
+  'domain.create': 'Create domain',
+
+  'errors.invalid_domain_name': 'The entered value is not a valid domain name'
 
 };

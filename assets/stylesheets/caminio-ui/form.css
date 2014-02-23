@@ -12,6 +12,10 @@ form.caminio .form-control:focus{
   border-color: #777;
 }
 
+form.caminio textarea.form-control{
+  border-radius: 0;
+}
+
 form.caminio .form-actions{
   float: right;
   margin: 10px;

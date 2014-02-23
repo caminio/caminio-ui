@@ -62,7 +62,7 @@ body.side-panel-active .main-view{
 
 .navbar li a:active,
 .navbar li a.active{
-  background: #d55 !important;
+  background: #f91 !important;
   color: #fff;
   transition: background 0.6s;
 }
@@ -132,7 +132,7 @@ body.side-panel-active .main-view{
 .main-header h1{
   font-weight: 100;
   font-size: 3.5rem;
-  color: #d55;
+  color: #f91;
   margin: 0 20px;
 }
 .main-header h2{

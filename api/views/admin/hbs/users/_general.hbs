@@ -1,7 +1,5 @@
 <div id="general" class="tab-pane fade in active">
 
-  {{#if errors.name}}{{errors.name}}{{/if}}
-
   <div class="form-group">
     <label for="example-text-input" class="col-md-2 control-label">{{t user.name}}</label>
     <div class="col-md-2">
@@ -10,7 +8,6 @@
     <div class="col-md-2">
       {{input valueBinding='model.lastname' class='form-control' placeholderTranslation='user.lastname'}}
     </div>
-    <strong>{{name.last}}</strong>
   </div>
 
   <div class="form-group">

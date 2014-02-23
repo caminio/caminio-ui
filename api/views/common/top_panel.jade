@@ -20,4 +20,4 @@ header.top-panel.fixed
       ul.dropdown-menu( role='menu' )
         each camDomain in currentUser.camDomains
           li( role='presentation' )
-            a(href='/?change_domain_id='+camDomain.id)=camDomain.name
+            a(href='/caminio/admin?camDomainId='+camDomain.id)=camDomain.name
