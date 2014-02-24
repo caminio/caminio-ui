@@ -15,16 +15,10 @@
 .borderless{
   border: none;
 }
-.clearfix:before,
-.clearfix:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
-}
 
-.clearfix:after {
-    clear: both;
+.position-relative{
+  position: relative;
 }
-
 /* ------------------------------------------------ widgets */
 
 .btn{
@@ -170,7 +164,6 @@ div.btn.icon-only{
 
 .box{
   border: 1px solid #ddd;
-  margin: 20px 0;
   background-color: #fafafa;
 }
 
@@ -237,4 +230,17 @@ div.btn.icon-only{
 .search input[type=text]:focus{
   width: 250px;
   transition: all 0.8s;
+}
+
+.box{
+  border: 1px solid #ccc;
+}
+.margin-top{
+  margin-top: 10px;
+}
+.margin-left{
+  margin-left: 10px;
+}
+.margin-right{
+  margin-right: 10px;
 }

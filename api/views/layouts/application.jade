@@ -59,6 +59,9 @@ html(lang=i18n.locale())
     script(type='text/javascript', src='/javascripts/caminio/helpers/date_helper.js')
     script(type='text/javascript', src='/javascripts/caminio/helpers/users_helper.js')
     script(type='text/javascript', src='/javascripts/caminio/util.js')
+
+    script(type='text/javascript', src='/javascripts/caminio/locales/#{i18n.locale()}.js')
+    script(type='text/javascript', src='/javascripts/caminio/app-core.js')
     if i18n.locale() !== 'en'
       script(type='text/javascript', src='/javascripts/3rdparty/moment/#{i18n.locale()}.js')
 

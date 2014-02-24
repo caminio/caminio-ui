@@ -72,13 +72,6 @@ body.side-panel-active .main-view{
 }
 
 .main-content{
-  position: absolute;
-  top: 80px;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
-  overflow-y: auto;
-  overflow-x: hidden;
   background: #fafafa;
   padding: 10px;
 }
@@ -109,6 +102,12 @@ body.side-panel-active .main-view{
 }
 .main-content header.with-ctrl h1{
   margin-top: 20px;
+}
+
+.main-wrapper header h1{
+  font-size: 3rem;
+  color: #f91;
+  font-weight: 400;
 }
 
 .main-content .nav{
