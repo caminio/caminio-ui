@@ -7,6 +7,7 @@ var fs    = require('fs');
 module.exports = function( caminio ){
 
   return [ 
+    updateDomainStats,
     sideinfoBoxes,
     dashboardBoxes
   ];
@@ -48,6 +49,23 @@ module.exports = function( caminio ){
           });
       }
     });
+    next();
+  }
+
+  /**
+   *  Adds an entry to domain statistics
+   *  @method updateDomainStats
+   */
+  function updateDomainStats( req, res, next ){
+    var d = (new Date()).getDate();
+    var cond = {};
+    cond['stats.'+d]= 1;
+    console.log(cond);
+    if( res.locals.currentDomain ){
+      res.locals.currentDomain.update({ $inc: cond  }, function( err ){
+        console.log( res.locals.currentDomain, 'he');
+      });
+    }
     next();
   }
 
