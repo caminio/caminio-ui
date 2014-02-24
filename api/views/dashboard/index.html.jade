@@ -12,11 +12,16 @@ append head
     link( rel='stylesheet', href='/stylesheets/caminio-ui/top_panel.css' )
     link( rel='stylesheet', href='/stylesheets/caminio-ui/main.css' )
 
-//append foot
-//  script(type='text/javascript', src='/javascripts/caminio-ui/main.min.js')
+append foot
+  script(type='text/javascript', src='/javascripts/caminio/locales/#{i18n.locale()}.js')
+  script(type='text/javascript').
+    jQuery(function($){
+      caminio.translateDataFields();
+    });
 
 block content
   style.
 
   .main-view
-    h1 Dashboard not ready yet
+    each dashboardBox in dashboardBoxes
+      !=dashboardBox

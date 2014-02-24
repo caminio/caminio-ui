@@ -1,63 +1,72 @@
-Em.I18n.translations = {
+(function(){
 
-  'nav.users': 'Users',
-  'nav.domains': 'Domains',
-  'nav.settings': 'Settings',
+  'use strict';
 
-  'unknown': 'Unknown',
+  var translations = {
 
-  'back': 'back',
-  'edit': 'edit',
-  'save': 'save',
-  'close': 'close',
-  'remove': 'remove',
-  'user.name': 'Name',
-  'user.save': 'Save',
-  'user.created': 'User {{name}} has been created successfully',
-  'user.saved': 'User {{name}} has been saved',
-  'user.create': 'Create',
-  'user.new': 'Create new user',
-  'user.edit': 'Edit user',
-  'user.email': 'Email',
-  'user.phone': 'Phone',
-  'user.firstname': 'Firstname',
-  'user.lastname': 'Lastname',
-  'user.tabs.general': 'General',
-  'user.tabs.settings': 'Settings',
-  'user.tabs.history': 'History',
+    'nav.users': 'Users',
+    'nav.domains': 'Domains',
+    'nav.settings': 'Settings',
 
-  'user.password': 'Password',
-  'user.password_confirmation': 'Repeat password',
+    'unknown': 'Unknown',
 
-  'user.admin': 'Administrator',
+    'back': 'back',
+    'edit': 'edit',
+    'save': 'save',
+    'close': 'close',
+    'remove': 'remove',
+    'user.name': 'Name',
+    'user.save': 'Save',
+    'user.created': 'User {{name}} has been created successfully',
+    'user.saved': 'User {{name}} has been saved',
+    'user.create': 'Create',
+    'user.new': 'Create new user',
+    'user.edit': 'Edit user',
+    'user.email': 'Email',
+    'user.phone': 'Phone',
+    'user.firstname': 'Firstname',
+    'user.lastname': 'Lastname',
+    'user.tabs.general': 'General',
+    'user.tabs.settings': 'Settings',
+    'user.tabs.history': 'History',
 
-  'user.photo': 'Photo',
-  'user.danger': 'Danger zone',
+    'user.password': 'Password',
+    'user.password_confirmation': 'Repeat password',
 
-  'user.errors.prohibited_save': 'Errors prohibited this form to be saved',
+    'user.admin': 'Administrator',
 
-  'user.security': 'Security',
+    'user.photo': 'Photo',
+    'user.danger': 'Danger zone',
 
-  'invalid_email': 'The email address entered is not valid: {{value}}',
-  'required_fields': 'Required fields',
+    'user.errors.prohibited_save': 'Errors prohibited this form to be saved',
 
-  'errors.db_field': '{{name}}: {{message}}',
-  'errors.required': 'This field is required',
-  'errors.invalid_email_address': 'The email address is invalid',
-  'errors.duplicate_key': '{{name}} is duplicate and can\'t be saved twice',
+    'user.security': 'Security',
 
-  'domain.name': 'Domainname',
-  'domain.owner': 'Owner',
-  'domain.new': 'New domain',
-  'domain.save': 'Save domain',
-  'domain.saved': 'Domain {{name}} has been saved',
-  'domain.created': 'Domain {{name}} has been created successfully',
+    'invalid_email': 'The email address entered is not valid: {{value}}',
+    'required_fields': 'Required fields',
 
-  'domain.switch': 'Switch to this domain',
+    'errors.db_field': '{{name}}: {{message}}',
+    'errors.required': 'This field is required',
+    'errors.invalid_email_address': 'The email address is invalid',
+    'errors.duplicate_key': '{{name}} is duplicate and can\'t be saved twice',
 
-  'domain.description': 'Description',
-  'domain.create': 'Create domain',
+    'domain.name': 'Domainname',
+    'domain.owner': 'Owner',
+    'domain.new': 'New domain',
+    'domain.save': 'Save domain',
+    'domain.saved': 'Domain {{name}} has been saved',
+    'domain.created': 'Domain {{name}} has been created successfully',
 
-  'errors.invalid_domain_name': 'The entered value is not a valid domain name'
+    'domain.switch': 'Switch to this domain',
 
-};
+    'domain.description': 'Description',
+    'domain.create': 'Create domain',
+
+    'errors.invalid_domain_name': 'The entered value is not a valid domain name'
+
+  };
+
+  for( var i in translations )
+    Em.I18n.translations[i] = translations[i];
+
+}).call();

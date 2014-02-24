@@ -26,8 +26,10 @@ html(lang=i18n.locale())
       link( rel='stylesheet', href='/stylesheets/caminio-ui/top_panel.css' )
       link( rel='stylesheet', href='/stylesheets/caminio-ui/loader.css' )
       link( rel='stylesheet', href='/stylesheets/caminio-ui/notifications.css' )
+      link( rel='stylesheet', href='/stylesheets/caminio-ui/dashboard.css' )
       link( rel='stylesheet', href='/stylesheets/caminio-ui/main.css' )
 
+    script(type='text/javascript', src='/javascripts/3rdparty/jquery-1.10.2.js')
     block head
 
   body.side-panel-active
@@ -46,16 +48,17 @@ html(lang=i18n.locale())
 
 
     // foot scripts
-    script(type='text/javascript', src='/javascripts/3rdparty/jquery-1.10.2.js')
     script(type='text/javascript', src='/javascripts/3rdparty/pace.min.js')
-    script(type='text/javascript', src='/javascripts/bootstrap.min.js')
+    script(type='text/javascript', src='/javascripts/3rdparty/bootstrap.min.js')
     script(type='text/javascript', src='/javascripts/3rdparty/handlebars-1.1.2.js')
     script(type='text/javascript', src='/javascripts/3rdparty/ember-1.3.2.js')
     script(type='text/javascript', src='/javascripts/3rdparty/ember-data-1.0.0-beta6.js')
     script(type='text/javascript', src='/javascripts/3rdparty/ember-i18n.js')
     script(type='text/javascript', src='/javascripts/3rdparty/moment.min.js')
+    script(type='text/javascript', src='/javascripts/3rdparty/jquery.sparkline.min.js')
     script(type='text/javascript', src='/javascripts/caminio/helpers/date_helper.js')
     script(type='text/javascript', src='/javascripts/caminio/helpers/users_helper.js')
+    script(type='text/javascript', src='/javascripts/caminio/util.js')
     if i18n.locale() !== 'en'
       script(type='text/javascript', src='/javascripts/3rdparty/moment/#{i18n.locale()}.js')
 

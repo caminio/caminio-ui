@@ -96,17 +96,30 @@ body.side-panel-active #side-panel{
 
 .sideinfo-box{
   height: 50px;
+  margin: 15px 0;
+  position: relative;
 }
-.sideinfo-box h3{
-  color: rgba(255,255,255,0.5);
-  font-size: 0.9rem;
+
+.sideinfo-box .title{
   float: left;
+  width: 160px;
+}
+
+.sideinfo-box h3{
+  color: rgba(255,255,255,0.4);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  margin: 0;
 }
 .sideinfo-box h2{
   color: rgba(255,255,255,0.7);
-  font-size: 1.5rem;
-  float: left;
+  font-size: 1.6rem;
+  margin: 2px 0 0;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 .sideinfo-box .graph{
-  float: right;
+  position: absolute;
+  top: 5px;
+  right: 10px;
 }

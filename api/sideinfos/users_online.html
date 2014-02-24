@@ -1,9 +1,13 @@
 <div class="sideinfo-box">
-  <h3>Users</h3>
-  <h2>230,209</h2>
-  <div class="graph"></div>
+  <div class="title">
+    <h3 data-translate="user_activity"></h3>
+    <h2>23</h2>
+  </div>
+  <div class="graph" id="online-users-graph"></div>
 
   <script type="text/javascript">
-    console.log('TODO: Sideinfobox');
+    jQuery( function($){
+      $('#online-users-graph').sparkline([0,5,10,3,4], { type: 'bar', barColor: '#7788bb', height: '25px' });
+    });
   </script>
 </div>

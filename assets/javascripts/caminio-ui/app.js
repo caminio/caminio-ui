@@ -27,4 +27,6 @@
     primaryKey: '_id'
   });
 
+  caminio.translateDataFields();
+  
 }).call();

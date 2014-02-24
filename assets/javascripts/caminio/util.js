@@ -1,14 +1,13 @@
-define( function( require ){
+( function(){
 
   'use strict';
 
-  var passwordConditionsRegExp = /(?=^[^\s]{6,128}$)((?=.*?\d)(?=.*?[A-Z])(?=.*?[a-z])|(?=.*?\d)(?=.*?[^\w\d\s])(?=.*?[a-z])|(?=.*?[^\w\d\s])(?=.*?[A-Z])(?=.*?[a-z])|(?=.*?\d)(?=.*?[A-Z])(?=.*?[^\w\d\s]))^.*/;
+  window.caminio = window.caminio || {};
+  window.caminio.uid = uid;
+  window.caminio.generatePassword = generatePassword;
+  window.caminio.translateDataFields = translateDataFields;
 
-  return {
-    uid: uid,
-    generatePassword: generatePassword,
-    passwordConditionsRegExp: passwordConditionsRegExp
-  };
+  var passwordConditionsRegExp = /(?=^[^\s]{6,128}$)((?=.*?\d)(?=.*?[A-Z])(?=.*?[a-z])|(?=.*?\d)(?=.*?[^\w\d\s])(?=.*?[a-z])|(?=.*?[^\w\d\s])(?=.*?[A-Z])(?=.*?[a-z])|(?=.*?\d)(?=.*?[A-Z])(?=.*?[^\w\d\s]))^.*/;
 
   /**
    * generate a uid of given length
@@ -49,4 +48,18 @@ define( function( require ){
 
   }
 
-});
+  /**
+   * translates all data fields set with
+   * data-translate
+   *
+   * @method translateDataFields
+   *
+   */
+  function translateDataFields(){
+    $('[data-translate]').each( function(){
+      $(this).text( Ember.I18n.t($(this).attr('data-translate')) );
+    });
+  }
+
+
+}).call();
