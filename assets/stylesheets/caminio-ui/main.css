@@ -76,8 +76,8 @@ body.side-panel-active .main-view{
   padding: 10px;
 }
 
-.main-content.no-subnav{
-  top: 10px;
+.main-content.with-subnav{
+  margin-top: 80px;
 }
 
 .main-ctrl{
@@ -149,5 +149,9 @@ body.side-panel-active .main-view{
 }
 
 .span-row{
+  margin: 10px;
+}
+
+.default-margin{
   margin: 10px;
 }

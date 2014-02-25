@@ -2,7 +2,6 @@
 
   'use strict';
 
-
   window.App.Domain = DS.Model.extend({
     name: DS.attr('string'),
     description: DS.attr('string'),
