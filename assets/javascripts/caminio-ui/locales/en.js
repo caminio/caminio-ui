@@ -53,9 +53,11 @@
     'domain.name': 'Domainname',
     'domain.owner': 'Owner',
     'domain.new': 'New domain',
+    'domain.edit': 'Edit domain',
     'domain.save': 'Save domain',
     'domain.saved': 'Domain {{name}} has been saved',
     'domain.created': 'Domain {{name}} has been created successfully',
+    'domain.allowed_apps': 'Allowed applications',
 
     'domain.switch': 'Switch to this domain',
 

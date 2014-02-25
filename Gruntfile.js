@@ -1,36 +1,7 @@
 var _         = require('lodash');
 var async     = require('async');
 
-// the whole setup is inspired by:
-// https://github.com/RainerAtSpirit/HTMLStarterKitPro/blob/master/Gruntfile.js
-//
 module.exports = function(grunt) {
-
-  /*jshint scripturl:true*/
-
-  var requireConfig = {
-    baseUrl: 'assets/javascripts/caminio-ui/app/',
-    paths: {
-      'jquery': '../components/jquery/jquery.min',
-      'knockout': '../components/knockout.js/knockout-2.3.0.debug',
-      'knockout.validation': '../components/knockout.validation/Dist/knockout.validation',
-      'text': '../components/requirejs-text/text',
-      'durandal': '../components/durandal/js',
-      'plugins': '../components/durandal/js/plugins',
-      'transitions': '../components/durandal/js/transitions',
-      'bootstrap': '../components/bootstrap/dist/js/bootstrap',
-      'i18next': '../components/i18next/release/i18next.amd-1.7.1.min',
-      'inflection': '../components/inflection/lib/inflection',
-      'ace': '../components/ace/lib/ace',
-      //'select2': '../components/select2/select2',
-      'moment': '../components/moment/moment',
-      'caminio': '../../caminio',
-      'ds': '../../caminio-ds',
-      'models': 'models',
-      'adapters': 'adapters',
-      'almond': '../components/durandal-almond/almond'
-    }
-  };
 
   // Project configuration.
   grunt.initConfig({
@@ -54,22 +25,6 @@ module.exports = function(grunt) {
         }
       }
     },
-    
-    durandal: {
-      main: {
-        src: [ 'assets/javascripts/caminio-ui/app/**/*.*', 
-               'assets/javascripts/caminio-ui/components/durandal/**/*.js' ],
-        options: {
-          name: '../components/durandal-almond/almond',
-          baseUrl: requireConfig.baseUrl,
-          mainPath: 'assets/javascripts/caminio-ui/app/main',
-          paths: requireConfig.paths,
-          exclude: [],
-          optimize: 'none',
-          out: 'build/javascripts/caminio-ui.js'
-        }
-      }
-    },
 
     uglify: {
       options: {
@@ -80,8 +35,17 @@ module.exports = function(grunt) {
             '*/\n'
       },
       build: {
-        src: 'build/javascripts/caminio-ui.js',
-        dest: 'build/javascripts/caminio-ui.min.js'
+        files: {
+          'build/javascripts/caminio.min.js': [
+            'assets/javascripts/caminio/**/*.js'
+          ],
+          'build/javascripts/caminio-ui.min.js': [
+            'assets/javascripts/caminio-ui/**/*.js'
+          ],
+          'build/javascripts/3rdparties.min.js': [
+            'assets/javascripts/3rdparty/**/*.js'
+          ]
+        }
       }
     },
 
@@ -126,7 +90,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-durandal');
 
   // tests
   grunt.loadNpmTasks('grunt-mocha-phantomjs');
@@ -137,7 +100,6 @@ module.exports = function(grunt) {
     'cssmin',
     'copy:img',
     'copy:fonts',
-    'durandal',
     'uglify'
   ]);
 

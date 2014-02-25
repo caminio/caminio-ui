@@ -113,10 +113,16 @@ body.side-panel-active #side-panel{
 }
 .sideinfo-box h2{
   color: rgba(255,255,255,0.7);
+<<<<<<< Updated upstream
   font-size: 1.6rem;
   margin: 2px 0 0;
   font-weight: 500;
   letter-spacing: 1px;
+=======
+  font-size: 1.5rem;
+  float: left;
+  margin: 0;
+>>>>>>> Stashed changes
 }
 .sideinfo-box .graph{
   position: absolute;

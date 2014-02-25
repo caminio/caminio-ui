@@ -30,6 +30,13 @@
     }
   });
 
+  window.App.DomainEditRoute = Ember.Route.extend({
+    model: function(prefix, options){
+      var model = this.store.find('domain', options.params.id);
+      return model;
+    }
+  });
+
   // users
   window.App.UsersIndexRoute = Ember.Route.extend({
     model: function() {
@@ -38,8 +45,7 @@
   });
 
   window.App.UserEditRoute = Ember.Route.extend({
-    model: function(prefix, options) {
-      console.log('args', arguments);
+    model: function(prefix, options){
       var model = this.store.find('user', options.params.id);
       return model;
     }

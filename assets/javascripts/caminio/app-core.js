@@ -26,11 +26,12 @@
     },
     primaryKey: '_id'
   });
+
   /**
    *  Creates an array type for the ember model
    *  Strings are seperated via ','
    */
-  DS.ArrayTransform = DS.Transform.extend({
+  window.DS.ArrayTransform = DS.Transform.extend({
     deserialize: function(serialized) {
       return (Ember.typeOf(serialized) == "array") ? serialized : [];
     },
@@ -49,8 +50,8 @@
     } 
   });
 
-  App.register("transform:array", DS.ArrayTransform);
-  
+  window.App.register("transform:array", DS.ArrayTransform);
+
   caminio.translateDataFields();
 
   $('#toggle-side-panel').on('click', function(){

@@ -16,6 +16,13 @@
   </div>
 
   <div class="form-group">
+    <label for="example-text-input" class="col-md-2 control-label">{{t domain.allowed_apps}}</label>
+    <div class="col-md-4">
+      {{textarea valueBinding='model.allowedAppNames' class='form-control'}}
+    </div>
+  </div>
+
+  <div class="form-group">
     <div class="required-exp col-md-offset-2 col-md-4">
       <span style="color: #d00">*</span>{{t required_fields}}
     </div>

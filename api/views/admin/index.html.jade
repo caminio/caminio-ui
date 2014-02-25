@@ -8,16 +8,17 @@ append head
 
 
 append foot
-  script(type='text/javascript', src='/javascripts/caminio/locales/#{i18n.locale()}.js')
-  script(type='text/javascript', src='/javascripts/caminio-ui/locales/#{i18n.locale()}.js')
-  script(type='text/javascript', src='/javascripts/caminio-ui/app.js')
-  script(type='text/javascript', src='/javascripts/caminio-ui/router.js')
-  script(type='text/javascript', src='/javascripts/caminio-ui/models/user.js')
-  script(type='text/javascript', src='/javascripts/caminio-ui/models/domain.js')
-  script(type='text/javascript', src='/javascripts/caminio-ui/controllers/user_controller.js')
-  script(type='text/javascript', src='/javascripts/caminio-ui/controllers/domain_controller.js')
-  //- script(type='text/javascript', src='/javascripts/caminio-users/controllers/user_controller.js')
-  //- script(type='text/javascript', src='/javascripts/caminio-users/controllers/users_new_controller.js')
+  if env === 'production'
+    script(type='text/javascript', src='/javascripts/caminio-ui.min.js')
+  else
+    script(type='text/javascript', src='/javascripts/caminio/locales/#{i18n.locale()}.js')
+    script(type='text/javascript', src='/javascripts/caminio-ui/locales/#{i18n.locale()}.js')
+    script(type='text/javascript', src='/javascripts/caminio-ui/app.js')
+    script(type='text/javascript', src='/javascripts/caminio-ui/router.js')
+    script(type='text/javascript', src='/javascripts/caminio-ui/models/user.js')
+    script(type='text/javascript', src='/javascripts/caminio-ui/models/domain.js')
+    script(type='text/javascript', src='/javascripts/caminio-ui/controllers/user_controller.js')
+    script(type='text/javascript', src='/javascripts/caminio-ui/controllers/domain_controller.js')
 
 block content
 
