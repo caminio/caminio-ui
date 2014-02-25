@@ -61,9 +61,4 @@
     });
   }
 
-  translateDataFields();
-  $('#toggle-side-panel').on('click', function(){
-    $('body').toggleClass('side-panel-active');
-  });
-
 }).call();

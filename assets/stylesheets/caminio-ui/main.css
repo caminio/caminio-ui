@@ -105,9 +105,16 @@ body.side-panel-active .main-view{
 }
 
 .main-wrapper header h1{
-  font-size: 3rem;
+  font-size: 4rem;
   color: #f91;
-  font-weight: 400;
+  font-weight: 100;
+  margin: 20px 0 0 20px;
+}
+.main-wrapper header h2{
+  font-size: 1.5rem;
+  color: #aaa;
+  font-weight: 200;
+  margin: 0 20px 20px;
 }
 
 .main-content .nav{
@@ -139,4 +146,8 @@ body.side-panel-active .main-view{
   font-size: 1.2rem;
   color: #777;
   margin: 5px 20px 0;
+}
+
+.span-row{
+  margin: 10px;
 }

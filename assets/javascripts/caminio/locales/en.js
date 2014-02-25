@@ -2,7 +2,6 @@
 
   'use strict';
   
-  console.log('here');
   Em.I18n.translations = {
 
     'user_activity': 'User activity',
