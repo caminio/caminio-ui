@@ -81,6 +81,19 @@ div.btn.icon-only{
   border: 1px solid #ddd;
 }
 
+.btn.close{
+  background: none;
+  color: #aaa;
+  border: 1px solid #ccc;
+  padding: 8px 10px;
+  font-size: 1.5rem;
+}
+
+.btn.close:hover{
+  color: #333;
+  border-color: #999;
+}
+
 .btn.borderless{
   border-color: transparent;
 }
