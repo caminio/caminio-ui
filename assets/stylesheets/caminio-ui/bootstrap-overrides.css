@@ -19,6 +19,9 @@ body .modal-header h3{
 body a{
   color: #f91;
 }
+body a.no-color{
+  color: #555;
+}
 
 body .modal-header .close:hover{
   text-shadow: 0 0 2px rgba(0,0,0,0.3);
