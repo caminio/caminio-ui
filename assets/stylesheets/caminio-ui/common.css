@@ -66,6 +66,10 @@ div.btn.icon-only{
   padding: 10px;
 }
 
+.btn.adapt-to-form{
+  padding: 8px 15px;
+}
+
 .btn.tiny{
   padding: 2px 5px;
   font-size: 10px;
