@@ -58,5 +58,55 @@
     $('body').toggleClass('side-panel-active');
   });
 
+  window.App.Select2SelectView = Ember.Select.extend({
+
+    prompt: Em.I18n.t('please_select'),
+    classNames: ['input-xlarge'],
+
+    didInsertElement: function() {
+      Ember.run.scheduleOnce('afterRender', this, 'processChildElements');
+    },
+
+    processChildElements: function() {
+      this.$().select2({
+          // do here any configuration of the
+          // select2 component
+      });
+    },
+
+    willDestroyElement: function () {
+      this.$().select2("destroy");
+    }
+  });
+
+  App.Select2TagView = Ember.TextField.extend({
+
+    didInsertElement: function() {
+      Ember.run.scheduleOnce('afterRender', this, 'processChildElements');
+    },
+
+    processChildElements: function() {
+      var options = {};
+      options.placeholder   = 'Please select...';
+      options.allowClear    = true;
+      options.closeOnSelect = true;
+      options.width         = '100%';
+      options.tags          = this.get('tags') || [];
+
+      this.$().select2(options);
+    },
+
+    willDestroyElement: function () {
+      this.$().select2("destroy");
+    },
+
+    selectedDidChange : function(){
+      var val = this.get('value');
+      if( typeof(val) === 'string' )
+        val = val.split(',')
+      this.$().select2('val', val);
+    }.observes('value')
+
+  });
 
 }).call();

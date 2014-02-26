@@ -6,7 +6,8 @@
 
     'user_activity': 'User activity',
     'latest_activities': 'Latest activities',
-    'users_in_total': 'Users in total'
+    'users_in_total': 'Users in total',
+    'please_select': 'Please select...'
 
   };
 

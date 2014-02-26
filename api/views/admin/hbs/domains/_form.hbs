@@ -18,7 +18,9 @@
   <div class="form-group">
     <label for="example-text-input" class="col-md-2 control-label">{{t domain.allowed_apps}}</label>
     <div class="col-md-4">
-      {{textarea valueBinding='model.allowedAppNames' class='form-control'}}
+    {{view App.Select2TagView
+          valueBinding='model.allowedAppNames'
+          tagsBinding='App.Enums.availableAppNames'}}
     </div>
   </div>
 

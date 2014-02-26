@@ -60,7 +60,6 @@ module.exports = function( caminio ){
     var d = (new Date()).getDate();
     var cond = {};
     cond['stats.'+d]= 1;
-    console.log(cond);
     if( res.locals.currentDomain ){
       res.locals.currentDomain.update({ $inc: cond  }, function( err ){
         console.log( res.locals.currentDomain, 'he');

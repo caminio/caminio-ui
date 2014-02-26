@@ -9,4 +9,7 @@
     user: DS.belongsTo('user', { embedded: 'always' })
   });
 
+  window.App.Enums = {};
+  window.App.Enums.availableAppNames = ['admin','contacts','shop'];
+
 }).call();

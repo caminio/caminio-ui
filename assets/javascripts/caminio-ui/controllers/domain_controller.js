@@ -18,6 +18,13 @@
         return ('name' in this.get('errors'));
     }.property('errors'),
 
+    availableAppNames: function(){
+      return [
+        { id: 'contacts', text: 'contacts' },
+        { id: 'admin', text: 'admin'}
+      ];
+    },
+
     actions: {
 
       create: function( model ) {

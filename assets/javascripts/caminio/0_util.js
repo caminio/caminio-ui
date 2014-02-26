@@ -56,8 +56,10 @@
    *
    */
   function translateDataFields(){
-    $('[data-translate]').each( function(){
-      $(this).text( Ember.I18n.t($(this).attr('data-translate')) );
+    $(function(){
+      $('[data-translate]').each( function(){
+        $(this).text( Ember.I18n.t($(this).attr('data-translate')) );
+      });
     });
   }
 

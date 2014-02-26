@@ -19,7 +19,7 @@
         var self = this;
         //return notify('error', Ember.I18n.t('user.errors.prohibited_save'));
         model.save().then(function(){
-          self.transitionTo( 'users' );
+          self.transitionToRoute( 'users' );
           notify('info', Ember.I18n.t('user.created', {name: model.get('fullname')}) );
         }).catch(function(err){
           var errors = err.responseJSON.errors;

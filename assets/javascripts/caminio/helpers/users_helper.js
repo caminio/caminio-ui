@@ -3,7 +3,7 @@
   'use strict';
 
   Ember.Handlebars.registerHelper('currentUserName', function(){
-    return window.currentUser.name.full;
+    return window.currentUser.fullname;
   });
 
   Ember.Handlebars.registerHelper('isAdmin', function(val, options){
