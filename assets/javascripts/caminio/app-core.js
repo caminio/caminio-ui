@@ -4,7 +4,12 @@
 
   Ember.View.reopen(Em.I18n.TranslateableAttributes);
 
-  window.App = Ember.Application.create();
+  window.App = Ember.Application.create({
+    // LOG_TRANSITIONS: true,
+    // LOG_TRANSITIONS_INTERNAL: true,
+    // LOG_VIEW_LOOKUPS: true,
+    // LOG_ACTIVE_GENERATION: true
+  });
   
   window.App.ApplicationAdapter = DS.RESTAdapter.extend({
     host: 'http://localhost:4000/caminio',
@@ -17,12 +22,23 @@
 
   window.App.ApplicationSerializer = DS.RESTSerializer.extend({
     serializeHasMany: function(record, json, relationship) {
-      json[relationship.key] = record.get(relationship.key).map( function(item){
-        return item.toJSON();
-      });
+      // only apply if embedded option is set in record with
+      // DS.hasMany( 'fieldname', { embedded: 'always' } )
+      if( relationship.options.embedded && relationship.options.embedded === 'always' )
+        json[relationship.key] = record.get(relationship.key).map( function(item){
+          return item.toJSON();
+        });
     },
     serializeBelongsTo: function(record, json, relationship) {
       json[relationship.key] = record.get(relationship.key).toJSON();
+    },
+    serializeIntoHash: function(data, type, record, options) {
+      var root = Ember.String.decamelize(type.typeKey);
+      data[root] = this.serialize(record, options);
+    }, 
+    typeForRoot: function(root) {
+      var camelized = Ember.String.camelize(root);
+      return Ember.String.singularize(camelized);
     },
     primaryKey: '_id'
   });
