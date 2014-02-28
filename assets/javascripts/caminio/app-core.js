@@ -12,7 +12,7 @@
   });
   
   window.App.ApplicationAdapter = DS.RESTAdapter.extend({
-    host: 'http://localhost:4000/caminio',
+    host: caminioHostname+'/caminio',
     headers: {
       'X-CSRF-Token': window.csrf,
       'sideload': true,
@@ -66,7 +66,21 @@
     } 
   });
 
+  /**
+   *  Creates an object for the ember model
+   *  Strings are seperated via ','
+   */
+  window.DS.ObjectTransform = DS.Transform.extend({
+    deserialize: function(serialized) {
+      return Em.isNone(serialized) ? {} : serialized;
+    },
+    serialize: function(deserialized) {
+      return Em.isNone(deserialized) ? {} : deserialized;
+    } 
+  });
+
   window.App.register("transform:array", DS.ArrayTransform);
+  window.App.register("transform:object", DS.ObjectTransform);
 
   caminio.translateDataFields();
 
