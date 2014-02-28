@@ -23,14 +23,6 @@ body a.no-color{
   color: #555;
 }
 
-body .modal-header .close:hover{
-  text-shadow: 0 0 2px rgba(0,0,0,0.3);
-  font-weight: 600;
-  font-size: 2em;
-  margin-top: -0.45em;
-  margin-right: -0.15em;
-}
-
 body .modal-footer{
   padding: 10px 20px;
 }
