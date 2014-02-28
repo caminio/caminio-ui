@@ -62,7 +62,6 @@ module.exports = function( caminio ){
     cond['stats.'+d]= 1;
     if( res.locals.currentDomain ){
       res.locals.currentDomain.update({ $inc: cond  }, function( err ){
-        console.log( res.locals.currentDomain, 'he');
       });
     }
     next();
