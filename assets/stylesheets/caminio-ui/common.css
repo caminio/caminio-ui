@@ -105,6 +105,9 @@ div.btn.icon-only{
   background-color: #5cb85c;
 }
 
+.btn.secondary{
+  background-color: #f91;
+}
 .btn.danger,
 .lbl.danger{
   background-color: #D9534F;
