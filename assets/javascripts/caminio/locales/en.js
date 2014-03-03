@@ -10,6 +10,7 @@
     'edit': 'edit',
     'close': 'close',
     'remove': 'remove',
+    'delete': 'delete',
 
     'user_activity': 'User activity',
     'latest_activities': 'Latest activities',

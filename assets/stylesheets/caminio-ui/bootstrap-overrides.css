@@ -56,3 +56,8 @@ body .h5,
 body .h6{
   font-family: 'OpenSans', 'Open Sans', sans-serif;
 }
+
+body .caminio .form-group input[type="checkbox"], 
+body .caminio .form-group input[type="radio"]{
+  margin-top: 3px;
+}

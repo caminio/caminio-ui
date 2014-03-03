@@ -4,6 +4,9 @@
 .align-center{
   text-align: center;
 }
+.horizontal-scroll{
+  overflow-x: auto;
+}
 .fixed{
   position: fixed;
 }
