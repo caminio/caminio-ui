@@ -6,6 +6,7 @@
     description: DS.attr('string'),
     firstname: DS.attr('string'),
     lastname: DS.attr('string'),
+    lang: DS.attr('string'),
     email: DS.attr('string'),
     admin: DS.attr('boolean'),
     superuser: DS.attr('boolean'),

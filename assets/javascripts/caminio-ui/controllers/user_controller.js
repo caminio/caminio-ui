@@ -11,6 +11,10 @@
       return ('email' in this.get('errors'));
     }.property('errors'),
 
+    langError: function(){
+      return ('lang' in this.get('errors'));
+    }.property('errors'),
+
     actions: {
       toggleAdmin: function(){
         this.set('admin',!this.get('admin'));

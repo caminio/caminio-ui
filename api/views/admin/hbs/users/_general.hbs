@@ -54,6 +54,16 @@
     </div>
   </div>
 
+  <h4 class="sub-header">{{t user.lang}}</h4>
+
+  <div class="form-group">
+    <label for="example-text-input" class="col-md-2 control-label required">{{t user.lang}}</label>
+    <div {{bind-attr class=":col-md-4 emailError:field-with-error"}}>
+      {{input valueBinding='model.lang' class='form-control'}}
+      {{#if langError}}<span class="help-block">{{errors.lang}}</span>{{/if}}
+    </div>
+  </div>
+
   <h4 class="sub-header">{{t user.photo}}</h4>
 
   <h4 class="sub-header">{{t user.danger}}</h4>

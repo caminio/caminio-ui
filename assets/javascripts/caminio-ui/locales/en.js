@@ -35,6 +35,7 @@
 
     'user.admin': 'Administrator',
 
+    'user.lang': 'Language',
     'user.photo': 'Photo',
     'user.danger': 'Danger zone',
 
