@@ -9,7 +9,8 @@ module.exports = function( caminio ){
   return [ 
     updateDomainStats,
     sideinfoBoxes,
-    dashboardBoxes
+    dashboardBoxes,
+    setLanguage
   ];
 
   /**
@@ -64,6 +65,24 @@ module.exports = function( caminio ){
       res.locals.currentDomain.update({ $inc: cond  }, function( err ){
       });
     }
+    next();
+  }
+
+  /**
+   * set the language to given parameter
+   * @method setLanguage
+   * @example
+   *     /?locale=de
+   */
+  function setLanguage( req, res, next ){
+    if( req.param('locale') ){
+      if( _.keys(caminio.i18n.find( req.param('locale') )).length > 0 ){
+        req.session.locale = req.param('locale');
+      }
+    }
+    if( req.session.locale )
+      req.i18n.setLng( req.session.locale );
+    
     next();
   }
 
