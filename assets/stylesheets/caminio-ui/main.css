@@ -124,6 +124,13 @@ body.side-panel-active .main-view{
   margin: 20px 10px 0;
 }
 
+.main-wrapper header h1.no-margin-bottom{
+  margin-bottom: 0;
+}
+.main-wrapper header .nav{
+  margin: 0 20px;
+}
+
 .main-content .nav{
   margin-top: 1em;
   border-top: 1px dotted #ccc;
@@ -161,4 +168,30 @@ body.side-panel-active .main-view{
 
 .default-margin{
   margin: 10px;
+}
+
+.default-padding{
+  padding: 20px;
+}
+
+h4.mini-title{
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #555;
+}
+.empty-exp{
+  margin: 200px 0;
+  font-size: 1.5rem;
+  color: #999;
+  text-align: center;
+}
+.empty-exp a{
+  font-weight: 600;
+}
+.empty-exp .fa.large{
+  font-size: 40px;
+  color: #ccc;
+}
+.empty-exp .fa.large.block{
+  display: block;
 }

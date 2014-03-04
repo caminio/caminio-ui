@@ -1,0 +1,36 @@
+.caminio-tree{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.caminio-tree .item-container{
+  border: 1px solid #ddd;
+  padding: 5px;
+  background-color: #fff;
+  margin-bottom: 3px;
+  cursor: pointer;
+}
+
+.caminio-tree .item-container.active{
+  background-color: #ffc;
+}
+
+.caminio-tree .webpage-icon{
+  float: left;
+  margin: 3px 5px;
+}
+
+.caminio-tree .move{
+  float: right;
+  padding: 6px;
+  cursor: move;
+}
+
+.caminio-tree .icon-bar {
+  display: block;
+  width: 16px;
+  height: 2px;
+  background-color: #ddd;
+  margin-bottom: 3px;
+}

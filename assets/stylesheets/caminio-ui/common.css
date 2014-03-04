@@ -18,17 +18,16 @@
 .borderless{
   border: none;
 }
-
 .position-relative{
   position: relative;
 }
 /* ------------------------------------------------ widgets */
 
 .btn{
-  padding: 5px 15px 6px;
+  padding: 5px 15px;
   color: #fff;
   border-radius: 0;
-  border: none;
+  border: 1px solid #454545;
   background-color: #454545;
   transition: all 0.8s;
   opacity: 1;
@@ -45,6 +44,10 @@
 .btn:hover{
   opacity: 0.8;
   transition: opacity 0.3s;
+  color: #fff;
+}
+.btn:active,
+.btn:focus{
   color: #fff;
 }
 
@@ -81,14 +84,14 @@ div.btn.icon-only{
 .btn.pale{
   background: none;
   color: inherit;
-  border: 1px solid #ddd;
+  border-color: #ddd;
 }
 
 .btn.close{
   background: none;
   color: #aaa;
-  border: 1px solid #ccc;
-  padding: 8px 10px;
+  border-color: #ccc;
+  padding: 6px 8px;
   font-size: 1.5rem;
 }
 
@@ -102,20 +105,24 @@ div.btn.icon-only{
 }
 
 .btn.primary{
-  background-color: #5cb85c;
+  background-color: #4877D6;
+  border-color: #4877D6;
 }
 
 .btn.secondary{
   background-color: #f91;
+  border-color: #f91;
 }
 .btn.danger,
 .lbl.danger{
   background-color: #D9534F;
+  border-color: #D9534F;
 }
 
 .btn.warning,
 .lbl.warning{
   background-color: #F0AD4E;
+  border-color: #F0AD4E;
 }
 
 .btn.light{
@@ -125,16 +132,19 @@ div.btn.icon-only{
 .btn.info,
 .lbl.info{
   background-color: #5BC0DE;
+  border-color: #5BC0DE;
 }
 
 .btn.success,
 .lbl.success{
   background-color: #5CB85C;
+  border-color: #5CB85C;
 }
 
 .btn.transparent{
   background: none;
   color: #444;
+  border-color: transparent;
 }
 
 .btn.transparent:hover{
