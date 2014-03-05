@@ -30,7 +30,8 @@
         });
     },
     serializeBelongsTo: function(record, json, relationship) {
-      json[relationship.key] = record.get(relationship.key).toJSON();
+      if( relationship.options.embedded && relationship.options.embedded === 'always' )
+        json[relationship.key] = record.get(relationship.key).toJSON();
     },
     serializeIntoHash: function(data, type, record, options) {
       var root = Ember.String.decamelize(type.typeKey);

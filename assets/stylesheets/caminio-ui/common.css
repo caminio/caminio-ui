@@ -34,9 +34,11 @@
   font-size: 12px;
 }
 
+.btn.disabled,
 .btn[disabled]{
   background-color: #ddd !important;
-  color: #999;
+  color: #888;
+  border-color: #aaa !important;
   cursor: not-allowed !important;
   transition: all 0.8s;
 }
@@ -107,22 +109,28 @@ div.btn.icon-only{
 .btn.primary{
   background-color: #4877D6;
   border-color: #4877D6;
+  color: #fff;
 }
 
 .btn.secondary{
   background-color: #f91;
   border-color: #f91;
+  color: #fff;
 }
 .btn.danger,
+.btn.highlight-danger:hover,
+.btn.highlight-danger:focus,
 .lbl.danger{
   background-color: #D9534F;
   border-color: #D9534F;
+  color: #fff;
 }
 
 .btn.warning,
 .lbl.warning{
   background-color: #F0AD4E;
   border-color: #F0AD4E;
+  color: #fff;
 }
 
 .btn.light{
@@ -139,6 +147,7 @@ div.btn.icon-only{
 .lbl.success{
   background-color: #5CB85C;
   border-color: #5CB85C;
+  color: #fff;
 }
 
 .btn.transparent{

@@ -195,3 +195,17 @@ h4.mini-title{
 .empty-exp .fa.large.block{
   display: block;
 }
+
+fieldset.with-border{
+  border: 1px solid #ddd;
+  padding: 5px 20px;
+}
+fieldset.with-border legend{
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #999;
+  margin: 0;
+  width: auto;
+  padding: 0 5px;
+  border: none;
+}
