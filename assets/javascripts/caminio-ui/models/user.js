@@ -6,7 +6,7 @@
     description: DS.attr('string'),
     firstname: DS.attr('string'),
     lastname: DS.attr('string'),
-    lang: DS.attr('string'),
+    lang: DS.attr('string', { defaultValue: currentDomain.lang || 'en' }),
     email: DS.attr('string'),
     admin: DS.attr('boolean'),
     superuser: DS.attr('boolean'),

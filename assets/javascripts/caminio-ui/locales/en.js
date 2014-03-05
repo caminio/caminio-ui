@@ -59,6 +59,7 @@
     'domain.saved': 'Domain {{name}} has been saved',
     'domain.created': 'Domain {{name}} has been created successfully',
     'domain.allowed_apps': 'Allowed applications',
+    'domain.default_lang': 'Default language for users',
 
     'domain.switch': 'Switch to this domain',
 
