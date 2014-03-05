@@ -37,6 +37,14 @@
 
     $('#notifications .notifications-collection').append( $notification );
     $notification.slideDown();
+
+    setTimeout( function(){
+      $notification.slideUp();
+      setTimeout( function(){
+        $notification.remove();
+      },500);
+    },5000);
+    
   }
 
   notify.processError = function notifyProcessError( obj ){
