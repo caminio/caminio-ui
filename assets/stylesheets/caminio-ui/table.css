@@ -1,5 +1,6 @@
 table.caminio{
   padding: 10px;
+  table-layout: fixed;
 }
 table.caminio:not(.auto-width){
   width: 100%;

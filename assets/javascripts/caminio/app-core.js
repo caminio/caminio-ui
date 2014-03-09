@@ -84,8 +84,10 @@
 
   caminio.translateDataFields();
 
-  $('#toggle-side-panel').on('click', function(){
-    $('body').toggleClass('side-panel-active');
+  $(document).ready(function(){
+    $('#toggle-side-panel').on('click', function(){
+      $('body').toggleClass('side-panel-active');
+    });
   });
 
   window.App.Select2SelectView = Ember.Select.extend({

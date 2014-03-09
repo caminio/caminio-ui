@@ -34,6 +34,7 @@ html(lang=i18n.locale())
     script(type='text/javascript').
       window.caminioHostname = '!{caminioHostname}';
       window.siteName = '!{site.name}';
+      window.siteConfig = !{JSON.stringify(site)};
       window.currentLang = '!{i18n.locale()}';
       window.currentUser = !{JSON.stringify(currentUser)};
       window.currentDomain = !{JSON.stringify(currentDomain)};

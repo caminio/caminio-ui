@@ -32,7 +32,7 @@ body, html{
 }
 
 form.auth{
-  margin: auto;
+  margin: 0;
   display: table-cell;
   vertical-align: middle;
 }
@@ -93,10 +93,12 @@ form.auth{
   margin-bottom: 5px;
 }
 
-
 form.auth button{
-  padding: 5px 12px 8px;
-  font-size: 16px;
+  width: 40px;
+  padding: 4px 8px;
+  font-size: 18px;
+  margin-left: 5px;
+  margin-bottom: 2px;
 }
 
 form.auth button.btn:hover,
@@ -111,7 +113,7 @@ form.auth input[type=password]{
   border-radius: 2px;
   width: 220px;
   text-indent: 2.2rem;
-  padding: 9px 0 8px;
+  padding: 9px 0;
   transition: all 0.5s;
 }
 

@@ -16,9 +16,9 @@ body .modal-header h3{
   font-size: 1.2rem;
 }
 
-body a{
+/*body a{
   color: #f91;
-}
+}*/
 body a.no-color{
   color: #555;
 }
