@@ -80,6 +80,40 @@ body.side-panel-active .main-view{
   margin-top: 80px;
 }
 
+.sub-nav-wrapper .ctrl{
+  float: right;
+  margin-top: 5px;
+}
+
+.sub-nav-wrapper .ctrl .btn{
+  margin: 0 3px;
+  float: right;
+}
+
+.sub-nav-wrapper .ctrl .btn{
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #777;
+  border: 1px solid transparent;
+}
+
+.sub-nav-wrapper .ctrl .close{
+  padding: 5px 11px 6px;
+  margin-right: 0;
+}
+
+.sub-nav-wrapper .ctrl .btn:hover{
+  background: #fafafa;
+  border-color: #ccc;
+  border-bottom-color: #fafafa;
+}
+
+.sub-nav-wrapper .ctrl .icon-text .fa{
+  font-size: 1rem;
+  margin: 3px 6px 0 0;
+  float: left;
+}
+
 .sub-navbar{
   margin-bottom: -1px;
   z-index: 10;
