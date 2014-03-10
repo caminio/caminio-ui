@@ -90,6 +90,13 @@
     });
   });
 
+  $.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+      if( settings.type.match(/POST|PUT|PATCH|DELETE/) )
+        xhr.setRequestHeader('X-CSRF-Token', csrf);
+    }
+  });
+
   window.App.Select2SelectView = Ember.Select.extend({
 
     prompt: Em.I18n.t('please_select'),

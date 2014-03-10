@@ -46,11 +46,6 @@
     'invalid_email': 'The email address entered is not valid: {{value}}',
     'required_fields': 'Required fields',
 
-    'errors.db_field': '{{name}}: {{message}}',
-    'errors.required': 'This field is required',
-    'errors.invalid_email_address': 'The email address is invalid',
-    'errors.duplicate_key': '{{name}} is duplicate and can\'t be saved twice',
-
     'domain.name': 'Domainname',
     'domain.owner': 'Owner',
     'domain.new': 'New domain',
