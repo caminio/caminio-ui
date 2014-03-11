@@ -62,3 +62,7 @@ form.caminio .control-label.required:after{
 form.caminio .required-exp{
   font-size: 0.9rem;
 }
+
+form.caminio .close-inside-form{
+  margin: 0 -5px 0 10px;
+}
