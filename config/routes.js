@@ -10,6 +10,8 @@ module.exports.routes = {
 
   'get /caminio/users/migrate': 'UsersController#migrate',
 
-  'autorest /caminio/users': 'User'
+  'autorest /caminio/users': 'User',
+
+  'autorest /caminio/labels': 'Label'
 
 };
