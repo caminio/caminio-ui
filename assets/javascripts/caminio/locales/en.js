@@ -21,6 +21,8 @@
     'users_in_total': 'Users in total',
     'please_select': 'Please select...',
 
+    'required_fields': 'Required field',
+
     'last_modified': 'Modified',
     'created': 'Created',
 
