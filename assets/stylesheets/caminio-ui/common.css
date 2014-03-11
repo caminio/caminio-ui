@@ -122,8 +122,8 @@ div.btn.icon-only{
 .btn.highlight-danger:hover,
 .btn.highlight-danger:focus,
 .lbl.danger{
-  background-color: #D9534F;
-  border-color: #D9534F;
+  background-color: #D9534F !important;
+  border-color: #D9534F !important;
   color: #fff;
 }
 

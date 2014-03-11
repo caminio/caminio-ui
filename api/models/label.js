@@ -17,6 +17,18 @@ module.exports = function Label( caminio, mongoose ){
     name: { type: String, public: true },
 
     /**
+     * @property bgolor
+     * @type String
+     */
+    bgColor: { type: String, public: true },
+
+    /**
+     * @property fgColor
+     * @type String
+     */
+    fgColor: { type: String, public: true },
+    
+    /**
      * @property camDomain
      * @type ObjectId
      */
@@ -50,4 +62,4 @@ module.exports = function Label( caminio, mongoose ){
 
   return schema;
 
-}
+};

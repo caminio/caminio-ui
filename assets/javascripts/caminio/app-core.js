@@ -85,9 +85,13 @@
   caminio.translateDataFields();
 
   $(document).ready(function(){
+    
     $('#toggle-side-panel').on('click', function(){
       $('body').toggleClass('side-panel-active');
     });
+
+    bootbox.setDefaults({ locale: currentLang });
+
   });
 
   $.ajaxSetup({
