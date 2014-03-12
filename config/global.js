@@ -80,10 +80,14 @@ module.exports = function( caminio ){
         req.session.locale = req.param('locale');
       }
     }
-    if( req.session.locale )
+    if( req.session.locale ){
       req.i18n.setLng( req.session.locale, { fixLng: true } );
-    else if( res.locals.currentUser )
+      res.locals.currentLang = req.session.locale;
+    } else if( res.locals.currentUser ){
       req.i18n.setLng( res.locals.currentUser.lang, { fixLng: true } );
+      res.locals.currentLang = res.locals.currentUser.lang;
+    }
+
     next();
   }
 

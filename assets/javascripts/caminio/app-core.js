@@ -102,6 +102,7 @@
     });
 
     bootbox.setDefaults({ locale: currentLang });
+    moment.lang( currentLang );
 
   });
 
