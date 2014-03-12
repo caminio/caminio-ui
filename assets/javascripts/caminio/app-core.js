@@ -34,8 +34,17 @@
         json[relationship.key] = record.get(relationship.key).toJSON();
     },
     serializeIntoHash: function(data, type, record, options) {
+      var self = this;
       var root = Ember.String.decamelize(type.typeKey);
       data[root] = this.serialize(record, options);
+      if( record._relationships ){
+        for( var i in record._relationships){
+          record._relationships[i].forEach( function( rel ){
+            data[root][i] = rel.serialize( rel, options );
+            data[root][i]._id = rel.id;
+          });
+        }
+      }
     }, 
     typeForRoot: function(root) {
       var camelized = Ember.String.camelize(root);
