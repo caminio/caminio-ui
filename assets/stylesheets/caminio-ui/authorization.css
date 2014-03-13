@@ -11,9 +11,19 @@ body, html{
 }
 
 .login-box{
-  max-width: 500px;
+  width: 100%;
   display: table;
   height: 90%;
+  margin: 0 auto;
+}
+
+.login-box .row-wrap{
+  background: #f91;
+  padding: 30px;
+}
+
+.login-box .row{
+  width: 50%;
   margin: 0 auto;
 }
 
@@ -37,8 +47,9 @@ form.auth{
   vertical-align: middle;
 }
 
-.meta-wrap{
+.meta-wrap.row{
   margin-top: 0.5rem;
+  padding-left: 2.8rem;
   font-size: 0.9rem;
 }
 
@@ -60,33 +71,30 @@ form.auth{
 .domain-container:before,
 .email-container:before,
 .password-container:before{
+  bottom: 5px;
+  color: #FFFFFF;
+  content: "";
   font-family: 'FontAwesome';
-  font-weight: normal;
+  font-size: 40px;
   font-style: normal;
-  vertical-align: -7%;
-  text-transform: none;
-  speak: none;
+  font-weight: normal;
+  left: -40px;
   line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  content: "\f003";
-  font-size: 1.1rem;
   position: absolute;
-  bottom: 11px;
-  left: 8px;
+  text-transform: none;
+  vertical-align: -7%;
   z-index: 100;
-  color: #aaa;
 }
 
 .password-container:before{
   content: "\f023";
-  left: 10px;
-  bottom: 10px;
+  left: -22px;
+  bottom: 2px;
 }
 
 .domain-container:before{
   content: "\f015";
-  left: 10px;
-  bottom: 10px;
+  left: -40px;
 }
 
 .domain-container{
@@ -94,33 +102,41 @@ form.auth{
 }
 
 form.auth button{
-  width: 40px;
-  padding: 4px 8px;
+  padding: 5px 15px;
   font-size: 18px;
   margin-left: 5px;
   margin-bottom: 2px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 form.auth button.btn:hover,
 form.auth button.btn:focus{
   outline: none !important;
-  background-color: #5CB85C;
+  background-color: #fff;
+  border-color: #fff;
+  color: #333;
+  opacity: 1;
+  box-shadow: 0 0 3px #000;
   transition: all 0.3s;
 }
 
 form.auth input[type=text],
 form.auth input[type=password]{
-  border-radius: 2px;
-  width: 220px;
-  text-indent: 2.2rem;
+  border-color: transparent;
+  border-radius: 0;
+  text-indent: 0.5rem;
   padding: 9px 0;
   transition: all 0.5s;
+  width: 90%;
+  font-weight: 600;
+  margin-bottom: 0.5em;
 }
 
 form.auth input[type=text]:focus,
 form.auth input[type=password]:focus{
   border-radius: 2px;
-  border-color: #999;
+  box-shadow: 0 0 3px #000;
   background-color: #fafafa;
   outline: none !important;
   transition: all 0.5s;

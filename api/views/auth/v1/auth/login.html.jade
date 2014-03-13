@@ -11,12 +11,17 @@ block content
         if message.error
           .message.error=message.error
       
-        .email-container
-          input(type='text', placeholder=t('auth.email_address'), autocapitalize='off', autocorrect='off', name='username' )
-        .password-container
-          input(type='password', placeholder=t('auth.password'), name='password' )
-        button.btn(type='submit', title=t('login'))
-          i.fa.fa-arrow-right
+        .row-wrap
+          .row
+            .email-container.col-md-5
+              input(type='text', placeholder=t('auth.email_address'), autocapitalize='off', autocorrect='off', name='username' )
+            .password-container.col-md-5
+              input(type='password', placeholder=t('auth.password'), name='password' )
+            .col-md-2
+              button.btn.text-icon(type='submit')
+                =t('login')
+                i.fa.fa-arrow-right
+
         input(type='hidden', name='_csrf', value=csrf)
-        section.meta-wrap
+        section.meta-wrap.row
           a.forgotten-password(href='/caminio/reset_password')=t('forgotten_password')

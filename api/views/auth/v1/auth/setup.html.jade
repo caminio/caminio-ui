@@ -12,15 +12,21 @@ block content
           if message.error
             .message.error=message.error
 
-        .domain-container
-          input(type='text',name='camDomainName',placeholder=t('setup.domain_name_desc'), style='width:444px;')
-        .email-container
-          input(type='text', name='email', placeholder=t('auth.email_address'), autocapitalize='off', autocorrect='off' )
-        .password-container
-          input(type='password', name='password', placeholder=t('auth.password') )
+        .row-wrap
+          .row
+            .domain-container.col-md-12
+              input(type='text',name='camDomainName',placeholder=t('setup.domain_name_desc'), style='width:444px;')
+          .row
+            .email-container.col-md-6
+              input(type='text', name='email', placeholder=t('auth.email_address'), autocapitalize='off', autocorrect='off' )
+            .password-container.col-md-6
+              input(type='password', name='password', placeholder=t('auth.password') )
 
-        button.btn(type='submit', title=t('setup.create'))
-          i.fa.fa-arrow-right
-        input(type='hidden', name='_csrf', value=csrf)
-        section.meta-wrap
+          .row
+            .col-md-6
+              button.btn.text-icon(type='submit')
+                i.fa.fa-arrow-right
+                =t('setup.create')
+            input(type='hidden', name='_csrf', value=csrf)
+        section.meta-wrap.row
           a(href='/login')=t('back_to_login')

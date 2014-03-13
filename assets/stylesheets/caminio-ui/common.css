@@ -169,6 +169,9 @@ div.btn.icon-only{
   background-color: #ddd;
 }
 
+.text-icon .fa{
+  margin: -1px 0 0 10px;
+}
 .icon-text .fa{
   margin: -1px 5px 0 0;
 }
