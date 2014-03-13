@@ -56,9 +56,8 @@ body.side-panel-active #side-panel{
 #side-panel ul.nav a{
   width: 227px;
   color: #fff;
-  padding: 15px 0;
+  padding: 12px 0;
   border-bottom: 1px solid #2a2a2a;
-  border-left: 3px solid transparent;
   text-decoration: none;
   transition: all 0.7s;
 }
@@ -66,11 +65,13 @@ body.side-panel-active #side-panel{
   border-top: 1px solid #2a2a2a;
 }
 #side-panel ul.nav a .fa{
+  border-radius: 2px;
+  color: #FFFFFF;
   font-size: 18px;
-  margin: 1px 10px 0 15px;
+  margin: -5px 10px 0 15px;
+  padding: 5px;
   text-align: center;
-  width: 25px;
-  color: #fff;
+  width: 30px;
 }
 #side-panel ul.nav a .title{
   font-size: 14px;
@@ -78,9 +79,20 @@ body.side-panel-active #side-panel{
 }
 #side-panel ul.nav li.active a,
 #side-panel ul.nav li:hover a{
-  border-left-color: #f91;
   background-color: #2a2a2a;
   transition: all 0.3s;
+}
+
+#side-panel ul.nav li.active a:after{
+  border-bottom: 12px solid rgba(0, 0, 0, 0);
+  border-right: 12px solid #fafafa;
+  border-top: 12px solid rgba(0, 0, 0, 0);
+  content: "";
+  height: 0;
+  position: absolute;
+  right: -3px;
+  top: 12px;
+  width: 0;
 }
 
 .sideinfo{

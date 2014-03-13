@@ -29,9 +29,8 @@ body, html{
 
 .message{
   background: #5BC0DE;
-  margin: 20px 0;
+  margin: 0 auto 20px 23%;
   padding: 15px;
-  border-radius: 2px;
   color: #fff;
   font-weight: 600;
   max-width: 485px;
@@ -131,6 +130,12 @@ form.auth input[type=password]{
   width: 90%;
   font-weight: 600;
   margin-bottom: 0.5em;
+}
+
+form.auth label.control-label{
+  font-size: 1.2em;
+  color: #fff;
+  font-weight: 600;
 }
 
 form.auth input[type=text]:focus,

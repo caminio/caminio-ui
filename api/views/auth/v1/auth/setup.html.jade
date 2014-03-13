@@ -14,19 +14,23 @@ block content
 
         .row-wrap
           .row
-            .domain-container.col-md-12
-              input(type='text',name='camDomainName',placeholder=t('setup.domain_name_desc'), style='width:444px;')
+            .domain-container.col-md-8
+              label.control-label=t('setup.name')
+              input(type='text',name='camDomainName',placeholder=t('setup.domain_name_desc') )
           .row
-            .email-container.col-md-6
+            .col-md-8.email-container
+              label.control-label=t('setup.choose_email')
               input(type='text', name='email', placeholder=t('auth.email_address'), autocapitalize='off', autocorrect='off' )
-            .password-container.col-md-6
+          .row
+            .col-md-8.password-container
+              label.control-label=t('setup.choose_pwd')
               input(type='password', name='password', placeholder=t('auth.password') )
 
           .row
-            .col-md-6
-              button.btn.text-icon(type='submit')
-                i.fa.fa-arrow-right
+            .col-md-8.align-right
+              button.btn.text-icon(type='submit', style="margin-right: 10%")
                 =t('setup.create')
+                i.fa.fa-arrow-right
             input(type='hidden', name='_csrf', value=csrf)
         section.meta-wrap.row
           a(href='/login')=t('back_to_login')

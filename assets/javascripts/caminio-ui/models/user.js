@@ -9,6 +9,8 @@
     lang: DS.attr('string', { defaultValue: currentDomain.lang || 'en' }),
     email: DS.attr('string'),
     admin: DS.attr('boolean'),
+    password: DS.attr(),
+    passwordConfirmation: DS.attr(),
     superuser: DS.attr('boolean'),
     fullname: function(){
       var name = '';

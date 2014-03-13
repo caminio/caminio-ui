@@ -209,9 +209,8 @@ div.btn.icon-only{
 }
 
 .box{
-  border: 1px solid #ccc;
+  /*border: 1px solid #ccc;*/
   background-color: #fafafa;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
 }
 
 .box .header{
@@ -279,9 +278,6 @@ div.btn.icon-only{
   transition: all 0.8s;
 }
 
-.box{
-  border: 1px solid #ccc;
-}
 .margin-top{
   margin-top: 10px;
 }
