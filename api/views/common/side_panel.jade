@@ -1,12 +1,20 @@
 #side-panel
+
   .account-info
     img(src='/images/avatar_100x100.png', class='avatar pull-left')
     .pull-left.username(title=currentUser.fullname)=currentUser.fullname
   ul.nav
     each app in allowedApps
-      li.clearfix( class=(app.name === controllerName.replace('Controller','').toLowerCase() ? 'active' : '') )
+      if app.color
+        style.
+          #side-panel .!{app.name}.active .fa,
+          #side-panel .!{app.name}:hover .fa{ 
+            background-color: !{app.color};
+            color: #fff;
+          }
+      li.clearfix( class=(app.name === controllerName.replace('Controller','').toLowerCase() ? 'active' : '')+' '+app.name )
         a.pull-left(href=app.path)
-          i.pull-left.fa(class='fa-'+app.icon, style='background-color:'+(app.color ? app.color : 'transparent'))
+          i.pull-left.fa(class='fa-'+app.icon)
           span.title=t('navbar.'+app.name)
   aside.sideinfo
     header

@@ -19,11 +19,7 @@ append foot
     script(type='text/javascript', src='/javascripts/caminio-ui/models/domain.js')
     script(type='text/javascript', src='/javascripts/caminio-ui/controllers/user_controller.js')
     script(type='text/javascript', src='/javascripts/caminio-ui/controllers/domain_controller.js')
-
-block content
-
-  aside#notifications.notifications
-    
+         
   script(type="text/x-handlebars")
     include hbs/app.hbs
 
@@ -51,3 +47,7 @@ block content
 
   script(type="text/x-handlebars", data-template-name="domain/form")
     include hbs/domains/_form.hbs
+
+block content
+
+  aside#notifications.notifications

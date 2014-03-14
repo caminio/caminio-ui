@@ -1,44 +1,56 @@
 <section class="main-content with-subnav box default-margin">
+  <header>
+    <div class="box title-box admin">
+      <div class="main-ctrl">
+      
+        {{#link-to 'domains.new' class="btn icon-text"}}
+          <i class="fa fa-plus-square"></i>
+          {{t 'domain.new'}}
+        {{/link-to}}
+      </div>
 
-  <div class="main-ctrl align-right">
-    {{#link-to 'domains.new' class="btn primary icon-text"}}
-      <i class="fa fa-plus-square"></i>
-      {{t 'domain.new'}}
-    {{/link-to}}
+      <h1>{{t 'nav.domains'}}</h1>
+
+    </div>
+
+  </header>
+
+  <div class="row">
+
+    <table class="caminio">
+      <thead>
+        <tr>
+          <th>{{t domain.name}}</th>
+          <th>{{t domain.owner}}</td>
+          <th class="actions align-right"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+      {{#each controller}}
+        <tr {{bind-attr class="isCurrentDomain:active"}}>
+          <td {{action goToDomain this on='doubleClick'}}>
+            {{name}}
+          </td>
+          <td {{action goToDomain this on='doubleClick'}}>{{user.fullname}}</td>
+          <td class="actions align-right">
+            <div class="btn-group">
+              <a class="btn small" {{action switchDomainId this}} {{translateAttr title='domain.switch'}}>
+                <i class="fa fa-random"></i>
+              </a>
+              <a class="btn small" {{action goToDomain this}} {{translateAttr title='edit'}}>
+                <i class="fa fa-pencil"></i>
+              </a>
+              <a class="btn small" {{action remove this}} {{translateAttr title='remove'}}>
+                <i class="fa fa-trash-o"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
+
   </div>
-
-  <table class="caminio">
-    <thead>
-      <tr>
-        <th>{{t domain.name}}</th>
-        <th>{{t domain.owner}}</td>
-        <th class="actions align-right"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-    {{#each controller}}
-      <tr {{bind-attr class="isCurrentDomain:active"}}>
-        <td {{action goToDomain this on='doubleClick'}}>
-          {{name}}
-        </td>
-        <td {{action goToDomain this on='doubleClick'}}>{{user.fullname}}</td>
-        <td class="actions align-right">
-          <div class="btn-group">
-            <a class="btn small" {{action switchDomainId this}} {{translateAttr title='domain.switch'}}>
-              <i class="fa fa-random"></i>
-            </a>
-            <a class="btn small" {{action goToDomain this}} {{translateAttr title='edit'}}>
-              <i class="fa fa-pencil"></i>
-            </a>
-            <a class="btn small" {{action remove this}} {{translateAttr title='remove'}}>
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </td>
-      </tr>
-    {{/each}}
-    </tbody>
-  </table>
 
 </section>

@@ -24,12 +24,11 @@
 /* ------------------------------------------------ widgets */
 
 .btn{
-  padding: 5px 15px;
-  color: #fff;
+  padding: 3px 7px;
+  color: #555;
   border-radius: 0;
-  border: 1px solid #454545;
-  background-color: #454545;
-  transition: all 0.8s;
+  background-color: #fff;
+  background-image: linear-gradient(to bottom, #FFFFFF, #EEEEEE);
   opacity: 1;
   font-size: 12px;
 }
@@ -38,19 +37,21 @@
 .btn[disabled]{
   background-color: #ddd !important;
   color: #888;
-  border-color: #aaa !important;
   cursor: not-allowed !important;
-  transition: all 0.8s;
 }
 
 .btn:hover{
-  opacity: 0.8;
-  transition: opacity 0.3s;
   color: #fff;
+  background-color: #373737;
+  background-image: linear-gradient(to bottom, #373737, #272727);
+  outline: none !important;
 }
 .btn:active,
 .btn:focus{
   color: #fff;
+  background-color: #373737;
+  background-image: linear-gradient(to bottom, #373737, #272727);
+  outline: none !important;
 }
 
 a.btn,
@@ -86,13 +87,11 @@ div.btn.icon-only{
 .btn.pale{
   background: none;
   color: inherit;
-  border-color: #ddd;
 }
 
 .btn.close{
   background: none;
   color: #aaa;
-  border-color: #ccc;
   padding: 6px 8px;
   font-size: 1.5rem;
   margin: -10px 0;
@@ -100,61 +99,50 @@ div.btn.icon-only{
 
 .btn.close:hover{
   color: #333;
-  border-color: #999;
-}
-
-.btn.borderless{
-  border-color: transparent;
 }
 
 .btn.primary{
-  background-color: #4877D6;
-  border-color: #4877D6;
+  background: #4877D6;
   color: #fff;
+  border-color: #25b;
 }
 
 .btn.secondary{
-  background-color: #f91;
-  border-color: #f91;
+  background: #f91;
   color: #fff;
 }
 .btn.danger,
 .btn.highlight-danger:hover,
 .btn.highlight-danger:focus,
 .lbl.danger{
-  background-color: #D9534F !important;
-  border-color: #D9534F !important;
+  background: #D9534F !important;
   color: #fff;
 }
 
 .btn.warning,
 .lbl.warning{
-  background-color: #F0AD4E;
-  border-color: #F0AD4E;
+  background: #F0AD4E;
   color: #fff;
 }
 
 .btn.light{
-  background-color: #ccc;
+  background: #ccc;
 }
 
 .btn.info,
 .lbl.info{
-  background-color: #5BC0DE;
-  border-color: #5BC0DE;
+  background: #5BC0DE;
 }
 
 .btn.success,
 .lbl.success{
-  background-color: #5CB85C;
-  border-color: #5CB85C;
+  background: #5CB85C;
   color: #fff;
 }
 
 .btn.transparent{
   background: none;
   color: #444;
-  border-color: transparent;
 }
 
 .btn.transparent:hover{
@@ -183,34 +171,32 @@ div.btn.icon-only{
   background-color: #373737;
 }
 
-.btn-group{
-  display: inline-block;
-  position: relative;
-}
-.btn-group .btn{
-  border-radius: 0;
-  margin: 0;
-  position: relative;
-  float: left;
-  width: 24px;
-  text-align: center;
-}
-.btn-group .btn:first-child{
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
-}
-.btn-group .btn:last-child{
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
-}
 .desc{
   color: #777;
   font-size: 0.8em;
 }
 
 .box{
-  /*border: 1px solid #ccc;*/
-  background-color: #fafafa;
+  border: 1px solid #ccc;
+}
+
+.box-title{
+  /*background-color: #eee;*/
+  color: #777;
+  padding: 7px;
+  font-weight: 600;
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+
+.box-title .close{
+  margin: -3px -3px 0 0;
+  padding: 2px 5px;
+  border: none;
+}
+
+.box-title .btn-group{
+  margin: -5px 5px 0;
 }
 
 .box .header{
@@ -223,31 +209,13 @@ div.btn.icon-only{
 }
 
 .box .content{
-  padding: 20px;
+  padding: 20px;  
+}
+
+.box.remove-padding{
   
 }
 
-.span200px{
-  width: 200px;
-}
-.span250px{
-  width: 250px;
-}
-.span300px{
-  width: 300px;
-}
-.span400px{
-  width: 400px;
-}
-.span600px{
-  width: 600px;
-}
-.span800px{
-  width: 800px;
-}
-.span100perc{
-  width: 100%;
-}
 .search{
   display: inline-block;
   position: relative;

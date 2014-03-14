@@ -1,13 +1,18 @@
 <section id="layout" class="main-view">
 
-  <div class="navbar-container">
-    <ul class="navbar clearfix">
-      <li>{{#link-to 'users' activeClass='active'}}{{t 'nav.users'}}{{/link-to}}</li>
-      <li>{{#link-to 'domains' activeClass='active'}}{{t 'nav.domains'}}{{/link-to}}</li>
-    </ul>
+  <div class="main-inner-wrap">
+
+    <div class="navbar-container">
+      <ul class="navbar clearfix">
+        <li>{{#link-to 'users' activeClass='active'}}{{t 'nav.users'}}{{/link-to}}</li>
+        <li>{{#link-to 'domains' activeClass='active'}}{{t 'nav.domains'}}{{/link-to}}</li>
+      </ul>
+    </div>
+  
+    <section id="main">
+      {{outlet}}
+    </section>
+
   </div>
 
-  <section id="main">
-    {{outlet}}
-  </section>
 </section>

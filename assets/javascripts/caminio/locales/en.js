@@ -5,13 +5,13 @@
   Em.I18n.translations = {
 
     'name': 'Name',
-    'save': 'save',
-    'back': 'back',
-    'edit': 'edit',
-    'close': 'close',
-    'cancel': 'cancel',
-    'remove': 'remove',
-    'delete': 'delete',
+    'save': 'Save',
+    'back': 'Back',
+    'edit': 'Edit',
+    'close': 'Close',
+    'cancel': 'Cancel',
+    'remove': 'Remove',
+    'delete': 'Delete',
 
     'published': 'published',
     'draft': 'draft',
