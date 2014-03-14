@@ -13,11 +13,11 @@ html(lang=i18n.locale())
     if env === 'production'
       link(rel='stylesheet', href='/stylesheets/caminio-ui.min.css')
     else
-      link(rel='stylesheet', href='/stylesheets/caminio-ui-static/bootstrap.css')
-      link(rel='stylesheet', href='/stylesheets/caminio-ui-static/opensans.css')
-      link(rel='stylesheet', href='/stylesheets/caminio-ui-static/font-awesome.css')
-        
+      link(rel='stylesheet', href='/stylesheets/3rdparty/bootstrap.css')
+      link(rel='stylesheet', href='/stylesheets/3rdparty/opensans.css')
+      link(rel='stylesheet', href='/stylesheets/3rdparty/font-awesome.css')
       link( rel='stylesheet', href='/stylesheets/3rdparty/select2.css' )
+
       link( rel='stylesheet', href='/stylesheets/caminio-ui/bootstrap-overrides.css' )
       link( rel='stylesheet', href='/stylesheets/caminio-ui/common.css' )
       link( rel='stylesheet', href='/stylesheets/caminio-ui/pace.css' )
@@ -52,7 +52,6 @@ html(lang=i18n.locale())
       script(type='text/javascript', src='/javascripts/3rdparty/select2.min.js')
       script(type='text/javascript', src='/javascripts/3rdparty/ember-i18n.js')
       script(type='text/javascript', src='/javascripts/3rdparty/jquery.nicescroll.min.js')
-      script(type='text/javascript', src='/javascripts/3rdparty/ace.js')
       script(type='text/javascript', src='/javascripts/caminio/locales/#{i18n.locale()}.js')
       script(type='text/javascript', src='/javascripts/3rdparty/jquery-ui-1.10.4.custom.min.js')
       script(type='text/javascript', src='/javascripts/3rdparty/jquery.nested-sortable.js')

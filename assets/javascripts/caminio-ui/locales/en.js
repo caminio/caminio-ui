@@ -2,6 +2,8 @@
 
   'use strict';
 
+  if( currentLang !== 'en' ) return;
+  
   var translations = {
 
     'nav.users': 'Users',

@@ -101,6 +101,11 @@
       $('body').toggleClass('side-panel-active');
     });
 
+    $('.main-view').css({ height: $(window).height() - 80 });
+    $(window).on('resize', function(){
+      $('.main-view').css({ height: $(window).height() - 80 });
+    })
+
     bootbox.setDefaults({ locale: currentLang });
     moment.lang( currentLang );
 

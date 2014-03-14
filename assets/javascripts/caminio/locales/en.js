@@ -1,8 +1,10 @@
 (function(){
 
   'use strict';
+
+  if( currentLang !== 'en' ) return;
   
-  Em.I18n.translations = {
+  var translations = {
 
     'name': 'Name',
     'save': 'Save',
@@ -12,6 +14,14 @@
     'cancel': 'Cancel',
     'remove': 'Remove',
     'delete': 'Delete',
+    'delete_selected': 'Delete selected',
+
+    'cut': 'Cut',
+    'copy': 'Copy',
+    'paste': 'Paste',
+
+    'select_all': 'Select all',
+    'upload_file': 'Upload a file',
 
     'published': 'published',
     'draft': 'draft',
@@ -35,5 +45,8 @@
     'errors.duplicate_key': '{{name}} is duplicate and can\'t be saved twice',
 
   };
+
+  for( var i in translations )
+    Em.I18n.translations[i] = translations[i];
 
 }).call();
