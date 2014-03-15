@@ -1,4 +1,4 @@
-<section class="main-content with-subnav box default-margin">
+<section class="main-content">
 
   <form class="form-horizontal caminio">
 
@@ -13,19 +13,9 @@
 
       <h1>{{t user.edit}}</h1>
 
-      <ul class="sub-navbar nav nav-pills">
-        <li class="active">
-          <a href="#general" data-toggle="tab">{{t user.tabs.general}}</a>
-        </li>
-      </ul>
-
     </header>
 
-    <div class="tab-content">
-
-      {{partial 'user/general'}}
-
-    </div>
+    {{partial 'user/general'}}
 
   </form>
 

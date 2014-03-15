@@ -1,9 +1,8 @@
 body, html{
   height: 100%;
   font-size: 12px;
-  background: #fafafa;
+  background: #eee;
 }
-
 
 .login-box-wrap{
   display: none;
@@ -18,8 +17,10 @@ body, html{
 }
 
 .login-box .row-wrap{
-  background: #f91;
+  background: #fafafa;
+  border: 1px solid #ddd;
   padding: 30px;
+  box-shadow: 2px 0 2px #ccc, -2px 0 2px #ccc;
 }
 
 .login-box .row{
@@ -57,7 +58,7 @@ form.auth{
 }
 
 .meta-wrap a:hover{
-  color: #333;
+  color: #777;
 }
 
 .domain-container,
@@ -70,25 +71,25 @@ form.auth{
 .domain-container:before,
 .email-container:before,
 .password-container:before{
-  bottom: 5px;
-  color: #FFFFFF;
+  bottom: 12px;
+  color: #ccc;
   content: "";
   font-family: 'FontAwesome';
-  font-size: 40px;
   font-style: normal;
   font-weight: normal;
-  left: -40px;
+  left: 24px;
   line-height: 1;
   position: absolute;
   text-transform: none;
   vertical-align: -7%;
   z-index: 100;
+  font-size: 16px;
 }
 
 .password-container:before{
   content: "\f023";
-  left: -22px;
-  bottom: 2px;
+  left: 26px;
+  bottom: 11px;
 }
 
 .domain-container:before{
@@ -102,47 +103,33 @@ form.auth{
 
 form.auth button{
   padding: 5px 15px;
-  font-size: 18px;
   margin-left: 5px;
   margin-bottom: 2px;
   font-weight: 600;
   text-transform: uppercase;
 }
 
-form.auth button.btn:hover,
-form.auth button.btn:focus{
-  outline: none !important;
-  background-color: #fff;
-  border-color: #fff;
-  color: #333;
-  opacity: 1;
-  box-shadow: 0 0 3px #000;
-  transition: all 0.3s;
-}
-
 form.auth input[type=text],
 form.auth input[type=password]{
-  border-color: transparent;
   border-radius: 0;
-  text-indent: 0.5rem;
-  padding: 9px 0;
+  text-indent: 2.5rem;
+  padding: 5px 0;
   transition: all 0.5s;
-  width: 90%;
+  width: 100%;
   font-weight: 600;
   margin-bottom: 0.5em;
 }
 
 form.auth label.control-label{
-  font-size: 1.2em;
-  color: #fff;
+  font-size: 0.9em;
   font-weight: 600;
 }
 
 form.auth input[type=text]:focus,
 form.auth input[type=password]:focus{
   border-radius: 2px;
-  box-shadow: 0 0 3px #000;
-  background-color: #fafafa;
+  box-shadow: none;
+  background-color: #fff;
   outline: none !important;
   transition: all 0.5s;
 }

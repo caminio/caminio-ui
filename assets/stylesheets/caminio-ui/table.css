@@ -96,12 +96,6 @@ table.caminio td.actions{
 table.caminio td.actions:hover{
   opacity: 1;
 }
-table.caminio td.actions:not(:hover) .btn{
-  background-color: #aaa;
-}
-table.caminio a.btn{
-  color: #fff;
-}
 table.caminio td.actions .btn-group{
   float:right;
   margin-bottom: -5px;

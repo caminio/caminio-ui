@@ -60,10 +60,10 @@ body.side-panel-active .main-view{
   margin: 0 5px;
 }
 .navbar li a{
-  color: #333;
+  color: #555;
   text-decoration: none;
   padding: 5px 35px;
-  font-size: 14px;
+  font-size: 12px;
   position: relative;
   outline: 0;
   transition: background 0.6s;
@@ -82,7 +82,7 @@ body.side-panel-active .main-view{
   border-left: 15px solid rgba(0, 0, 0, 0);
   border-right: 15px solid rgba(0, 0, 0, 0);
   border-top: 15px solid #ccc;
-  bottom: -14px;
+  bottom: -16px;
   content: "";
   height: 0;
   left: 50%;
@@ -95,7 +95,7 @@ body.side-panel-active .main-view{
   border-left: 15px solid rgba(0, 0, 0, 0);
   border-right: 15px solid rgba(0, 0, 0, 0);
   border-top: 15px solid #EEEEEE;
-  bottom: -12px;
+  bottom: -15px;
   content: "";
   height: 0;
   position: absolute;

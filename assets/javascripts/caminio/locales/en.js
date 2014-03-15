@@ -20,6 +20,9 @@
     'copy': 'Copy',
     'paste': 'Paste',
 
+    'properties': 'properties',
+    'date': 'Date',
+
     'select_all': 'Select all',
     'upload_file': 'Upload a file',
 
