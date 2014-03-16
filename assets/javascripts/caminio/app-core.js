@@ -163,7 +163,7 @@
     selectedDidChange : function(){
       var val = this.get('value');
       if( typeof(val) === 'string' )
-        val = val.split(',')
+        val = val.split(',');
       this.$().select2('val', val);
     }.observes('value')
 
@@ -189,5 +189,15 @@
     }.property('firstname', 'lastname')
   });
 
+  App.Label = DS.Model.extend({
+    name: DS.attr('string'),
+    bgColor: DS.attr('string', { defaultValue: '#548EE5' }),
+    parent: DS.belongsTo('label'),
+    fgColor: DS.attr('string', { defaultValue: '#fff' }),
+    borderColor: DS.attr('string', { defaultValue: '#637dd4' }),
+    styleAttrs: function(){
+      return 'background-color: '+this.get('bgColor') + '; color: '+this.get('fgColor')+'; border-color: '+this.get('borderColor');
+    }.property('bgColor')
+  });
 
 }).call();

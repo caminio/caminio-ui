@@ -35,6 +35,12 @@ module.exports = function Label( caminio, mongoose ){
     fgColor: { type: String, public: true },
 
     /**
+     * @property parent
+     * @type ObjectId
+     */
+    parent: { type: ObjectId, public: true },
+
+    /**
      * @property camDomain
      * @type ObjectId
      */
