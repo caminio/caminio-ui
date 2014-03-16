@@ -29,9 +29,12 @@
           return item.toJSON();
         });
     },
-    serializeBelongsTo: function(record, json, relationship) {
+    serializeBelongsTo: function(record, json, relationship){
       if( relationship.options.embedded && relationship.options.embedded === 'always' )
         json[relationship.key] = record.get(relationship.key).toJSON();
+      // added for label/webpage parent keys to be set
+      else if( record.get(relationship.key) )
+        json[relationship.key] = record.get(relationship.key).id;
     },
     serializeIntoHash: function(data, type, record, options) {
       var self = this;
