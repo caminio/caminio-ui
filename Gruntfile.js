@@ -22,7 +22,8 @@ module.exports = function(grunt) {
         files: {
           'build/stylesheets/caminio-ui.min.css': [ 'assets/stylesheets/3rdparty/*.css',
                                                     'assets/stylesheets/caminio-ui/*.css' ],
-          'build/stylesheets/caminio-auth.min.css': [ 'assets/stylesheets/caminio-ui/authorization.css' ]
+          'build/stylesheets/caminio-auth.min.css': [ 'assets/stylesheets/caminio-ui/authorization.css' ],
+          'build/stylesheets/caminio-admin.min.css': [ 'assets/stylesheets/caminio-admin/codemirror.css' ]
         }
       }
     },
@@ -45,6 +46,9 @@ module.exports = function(grunt) {
           ],
           'build/javascripts/3rdparties.min.js': [
             'assets/javascripts/3rdparty/**/*.js'
+          ],
+          'build/javascripts/caminio-admin.min.js': [
+            'assets/javascripts/caminio-admin/**/*.js'
           ]
         }
       }

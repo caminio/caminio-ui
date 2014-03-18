@@ -61,3 +61,7 @@ body .caminio .form-group input[type="checkbox"],
 body .caminio .form-group input[type="radio"]{
   margin-top: 3px;
 }
+
+body .dropdown-menu{
+  border-radius: 0;
+}
