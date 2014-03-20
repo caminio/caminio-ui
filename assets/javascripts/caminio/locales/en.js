@@ -15,6 +15,7 @@
     'remove': 'Remove',
     'delete': 'Delete',
     'delete_selected': 'Delete selected',
+    'root': 'root',
 
     'cut': 'Cut',
     'copy': 'Copy',

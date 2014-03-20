@@ -94,7 +94,7 @@ form.auth{
 
 .domain-container:before{
   content: "\f015";
-  left: -40px;
+  left: 24px;
 }
 
 .domain-container{

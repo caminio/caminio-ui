@@ -6,6 +6,7 @@
     tagName: 'ul',
     classNames: ['ember-tree'],
     itemViewClass: 'Ember.Tree.NodeView',
+    root: true,
     didInsertElement: function(){
 
       var self = this;
@@ -50,6 +51,11 @@
         }
       }
 
+    },
+    _getRootView: function(){
+      if( this.nearestWithProperty('root') )
+        return this.nearestWithProperty('root')._getRootView()
+      return this;
     }
   });
 
@@ -70,12 +76,28 @@
       this.$().draggable({
         handle: '.move',
         helper: 'clone',
-        revert: 'invalid',
+        revert: function( $droppableElem ){
+          if( $droppableElem )
+            return true;
+          var oldParentView = self.get('controller.draggingNodeView.parentView.parentView');
+          var child = App.User.store.getById('webpage', self.$('.item-container').attr('data-id'));
+          child.set('parent', App.User.store.createRecord('webpage'));
+          child.save().then(function(){
+            if( oldParentView )
+              oldParentView.set('children', oldParentView._fetchChildren());
+            notify('info', Em.I18n.t('webpage.moved_to', { name: self.get('name'), to: Em.I18n.t('root') }));
+            var rootTreeView = self.nearestWithProperty('root')._getRootView();
+            //console.log('new parent', rootTreeView.get('content'), self._modelName());
+            rootTreeView.get('content.content').pushObject(child);
+            //rootTreeView.set('content', App.User.store.find( self._modelName(), { parent: 'null' } ));
+          });
+        },
         start: function(){
           self.get('controller').set('draggingNodeView', self);
         },
         stop: function(){
-          self.get('controller').set('draggingNodeView', null);
+          if( self.get('controller.draggingNodeView') )
+            self.get('controller').set('draggingNodeView', null);
         }
       })
       .droppable({
@@ -93,11 +115,12 @@
           
           // clear from old parent
           var oldParentView = self.get('controller.draggingNodeView.parentView.parentView');
-          if( oldParentView )
+          console.log('oldparent', oldParentView);
+          if( oldParentView && '_fetchChildren' in oldParentView )
             oldParentView.set('children', null);
 
           child.save().then( function(){
-            if( oldParentView )
+            if( oldParentView && '_fetchChildren' in oldParentView)
               oldParentView.set('children', oldParentView._fetchChildren());
             notify('info', Em.I18n.t('webpage.moved_to', { name: child.get('name'), to: self.get('content.name') }));
             self._clickView(e, true);
