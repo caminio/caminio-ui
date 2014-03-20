@@ -25,6 +25,12 @@
         }
       }
     }.observes('controller.addedItem'),
+    deleteItem: function(){
+      var item = this.get('controller.removedItem');
+      var $elem = this.$('[data-id='+item.id+']');
+      if( $elem.length )
+        Ember.View.views[ $elem.closest('li').attr('id') ].destroy();
+    }.observes('controller.removedItem'),
     didInsertElement: function(){
 
       if( this.nearestWithProperty('root') )
@@ -36,7 +42,17 @@
         this.$().closest('.box').css({ maxHeight: $( this.get('adaptHeightElem') ).height()-20, overflow: 'auto' });;
       }
 
+      if( this.get('root') )
+        $(document).off('keydown', catchDeleteKey)
+                  .on('keydown', catchDeleteKey);
+
+      function catchDeleteKey(e){
+        if( e.keyCode === 46 && controller.get('curSelectedItem') )
+          controller.send('removeSelectedItem');
+      }
+
       var self = this;
+
       if( !this.get('selectItem') )
         return;
         
@@ -46,7 +62,7 @@
         arr.push( node );
         var parentId = node.get('parent.id') || node.get('parent');
         if( !parentId )
-          return loadAndOpenParentView( arr, self );
+          return setTimeout(function(){ loadAndOpenParentView( arr, self ); },1000);
         node.store.findById( getModelName( node ), parentId ).then( function( parent ){
           collectParents( arr, parent, cb );
         });
@@ -57,8 +73,10 @@
        * the actual item should be exposed
        */
       function loadAndOpenParentView( parents, view ){
+        console.log('loading', parents, view);
         parents.forEach( function( parent, index ){
           var $elem = view.$('[data-id='+parent.id+']');
+          console.log('elem', $elem);
           if( $elem.length < 1 )
             return;
           var parentView = Ember.View.views[ $elem.closest('li').attr('id') ];
@@ -98,17 +116,6 @@
     hasChildren: function(){
       return ( this.get('children') === null || ( this.get('children.content') && this.get('children.content').content.length > 0 ) );
     }.property('children.content'),
-    // addNewItem: function(){
-    //   var item = this.get('controller.addedItem');
-    //   if( item.get('parent.id') === this.get('content.id') ){
-    //     if( !this.get('children') ){
-    //       this.set('children', this._fetchChildren());
-    //       this.set('isOpen',true);
-    //     }
-    //     else
-    //       this.get('children').content.pushObject( item );
-    //   }
-    // }.observes('controller.addedItem'),
     classNameBindings: [':ember-tree-node', 'isOpen: tree-branch-open', 'hasChildren:tree-branch-icon:tree-node-icon'],
     didInsertElement: function(){
       var self = this;
@@ -146,7 +153,7 @@
           e.stopPropagation();
           var childId = ui.draggable.find('.item-container').attr('data-id');
           var childView = Ember.View.views[ ui.draggable.attr('id') ];
-          var child = childView.get('content'); //App.User.store.getById('webpage', childId);
+          var child = App.User.store.getById( self._modelName(), childId);
           child.set('parent', self.get('content'));
           if( childView && 'destroy' in childView )
             childView.destroy();
@@ -158,15 +165,21 @@
           if( oldParentView && '_fetchChildren' in oldParentView )
             oldParentView.set('children', null);
 
-          child.save().then( function(){
+          child.save().then( function( child ){
+            //childView.set('content', child);
             if( oldParentView && '_fetchChildren' in oldParentView)
               oldParentView.set('children', oldParentView._fetchChildren());
+
+            App.User.store.find( self._modelName(), { _id: self.get('content.id') });
+            App.User.store.find( self._modelName(), { _id: childId });
+
             notify('info', Em.I18n.t('webpage.moved_to', { name: child.get('name'), to: self.get('content.name') }));
             self.set('isOpen',true);
             if( self.get('children') ){
               self.get('children').content.pushObject( child );
             } else
               self.set('children', self._fetchChildren() );
+
           });
         }
       });
