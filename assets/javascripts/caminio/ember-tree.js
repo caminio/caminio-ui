@@ -18,14 +18,15 @@
       if( !this.get('selectItem') )
         return;
         
-      collectParents( [], this.get('selectItem.parent.id') );
+      collectParents( [], this.get('selectItem') );
 
-      function collectParents( arr, parentId, cb ){
+      function collectParents( arr, node, cb ){
+        arr.push( node );
+        var parentId = node.get('parent.id') || node.get('parent');
         if( !parentId )
           return loadAndOpenParentView( arr, self );
-        arr.push( parentId );
-        App.User.store.find('webpage', { _id: parentId }).then( function( parent ){
-          collectParents( arr, parent ? parent.id : null, cb );
+        node.store.findById( getModelName( node ), parentId ).then( function( parent ){
+          collectParents( arr, parent, cb );
         });
       }
 
@@ -33,27 +34,32 @@
        * opens all given parent nodes, so
        * the actual item should be exposed
        */
-      function loadAndOpenParentView( parentIds, view ){
-        var parentId;
-        var parentView = view._childViews.find( function( _view ){
-          if( !('children' in _view) ){ return false; }
-          parentId = parentIds.find( function( _parentId ){
-            return (_parentId === _view.get('content.id'));
-          });
-          if( parentId ) return view;
+      function loadAndOpenParentView( parents, view ){
+        console.log('parents', parents, view);
+        parents.forEach( function( parent, index ){
+          var $elem = view.$('[data-id='+parent.id+']');
+          console.log( $elem );
+          if( $elem.length < 1 )
+            return;
+          var parentView = Ember.View.views[ $elem.closest('li').attr('id') ];
+          console.log( $elem, parentView );
+          if( parentView ){
+            if( parents.length === 1 )
+              self.get('controller').send('treeItemSelected', parent, true );
+            parents.splice( index, 1 );
+            parentView.set('isOpen', true );
+            var children = parentView._fetchChildren();
+            parentView.set('children', children);
+            children.then( function( children ){
+              setTimeout(function(){
+                loadAndOpenParentView( parents, view );
+              },1);
+            });
+          } else{
+            console.error('view not found for', $elem);
+            throw new Error('view not found when trying to open node view in tree');
+          }
         });
-        if( parentView ){
-          parentIds.splice( parentIds.indexOf( parentId ), 1 );
-          parentView.set('isOpen', true );
-          var children = parentView._fetchChildren();
-          parentView.set('children', children);
-          if( parentIds.length > 0 )
-            children.then( function(){ loadAndOpenParentView( parentIds, parentView ); } );
-          else
-            children.then( function(){ loadAndOpenParentView( [ self.get('selectItem.id') ], parentView ); } );
-        } else {
-          self.get('controller').send('treeItemSelected', self.get('selectItem'), true );
-        }
       }
 
     },
@@ -158,12 +164,15 @@
       this.set('isOpen', this.get('isSelected') );
     },
     _modelName: function(){
-      return inflection.underscore( this.get('content').constructor.toString()).replace('app._','');
+      return getModelName( ('store' in this) ? this : this.get('content') );
     },
     _fetchChildren: function(){
       return App.User.store.find( this._modelName(), { parent: this.get('content.id') } );
     }
   });
 
+  function getModelName( model ){
+    return inflection.underscore( model.constructor.toString()).replace('app._','');
+  }
 
 })( Ember );
