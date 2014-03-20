@@ -7,6 +7,11 @@
     classNames: ['ember-tree'],
     itemViewClass: 'Ember.Tree.NodeView',
     root: true,
+    addNewItem: function(){
+      var item = this.get('controller.addedItem');
+      if( !item.get('parent') )
+        this.get('content').content.pushObject( item );
+    }.observes('controller.addedItem'),
     didInsertElement: function(){
 
       var self = this;
@@ -54,7 +59,7 @@
     },
     _getRootView: function(){
       if( this.nearestWithProperty('root') )
-        return this.nearestWithProperty('root')._getRootView()
+        return this.nearestWithProperty('root')._getRootView();
       return this;
     }
   });
@@ -69,6 +74,17 @@
     hasChildren: function(){
       return ( this.get('children') === null || ( this.get('children.content') && this.get('children.content').content.length > 0 ) );
     }.property('children.content'),
+    addNewItem: function(){
+      var item = this.get('controller.addedItem');
+      if( item.get('parent.id') === this.get('content.id') ){
+        if( !this.get('children') ){
+          this.set('children', this._fetchChildren());
+          this.set('isOpen',true);
+        }
+        else
+          this.get('children').content.pushObject( item );
+      }
+    }.observes('controller.addedItem'),
     classNameBindings: [':ember-tree-node', 'isOpen: tree-branch-open', 'hasChildren:tree-branch-icon:tree-node-icon'],
     didInsertElement: function(){
       var self = this;
@@ -87,9 +103,7 @@
               oldParentView.set('children', oldParentView._fetchChildren());
             notify('info', Em.I18n.t('webpage.moved_to', { name: self.get('name'), to: Em.I18n.t('root') }));
             var rootTreeView = self.nearestWithProperty('root')._getRootView();
-            //console.log('new parent', rootTreeView.get('content'), self._modelName());
             rootTreeView.get('content.content').pushObject(child);
-            //rootTreeView.set('content', App.User.store.find( self._modelName(), { parent: 'null' } ));
           });
         },
         start: function(){
@@ -108,14 +122,16 @@
         drop: function( e, ui ){
           e.stopPropagation();
           var childId = ui.draggable.find('.item-container').attr('data-id');
+          var childView = Ember.View.views[ ui.draggable.attr('id') ];
+          var child = childView.get('content'); //App.User.store.getById('webpage', childId);
+          child.set('parent', self.get('content'));
+          if( childView && 'destroy' in childView )
+            childView.destroy();
           ui.helper.remove();
           ui.draggable.remove();
-          var child = App.User.store.getById('webpage', childId);
-          child.set('parent', self.get('content'));
           
           // clear from old parent
           var oldParentView = self.get('controller.draggingNodeView.parentView.parentView');
-          console.log('oldparent', oldParentView);
           if( oldParentView && '_fetchChildren' in oldParentView )
             oldParentView.set('children', null);
 
@@ -123,7 +139,11 @@
             if( oldParentView && '_fetchChildren' in oldParentView)
               oldParentView.set('children', oldParentView._fetchChildren());
             notify('info', Em.I18n.t('webpage.moved_to', { name: child.get('name'), to: self.get('content.name') }));
-            self._clickView(e, true);
+            self.set('isOpen',true);
+            if( self.get('children') ){
+              self.get('children').content.pushObject( child );
+            } else
+              self.set('children', self._fetchChildren() );
           });
         }
       });
