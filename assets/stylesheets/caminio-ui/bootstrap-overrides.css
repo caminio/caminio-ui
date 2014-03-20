@@ -65,3 +65,10 @@ body .caminio .form-group input[type="radio"]{
 body .dropdown-menu{
   border-radius: 0;
 }
+
+body .select2-container.form-control{
+  padding: 0;
+}
+body .select2-container-multi .select2-choices{
+  border: none;
+}

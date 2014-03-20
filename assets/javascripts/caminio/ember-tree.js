@@ -9,10 +9,32 @@
     root: true,
     addNewItem: function(){
       var item = this.get('controller.addedItem');
-      if( !item.get('parent') )
-        this.get('content').content.pushObject( item );
+      if( this.get('root') ){
+        if( !item.get('parent') )
+          this.get('content').content.pushObject( item );
+      } else {
+        if( item.get('parent') && this.get('parentView.content.id') === item.get('parent.id') ){
+
+          var parentView = this.get('parentView');
+          if( !parentView.get('children') ){
+            parentView.set('children', parentView._fetchChildren());
+            parentView.set('isOpen',true);
+          }
+          else
+            parentView.get('children').content.pushObject( item );
+        }
+      }
     }.observes('controller.addedItem'),
     didInsertElement: function(){
+
+      if( this.nearestWithProperty('root') )
+        this.set('root', false);
+
+      var controller = this.get('controller');
+
+      if( this.get('adaptHeightElem') ){
+        this.$().closest('.box').css({ maxHeight: $( this.get('adaptHeightElem') ).height()-20, overflow: 'auto' });;
+      }
 
       var self = this;
       if( !this.get('selectItem') )
@@ -35,14 +57,11 @@
        * the actual item should be exposed
        */
       function loadAndOpenParentView( parents, view ){
-        console.log('parents', parents, view);
         parents.forEach( function( parent, index ){
           var $elem = view.$('[data-id='+parent.id+']');
-          console.log( $elem );
           if( $elem.length < 1 )
             return;
           var parentView = Ember.View.views[ $elem.closest('li').attr('id') ];
-          console.log( $elem, parentView );
           if( parentView ){
             if( parents.length === 1 )
               self.get('controller').send('treeItemSelected', parent, true );
@@ -56,7 +75,6 @@
               },1);
             });
           } else{
-            console.error('view not found for', $elem);
             throw new Error('view not found when trying to open node view in tree');
           }
         });
@@ -80,17 +98,17 @@
     hasChildren: function(){
       return ( this.get('children') === null || ( this.get('children.content') && this.get('children.content').content.length > 0 ) );
     }.property('children.content'),
-    addNewItem: function(){
-      var item = this.get('controller.addedItem');
-      if( item.get('parent.id') === this.get('content.id') ){
-        if( !this.get('children') ){
-          this.set('children', this._fetchChildren());
-          this.set('isOpen',true);
-        }
-        else
-          this.get('children').content.pushObject( item );
-      }
-    }.observes('controller.addedItem'),
+    // addNewItem: function(){
+    //   var item = this.get('controller.addedItem');
+    //   if( item.get('parent.id') === this.get('content.id') ){
+    //     if( !this.get('children') ){
+    //       this.set('children', this._fetchChildren());
+    //       this.set('isOpen',true);
+    //     }
+    //     else
+    //       this.get('children').content.pushObject( item );
+    //   }
+    // }.observes('controller.addedItem'),
     classNameBindings: [':ember-tree-node', 'isOpen: tree-branch-open', 'hasChildren:tree-branch-icon:tree-node-icon'],
     didInsertElement: function(){
       var self = this;
@@ -105,14 +123,14 @@
           var child = App.User.store.getById('webpage', self.$('.item-container').attr('data-id'));
           child.set('parent', App.User.store.createRecord('webpage'));
           child.save().then(function(){
-            if( oldParentView )
+            if( oldParentView && '_fetchChildren' in oldParentView )
               oldParentView.set('children', oldParentView._fetchChildren());
             notify('info', Em.I18n.t('webpage.moved_to', { name: self.get('name'), to: Em.I18n.t('root') }));
             var rootTreeView = self.nearestWithProperty('root')._getRootView();
             rootTreeView.get('content.content').pushObject(child);
           });
         },
-        start: function(){
+        start: function(e, ui){
           self.get('controller').set('draggingNodeView', self);
         },
         stop: function(){
@@ -122,7 +140,6 @@
       })
       .droppable({
         accept: '.ember-tree li',
-        tolerance: 'pointer',
         greedy: true,
         hoverClass: 'droppable-candiate',
         drop: function( e, ui ){
