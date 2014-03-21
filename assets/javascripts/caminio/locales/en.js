@@ -12,6 +12,7 @@
     'edit': 'Edit',
     'close': 'Close',
     'cancel': 'Cancel',
+    'create': 'Create',
     'remove': 'Remove',
     'delete': 'Delete',
     'delete_selected': 'Delete selected',

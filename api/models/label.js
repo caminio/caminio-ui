@@ -45,6 +45,12 @@ module.exports = function Label( caminio, mongoose ){
      * @type ObjectId
      */
     camDomain: { type: ObjectId, ref: 'Domain' },
+
+    /**
+     * @property usersAccess
+     * @type [ObjectId]
+     */
+    usersAccess: { type: [ObjectId], ref: 'User', index: true, public: true },
     
     /**
      * @property createdAt
@@ -71,6 +77,12 @@ module.exports = function Label( caminio, mongoose ){
     updatedBy: { type: ObjectId, ref: 'User', public: true }
 
   });
+
+  schema.virtual('private').get(function(){
+    return this.usersAccess && this.usersAccess.length > 0;
+  });
+
+  schema.publicAttributes = [ 'private' ];
 
   return schema;
 
