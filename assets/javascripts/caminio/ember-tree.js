@@ -1,4 +1,4 @@
-( function( Ember ){
+( function(){
   
   Ember.Tree = Ember.Namespace.create();
 
@@ -205,4 +205,4 @@
     return inflection.underscore( model.constructor.toString()).replace('app._','');
   }
 
-})( Ember );
+})();

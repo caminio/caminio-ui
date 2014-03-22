@@ -1,4 +1,4 @@
-( function(){
+$( function(){
 
   'use strict';
 
@@ -22,4 +22,4 @@
   window.App.Enums = {};
   window.App.Enums.availableAppNames = ['admin','contacts','shop'];
 
-}).call();
+});

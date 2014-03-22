@@ -27,7 +27,7 @@
       </thead>
 
       <tbody>
-      {{#each controller}}
+      {{#each domains}}
         <tr {{bind-attr class="isCurrentDomain:active"}}>
           <td {{action goToDomain this on='doubleClick'}}>
             {{name}}

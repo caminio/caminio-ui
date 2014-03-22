@@ -1,4 +1,4 @@
-(function(){
+$(function(){
 
   'use strict';
   
@@ -101,4 +101,4 @@
 
   window.notify = notify;
 
-}).call();
+});

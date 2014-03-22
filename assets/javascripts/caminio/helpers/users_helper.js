@@ -1,4 +1,4 @@
-( function(){
+$( function(){
 
   'use strict';
 
@@ -13,4 +13,4 @@
     return typeof(options.inverse) === 'function' ? options.inverse() : false;
   });
 
-}).call();
+});

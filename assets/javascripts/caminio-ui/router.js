@@ -1,6 +1,6 @@
 ( function(){
 
-  window.App.Router.map( function(){
+  App.Router.map( function(){
 
     // domains
     this.resource( 'domains', { path: '/domains' }, function(){
@@ -16,13 +16,13 @@
   });
 
   // domains
-  window.App.DomainsIndexRoute = Ember.Route.extend({
-    model: function() {
-      return this.store.find('domain');
+  App.DomainsIndexRoute = Ember.Route.extend({
+    setupController: function( controller, model ) {
+      controller.set('domains', this.store.find('domain'));
     }
   });
 
-  window.App.DomainsNewRoute = Ember.Route.extend({
+  App.DomainsNewRoute = Ember.Route.extend({
     model: function() {
       var user = this.store.createRecord('user');
       var model = this.store.createRecord('domain', { user: user });
@@ -30,7 +30,7 @@
     }
   });
 
-  window.App.DomainEditRoute = Ember.Route.extend({
+  App.DomainEditRoute = Ember.Route.extend({
     model: function(prefix, options){
       var model = this.store.find('domain', options.params.id);
       return model;
@@ -38,33 +38,33 @@
   });
 
   // users
-  window.App.UsersIndexRoute = Ember.Route.extend({
-    model: function() {
-      return this.store.find('user');
+  App.UsersIndexRoute = Ember.Route.extend({
+    setupController: function( controller, model ) {
+      controller.set('users', this.store.find('user') );
     }
   });
 
-  window.App.UserEditRoute = Ember.Route.extend({
+  App.UserEditRoute = Ember.Route.extend({
     model: function(prefix, options){
       var model = this.store.find('user', options.params.id);
       return model;
     }
   });
 
-  window.App.UsersNewRoute = Ember.Route.extend({
+  App.UsersNewRoute = Ember.Route.extend({
     model: function() {
       var model = this.store.createRecord('user');
       return model;
     }
   });
 
-  window.App.IndexRoute = Ember.Route.extend({
+  App.IndexRoute = Ember.Route.extend({
     redirect: function() {
-      this.transitionTo( 'users.index' );
+      this.transitionTo( 'users' );
     }
   });
 
-  window.App.ApplicationRoute = Ember.Route.extend({
+  App.ApplicationRoute = Ember.Route.extend({
     actions: {
       goToUsers: function () {
         this.transitionTo( 'users' );
@@ -96,4 +96,4 @@
     }
   });
 
-}).call();
+})();

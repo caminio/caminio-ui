@@ -28,6 +28,31 @@ module.exports = function(grunt) {
       }
     },
 
+    concat: {
+      options: {
+        separator: ';'
+      },
+      dist: {
+        src: [
+            'assets/javascripts/3rdparty/jquery-1.10.2.js',
+            'assets/javascripts/3rdparty/handlebars-1.1.2.js',
+            'assets/javascripts/3rdparty/ember.prod.min.js',
+            'assets/javascripts/3rdparty/ember-data.prod.min.js',
+            'assets/javascripts/3rdparty/inflection.min.js',
+            'assets/javascripts/3rdparty/select2.min.js',
+            'assets/javascripts/3rdparty/jquery.nicescroll.min.js',
+            'assets/javascripts/3rdparty/ember-i18n.js',
+            'assets/javascripts/3rdparty/jquery-ui-1.10.4.custom.min.js',
+            'assets/javascripts/3rdparty/bootstrap.min.js',
+            'assets/javascripts/3rdparty/bootstrapbox.min.js',
+            'assets/javascripts/3rdparty/moment.min.js',
+            'assets/javascripts/3rdparty/jquery.sparkline.min.js',
+            'assets/javascripts/3rdparty/pace.min.js'
+          ],
+        dest: 'build/javascripts/3rdparties.min.js'
+      },
+    },
+
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n' +
@@ -39,13 +64,23 @@ module.exports = function(grunt) {
       build: {
         files: {
           'build/javascripts/caminio.min.js': [
-            'assets/javascripts/caminio/**/*.js'
+            'assets/javascripts/caminio/locales/*.js',
+            'assets/javascripts/caminio/util.js',
+            'assets/javascripts/caminio/ember-tree.js',
+            'assets/javascripts/caminio/helpers/date_helper.js',
+            'assets/javascripts/caminio/helpers/users_helper.js',
+            'assets/javascripts/caminio/helpers/operators_helper.js',
+            'assets/javascripts/caminio/app-core.js',
+            'assets/javascripts/caminio/notifications.js'
           ],
           'build/javascripts/caminio-ui.min.js': [
-            'assets/javascripts/caminio-ui/**/*.js'
-          ],
-          'build/javascripts/3rdparties.min.js': [
-            'assets/javascripts/3rdparty/**/*.js'
+            'assets/javascripts/caminio-ui/locales/*.js',
+            'assets/javascripts/caminio-ui/app.js',
+            'assets/javascripts/caminio-ui/router.js',
+            'assets/javascripts/caminio-ui/models/user.js',
+            'assets/javascripts/caminio-ui/models/domain.js',
+            'assets/javascripts/caminio-ui/controllers/user_controller.js',
+            'assets/javascripts/caminio-ui/controllers/domain_controller.js'
           ],
           'build/javascripts/caminio-admin.min.js': [
             'assets/javascripts/caminio-admin/**/*.js'
@@ -91,6 +126,7 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -105,7 +141,8 @@ module.exports = function(grunt) {
     'cssmin',
     'copy:img',
     'copy:fonts',
-    'uglify'
+    'uglify',
+    'concat:dist'
   ]);
 
   grunt.registerTask('startServer', function(){

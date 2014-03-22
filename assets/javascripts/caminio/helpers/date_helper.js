@@ -1,4 +1,4 @@
-( function(){
+$( function(){
 
   'use strict';
 
@@ -14,4 +14,4 @@
     return new Handlebars.SafeString("<time datetime=" + date +">" + formattedDate + "</time>");
   });
 
-}).call();
+});

@@ -71,4 +71,4 @@
   for( var i in translations )
     Em.I18n.translations[i] = translations[i];
 
-}).call();
+})();

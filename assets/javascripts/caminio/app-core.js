@@ -203,4 +203,4 @@
     }.property('bgColor')
   });
 
-}).call();
+})();

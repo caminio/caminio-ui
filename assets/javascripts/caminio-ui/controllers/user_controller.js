@@ -1,4 +1,4 @@
-(function(){
+$(function(){
 
   'use strict';
 
@@ -51,4 +51,4 @@
   App.UserEditController = Ember.ObjectController.extend( userControllerCommon );
   App.UsersNewController = Ember.ObjectController.extend( userControllerCommon );
 
-}).call();
+});

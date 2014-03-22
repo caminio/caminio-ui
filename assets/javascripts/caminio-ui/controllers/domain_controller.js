@@ -1,4 +1,4 @@
-(function(){
+$(function(){
 
   'use strict';
 
@@ -66,4 +66,4 @@
   App.DomainsNewController = Ember.ObjectController.extend( domainControllerCommon );
   App.DomainsController = Ember.ObjectController.extend( domainControllerCommon );
 
-}).call();
+});
