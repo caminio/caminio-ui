@@ -73,10 +73,8 @@
        * the actual item should be exposed
        */
       function loadAndOpenParentView( parents, view ){
-        console.log('loading', parents, view);
         parents.forEach( function( parent, index ){
           var $elem = view.$('[data-id='+parent.id+']');
-          console.log('elem', $elem);
           if( $elem.length < 1 )
             return;
           var parentView = Ember.View.views[ $elem.closest('li').attr('id') ];

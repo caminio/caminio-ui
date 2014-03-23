@@ -1,4 +1,5 @@
-$(function(){
+(function(){
+
   Handlebars.registerHelper( 'equal', function(lvalue, rvalue, options ){
     if( arguments.length < 3 )
       throw new Error("Handlebars Helper equal needs 2 parameters");
@@ -7,4 +8,9 @@ $(function(){
     if(  typeof(options.inverse) === 'function' )
       return options.inverse(this);
   });
-});
+
+  Ember.Handlebars.helper('dynamicPartial', function(name, options) {
+    return Ember.Handlebars.helpers.partial.apply(this, arguments);
+  });
+
+})();

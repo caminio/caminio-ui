@@ -58,6 +58,7 @@
     'domain.allowed_apps': 'Allowed applications',
     'domain.default_lang': 'Default language for users',
     'domain.available_langs': 'Available languages',
+    'domain.thumbs': 'Thumbnail sizes',
 
     'domain.switch': 'Switch to this domain',
 
