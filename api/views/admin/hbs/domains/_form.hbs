@@ -61,6 +61,19 @@
 <h4 class="sub-header">{{t domain.owner}}</h4>
 
 <div class="form-group">
+  <label class="control-label required">{{t user.firstname}}</label>
+  <div>
+    {{input valueBinding='domain.user.firstname' class='form-control'}}
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label required">{{t user.lastname}}</label>
+  <div>
+    {{input valueBinding='domain.user.lastname' class='form-control'}}
+  </div>
+</div>
+
+<div class="form-group">
   <label class="control-label required">{{t user.email}}</label>
   <div {{bind-attr class="emailError:field-with-error"}}>
     {{input valueBinding='domain.user.email' class='form-control'}}
