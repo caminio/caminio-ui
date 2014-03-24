@@ -1,6 +1,20 @@
 .dashboard-box{
   border: 1px solid #bbb;
   background: #fafafa;
+  margin: 20px;
+  float: left;
+  position: relative;
+}
+
+.wide-box{
+  width: 100%;
+}
+
+.wide-box .dashboard-box{
+  height: 150px;
+  min-width: 150px;
+  background-color: #4DA5EF;
+  color: #fff;
 }
 
 .dashboard-box-body{
@@ -15,15 +29,22 @@
   font-size: 1.5rem;
 }
 
+.dashboard-box .master-img{
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
 .dashboard-box .master-title{
-  color: #ccc;
-  margin: 20px 0 0 20px;
+  margin: 10px 0 0;
+  font-size: 1.2rem;
 }
 
 .dashboard-box .sub-master-title{
-  font-size: 1.2rem;
-  color: #999;
-  margin-left: 20px;
+  font-size: 1rem;
   margin-bottom: 20px;
 }
 
@@ -33,7 +54,6 @@
   text-align: center;
   font-weight: 600;
   margin-top: 15px;
-  color: #aaa;
 }
 
 .dashboard-box .exp-title{
@@ -41,6 +61,12 @@
   text-align: center;
   line-height: 1.2rem;
   margin: 5px 0 15px;
-  color: #777;
   text-transform: uppercase;
+}
+
+.dashboard-box h4{
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #999;
+  margin: 0 0 0.5rem 0;
 }

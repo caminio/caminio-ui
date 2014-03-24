@@ -1,7 +1,17 @@
 body, html{
   height: 100%;
   font-size: 12px;
-  background: #eee;
+  /*background-color: #f60;*/
+  background-color: #4DA5EF;
+}
+
+.logo{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
 }
 
 .login-box-wrap{
@@ -54,11 +64,11 @@ form.auth{
 }
 
 .meta-wrap a{
-  color: #aaa;
+  color: rgba(255,255,255,0.7);
 }
 
 .meta-wrap a:hover{
-  color: #777;
+  color: #fff;
 }
 
 .domain-container,

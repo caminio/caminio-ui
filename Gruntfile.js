@@ -47,6 +47,7 @@ module.exports = function(grunt) {
             'assets/javascripts/3rdparty/bootstrapbox.min.js',
             'assets/javascripts/3rdparty/moment.min.js',
             'assets/javascripts/3rdparty/jquery.sparkline.min.js',
+            'assets/javascripts/3rdparty/jquery.block-ui.js',
             'assets/javascripts/3rdparty/pace.min.js'
           ],
         dest: 'build/javascripts/3rdparties.min.js'

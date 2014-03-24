@@ -1,10 +1,24 @@
-<div class="row">
-  <div class="dashboard-box col-md-4 remove-margin">
-    <div class="master-title"><img src="/images/brand_90x18.png" /></div>
-    <div class="sub-master-title">Dashboard</div>
+<div class="wide-box clearfix" id="dashboard-info-container">
+
+  <div class="dashboard-box default-padding">
+    <img id="domain-img" class="master-img" />
   </div>
-  <div class="dashboard-box col-md-2 remove-margin">
-    <div class="big-title">3</div>
+
+  <div class="dashboard-box default-padding" id="total-users-box">
+    <div class="big-title"></div>
     <div class="exp-title" data-translate="users_in_total"></div>
   </div>
+
 </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#domain-img').attr('src', '/caminio/domains/'+currentDomain._id+'/preview/logo.png' );
+    $('#domain-title').text( currentDomain.name );
+    $('#total-users-box').block({ message: null});
+    $.getJSON( '/caminio/users' )
+      .then( function( response ){
+        $('#total-users-box .big-title').text( response.users.length );
+        $('#total-users-box').unblock();
+      });
+  });
+</script>

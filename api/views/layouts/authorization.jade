@@ -34,7 +34,9 @@ html(lang=i18n.locale())
 
     block head
 
-  body.side-panel-active
+  body
+
+    img#logo.logo(src='/images/logo_200x198.png')
 
     block content
 
@@ -42,10 +44,20 @@ html(lang=i18n.locale())
 
     script(type='text/javascript').
       jQuery(function($){
-        $('.login-box-wrap').fadeIn(500, function(){
+    
+        $('.login-box-wrap').delay(500).fadeIn(500, function(){
           if( $(this).find('input[type=text]:first').length )
             $(this).find('input[type=text]:first').focus();
           else
             $(this).find('input[type=password]:first').focus();
         });
+
+        $('#logo').delay(600).animate({
+          marginTop: 0,
+          marginBottom: 0,
+          top: $(window).height()/2-250,
+          width: 100,
+          height: 100
+        }, 1000);
+
       });

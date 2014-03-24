@@ -28,7 +28,6 @@ html(lang=i18n.locale())
       link( rel='stylesheet', href='/stylesheets/caminio-ui/top_panel.css' )
       link( rel='stylesheet', href='/stylesheets/caminio-ui/loader.css' )
       link( rel='stylesheet', href='/stylesheets/caminio-ui/notifications.css' )
-      link( rel='stylesheet', href='/stylesheets/caminio-ui/dashboard.css' )
       link( rel='stylesheet', href='/stylesheets/caminio-ui/main.css' )
   
     script(type='text/javascript').
@@ -61,6 +60,7 @@ html(lang=i18n.locale())
       script(type='text/javascript', src='/javascripts/3rdparty/bootstrapbox.min.js')
       script(type='text/javascript', src='/javascripts/3rdparty/moment.min.js')
       script(type='text/javascript', src='/javascripts/3rdparty/jquery.sparkline.min.js')
+      script(type='text/javascript', src='/javascripts/3rdparty/jquery.block-ui.js')
       script(type='text/javascript', src='/javascripts/caminio/util.js')
       script(type='text/javascript', src='/javascripts/caminio/helpers/date_helper.js')
       script(type='text/javascript', src='/javascripts/caminio/helpers/users_helper.js')
@@ -74,8 +74,9 @@ html(lang=i18n.locale())
 
   body.side-panel-active
     include ../common/top_panel
-    include ../common/side_panel
 
     block content
+      
+    include ../common/side_panel
 
     block foot

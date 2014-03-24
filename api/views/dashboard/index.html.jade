@@ -4,13 +4,7 @@ append head
   if env === 'production'
     link( rel='stylesheet', href='/stylesheets/caminio-ui.min.css' )
   else
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/bootstrap-overrides.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/common.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/form.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/table.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/side_panel.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/top_panel.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-ui/main.css' )
+    link( rel='stylesheet', href='/stylesheets/caminio-ui/dashboard.css' )
 
 append foot
   script(type='text/javascript', src='/javascripts/caminio/locales/#{i18n.locale()}.js')
