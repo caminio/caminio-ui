@@ -15,6 +15,8 @@
       if( arguments.length < 2 )
         return this.get('preferences.availableLangs');
       var pref = this.get('preferences');
+      if( !pref )
+        return;
       pref.availableLangs = value.split(',').replace(/\ /g,'');
       this.set('preferences', pref);
     }.property('preferences'),
@@ -22,6 +24,8 @@
       if( arguments.length < 2 )
         return this.get('preferences.thumbs');
       var pref = this.get('preferences');
+      if( !pref )
+        return;
       pref.thumbs = value.split(',').replace(/\ /g,'');
       this.set('preferences', pref);
     }.property('preferences'),

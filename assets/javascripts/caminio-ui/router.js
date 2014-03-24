@@ -32,9 +32,10 @@
       create: function( model ) {
         var self = this;
         model.save().then(function(){
-          self.transitionToRoute( 'domains' );
-          notify('info', Ember.I18n.t('domain.created', {name: self.get('domain.name')}) );
+          self.transitionTo( 'domains' );
+          notify('info', Ember.I18n.t('domain.created', {name: model.get('name')}) );
         }).catch(function(err){
+          console.error(err);
           var errors = err.responseJSON.errors;
           for( var i in errors )
             errors[i] = Ember.I18n.t('errors.'+errors[i]);
@@ -58,7 +59,7 @@
         var model = this.get('controller.domain.content');
         model.save().then(function(){
           self.transitionTo( 'domains' );
-          notify('info', Ember.I18n.t('domain.saved', {name: self.get('domain.name')}) );
+          notify('info', Ember.I18n.t('domain.saved', {name: model.get('name')}) );
         }).catch(function(err){
           notify.processError( err.responseJSON );
         });
@@ -96,7 +97,6 @@
   App.ApplicationController = Ember.Controller.extend({
 
     isSuperUser: function(){
-      console.log('here', currentUser.superuser);
       return currentUser.superuser;
     }.property()
 
