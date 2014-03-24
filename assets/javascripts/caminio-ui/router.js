@@ -23,17 +23,46 @@
   });
 
   App.DomainsNewRoute = Ember.Route.extend({
-    model: function() {
-      var user = this.store.createRecord('user');
-      var model = this.store.createRecord('domain', { user: user });
-      return model;
+    setupController: function( controller, model ){
+      var user = this.store.createRecord('user', { admin: true });
+      controller.set('user', user);
+      controller.set('domain', this.store.createRecord('domain', { user: user }));
+    },
+    actions: {
+      create: function( model ) {
+        var self = this;
+        model.save().then(function(){
+          self.transitionToRoute( 'domains' );
+          notify('info', Ember.I18n.t('domain.created', {name: self.get('domain.name')}) );
+        }).catch(function(err){
+          var errors = err.responseJSON.errors;
+          for( var i in errors )
+            errors[i] = Ember.I18n.t('errors.'+errors[i]);
+          model.set('errors', errors );
+          notify.processError( err.responseJSON );
+        });
+      }
     }
   });
 
   App.DomainEditRoute = Ember.Route.extend({
-    model: function(prefix, options){
-      var model = this.store.find('domain', options.params.id);
-      return model;
+    model: function( prefix, options ){
+      return this.store.find('domain', options.params.id);
+    },
+    setupController: function( controller, model ){
+      controller.set('domain', this.store.find('domain', model.id));
+    },
+    actions: {
+      save: function() {
+        var self = this;
+        var model = this.get('controller.domain.content');
+        model.save().then(function(){
+          self.transitionTo( 'domains' );
+          notify('info', Ember.I18n.t('domain.saved', {name: self.get('domain.name')}) );
+        }).catch(function(err){
+          notify.processError( err.responseJSON );
+        });
+      },
     }
   });
 
@@ -62,6 +91,15 @@
     redirect: function() {
       this.transitionTo( 'users' );
     }
+  });
+
+  App.ApplicationController = Ember.Controller.extend({
+
+    isSuperUser: function(){
+      console.log('here', currentUser.superuser);
+      return currentUser.superuser;
+    }.property()
+
   });
 
   App.ApplicationRoute = Ember.Route.extend({

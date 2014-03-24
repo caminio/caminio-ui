@@ -50,6 +50,7 @@
 
     'domain.name': 'Domainname',
     'domain.owner': 'Owner',
+    'domain.fqdn': 'FQDN',
     'domain.new': 'New domain',
     'domain.edit': 'Edit domain',
     'domain.save': 'Save domain',

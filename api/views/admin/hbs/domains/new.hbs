@@ -1,26 +1,28 @@
-<section class="main-content with-subnav box default-margin">
+<section class="main-wrapper">
 
-  <form class="form-horizontal caminio">
-
-    <header class="main-header">
-      <div class="form-actions">
-        <a href="#" {{action goToDomains}} class="btn icon-text transparent">
+  <header>
+    <div class="box title-box website">
+      <div class="main-ctrl">
+        <button {{action goToDomains}} class="btn icon-text transparent">
           <i class="fa fa-arrow-left"></i>
-          {{t back}}
-        </a>
-        <button class="btn success" {{action create this}}>{{t domain.create}}</button>
+          {{t 'back'}}
+        </button>
+        <button class="btn icon-text" {{action 'create' domain}}>
+          <i class="fa fa-plus-square"></i>
+          {{t domain.create}}
+        </button>
       </div>
-
-      <h1>{{t domain.new}}</h1>
-
-    </header>
-
-    <div>
-
-      {{partial 'domain/form'}}
+      <h1>{{domain.name}}</h1>
 
     </div>
 
+  </header>
+
+  <form class="caminio default-padding row">
+
+    <div class="col-md-6">
+      {{partial 'domain/form'}}
+    </div>
   </form>
 
 </section>

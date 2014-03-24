@@ -1,9 +1,10 @@
-$( function(){
+(function(){
 
   'use strict';
 
   window.App.Domain = DS.Model.extend({
     name: DS.attr('string'),
+    fqdn: DS.attr('string'),
     description: DS.attr('string'),
     preferences: DS.attr('object'),
     custom: DS.attr('object'),
@@ -29,4 +30,4 @@ $( function(){
   window.App.Enums = {};
   window.App.Enums.availableAppNames = ['admin','contacts','shop'];
 
-});
+})();

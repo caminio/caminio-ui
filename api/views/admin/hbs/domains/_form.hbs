@@ -2,22 +2,29 @@
 <div class="form-group">
   <label class="control-label required">{{t domain.name}}</label>
   <div {{bind-attr class="nameError:field-with-error"}}>
-    {{input valueBinding='model.name' class='form-control' placeholderTranslation='domain.name'}}
+    {{input valueBinding='domain.name' class='form-control' placeholderTranslation='domain.name'}}
     {{#if nameError}}<span class="help-block">{{errors.name}}</span>{{/if}}
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label required">Full Qualified Domain Name</label>
+  <div>
+    {{input valueBinding='domain.fqdn' class='form-control'}}
   </div>
 </div>
 
 <div class="form-group">
   <label class="control-label">{{t domain.description}}</label>
   <div>
-    {{textarea valueBinding='model.description' class='form-control'}}
+    {{textarea valueBinding='domain.description' class='form-control'}}
   </div>
 </div>
 
 <div class="form-group">
   <label class="control-label">{{t domain.default_lang}}</label>
   <div>
-    {{input valueBinding='model.lang' class='form-control'}}
+    {{input valueBinding='domain.lang' class='form-control'}}
   </div>
 </div>
 
@@ -25,7 +32,7 @@
   <label class="control-label">{{t domain.allowed_apps}}</label>
   <div>
   {{view App.Select2TagView
-        valueBinding='model.allowedAppNames'
+        valueBinding='domain.allowedAppNames'
         tagsBinding='App.Enums.availableAppNames'}}
   </div>
 </div>
@@ -33,14 +40,14 @@
 <div class="form-group">
   <label class="control-label">{{t domain.available_langs}}</label>
   <div>
-    {{input valueBinding='model.availableLangs' class='form-control'}}
+    {{input valueBinding='domain.availableLangs' class='form-control'}}
   </div>
 </div>
 
 <div class="form-group">
   <label class="control-label">{{t domain.thumbs}}</label>
   <div>
-    {{input valueBinding='model.thumbs' class='form-control'}}
+    {{input valueBinding='domain.thumbs' class='form-control'}}
   </div>
 </div>
 
@@ -56,7 +63,7 @@
 <div class="form-group">
   <label class="control-label required">{{t user.email}}</label>
   <div {{bind-attr class="emailError:field-with-error"}}>
-    {{input valueBinding='model.user.email' class='form-control'}}
+    {{input valueBinding='domain.user.email' class='form-control'}}
     {{#if emailError}}<span class="help-block">{{errors.email}}</span>{{/if}}
   </div>
 </div>
@@ -64,14 +71,14 @@
 <div class="form-group">
   <label class="control-label">{{t user.password}}</label>
   <div>
-    {{input valueBinding='model.user.password' class='form-control'}}
+    {{input valueBinding='domain.user.password' class='form-control'}}
   </div>
 </div>
 
 <div class="form-group">
   <label class="control-label">{{t user.password_confirmation}}</label>
   <div>
-    {{input valueBinding='model.user.passwordConfirmation' class='form-control'}}
+    {{input valueBinding='domain.user.passwordConfirmation' class='form-control'}}
   </div>
 </div>
 
