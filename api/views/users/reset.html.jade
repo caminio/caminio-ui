@@ -13,14 +13,18 @@ block content
             .message.error=message.error
         else
           .message=t('auth.enter_new_password')
+      
+        .row-wrap
+          .row
 
-        .password-container
-          input(type='password', placeholder=t('auth.password'), name='password' )
-        .password-container
-          input(type='password', placeholder=t('auth.confirm_password'), name='password_confirm' )
+            .password-container.col-md-5
+              input(type='password', placeholder=t('auth.password'), name='password' )
+            .password-container.col-md-5
+              input(type='password', placeholder=t('auth.confirm_password'), name='password_confirm' )
+            .col-md-2
+              button.btn(type='submit', title=t('login'))
+                i.fa.fa-arrow-right
 
-        button.btn(type='submit', title=t('login'))
-          i.fa.fa-arrow-right
         input(type='hidden', name='_csrf', value=csrf)
-        section.meta-wrap
+        section.meta-wrap.row
           a(href='/caminio/login')=t('back_to_login')
