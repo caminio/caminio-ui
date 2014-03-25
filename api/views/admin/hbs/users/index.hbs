@@ -28,25 +28,27 @@
 
       <tbody>
       {{#each users}}
-        <tr>
-          <td {{action goToUser this on='doubleClick'}}>
-            {{fullname}}
-            {{#isAdmin this}}
-              <span class="lbl danger"><i class="fa fa-gears"></i></span>
-            {{/isAdmin}}
-          </td>
-          <td {{action goToUser this on='doubleClick'}}>{{email}}</td>
-          <td class="actions align-right">
-            <div class="btn-group">
-              <a class="btn small" {{action goToUser this}} {{translateAttr title='edit'}}>
-                <i class="fa fa-pencil"></i>
-              </a>
-              <a class="btn small" {{action remove this}} {{translateAttr title='remove'}}>
-                <i class="fa fa-trash-o"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
+        {{#if inCurrentDomain}}
+          <tr>
+            <td {{action goToUser this on='doubleClick'}}>
+              {{fullname}}
+              {{#isAdmin this}}
+                <span class="lbl danger"><i class="fa fa-gears"></i></span>
+              {{/isAdmin}}
+            </td>
+            <td {{action goToUser this on='doubleClick'}}>{{email}}</td>
+            <td class="actions align-right">
+              <div class="btn-group">
+                <a class="btn small" {{action goToUser this}} {{translateAttr title='edit'}}>
+                  <i class="fa fa-pencil"></i>
+                </a>
+                <a class="btn small" {{action remove this}} {{translateAttr title='remove'}}>
+                  <i class="fa fa-trash-o"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+        {{/if}}
       {{/each}}
       </tbody>
     </table>

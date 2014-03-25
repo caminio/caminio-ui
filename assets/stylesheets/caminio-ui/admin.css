@@ -11,3 +11,9 @@
 .check-box-lbl .lbl.disabled{
   opacity: 0.5;
 }
+
+textarea.settings{
+  height: 20em;
+  font-family: monospace;
+  font-size: 14px;
+}

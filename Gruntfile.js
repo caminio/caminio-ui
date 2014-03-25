@@ -39,6 +39,7 @@ module.exports = function(grunt) {
             'assets/javascripts/3rdparty/ember.prod.min.js',
             'assets/javascripts/3rdparty/ember-data.prod.min.js',
             'assets/javascripts/3rdparty/inflection.min.js',
+            'assets/javascripts/3rdparty/filesize.min.js',
             'assets/javascripts/3rdparty/select2.min.js',
             'assets/javascripts/3rdparty/jquery.nicescroll.min.js',
             'assets/javascripts/3rdparty/ember-i18n.js',
@@ -81,6 +82,7 @@ module.exports = function(grunt) {
             'assets/javascripts/caminio-ui/models/user.js',
             'assets/javascripts/caminio-ui/models/domain.js',
             'assets/javascripts/caminio-ui/controllers/user_controller.js',
+            'assets/javascripts/caminio-ui/controllers/domain_settings_controller.js',
             'assets/javascripts/caminio-ui/controllers/domain_controller.js'
           ],
           'build/javascripts/caminio-admin.min.js': [

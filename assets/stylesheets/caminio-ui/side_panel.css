@@ -136,6 +136,28 @@ body.side-panel-active #side-panel{
 }
 .sideinfo-box .graph{
   position: absolute;
-  top: 5px;
+  top: 10px;
   right: 10px;
+}
+.sideinfo-box.w-progress h4{
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.sideinfo-box.w-progress .title{
+  float: none;
+  width: auto;
+  padding: 3px;
+}
+.sideinfo-box .progress{
+  display: block;
+  height: 11px;
+  padding: 2px 0;
+  border: 1px solid #bbb;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.sideinfo-box .progress .progress-bar{
+  height: 5px;
 }

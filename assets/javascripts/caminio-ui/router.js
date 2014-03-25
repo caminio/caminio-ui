@@ -8,6 +8,8 @@
       this.resource('domain.edit', { 'path' : '/:id' });
     });
 
+    this.resource('settings');
+
     this.resource( 'users', { path: '/users' }, function(){
       this.route( 'new' );
       this.resource('user.edit', { 'path' : '/:id' });
@@ -19,6 +21,19 @@
   App.DomainsIndexRoute = Ember.Route.extend({
     setupController: function( controller, model ) {
       controller.set('domains', this.store.find('domain'));
+    }
+  });
+
+  App.SettingsRoute = Ember.Route.extend({
+    setupController: function(controller, model){
+      if( this.store.getById('domain', currentDomain._id ) ){
+        controller.set('domain', this.store.getById('domain', currentDomain._id));
+      } else
+        this.store.find('domain', { _id: currentDomain._id }).then( function( domain ){
+          controller.set('domain', domain.content[0]);
+          $('#domain-settings').val( JSON.stringify( controller.get('domain.preferences'), null, 2 ) );
+        });
+        
     }
   });
 

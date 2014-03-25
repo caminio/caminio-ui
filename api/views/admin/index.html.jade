@@ -17,6 +17,7 @@ append foot
     script(type='text/javascript', src='/javascripts/caminio-ui/models/domain.js')
     script(type='text/javascript', src='/javascripts/caminio-ui/router.js')
     script(type='text/javascript', src='/javascripts/caminio-ui/controllers/user_controller.js')
+    script(type='text/javascript', src='/javascripts/caminio-ui/controllers/domain_settings_controller.js')
     script(type='text/javascript', src='/javascripts/caminio-ui/controllers/domain_controller.js')
            
   script(type="text/x-handlebars")
@@ -46,6 +47,10 @@ append foot
 
   script(type="text/x-handlebars", data-template-name="domain/form")
     include hbs/domains/_form.hbs
+
+
+  script(type="text/x-handlebars", data-template-name="settings")
+    include hbs/settings/domain_settings.hbs
 
 block content
 

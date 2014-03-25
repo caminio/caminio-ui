@@ -32,6 +32,8 @@
     'draft': 'draft',
 
     'user_activity': 'User activity',
+    'disk_quota': 'Disk Quota',
+    'users_quota': 'Users',
     'latest_activities': 'Latest activities',
     'users_in_total': 'Users in total',
     'please_select': 'Please select...',
@@ -40,6 +42,7 @@
 
     'last_modified': 'Modified',
     'created': 'Created',
+    'settings': 'Settings',
 
     'unsaved_data_continue': 'The opened form contains unsaved data which would be lost. Really continue?',
 

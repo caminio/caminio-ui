@@ -12,6 +12,10 @@
     password: DS.attr(),
     passwordConfirmation: DS.attr(),
     superuser: DS.attr('boolean'),
+    camDomains: DS.attr('array'),
+    inCurrentDomain: function(){
+      return this.get('camDomains').indexOf(currentDomain._id) >= 0;
+    }.property('camDomains'),
     fullname: function(){
       var name = '';
       if( this.get('firstname') && this.get('firstname').length > 0 )

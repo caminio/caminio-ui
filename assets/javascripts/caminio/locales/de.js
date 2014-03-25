@@ -31,10 +31,14 @@
     'published': 'veröffentlicht',
     'draft': 'Entwurf',
 
-    'user_activity': 'BenutzerInnen Aktivität',
+    'user_activity': 'Aktivität',
+    'disk_quota': 'Festplatte',
+    'users_quota': 'Benutzerkonten',
     'latest_activities': 'Letzte Aktivitäten',
     'users_in_total': 'BenutzerInnen gesamt',
     'please_select': 'Bitte auswählen...',
+
+    'settings': 'Einstellungen',
 
     'required_fields': 'Erfordert Eingabe',
 
