@@ -1,6 +1,6 @@
-var _     = require('lodash');
-var join  = require('path').join;
-var fs    = require('fs');
+var _       = require('lodash');
+var join    = require('path').join;
+var fs      = require('fs');
 
 // global middleware actions to be run
 // in every request
@@ -90,5 +90,5 @@ module.exports = function( caminio ){
 
     next();
   }
-
+  
 };

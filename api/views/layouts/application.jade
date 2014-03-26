@@ -33,6 +33,7 @@ html(lang=i18n.locale())
     script(type='text/javascript').
       window.caminioHostname = '!{caminioHostname}';
       window.siteName = '!{site.name}';
+      window.domainSettings = !{JSON.stringify(domainSettings)};
       window.siteConfig = !{JSON.stringify(site)};
       window.currentLang = '!{currentLang}';
       window.currentUser = !{JSON.stringify(currentUser)};

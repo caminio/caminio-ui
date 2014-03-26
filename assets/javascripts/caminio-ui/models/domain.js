@@ -9,6 +9,9 @@
     preferences: DS.attr('object'),
     custom: DS.attr('object'),
     lang: DS.attr(),
+    diskQuotaM: DS.attr('number'),
+    diskuploadLimitM: DS.attr('number'),
+    usersQuota: DS.attr('number'),
     allowedAppNames: DS.attr('array'),
     user: DS.belongsTo('user', { embedded: 'always' }),
     availableLangs: function( key, value ){

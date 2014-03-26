@@ -29,6 +29,28 @@
 </div>
 
 <div class="form-group">
+  <label class="control-label">{{t domain.disk_quota_m}}</label>
+  <div>
+    {{input valueBinding='domain.diskQuotaM' class='form-control'}}
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label">{{t domain.user_quota}}</label>
+  <div>
+    {{input valueBinding='domain.usersQuota' class='form-control'}}
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label">{{t domain.upload_limit_m}}</label>
+  <div>
+    {{input valueBinding='domain.diskUploadLimitM' class='form-control'}}
+  </div>
+</div>
+
+
+<div class="form-group">
   <label class="control-label">{{t domain.allowed_apps}}</label>
   <div>
   {{view App.Select2TagView

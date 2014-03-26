@@ -60,6 +60,9 @@
     'domain.default_lang': 'Default language for users',
     'domain.available_langs': 'Available languages',
     'domain.thumbs': 'Thumbnail sizes',
+    'domain.disk_quota_m': 'Disk quota (MB)',
+    'domain.upload_limit_m': 'Upload size limit (MB)',
+    'domain.user_quota': 'Users quota',
 
     'domain.switch': 'Switch to this domain',
 

@@ -55,6 +55,10 @@
     'domain.available_langs': 'Verfügbare Sprachen',
     'domain.thumbs': 'Thumbnailgrößen',
 
+    'domain.disk_quota_m': 'Festplatten Quota (MB)',
+    'domain.upload_limit_m': 'Upload limit (MB)',
+    'domain.user_quota': 'Benutzerkonten Quota',
+
     'domain.switch': 'Auf diese Domäne wechseln',
 
     'domain.description': 'Beschreibung',
