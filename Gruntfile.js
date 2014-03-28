@@ -44,6 +44,7 @@ module.exports = function(grunt) {
             'assets/javascripts/3rdparty/jquery.nicescroll.min.js',
             'assets/javascripts/3rdparty/ember-i18n.js',
             'assets/javascripts/3rdparty/jquery-ui-1.10.4.custom.min.js',
+            'assets/javascripts/3rdparty/jquery-ui-datepicker.de.js',
             'assets/javascripts/3rdparty/bootstrap.min.js',
             'assets/javascripts/3rdparty/bootstrapbox.min.js',
             'assets/javascripts/3rdparty/moment.min.js',
