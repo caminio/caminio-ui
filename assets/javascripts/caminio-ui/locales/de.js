@@ -40,6 +40,9 @@
 
     'user.security': 'Sicherheit',
 
+    'user.api': 'API',
+    'user.remote_clients': 'Fernzugriffe',
+
     'invalid_email': 'Die Emailadresse {{value}} ist ungültig',
 
     'domain.name': 'Name',
@@ -64,8 +67,12 @@
     'domain.description': 'Beschreibung',
     'domain.create': 'Domäne erstellen',
 
-    'errors.invalid_domain_name': 'Ungültiger Domänenname'
+    'errors.invalid_domain_name': 'Ungültiger Domänenname',
 
+    'client.create': 'Neuen API Key erstellen',
+    'client.saved': 'API Key {{name}} wurde gespeichert',
+    'client.really_delete': 'Soll {{name}} wirklich gelöscht werden? Das könnte negative Auswirkungen auf andere Seiten haben',
+    'client.removed': '{{name}} wurde gelöscht'
   };
 
   for( var i in translations )

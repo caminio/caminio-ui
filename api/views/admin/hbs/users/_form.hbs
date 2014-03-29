@@ -1,0 +1,101 @@
+
+  <div class="form-group">
+    <label class="col-md-2 control-label">{{t user.name}}</label>
+    <div class="col-md-2">
+      {{input valueBinding='model.firstname' class='form-control' placeholderTranslation='user.firstname'}}
+    </div>
+    <div class="col-md-2">
+      {{input valueBinding='model.lastname' class='form-control' placeholderTranslation='user.lastname'}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-2 control-label required">{{t user.email}}</label>
+    <div {{bind-attr class=":col-md-4 emailError:field-with-error"}}>
+      {{input valueBinding='model.email' class='form-control'}}
+      {{#if emailError}}<span class="help-block">{{errors.email}}</span>{{/if}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-2 control-label">{{t user.phone}}</label>
+    <div class="col-md-4">
+      {{input valueBinding='model.phone' class='form-control'}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="required-exp col-md-offset-2 col-md-4">
+      <span style="color: #d00">*</span>{{t required_fields}}
+    </div>
+  </div>
+
+  <h4 class="sub-header">{{t user.security}}</h4>
+
+  <div class="form-group">
+    <label class="col-md-2 control-label">{{t user.password}}</label>
+    <div class="col-md-4">
+      {{input valueBinding='model.password' class='form-control'}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-2 control-label">{{t user.password_confirmation}}</label>
+    <div class="col-md-4">
+      {{input valueBinding='model.passwordConfirmation' class='form-control'}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-2 control-label">{{t user.admin}}</label>
+    <div class="col-md-1 check-box-lbl">
+      <span {{action toggleAdmin}}{{bind-attr class=":lbl :danger isAdminToggled::disabled"}}><i class="fa fa-gears"></i></span>
+    </div>
+    <label class="col-md-1 control-label">API</label>
+    <div class="col-md-2 check-box-lbl">
+      <span {{action toggleAPI}}{{bind-attr class=":lbl :warning model.apiEnabled::disabled"}}><i class="fa fa-code"></i></span>
+    </div>
+  </div>
+
+  <h4 class="sub-header">{{t user.lang}}</h4>
+
+  <div class="form-group">
+    <label class="col-md-2 control-label required">{{t user.lang}}</label>
+    <div {{bind-attr class=":col-md-4 emailError:field-with-error"}}>
+      {{input valueBinding='model.lang' class='form-control'}}
+      {{#if langError}}<span class="help-block">{{errors.lang}}</span>{{/if}}
+    </div>
+  </div>
+
+  <h4 class="sub-header">{{t user.photo}}</h4>
+
+  <h4 class="sub-header">{{t user.danger}}</h4>
+
+  {{#if model.apiEnabled}}
+    <h4 class="sub-header">{{t user.api}}</h4>
+
+    <div class="form-group">
+      <label class="col-md-2 control-label">{{t 'user.remote_clients'}}</label>
+      <div class="col-md-8">
+        <div class="align-right">
+        <button class="btn icon-text" {{action 'addClient' model}}>
+          <i class="fa fa-plus"></i>
+          {{t 'client.create'}}
+        </button>
+        </div>
+        <table style="width:100%">
+          {{#each apiClients itemController='client'}}
+            <tr>
+              <td>{{input valueBinding='content.name' class="client-name"}}</td>
+              <td>{{input valueBinding='content.id' disabled=true }}</td>
+              <td>{{input valueBinding='content.secret' disabled=true }}</td>
+              <td>
+                <button class="btn pale" {{action 'saveClient'}}><i class="fa fa-save"></i></button>
+                <button class="btn pale highlight-danger" {{action 'removeClient'}}><i class="fa fa-trash-o"></i></button>
+              </td>
+            </tr>
+          {{/each}}
+        </table>
+      </div>
+    </div>
+  {{/if}}

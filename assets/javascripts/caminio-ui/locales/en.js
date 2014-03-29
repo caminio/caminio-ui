@@ -41,6 +41,9 @@
     'user.photo': 'Photo',
     'user.danger': 'Danger zone',
 
+    'user.api': 'API',
+    'user.remote_clients': 'Remote clients',
+
     'user.errors.prohibited_save': 'Errors prohibited this form to be saved',
 
     'user.security': 'Security',
@@ -69,7 +72,12 @@
     'domain.description': 'Description',
     'domain.create': 'Create domain',
 
-    'errors.invalid_domain_name': 'The entered value is not a valid domain name'
+    'errors.invalid_domain_name': 'The entered value is not a valid domain name',
+
+    'client.create': 'Add new client id',
+    'client.saved': 'Client {{name}} has been saved',
+    'client.really_delete': 'Really delete client {{name}}? This might have unexpected impact on other sites accessing through this client',
+    'client.removed': '{{name}} has been removed'
 
   };
 

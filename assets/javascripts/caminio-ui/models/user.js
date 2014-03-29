@@ -13,6 +13,8 @@
     passwordConfirmation: DS.attr(),
     superuser: DS.attr('boolean'),
     camDomains: DS.attr('array'),
+    apiEnabled: DS.attr('boolean'),
+    clients: DS.hasMany('client'),
     inCurrentDomain: function(){
       return this.get('camDomains').indexOf(currentDomain._id) >= 0;
     }.property('camDomains'),
