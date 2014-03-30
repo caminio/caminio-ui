@@ -17,6 +17,12 @@ module.exports = function Label( caminio, mongoose ){
     name: { type: String, public: true },
 
     /**
+     * @property type
+     * @type String
+     */
+    type: { type: String, public: true },
+
+    /**
      * @property bgColor
      * @type String
      */

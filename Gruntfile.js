@@ -50,7 +50,9 @@ module.exports = function(grunt) {
             'assets/javascripts/3rdparty/moment.min.js',
             'assets/javascripts/3rdparty/jquery.sparkline.min.js',
             'assets/javascripts/3rdparty/jquery.block-ui.js',
-            'assets/javascripts/3rdparty/pace.min.js'
+            'assets/javascripts/3rdparty/pace.min.js',
+            'assets/javascripts/3rdparty/raphael-2.1.0.min.js',
+            'assets/javascripts/3rdparty/morris-0.4.3.min.js'
           ],
         dest: 'build/javascripts/3rdparties.min.js'
       },
