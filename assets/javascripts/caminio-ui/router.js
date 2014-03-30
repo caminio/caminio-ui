@@ -137,10 +137,6 @@
       edit: function( model ) {
         this.transitionTo( 'user.edit', model.copy() );
       },
-      remove: function( model ) {
-        model.deleteRecord();
-        model.save();
-      },
       cancel: function( model ) {
         Ember.run( model, "destroy" );
         this.store.refresh(App.User);

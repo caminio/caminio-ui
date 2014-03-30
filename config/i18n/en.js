@@ -83,6 +83,7 @@ module.exports = function( t ){
   t.user.destroy_desc = 'This will permanently delete the user anything private to the user (like profile photos, comments and messages).';
   t.user.general = 'General';
   t.user.password_saved = 'Your new password has been saved';
+  t.user.password_reset_saved = 'Your new password has been saved. You can proceed to login with your email address __email__ and the password you have choosen.';
   t.user.really_delete = 'Really delete __name__?';
   t.user.last_login = 'Last seen';
   t.user.deleted = '__name__ has been deleted';

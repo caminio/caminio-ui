@@ -27,7 +27,7 @@
       if( this.get('lastname') && this.get('lastname').length > 0 )
         name += this.get('lastname');
       if( name.length < 1 )
-        name += Ember.I18n.t('unknown');
+        name += this.get('email');
       return name;
     }.property('firstname', 'lastname')
   });

@@ -23,10 +23,15 @@ $(function(){
 
     actions: {
 
-      remove: function( model ) {
-        model.deleteRecord();
-        model.save().then( function(){
-          console.log( 'meta', this.store.metadataFor('domain') );
+      removeDomain: function() {
+       var model = this.get('domain');
+        bootbox.prompt( Em.I18n.t('domain.really_delete', { name: model.get('name') }), function( name ){
+          if( name === model.get('name') ){
+            model.deleteRecord();
+            model.save().then(function(){
+              notify('info', Em.I18n.t('domain.removed', {name: model.get('name') }));
+            });
+          }
         });
       },
 

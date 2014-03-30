@@ -149,6 +149,12 @@ body.side-panel-active #side-panel{
   width: auto;
   padding: 3px;
 }
+.sideinfo-box.w-progress .values{
+  min-width: 50%;
+  text-align: right;
+  font-size: 0.8em;
+  margin-top: 0.2em;
+}
 .sideinfo-box .progress{
   display: block;
   height: 11px;

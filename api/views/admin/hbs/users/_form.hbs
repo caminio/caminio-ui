@@ -67,9 +67,23 @@
     </div>
   </div>
 
-  <h4 class="sub-header">{{t user.photo}}</h4>
+  {{#if model.id}}
+    <h4 class="sub-header">{{t user.danger}}</h4>
 
-  <h4 class="sub-header">{{t user.danger}}</h4>
+    <div class="form-group">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="desc row clearfix">
+          <div class="col-md-4" style="margin: 1em 0;">
+            {{t 'user.remove_desc'}}
+          </div>
+        </div>
+        <button class="btn large danger icon-text" {{action 'removeUser'}}>
+          <i class="fa fa-trash-o"></i>
+          {{t 'user.remove'}}
+        </button>
+      </div>
+    </div>
+  {{/if}}
 
   {{#if model.apiEnabled}}
     <h4 class="sub-header">{{t user.api}}</h4>
@@ -83,14 +97,22 @@
           {{t 'client.create'}}
         </button>
         </div>
-        <table style="width:100%">
+        <table class="client-token-table">
+          <tr>
+            <th>{{t 'client.name'}}</th>
+            <th>{{t 'client.id'}}</th>
+            <th>{{t 'client.secret'}}</th>
+            <th></th>
+          </tr>
           {{#each apiClients itemController='client'}}
             <tr>
-              <td>{{input valueBinding='content.name' class="client-name"}}</td>
-              <td>{{input valueBinding='content.id' disabled=true }}</td>
-              <td>{{input valueBinding='content.secret' disabled=true }}</td>
+              <td>{{input valueBinding='content.name' class="client-name" placeholderTranslation='client.domain'}}</td>
+              <td>{{content.id}}</td>
+              <td>{{content.secret}}</td>
               <td>
-                <button class="btn pale" {{action 'saveClient'}}><i class="fa fa-save"></i></button>
+                <button {{bind-attr class=":btn content.isDirty:primary:pale"}} {{action 'saveClient'}}>
+                  <i class="fa fa-save"></i>
+                </button>
                 <button class="btn pale highlight-danger" {{action 'removeClient'}}><i class="fa fa-trash-o"></i></button>
               </td>
             </tr>
