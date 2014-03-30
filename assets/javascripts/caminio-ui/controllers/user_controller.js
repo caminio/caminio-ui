@@ -1,4 +1,4 @@
-$(function(){
+(function( App ){
 
   'use strict';
 
@@ -18,6 +18,7 @@ $(function(){
     }.property('errors'),
 
     actions: {
+
       toggleAdmin: function(){
         this.set('admin',!this.get('admin'));
       },
@@ -25,7 +26,8 @@ $(function(){
         if( typeof(this.get('model.apiEnabled')) === 'undefined' )
           this.get('model').set('apiEnabled', false);
         this.get('model').set('apiEnabled',!this.get('apiEnabled'));
-        console.log('api', this.get('model'), this.get('model.apiEnabled'));
+        if( this.get('model.apiEnabled') && this.get('apiClients').content.content.length < 1 )
+          setupFirstAPIClient( this.get('model'), this );
       },
       create: function( model ) {
         var self = this;
@@ -52,17 +54,36 @@ $(function(){
         });
       },
       addClient: function( model ){
-        var client = this.store.createRecord('client', { user: model.get('id') });
-        this.set('apiClients', this.store.all('client', { user: model.get('id') }));
+        setupFirstAPIClient( model, this );
         setTimeout(function(){
           $('.client-name:last').focus();
         },10);
+      },
+
+      removeUser: function() {
+        var model = this.get('model');
+        if( model.get('id') === currentDomain.owner )
+          return bootbox.alert( Em.I18n.t('user.cannot_delete_domain_owner') );
+        bootbox.prompt( Em.I18n.t('user.really_delete', { fullname: model.get('fullname') }), function( username ){
+          if( username === model.get('fullname') ){
+            model.deleteRecord();
+            model.save().then(function(){
+              notify('info', Em.I18n.t('user.removed', {name: model.get('fullname') }));
+            });
+          }
+        });
       }
+
     }
 
   };
 
-  App.UsersController = Ember.ObjectController.extend( userControllerCommon );
+  function setupFirstAPIClient( model, controller ){
+    var client = App.User.store.createRecord('client', { user: model.get('id') });
+    controller.set('apiClients', App.User.store.all('client', { user: model.get('id') }));
+  }
+
+  App.UsersController = Ember.Controller.extend( userControllerCommon );
   App.UserEditController = Ember.ObjectController.extend( userControllerCommon );
   App.UsersNewController = Ember.ObjectController.extend( userControllerCommon );
 
@@ -73,6 +94,8 @@ $(function(){
       saveClient: function(){
 
         var client = this.get('content');
+        this.get('parentController.model').set('apiEnabled', true);
+        this.get('parentController.model').save();
         client.save().then(function(){
           notify('info', Em.I18n.t('client.saved', { name: client.get('name') }));
         });
@@ -99,4 +122,4 @@ $(function(){
 
   });
 
-});
+})( App );

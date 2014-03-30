@@ -17,3 +17,38 @@ textarea.settings{
   font-family: monospace;
   font-size: 14px;
 }
+
+.client-token-table{
+  width: 100%;
+}
+
+.client-token-table th{
+  font-weight: 100;
+  font-size: 0.8em;
+  color: #999;
+  text-transform: uppercase;
+}
+
+.client-token-table th,
+.client-token-table td{
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.client-token-table th:first-child,
+.client-token-table td:first-child{
+  border-left: 1px solid #ddd;
+}
+
+.client-token-table tr:first-child td,
+.client-token-table tr:first-child th{
+  border-top: 1px solid #ddd;
+}
+
+.client-token-table input[type=text]{
+  width: 100%;
+}
+
+.user-form{
+  margin-top: 40px;
+}

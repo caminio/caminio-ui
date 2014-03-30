@@ -1,20 +1,26 @@
 <section class="main-content">
 
-  <form class="form-horizontal caminio">
-
-    <header class="main-header">
-      <div class="form-actions">
+  <header>
+    <div class="box title-box admin">
+      <div class="main-ctrl">
+      
         <a href="#" {{action goToUsers}} class="btn icon-text transparent">
           <i class="fa fa-arrow-left"></i>
           {{t back}}
         </a>
         <button class="btn success" {{action create this}}>{{t user.save}}</button>
+
       </div>
 
-      <h1>{{t user.edit}}</h1>
+      <h1>{{t 'user.edit'}}</h1>
 
-    </header>
 
+    </div>
+  </header>
+
+  <form class="form-horizontal caminio user-form" {{action 'create' this on='submit'}}>
+
+    <input type="submit" class="hide">
     {{partial 'user/form'}}
 
   </form>
