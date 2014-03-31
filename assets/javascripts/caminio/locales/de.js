@@ -47,6 +47,17 @@
 
     'unsaved_data_continue': 'Das Formular enthält ungespeicherte Daten. Wirklich fortfahren?',
 
+    'labels.title': 'Labels',
+    'labels.new': 'Neues Label',
+
+    'label.created': 'Label {{name}} wurde erfolgreich angelegt',
+    'label.saved': 'Einstellungen {{name}} wurden gespeichert',
+    'label.delete': 'Dieses Label löschen',
+    'label.really_delete': '{{name}} wirklich löschen',
+    'label.deleted': 'Label {{name}} wurde gelöscht',
+    'label.private': 'Privat',
+
+    'label.select_color': 'Farbe wählen',
     
     'errors.db_field': '{{name}}: {{message}}',
     'errors.required': 'Eingabe erforderlich',

@@ -4,9 +4,6 @@ module.exports = function( t ){
   
   t.navbar = t.navbar || {};
   t.navbar.admin = 'Administration';
-  t.navbar.users = 'Users';
-  t.navbar.domains = 'Domains';
-  t.navbar.preferences = 'Preferences';
 
   t.system_status = 'System status';
 

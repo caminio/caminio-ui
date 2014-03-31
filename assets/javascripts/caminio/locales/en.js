@@ -45,8 +45,19 @@
     'settings': 'Settings',
 
     'unsaved_data_continue': 'The opened form contains unsaved data which would be lost. Really continue?',
-
     
+    'labels.title': 'Labels',
+    'labels.new': 'New label',
+
+    'label.created': 'Label {{name}} has been created successfully',
+    'label.saved': 'Label settings for {{name}} have been saved successfully',
+    'label.delete': 'Delete this label',
+    'label.really_delete': 'Really delete label {{name}}',
+    'label.deleted': 'Label {{name}} has been deleted successfully',
+    'label.private': 'Private',
+
+    'label.select_color': 'Select color',
+
     'errors.db_field': '{{name}}: {{message}}',
     'errors.required': 'This field is required',
     'errors.invalid_email_address': 'The email address is invalid',

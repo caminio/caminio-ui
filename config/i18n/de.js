@@ -1,6 +1,9 @@
 module.exports = function( t ){
 
   'use strict';
+
+  t.navbar = t.navbar || {};
+  t.navbar.admin = 'Administration';
   
   t.email = 'Email';
   t.name = 'Name';
