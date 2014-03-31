@@ -142,7 +142,7 @@
     }
   });
 
-  App.Select2TagView = Ember.TextField.extend({
+  window.App.Select2TagView = Ember.TextField.extend({
 
     didInsertElement: function() {
       Ember.run.scheduleOnce('afterRender', this, 'processChildElements');
@@ -171,43 +171,5 @@
     }.observes('value')
 
   });
-
-  App.User = DS.Model.extend({
-    firstname: DS.attr('string'),
-    lastname: DS.attr('string'),
-    email: DS.attr('string'),
-    admin: DS.attr('boolean'),
-    superuser: DS.attr('boolean'),
-    fullname: function(){
-      var name = '';
-      if( this.get('firstname') && this.get('firstname').length > 0 )
-        name += this.get('firstname');
-      if( name.length > 0 && this.get('lastname') && this.get('lastname').length > 0 )
-        name += ' ';
-      if( this.get('lastname') && this.get('lastname').length > 0 )
-        name += this.get('lastname');
-      if( name.length < 2 )
-        name += this.get('email');
-      return name;
-    }.property('firstname', 'lastname')
-  });
-
-  App.Label = DS.Model.extend({
-    name: DS.attr('string'),
-    type: DS.attr('string'),
-    bgColor: DS.attr('string', { defaultValue: '#548EE5' }),
-    fgColor: DS.attr('string', { defaultValue: '#fff' }),
-    usersAccess: DS.hasMany('user', { async: true }),
-    private: function(){
-      if( this.get('usersAccess').isFullfilled )
-        return this.get('usersAccess').content.length > 0;
-      return true;
-    }.property('usersAccess'),
-    borderColor: DS.attr('string', { defaultValue: '#637dd4' }),
-    styleAttrs: function(){
-      return 'background-color: '+this.get('bgColor') + '; color: '+this.get('fgColor')+'; border-color: '+this.get('borderColor');
-    }.property('bgColor')
-  });
-
 
 })();

@@ -3,7 +3,6 @@ extends ../../../../caminio-ui/api/views/layouts/application
 append head
   if env === 'production'
     link( rel='stylesheet', href='/stylesheets/caminio-ui.min.css' )
-    link( rel='stylesheet', href='/stylesheets/caminio-admin.min.css' )
   else
     link( rel='stylesheet', href='/stylesheets/caminio-ui/admin.css' )
 
@@ -13,14 +12,11 @@ append foot
     script(type='text/javascript', src='/javascripts/caminio-ui.min.js')
   else
     script(type='text/javascript', src='/javascripts/caminio-ui/locales/#{currentLang}.js')
-    script(type='text/javascript', src='/javascripts/caminio-ui/models/user.js')
     script(type='text/javascript', src='/javascripts/caminio-ui/models/domain.js')
-    script(type='text/javascript', src='/javascripts/caminio-ui/models/client.js')
     script(type='text/javascript', src='/javascripts/caminio-ui/router.js')
     script(type='text/javascript', src='/javascripts/caminio-ui/controllers/user_controller.js')
     script(type='text/javascript', src='/javascripts/caminio-ui/controllers/domain_settings_controller.js')
     script(type='text/javascript', src='/javascripts/caminio-ui/controllers/domain_controller.js')
-
     script(type='text/javascript', src='/javascripts/caminio-ui/views/user_edit_view.js')
            
   script(type="text/x-handlebars")

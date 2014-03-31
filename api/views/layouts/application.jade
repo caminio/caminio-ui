@@ -13,9 +13,9 @@ html(lang=i18n.locale())
     if env === 'production'
       link(rel='stylesheet', href='/stylesheets/caminio-ui.min.css')
     else
-      link(rel='stylesheet', href='/stylesheets/3rdparty/bootstrap.css')
-      link(rel='stylesheet', href='/stylesheets/3rdparty/opensans.css')
-      link(rel='stylesheet', href='/stylesheets/3rdparty/font-awesome.css')
+      link( rel='stylesheet', href='/stylesheets/3rdparty/bootstrap.css')
+      link( rel='stylesheet', href='/stylesheets/3rdparty/opensans.css')
+      link( rel='stylesheet', href='/stylesheets/3rdparty/font-awesome.css')
       link( rel='stylesheet', href='/stylesheets/3rdparty/select2.css' )
 
       link( rel='stylesheet', href='/stylesheets/caminio-ui/bootstrap-overrides.css' )
@@ -72,6 +72,9 @@ html(lang=i18n.locale())
       script(type='text/javascript', src='/javascripts/caminio/helpers/operators_helper.js')
 
       script(type='text/javascript', src='/javascripts/caminio/app-core.js')
+      script(type='text/javascript', src='/javascripts/caminio-ui/models/client.js')
+      script(type='text/javascript', src='/javascripts/caminio/models/user.js')
+      script(type='text/javascript', src='/javascripts/caminio/models/label.js')
 
       script(type='text/javascript', src='/javascripts/caminio/notifications.js')
 

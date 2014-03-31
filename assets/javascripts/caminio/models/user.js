@@ -1,17 +1,17 @@
-( function(){
+( function( App ){
 
   'use strict';
 
-  window.App.User = DS.Model.extend({
-    description: DS.attr('string'),
+  App.User = DS.Model.extend({
     firstname: DS.attr('string'),
     lastname: DS.attr('string'),
-    lang: DS.attr('string', { defaultValue: currentDomain.lang || 'en' }),
     email: DS.attr('string'),
     admin: DS.attr('boolean'),
+    lang: DS.attr('string', { defaultValue: currentDomain.lang || 'en' }),
+    description: DS.attr('string'),
+    superuser: DS.attr('boolean'),
     password: DS.attr(),
     passwordConfirmation: DS.attr(),
-    superuser: DS.attr('boolean'),
     camDomains: DS.attr('array'),
     apiEnabled: DS.attr('boolean'),
     clients: DS.hasMany('client'),
@@ -26,10 +26,10 @@
         name += ' ';
       if( this.get('lastname') && this.get('lastname').length > 0 )
         name += this.get('lastname');
-      if( name.length < 1 )
+      if( name.length < 2 )
         name += this.get('email');
       return name;
     }.property('firstname', 'lastname')
   });
 
-})();
+})( App );

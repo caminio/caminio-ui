@@ -22,8 +22,7 @@ module.exports = function(grunt) {
         files: {
           'build/stylesheets/caminio-ui.min.css': [ 'assets/stylesheets/3rdparty/*.css',
                                                     'assets/stylesheets/caminio-ui/*.css' ],
-          'build/stylesheets/caminio-auth.min.css': [ 'assets/stylesheets/caminio-ui/authorization.css' ],
-          'build/stylesheets/caminio-admin.min.css': [ 'assets/stylesheets/caminio-admin/codemirror.css' ]
+          'build/stylesheets/caminio-auth.min.css': [ 'assets/stylesheets/caminio-ui/authorization.css' ]
         }
       }
     },
@@ -76,13 +75,15 @@ module.exports = function(grunt) {
             'assets/javascripts/caminio/helpers/users_helper.js',
             'assets/javascripts/caminio/helpers/operators_helper.js',
             'assets/javascripts/caminio/app-core.js',
+            'assets/javascripts/caminio-ui/models/client.js',
+            'assets/javascripts/caminio/models/user.js',
+            'assets/javascripts/caminio/models/label.js',
             'assets/javascripts/caminio/notifications.js'
           ],
           'build/javascripts/caminio-ui.min.js': [
             'assets/javascripts/caminio-ui/locales/*.js',
             'assets/javascripts/caminio-ui/app.js',
             'assets/javascripts/caminio-ui/router.js',
-            'assets/javascripts/caminio-ui/models/user.js',
             'assets/javascripts/caminio-ui/models/domain.js',
             'assets/javascripts/caminio-ui/controllers/user_controller.js',
             'assets/javascripts/caminio-ui/controllers/domain_settings_controller.js',

@@ -26,6 +26,9 @@ html(lang=i18n.locale())
       link( rel='stylesheet', href='/stylesheets/caminio-ui/common.css' )
       link( rel='stylesheet', href='/stylesheets/caminio-ui/authorization.css' )
 
+    script(type='text/javascript').
+      var currentLang = '!{currentLang}' || 'en';
+
     if env === 'production'
       script(type='text/javascript', src='/javascripts/3rdparties.min.js')
     else

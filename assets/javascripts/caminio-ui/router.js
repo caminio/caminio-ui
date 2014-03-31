@@ -1,4 +1,4 @@
-( function(){
+( function( App ){
 
   App.Router.map( function(){
 
@@ -145,4 +145,4 @@
     }
   });
 
-})();
+})( App );
