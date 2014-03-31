@@ -1,9 +1,9 @@
 .notifications{
   position: fixed;
-  bottom: 0;
-  right: 0;
+  bottom: 5px;
+  right: 5px;
   width: 320px;
-  z-index: 900;
+  z-index: 90000;
 }
 
 .notifications-collection{
