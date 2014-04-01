@@ -1,26 +1,30 @@
 body, html{
   height: 100%;
   font-size: 12px;
-  /*background-color: #f60;*/
-  background-color: #4DA5EF;
+  background: #bd3d3a; /* Old browsers */
+  background: -moz-linear-gradient(top,  #bd3d3a 0%, #d3544b 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#bd3d3a), color-stop(100%,#d3544b)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #bd3d3a 0%,#d3544b 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #bd3d3a 0%,#d3544b 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #bd3d3a 0%,#d3544b 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #bd3d3a 0%,#d3544b 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bd3d3a', endColorstr='#eba37b',GradientType=0 ); /* IE6-9 */
 }
 
 .logo{
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 50px;
+  right: 50px;
   margin: auto;
+  width: 100px;
 }
 
 .login-box-wrap{
-  display: none;
   height: 100%;
 }
 
 .login-box{
-  width: 100%;
+  width: 50%;
   display: table;
   height: 90%;
   margin: 0 auto;
@@ -28,13 +32,11 @@ body, html{
 
 .login-box .row-wrap{
   background: #fafafa;
-  border: 1px solid #ddd;
-  padding: 30px;
-  box-shadow: 2px 0 2px #ccc, -2px 0 2px #ccc;
+  border: 2px solid #333;
+  padding: 5px;
 }
 
 .login-box .row{
-  width: 50%;
   margin: 0 auto;
 }
 
@@ -81,7 +83,7 @@ form.auth{
 .domain-container:before,
 .email-container:before,
 .password-container:before{
-  bottom: 12px;
+  bottom: 8px;
   color: #ccc;
   content: "";
   font-family: 'FontAwesome';
@@ -93,18 +95,17 @@ form.auth{
   text-transform: none;
   vertical-align: -7%;
   z-index: 100;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .password-container:before{
   content: "\f023";
   left: 26px;
-  bottom: 11px;
+  bottom: 7px;
 }
 
 .domain-container:before{
   content: "\f015";
-  left: 24px;
 }
 
 .domain-container{
@@ -127,7 +128,6 @@ form.auth input[type=password]{
   transition: all 0.5s;
   width: 100%;
   font-weight: 600;
-  margin-bottom: 0.5em;
 }
 
 form.auth label.control-label{

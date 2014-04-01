@@ -1,5 +1,6 @@
 extends ../layouts/application
 
+
 append head
   if env === 'production'
     link( rel='stylesheet', href='/stylesheets/caminio-ui.min.css' )
@@ -15,6 +16,6 @@ append foot
 block content
   style.
 
-  .main-view
+  .main-view.dashboard
     each dashboardBox in dashboardBoxes
       !=dashboardBox

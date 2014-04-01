@@ -1,3 +1,9 @@
+.dashboard.main-view{
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
 .dashboard-box{
   border: 1px solid #bbb;
   background: #fafafa;
@@ -13,8 +19,40 @@
 .wide-box .dashboard-box{
   height: 150px;
   min-width: 150px;
-  background-color: #4DA5EF;
+}
+
+.dashboard-box.welcome-box{
+  border: none;
+  background: none;
+  margin-right: 100px;
+}
+.dashboard-box.colorbox{
+  background: #bd3d3a; /* Old browsers */
+  background: -moz-linear-gradient(top,  #bd3d3a 0%, #d3544b 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#bd3d3a), color-stop(100%,#d3544b)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #bd3d3a 0%,#d3544b 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #bd3d3a 0%,#d3544b 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #bd3d3a 0%,#d3544b 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #bd3d3a 0%,#d3544b 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bd3d3a', endColorstr='#eba37b',GradientType=0 ); /* IE6-9 */
+
   color: #fff;
+}
+
+.dashboard-box .welcome{
+  font-size: 2em;
+}
+
+.dashboard-box.welcome-box .title{
+  text-transform: uppercase;
+  color: #999;
+  font-size: 0.8em;
+  margin-top: 1em;
+}
+
+.dashboard-box.welcome-box .fa{
+  color: #555;
+  margin-right: 5px;
 }
 
 .dashboard-box-body{

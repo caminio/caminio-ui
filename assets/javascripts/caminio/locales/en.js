@@ -6,6 +6,9 @@
   
   var translations = {
 
+    'hi': 'Hi',
+    'today_is': 'Today is',
+    'session_started': 'Session started',
     'name': 'Name',
     'save': 'Save',
     'back': 'Back',

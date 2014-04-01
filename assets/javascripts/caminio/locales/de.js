@@ -6,6 +6,9 @@
   
   var translations = {
 
+    'hi': 'Hi',
+    'today_is': 'Heute ist',
+    'session_started': 'Sitzung begonnen',
     'name': 'Name',
     'save': 'Speichern',
     'back': 'Zurück',
