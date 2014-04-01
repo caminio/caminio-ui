@@ -13,4 +13,8 @@
     return Ember.Handlebars.helpers.partial.apply(this, arguments);
   });
 
+  Ember.Handlebars.registerHelper( 'tKey', function( key, options ){
+    return Em.I18n.t(options.hash.prefix+'.'+this.get(key));
+  });
+
 })();
