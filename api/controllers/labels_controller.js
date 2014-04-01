@@ -8,7 +8,7 @@
 * @Date:   2014-03-21 18:52:59
 *
 * @Last Modified by:   thorsten zerha
-* @Last Modified time: 2014-03-21 19:14:51
+* @Last Modified time: 2014-04-01 17:28:41
 *
 * This source code is not part of the public domain
 * If server side nodejs, it is intendet to be read by
@@ -28,7 +28,7 @@ module.exports = function Labels( caminio, policies, middleware ){
     },
 
     index: function( req, res ){
-      Label.find({ camDomain: res.locals.currentDomain._id })
+      var q = Label.find({ camDomain: res.locals.currentDomain._id })
         .or([
           { 
             usersAccess : { "$size" : 0 }
@@ -36,11 +36,15 @@ module.exports = function Labels( caminio, policies, middleware ){
           {
             usersAccess: res.locals.currentUser._id
           }
-        ])
-        .exec( function( err, labels ){
-          if( err ){ return res.json(500, { error: 'server_error' }); }
-          res.json({ labels: labels });
-        });
+        ]);
+      if( req.param('type') )
+        q.where({type: req.param('type')});
+
+      q.sort({ name: 1 });
+      q.exec( function( err, labels ){
+        if( err ){ return res.json(500, { error: 'server_error' }); }
+        res.json({ labels: labels });
+      });
     }
 
   };

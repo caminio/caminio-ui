@@ -91,11 +91,11 @@ div.btn.icon-only{
 }
 
 .btn.close{
-  background: none;
-  color: #aaa;
-  padding: 6px 8px;
-  font-size: 1.5rem;
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+  color: #AAAAAA;
+  font-size: 1.2rem;
   margin: -10px 0;
+  padding: 6px 8px;
 }
 
 .btn.close:hover{

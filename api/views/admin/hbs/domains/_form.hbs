@@ -108,18 +108,21 @@
   </div>
 </div>
 
-<h4 class="sub-header">{{t domain.danger}}</h4>
+{{#if domain.id}}
+  <h4 class="sub-header">{{t domain.danger}}</h4>
 
-<div class="form-group">
-  <div class="col-md-8 col-md-offset-2">
-    <div class="desc row clearfix">
-      <div class="col-md-6" style="margin: 1em 0;">
-        {{t 'domain.remove_desc'}}
+  <div class="form-group">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="desc row clearfix">
+        <div class="col-md-6" style="margin: 1em 0;">
+          {{t 'domain.remove_desc'}}
+        </div>
       </div>
+
+      <button class="btn large danger icon-text" {{action 'removeDomain'}}>
+        <i class="fa fa-trash-o"></i>
+        {{t 'domain.remove'}}
+      </button>
     </div>
-    <button class="btn large danger icon-text" {{action 'removeDomain'}}>
-      <i class="fa fa-trash-o"></i>
-      {{t 'domain.remove'}}
-    </button>
   </div>
-</div>
+{{/if}}

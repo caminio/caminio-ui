@@ -78,6 +78,7 @@ module.exports = function(grunt) {
             'assets/javascripts/caminio-ui/models/client.js',
             'assets/javascripts/caminio/models/user.js',
             'assets/javascripts/caminio/models/label.js',
+            'assets/javascripts/caminio/labels.js',
             'assets/javascripts/caminio/notifications.js'
           ],
           'build/javascripts/caminio-ui.min.js': [
