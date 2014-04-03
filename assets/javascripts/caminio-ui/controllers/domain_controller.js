@@ -23,13 +23,16 @@ $(function(){
 
     actions: {
 
-      removeDomain: function() {
-       var model = this.get('domain');
+      removeDomain: function( model ) {
+        model = ( model instanceof DS.PromiseObject ) ? model.content : model;
+        var self = this;
+        console.log('model', model);
         bootbox.prompt( Em.I18n.t('domain.really_delete', { name: model.get('name') }), function( name ){
           if( name === model.get('name') ){
             model.deleteRecord();
             model.save().then(function(){
               notify('info', Em.I18n.t('domain.removed', {name: model.get('name') }));
+              self.transitionToRoute('domains');
             });
           }
         });
