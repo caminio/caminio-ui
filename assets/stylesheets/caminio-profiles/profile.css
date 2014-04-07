@@ -1,0 +1,8 @@
+.profile-info .title{
+  font-size: 1em;
+  text-transform: uppercase;
+  color: #999;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
