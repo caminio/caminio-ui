@@ -26,6 +26,8 @@
     'user.tabs.general': 'General',
     'user.tabs.settings': 'Settings',
     'user.tabs.history': 'History',
+    'user.send_login_info': 'Send login info again',
+    'user.sent_credentials_again': 'Login credentials have been sent successfully',
 
     'user.password': 'Password',
     'user.password_confirmation': 'Repeat password',
