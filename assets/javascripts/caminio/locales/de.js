@@ -20,6 +20,7 @@
     'delete': 'Löschen',
     'delete_selected': 'Ausgewählte löschen',
     'root': 'Wurzel',
+    'actions': 'Aktionen',
 
     'email': 'Email',
     'phone': 'Telefon',

@@ -20,6 +20,7 @@
     'delete': 'Delete',
     'delete_selected': 'Delete selected',
     'root': 'root',
+    'actions': 'Actions',
 
     'cut': 'Cut',
     'copy': 'Copy',
