@@ -25,6 +25,9 @@
     'copy': 'Copy',
     'paste': 'Paste',
 
+    'email': 'Email',
+    'phone': 'Phone',
+
     'properties': 'properties',
     'date': 'Date',
 

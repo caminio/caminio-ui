@@ -15,6 +15,9 @@
     camDomains: DS.attr('array'),
     apiEnabled: DS.attr('boolean'),
     clients: DS.hasMany('client'),
+    mailto: function(){
+      return 'mailto:'+this.get('email');
+    }.property('email'),
     inCurrentDomain: function(){
       return this.get('camDomains').indexOf(currentDomain._id) >= 0;
     }.property('camDomains'),

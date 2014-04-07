@@ -73,14 +73,12 @@ header.top-panel .domainname{
   padding: 0 15px;
 }
 header.top-panel .avatar{
-  width: 32px;
-  height: 32px;
-  border-radius: 20px;
+  width: 40px;
+  height: 40px;
   border: 1px solid #ddd;
   background-color: #fff;
   padding: 3px;
-  margin: -7px 7px 0 0;
   position: absolute;
-  left: 10px;
-  top: 15px;
+  left: 5px;
+  top: 5px;
 }

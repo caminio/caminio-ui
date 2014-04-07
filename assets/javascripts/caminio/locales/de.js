@@ -21,6 +21,9 @@
     'delete_selected': 'Ausgewählte löschen',
     'root': 'Wurzel',
 
+    'email': 'Email',
+    'phone': 'Telefon',
+
     'cut': 'Ausschneiden',
     'copy': 'Bearbeiten',
     'paste': 'Einfügen',

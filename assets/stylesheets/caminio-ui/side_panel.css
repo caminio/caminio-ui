@@ -15,39 +15,11 @@
   top: 0;
   left: 0;
   position: fixed;
+  padding-top: 10px;
 }
 
 body.side-panel-active #side-panel{
   display: block;
-}
-#side-panel .account-info{
-  padding: 10px;
-}
-#side-panel .avatar{
-  width: 40px;
-  height: 40px;
-  background-color: #fff;
-  padding: 3px;
-  margin: 5px 15px 5px 5px;
-}
-#side-panel .username{
-  font-weight: 600;
-  margin: 15px 0 0;
-  width: 140px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-#side-panel .notification{
-  font-size: 0.8em;
-  color: #999;
-  width: 30px;
-  margin-top: 6px;
-  margin-right: 5px;
-}
-#side-panel .notification .fa{
-  float: left;
-  margin: 1px 5px 0 0;
 }
 #side-panel ul.nav{
   margin: 60px 0 0 0;
@@ -60,9 +32,10 @@ body.side-panel-active #side-panel{
   text-decoration: none;
   outline: none;
   transition: all 0.7s;
+  border-left: 4px solid transparent;
 }
 #side-panel ul.nav a .fa{
-  margin: -1px 5px 0 15px;
+  margin: -2px 5px 0 5px;
   padding: 5px;
   text-align: center;
   border-radius: 2px;
@@ -99,6 +72,11 @@ body.side-panel-active #side-panel{
   right: -13px;
   top: 3px;
   width: 0;
+}
+
+#side-panel li.active a{
+  border-left-color: #c83737;
+  color: #c83737;
 }
 
 .sideinfo{

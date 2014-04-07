@@ -4,10 +4,10 @@ module.exports = function( t ){
 
   t.navbar = t.navbar || {};
   t.navbar.admin = 'Administration';
+  t.navbar.dashboard = 'Dashboard';
   
   t.email = 'Email';
   t.name = 'Name';
-  t.email = 'Email';
 
   // USERS
   t.user = t.user || {};

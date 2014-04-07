@@ -12,6 +12,8 @@ module.exports.routes = {
 
   'autorest /caminio/users': 'User',
 
-  'autorest /caminio/labels': 'Label'
+  'autorest /caminio/labels': 'Label',
+
+  '/caminio/profiles/:id': 'ProfilesController#show'
 
 };
