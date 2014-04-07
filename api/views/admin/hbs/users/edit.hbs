@@ -8,7 +8,13 @@
           <i class="fa fa-arrow-left"></i>
           {{t back}}
         </a>
-        <button class="btn success" {{action create this}}>{{t user.save}}</button>
+        <button class="btn icon-text" {{action sendLoginAgain this}}>
+          <i class="fa fa-envelope-o"></i>
+          {{t user.send_login_info}}
+        </button>
+        <button class="btn success" {{action create this}}>
+          {{t user.save}}
+        </button>
 
       </div>
 

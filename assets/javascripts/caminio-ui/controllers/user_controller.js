@@ -3,6 +3,7 @@
   'use strict';
 
   var userControllerCommon = {
+
     isAdminToggled: function(){
       return this.get('admin');
     }.property('admin'),
@@ -19,9 +20,18 @@
 
     actions: {
 
+      sendLoginAgain: function(user){
+        $.post('/caminio/accounts/'+user.get('id')+'/resend_credentials', {})
+          .done( function( response ){
+            if( response.user )
+              notify('info', Em.I18n.t('user.sent_credentials_again'));
+          });
+      },
+
       toggleAdmin: function(){
         this.set('admin',!this.get('admin'));
       },
+
       toggleAPI: function(){
         if( typeof(this.get('model.apiEnabled')) === 'undefined' )
           this.get('model').set('apiEnabled', false);

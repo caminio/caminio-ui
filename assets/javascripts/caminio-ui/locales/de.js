@@ -26,6 +26,8 @@
     'user.tabs.general': 'Allgemein',
     'user.tabs.settings': 'Einstellungen',
     'user.tabs.history': 'Protokoll',
+    'user.send_login_info': 'Login Informationen noch einmal schicken',
+    'user.sent_credentials_again': 'Login Information wurden erfolgreich versandt',
 
     'user.password': 'Passwort',
     'user.password_confirmation': 'Wiederholen',
