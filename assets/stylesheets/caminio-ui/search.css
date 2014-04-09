@@ -1,0 +1,41 @@
+.search-group{
+  position: relative;
+  margin-bottom: 0;
+}
+
+.search-group .search-btn{
+  position: absolute;
+  top: 5px;
+  right: 30px;
+  font-size: 1.2rem;
+  color: #999;
+  border: none;
+  background: none;
+}
+
+.search-btn2{
+  float: right;
+  margin: -10px 0;
+  padding: 5px 15px 6px;
+}
+
+.search-group .adv-search-btn{
+  position: absolute;
+  top: 6px;
+  right: 5px;
+  font-size: 1.2rem;
+  color: #ccc;
+  border: none;
+  background: none;
+}
+
+.search-group .adv-search-btn:hover,
+.search-group .search-btn:hover{
+  color: #777;
+}
+
+.search-actions .btn{
+  margin: 1px;
+  float: right;
+  padding: 4px 5px;
+}

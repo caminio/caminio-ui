@@ -259,3 +259,6 @@ div.btn.icon-only{
 .box.default-padding{
   padding: 20px;
 }
+.animate-width{
+  transition: width 0.5s;
+}
