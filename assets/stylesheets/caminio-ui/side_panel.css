@@ -48,7 +48,7 @@ body.side-panel-active #side-panel{
 #side-panel ul.nav li.active .title{
   font-weight: 700;
 }
-
+/*
 #side-panel ul.nav li.active a:before{
   border-bottom: 13px solid rgba(0, 0, 0, 0);
   border-right: 13px solid #ccc;
@@ -71,7 +71,7 @@ body.side-panel-active #side-panel{
   right: -13px;
   top: 3px;
   width: 0;
-}
+}*/
 
 #side-panel li.active a{
   border-left-color: #c83737;

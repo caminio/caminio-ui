@@ -8,6 +8,8 @@
     description: DS.attr('string'),
     preferences: DS.attr('object'),
     custom: DS.attr('object'),
+    currency: DS.attr(),
+    vat: DS.attr('number', { defaultValue: 20 }),
     lang: DS.attr('string', { defaultValue: 'de'}),
     diskQuotaM: DS.attr('number'),
     diskUploadLimitM: DS.attr('number'),

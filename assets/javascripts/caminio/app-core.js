@@ -150,13 +150,21 @@
 
     processChildElements: function() {
       var options = {};
-      options.placeholder   = 'Please select...';
+      options.placeholder   = Em.I18n.t('please_select');
       options.allowClear    = true;
       options.closeOnSelect = true;
+      options.tokenSeparators = [','];
       options.width         = '100%';
       options.tags          = this.get('tags') || [];
 
-      this.$().select2(options);
+      var $elem = this.$().select2(options);
+
+      $elem.prev('div').find('ul.select2-choices').sortable({
+        containment: 'parent',
+        start: function() { $elem.select2('onSortStart'); },
+        update: function() { $elem.select2('onSortEnd'); }
+      });
+
     },
 
     willDestroyElement: function () {

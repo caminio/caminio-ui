@@ -4,12 +4,17 @@ html,body{
   /*font: 14px 'OpenSans', 'Open Sans', sans-serif;*/
 }
 .main-view{
-  margin-top: 80px;
   background: #fafafa;
   box-shadow: 2px 0 2px #ccc, -2px 0 2px #ccc;
   min-height: 500px;
   border-right: 4px solid transparent;
 }
+.main-view,
+.plain-view{
+  margin-top: 80px;
+}
+
+body.side-panel-active .plain-view,
 body.side-panel-active .main-view{
   margin-left: 240px;
 }

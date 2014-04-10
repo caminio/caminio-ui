@@ -65,6 +65,8 @@
     'domain.allowed_apps': 'Allowed applications',
     'domain.default_lang': 'Default language for users',
     'domain.available_langs': 'Available languages',
+    'domain.currency': 'Default currency for webshop',
+    'domain.vat': 'VAT %',
     'domain.thumbs': 'Thumbnail sizes',
     'domain.disk_quota_m': 'Disk quota (MB)',
     'domain.upload_limit_m': 'Upload size limit (MB)',

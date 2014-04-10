@@ -23,28 +23,45 @@
 
 <div class="form-group">
   <label class="control-label">{{t domain.default_lang}}</label>
-  <div>
-    {{input valueBinding='domain.lang' class='form-control'}}
+  <div style="width: 5em">
+    {{view Ember.Select valueBinding='domain.lang'
+                        content=languages}}
   </div>
 </div>
 
+{{#if isWebshopEnabled}}
+<div class="form-group">
+  <label class="control-label">{{t domain.currency}}</label>
+</div>
+<div class="form-group clearfix">
+  <div class="col-md-2">
+    {{view Ember.Select valueBinding='domain.currency'
+                        content=currencies}}
+  </div>
+  <div class="col-md-4">
+    {{input valueBinding='domain.vat' class='form-control'
+                        placeholderTranslation='domain.vat'}}
+  </div>
+</div>
+{{/if}}
+
 <div class="form-group">
   <label class="control-label">{{t domain.disk_quota_m}}</label>
-  <div>
+  <div style="width: 5em">
     {{input valueBinding='domain.diskQuotaM' class='form-control'}}
   </div>
 </div>
 
 <div class="form-group">
   <label class="control-label">{{t domain.user_quota}}</label>
-  <div>
+  <div style="width: 5em">
     {{input valueBinding='domain.usersQuota' class='form-control'}}
   </div>
 </div>
 
 <div class="form-group">
   <label class="control-label">{{t domain.upload_limit_m}}</label>
-  <div>
+  <div style="width: 5em">
     {{input valueBinding='domain.diskUploadLimitM' class='form-control'}}
   </div>
 </div>

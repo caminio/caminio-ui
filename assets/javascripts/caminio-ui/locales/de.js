@@ -63,6 +63,8 @@
     'domain.created': '{{name}} wurde erfolgreich erstellt',
     'domain.allowed_apps': 'Erlaubte Anwendungen',
     'domain.default_lang': 'Standardsprache für Benutzerkonten',
+    'domain.currency': 'Standardwährung für Webshop',
+    'domain.vat': 'MwSt %',
     'domain.available_langs': 'Verfügbare Sprachen',
     'domain.thumbs': 'Thumbnailgrößen',
 

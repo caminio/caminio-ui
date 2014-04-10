@@ -181,17 +181,20 @@ div.btn.icon-only{
   border: 1px solid #ccc;
 }
 
+.box.fill-box{
+  background: #fafafa;
+  border: 1px solid #ddd;
+}
 .box-title{
-  /*background-color: #eee;*/
-  color: #777;
-  padding: 7px;
+  color: #666;
+  padding: 9px 15px 5px;
   font-weight: 600;
-  font-size: 0.8em;
+  font-size: 0.95em;
   text-transform: uppercase;
 }
 
 .box-title .close{
-  margin: -3px -3px 0 0;
+  margin: -2px -3px 0 0;
   padding: 2px 5px;
   border: none;
 }
@@ -200,51 +203,22 @@ div.btn.icon-only{
   margin: -5px 5px 0;
 }
 
-.box .header{
-  background-color: #373737;
-  color: #fff;
-  padding: 15px 10px 10px;
-  text-align: right;
-  font-size: 14px;
-  font-weight: 600;
+.box-header{
+  padding: 3px 0;
+  border-bottom: 1px solid #aaa;
 }
 
-.box .content{
-  padding: 20px;  
+.box-header .close.btn{
+  margin: 2px 5px;
 }
 
-.box.remove-padding{
-  
-}
-
-.search{
-  display: inline-block;
-  position: relative;
-}
-.search input[type=text]{
-  padding: 5px 30px 5px 0;
-  text-indent: 5px;
-  font-size: 14px;
-  border-radius: 2px;
-  width: 150px;
-  transition: all 0.8s;
-}
-.search button{
-  border: none;
-  background: none;
-  font-size: 14px;
+.box-header .btn:not(.close){
   float: right;
-  position: absolute;
-  top: 3px;
-  right: 4px;
-  width: 25px;
-  height: 25px;
-  color: #777;
+  margin: 4px;
 }
-.search input[type=text]:hover,
-.search input[type=text]:focus{
-  width: 250px;
-  transition: all 0.8s;
+
+.box-body{
+  padding: 20px;  
 }
 
 .margin-top{
@@ -261,4 +235,24 @@ div.btn.icon-only{
 }
 .animate-width{
   transition: width 0.5s;
+}
+
+.top-navbar li{
+  float: left;
+  margin-left: 20px;
+  list-style: none;
+  margin-top: 5px;
+}
+
+.top-navbar a{
+  padding: 7px 15px;
+  border-bottom: 3px solid transparent;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.top-navbar a.active{
+  border-bottom-color: #c83737;
+  color: #c83737;
+  font-weight: 600;
 }

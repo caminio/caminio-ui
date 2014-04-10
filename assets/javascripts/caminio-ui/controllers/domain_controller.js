@@ -21,6 +21,18 @@ $(function(){
       ];
     }.property(),
 
+    currencies: function(){
+      return ['EUR', 'USD', 'GBP'];
+    }.property(),
+
+    languages: function(){
+      return ['de', 'en'];
+    }.property(),
+
+    isWebshopEnabled: function(){
+      return this.get('domain.allowedAppNames').indexOf('shop') >= 0;
+    }.property('domain.allowedAppNames'),
+
     actions: {
 
       removeDomain: function( model ) {
