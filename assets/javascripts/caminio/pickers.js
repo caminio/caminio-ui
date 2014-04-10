@@ -24,6 +24,10 @@ $.fn.caminioNumberPicker = function( options ){
 
   });
 
+  this.on('change', function(e){
+    cleanup.apply( this, [this.value]);
+  });
+
   function roundDecimal( val ){
     return val.toFixed(settings.decimals);
   }

@@ -72,6 +72,7 @@ module.exports = function(grunt) {
             'assets/javascripts/caminio/locales/*.js',
             'assets/javascripts/caminio/util.js',
             'assets/javascripts/caminio/pickers.js',
+            'assets/javascripts/caminio/tabs.js',
             'assets/javascripts/caminio/ember-tree.js',
             'assets/javascripts/caminio/helpers/*.js',
             'assets/javascripts/caminio/app-core.js',
