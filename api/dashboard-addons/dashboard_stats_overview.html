@@ -1,0 +1,43 @@
+<div class="wide-box clearfix" id="dashboard-info-container">
+
+  <div class="default-padding welcome-box">
+    <div class="welcome">
+      <strong data-translate="hi"></strong>
+      <strong id="current-user-fullname"></strong>!
+    </div>
+    <div class="last-login">
+      <span data-translate="session_started" class="title"></span>
+      <br>
+      <i class="fa fa-clock-o"></i>
+      <span id="current-user-last-login"></span>
+    </div>
+    <div class="today-is">
+      <span class="title" data-translate="today_is"></span>
+      <br>
+      <i class="fa fa-calendar-o"></i>
+      <span id="today-is"></span>
+    </div>
+  </div>
+
+  <div class="dashboard-box default-padding colorbox" id="total-users-box">
+    <div class="big-title"></div>
+    <div class="exp-title" data-translate="users_in_total"></div>
+  </div>
+
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('#current-user-fullname').text(currentUser.firstname || currentUser.lastname || currentUser.email);
+    $('#current-user-last-login').text( moment( currentUser.lastLoginAt ).fromNow() )
+    $('#today-is').text( moment().format('dddd, DD. MMMM YYYY') );
+
+    $('#domain-title').text( currentDomain.name );
+    $('#total-users-box').block({ message: null});
+    $.getJSON( '/caminio/users' )
+      .then( function( response ){
+        $('#total-users-box .big-title').text( response.users.length );
+        $('#total-users-box').unblock();
+      });
+  });
+</script>
