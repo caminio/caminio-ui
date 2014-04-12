@@ -1,36 +1,107 @@
-$.fn.caminioNumberPicker = function( options ){
+(function($){
 
-  var settings = $.extend({
-    decimals: 2,
-    point: '.'
-  }, options );
+  $.fn.caminioPhonePicker = function( options ){
 
-  this.on('keyup', function(e){
-    var val = this.value;
-    var start = getSelection.apply(this,['start']);
-    var end   = getSelection.apply(this,['end']);
-    val = val.replace(/,/g,'.');
-    // . or ,
-    if( e.keyCode === 188 || e.keyCode === 190 ){
-      if( val.split('.').length > 1 )
-        val = val.replace('.','');
+    var settings = $.extend({
+      regexp: function(text){ 
+        text = text.replace(/^00/,'+');
+        text = text.replace(/ /,'');
+        if( text.length > 9 )
+          return text.replace(/([\d]{2})(\d{3})(\d{3})(\d{3})/, '$1 $2 $3 $4 ');
+        if( text.length > 6 )
+          return text.replace(/([\d]{2})(\d{3})(\d{3})/, '$1 $2 $3 ');
+        if( text.length > 4 )
+          return text.replace(/([\d]{2})(\d{3})/, '$1 $2 ');
+        return text.replace(/([\d]{2})/, '$1 ');
+      }
+    }, options );
+
+    this.on('keyup', function(e){
+      var val = this.value;
+      var start = getSelection.apply(this,['start']);
+      var end   = getSelection.apply(this,['end']);
+      val = val.replace(/,/g,'.');
+      // space
+      if( e.keyCode === 32 )
+        start = start -1 ;
+      // left, right arrow keys
+      // backspace
+      else if( e.keyCode === 37 || e.keyCode === 39 ||
+              e.keyCode === 8 || e.keyCode === 46 )
+        return;
+      formatNum.apply( this, [val,start,end]);
+
+    });
+
+    this.on('change', function(e){
+      formatNum.apply( this, [this.value]);
+    });
+
+    function formatNum( val, start, end ){
+
+      $(this).val( settings.regexp( val ) );
+
+      console.log(start);
+      if( start && end ){
+        if( start === 4 || start === 6 )
+          start = ++end;
+        setSelectionRange.apply(this, [start, end] );
+      }
+
     }
-    // left, right arrow keys
-    // backspace
-    else if( e.keyCode === 37 || e.keyCode === 39 ||
-            e.keyCode === 8 || e.keyCode === 46 )
-      return;
-    cleanup.apply( this, [val,start,end]);
 
-  });
+  };
 
-  this.on('change', function(e){
-    cleanup.apply( this, [this.value]);
-  });
+  $.fn.caminioNumberPicker = function( options ){
 
-  function roundDecimal( val ){
-    return val.toFixed(settings.decimals);
-  }
+    var settings = $.extend({
+      decimals: 2,
+      point: '.'
+    }, options );
+
+    this.on('keyup', function(e){
+      var val = this.value;
+      var start = getSelection.apply(this,['start']);
+      var end   = getSelection.apply(this,['end']);
+      val = val.replace(/,/g,'.');
+      // . or ,
+      if( e.keyCode === 188 || e.keyCode === 190 ){
+        if( val.split('.').length > 1 )
+          val = val.replace('.','');
+      }
+      // left, right arrow keys
+      // backspace
+      else if( e.keyCode === 37 || e.keyCode === 39 ||
+              e.keyCode === 8 || e.keyCode === 46 )
+        return;
+      formatNum.apply( this, [val,start,end]);
+
+    });
+
+    this.on('change', function(e){
+      formatNum.apply( this, [this.value]);
+    });
+
+    function roundDecimal( val ){
+      return val.toFixed(settings.decimals);
+    }
+
+    function formatNum( val, start, end ){
+
+      if( isNaN(val) )
+        val = 0.0;
+
+      val = roundDecimal(parseFloat(val))
+              .replace('.',settings.point);
+
+      $(this).val( val );
+
+      if( start && end )
+        setSelectionRange.apply(this, [start, end] );
+
+    }
+
+  };
 
   /**
    * Method for selecting a range of characters in an input/textarea.
@@ -101,19 +172,5 @@ $.fn.caminioNumberPicker = function( options ){
     return pos;
   }
 
-  function cleanup( val, start, end ){
 
-    if( isNaN(val) )
-      val = 0.0;
-
-    val = roundDecimal(parseFloat(val))
-            .replace('.',settings.point);
-
-    $(this).val( val );
-
-    if( start && end )
-      setSelectionRange.apply(this, [start, end] );
-
-  }
-
-};
+})( jQuery );

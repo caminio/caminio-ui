@@ -40,18 +40,17 @@ body, html{
 }
 
 .message{
-  background: #5BC0DE;
-  margin: 0 auto 20px 23%;
-  padding: 15px;
+  margin: 0 auto 0 20px;
+  padding: 10px;
   color: #fff;
   font-weight: 600;
   max-width: 50%;
 }
 
-.message.error{
-  background: #d55;
+/*.message.error{
+  font-weight: 600;
 }
-
+*/
 form.auth{
   margin: 0;
   display: table-cell;
@@ -113,7 +112,7 @@ form.auth{
 
 form.auth button{
   padding: 5px 15px;
-  margin-left: 5px;
+  margin-left: -10px;
   margin-bottom: 2px;
   font-weight: 600;
   text-transform: uppercase;

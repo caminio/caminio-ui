@@ -40,13 +40,23 @@ module.exports = function( caminio ){
    *
    */
   function dashboardBoxes( req, res, next ){
+    if( ! res.locals.currentDomain )
+      return next();
     res.locals.dashboardBoxes = [];
     _.each( caminio.gears, function( gear ){
       var dir = join(gear.paths.absolute,'api','dashboard-addons');
       if( fs.existsSync( dir ) ){
         fs.readdirSync( dir )
           .forEach( function( file ){
-            res.locals.dashboardBoxes.push( fs.readFileSync(join(dir, file)) );
+            // itereate through allowedAppNames
+            // and determine if domain is allowed
+            // to use this dashboard plugin
+            _.some( res.locals.currentDomain.allowedAppNames, function(appName){
+              if( file.indexOf(appName) >= 0 ){
+                res.locals.dashboardBoxes.push( fs.readFileSync(join(dir, file)) );
+                return true;
+              }
+            });
           });
       }
     });

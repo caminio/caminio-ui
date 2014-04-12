@@ -3,9 +3,20 @@
   'use strict';
 
   window.caminio = window.caminio || {};
+
+  // deprecated. use util. instead
   window.caminio.uid = uid;
   window.caminio.generatePassword = generatePassword;
   window.caminio.translateDataFields = translateDataFields;
+  
+  window.caminio.util = window.caminio.util || {};
+  window.caminio.generatePassword = generatePassword;
+  window.caminio.translateDataFields = translateDataFields;
+  window.caminio.util.uid = uid;
+  window.caminio.util.generatePassword = generatePassword;
+  window.caminio.util.translateDataFields = translateDataFields;
+  
+  window.caminio.util.currencyCode2Symbol = transformCurrencyCode2Symbol;
 
   var passwordConditionsRegExp = /(?=^[^\s]{6,128}$)((?=.*?\d)(?=.*?[A-Z])(?=.*?[a-z])|(?=.*?\d)(?=.*?[^\w\d\s])(?=.*?[a-z])|(?=.*?[^\w\d\s])(?=.*?[A-Z])(?=.*?[a-z])|(?=.*?\d)(?=.*?[A-Z])(?=.*?[^\w\d\s]))^.*/;
 
@@ -61,6 +72,21 @@
         $(this).text( Ember.I18n.t($(this).attr('data-translate')) );
       });
     });
+  }
+
+  /**
+   * transforms a currency code ISO 4217
+   * into according symbols
+   */
+  function transformCurrencyCode2Symbol( currencyCode ){
+    switch( currencyCode ){
+      case 'EUR':
+        return '&euro;';
+      case 'GBP':
+        return '&#163;';
+      case 'USD':
+        return '$';
+    }
   }
 
 })();

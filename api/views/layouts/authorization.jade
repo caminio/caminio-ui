@@ -56,5 +56,11 @@ html(lang=i18n.locale())
         $('#logo').delay(600).animate({
           opacity: 0.2
         }, 2000);
+        
+        var $kick = $('.message').find('.kick-user')
+        if( $kick.length ){
+          $('button[type=submit]').text($kick.text());
+          $('form.auth').attr('action',$('form.auth').attr('action').replace('/login','/kick/'+ $('.message').find('span[data-user-id]').attr('data-user-id')));
+        }
 
       });
