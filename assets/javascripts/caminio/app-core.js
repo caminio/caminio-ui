@@ -180,4 +180,47 @@
 
   });
 
+
+  window.App.Select2CountryView = Ember.Select.extend({
+
+    prompt: Em.I18n.t('select_country'),
+    classNames: ['input-xlarge'],
+
+    willInsertElement: function(){
+
+      var self = this;
+      this.set('optionLabelPath', 'content.text');
+      this.set('optionValuePath', 'content.id');
+
+      var dfd = $.getJSON('/caminio/util/countries?lang='+currentLang);
+      dfd.done( function( response ){
+        var countries = [];
+        for( var code in response )
+          countries.push({ id: code, text: response[code] });
+        countries.sort(function(a,b){
+          if( a.text.toLowerCase() < b.text.toLowerCase() ) return -1;
+          if( a.text.toLowerCase() > b.text.toLowerCase() ) return 1;
+          if( a.text.toLowerCase() === b.text.toLowerCase() ) return 0;
+        });
+        self.set('content', countries);
+      });
+      return dfd;
+    },
+
+    didInsertElement: function() {
+      Ember.run.scheduleOnce('afterRender', this, 'processChildElements');
+    },
+
+    processChildElements: function() {
+      this.$().select2({
+          // do here any configuration of the
+          // select2 component
+      });
+    },
+
+    willDestroyElement: function () {
+      this.$().select2("destroy");
+    }
+  });
+
 })();

@@ -44,6 +44,7 @@
     'latest_activities': 'Latest activities',
     'users_in_total': 'Users in total',
     'please_select': 'Please select...',
+    'select_country': 'Select country...',
 
     'required_fields': 'Required field',
 
