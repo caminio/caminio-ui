@@ -248,8 +248,18 @@ div.btn.icon-only{
   padding: 7px 15px;
   border-bottom: 3px solid transparent;
   text-transform: uppercase;
+  text-decoration: none;
   color: #777;
 }
+
+.top-navbar a:active,
+.top-navbar a:hover,
+.top-navbar a:visited,
+.top-navbar a:focus{
+  text-decoration: none;
+  outline: none;
+}
+
 
 .top-navbar a.active{
   border-bottom-color: #c83737;

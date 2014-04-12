@@ -54,6 +54,10 @@ table.caminio th.align-right,
 table.caminio td.align-right{
   text-align: right;
 }
+table.caminio th.align-center,
+table.caminio td.align-center{
+  text-align: center;
+}
 table.caminio th.nr,
 table.caminio td.nr{
   text-align: right;

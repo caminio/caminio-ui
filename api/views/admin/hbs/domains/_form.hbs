@@ -29,22 +29,6 @@
   </div>
 </div>
 
-{{#if isWebshopEnabled}}
-<div class="form-group">
-  <label class="control-label">{{t domain.currency}}</label>
-</div>
-<div class="form-group clearfix">
-  <div class="col-md-2">
-    {{view Ember.Select valueBinding='domain.currency'
-                        content=currencies}}
-  </div>
-  <div class="col-md-4">
-    {{input valueBinding='domain.vat' class='form-control'
-                        placeholderTranslation='domain.vat'}}
-  </div>
-</div>
-{{/if}}
-
 <div class="form-group">
   <label class="control-label">{{t domain.disk_quota_m}}</label>
   <div style="width: 5em">

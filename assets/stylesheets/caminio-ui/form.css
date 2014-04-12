@@ -48,7 +48,8 @@ form.caminio .checkbox-field .fa{
 }
 
 form.caminio select{
-  padding: 2px 10px;
+  padding: 5px 10px;
+  border-radius: 0;
 }
 
 form.caminio .control-label.required:after{

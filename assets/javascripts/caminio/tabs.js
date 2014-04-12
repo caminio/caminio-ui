@@ -6,7 +6,6 @@ $.fn.switchTabs = function switchTabs( options ){
   var $tabsNav = $(this);
   var $tabsContent = $('.switch-tabs-content[data-tabs-id='+$(this).attr('data-tabs-id')+']');
 
-  console.log($tabsContent);
   $tabsNav.find('li').on('click', function(e){
     e.preventDefault();
     if( $(this).hasClass('disabled') )

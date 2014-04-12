@@ -21,10 +21,6 @@ $(function(){
       ];
     }.property(),
 
-    currencies: function(){
-      return ['EUR', 'USD', 'GBP'];
-    }.property(),
-
     languages: function(){
       return ['de', 'en'];
     }.property(),

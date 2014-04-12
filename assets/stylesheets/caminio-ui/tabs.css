@@ -1,5 +1,6 @@
 .switch-tabs{
   list-style: none; 
+  padding: 0;
 }
 
 .switch-tabs li{
