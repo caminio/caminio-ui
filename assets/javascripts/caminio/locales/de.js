@@ -21,6 +21,7 @@
     'delete_selected': 'Ausgewählte löschen',
     'root': 'Wurzel',
     'actions': 'Aktionen',
+    'more': 'mehr',
 
     'email': 'Email',
     'phone': 'Telefon',
@@ -51,6 +52,12 @@
 
     'last_modified': 'geändert',
     'created': 'erstellt',
+    'created_by': 'erstellt von',
+    'created_at': 'erstellt am',
+    'updated': 'aktualisiert',
+    'updated_by': 'aktualisiert von',
+    'updated_at': 'aktualisiert am',
+    
 
     'unsaved_data_continue': 'Das Formular enthält ungespeicherte Daten. Wirklich fortfahren?',
 

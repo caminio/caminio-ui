@@ -21,6 +21,7 @@
     'delete_selected': 'Delete selected',
     'root': 'root',
     'actions': 'Actions',
+    'more': 'more',
 
     'cut': 'Cut',
     'copy': 'Copy',
@@ -49,6 +50,12 @@
 
     'last_modified': 'Modified',
     'created': 'Created',
+    'created_by': 'Created by',
+    'created_at': 'Created at',
+    'updated': 'Updated',
+    'updated_by': 'Updated by',
+    'updated_at': 'Updated at',
+    
     'settings': 'Settings',
 
     'unsaved_data_continue': 'The opened form contains unsaved data which would be lost. Really continue?',
