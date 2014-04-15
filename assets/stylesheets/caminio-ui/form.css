@@ -4,6 +4,7 @@ textarea{
   padding: 6px;
   border: 1px solid #ccc;
   border-radius: 0;
+  transition: all 0.8s;
 }
 
 form.caminio .form-control:hover,
@@ -21,16 +22,22 @@ form.caminio .form-actions{
   margin: 10px;
 }
 
+form.caminio .help-block{
+  transition: 0.8s;
+}
+
 form.caminio .field-with-error .help-block{
   color: #d00;
   font-size: 1rem;
   line-height: 1.2rem;
+  transition: all 0.3s;
 }
 
 form.caminio .field-with-error textarea,
 form.caminio .field-with-error input{
   border-color: #d00;
   background: #fdd;
+  transition: all 0.3s;
 }
 
 label{
