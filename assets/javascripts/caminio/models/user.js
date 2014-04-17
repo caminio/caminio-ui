@@ -32,7 +32,10 @@
       if( name.length < 2 )
         name += this.get('email');
       return name;
-    }.property('firstname', 'lastname')
+    }.property('firstname', 'lastname'),
+    name: function(){
+      return this.get('fullname');
+    }.property('firstname','lastname')
   });
 
 })( App );

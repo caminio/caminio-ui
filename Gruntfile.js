@@ -37,6 +37,7 @@ module.exports = function(grunt) {
             'assets/javascripts/3rdparty/jquery-1.10.2.js',
             'assets/javascripts/3rdparty/handlebars-1.1.2.js',
             'assets/javascripts/3rdparty/ember.prod.min.js',
+            'assets/javascripts/3rdparty/masonry.min.js',
             'assets/javascripts/3rdparty/ember-data.prod.min.js',
             'assets/javascripts/3rdparty/inflection.min.js',
             'assets/javascripts/3rdparty/filesize.min.js',
