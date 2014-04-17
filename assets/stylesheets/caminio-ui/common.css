@@ -10,6 +10,9 @@
 .fixed{
   position: fixed;
 }
+.fill-width{
+  width: 100%;
+}
 .btn{
   border: 1px solid #ddd;
   padding: 2px;
