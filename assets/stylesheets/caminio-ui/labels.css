@@ -14,12 +14,16 @@
   padding: 2px;
   border: 1px solid transparent;
   height: 25px;
-  opacity: 0.5;
+  opacity: 1;
   cursor: pointer;
 }
 
+.labels-list li.pale{
+  opacity: 0.5;
+}
+
 .labels-list li.active{
-  opacity: 1;
+  font-weight: 600;
 }
 
 .labels-list li:hover{
@@ -31,7 +35,7 @@
   width: 16px;
   height: 16px;
   float: left;
-  margin: 3px 5px 0 0;
+  margin: 2px 5px 0 1px;
   position: relative;
   border: 1px solid transparent;
 }
@@ -63,6 +67,7 @@
   white-space: nowrap;
   float: left;
   width: 70%;
+  margin-top: 1px;
 }
 
 .labels-list .remove-label{

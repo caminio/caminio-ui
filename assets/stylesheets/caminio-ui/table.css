@@ -28,9 +28,8 @@ table.caminio thead tr.title th{
 table.caminio thead tr:last-child{
   border-bottom: 1px solid #ccc;
 }
-table.caminio tfoot tr{
+table.caminio tfoot{
   background-color: #f2f2f2;
-  border-top: 1px solid #ddd;
 }
 table.caminio tfoot tr.totals{
   font-size: 10px;
@@ -45,6 +44,10 @@ table.caminio tbody tr{
   -khtml-user-select: none; /* webkit (konqueror) browsers */
   -ms-user-select: none; /* IE10+ */
   cursor: default;
+}
+table.caminio tbody tr.block td{
+  cursor: progress;
+  opacity: 0.1;
 }
 table.caminio th.align-left,
 table.caminio td.align-left{
@@ -108,6 +111,21 @@ table.caminio td.actions .btn-group{
 
 table.caminio td a{
   color: #555;
+}
+
+table.caminio .checker{
+  display: block;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+table.caminio .checker .fa{
+  left: 1px;
+  position: absolute;
+  top: 0px;
+  font-size: 13px;
 }
 
 table.caminio td table.caminio{

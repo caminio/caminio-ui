@@ -43,11 +43,12 @@
       if( record._relationships ){
         for( var i in record._relationships){
           data[root][i] = [];
-          record._relationships[i].forEach( function( rel ){
-            var obj = rel.serialize( rel, options );
-            obj._id = rel.id;
-            data[root][i].push( obj );
-          });
+          if( record._relationships[i] )
+            record._relationships[i].forEach( function( rel ){
+              var obj = rel.serialize( rel, options );
+              obj._id = rel.id;
+              data[root][i].push( obj );
+            });
         }
       }
     }, 
