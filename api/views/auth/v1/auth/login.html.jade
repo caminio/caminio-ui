@@ -13,11 +13,11 @@ block content
       
         .row-wrap
           .row
-            .email-container.col-md-5
+            .email-container.col-md-5.col-xs-12
               input(type='text', placeholder=t('auth.email_address'), autocapitalize='off', autocorrect='off', name='username' )
-            .password-container.col-md-5
+            .password-container.col-md-5.col-xs-12
               input(type='password', placeholder=t('auth.password'), name='password' )
-            .col-md-2
+            .col-md-2.col-xs-12.align-right
               button.btn.text-icon(type='submit')
                 =t('login')
                 i.fa.fa-arrow-right

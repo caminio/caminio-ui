@@ -23,7 +23,7 @@ body, html{
 }
 
 .login-box{
-  width: 50%;
+  width: 600px;
   display: table;
   height: 90%;
   margin: 0 auto;
@@ -141,3 +141,22 @@ form.auth input[type=password]:focus{
   outline: none !important;
   transition: all 0.5s;
 }
+
+@media (max-width: 768px) {
+  .login-box{
+    width: 90%;
+  }
+  .login-box form.auth input{
+    padding: 15px 0;
+    margin-bottom: 5px;
+  }
+  .login-box form.auth button{
+    padding: 15px 30px;
+  }
+  .domain-container:before, .email-container:before{
+    bottom: 22px;
+  }
+  .password-container:before{
+    bottom: 21px;
+  }
+}  

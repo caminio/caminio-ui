@@ -72,6 +72,8 @@
     'label.private': 'Privat',
 
     'label.select_color': 'Farbe wählen',
+
+    'content_here': 'Hier sollte noch Text eingetragen werden!',
     
     'errors.db_field': '{{name}}: {{message}}',
     'errors.required': 'Eingabe erforderlich',

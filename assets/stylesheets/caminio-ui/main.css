@@ -231,6 +231,11 @@ body.side-panel-active .main-view{
   border-bottom: 1px solid #ddd;
 }
 
+.title-box h1 .desc{
+  font-size: 1rem;
+  color: #999;
+}
+
 
 .title-box .main-ctrl{
   float: right;
