@@ -1,9 +1,17 @@
 .thumbnail-upload{
   position: relative;
+  background-color: #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px;
+  display: block;
+  line-height: 1.42857;
+  margin-bottom: 20px;
+  padding: 4px;
+  transition: all 0.2s ease-in-out 0s;
 }
 .thumbnail-upload .title{
   text-align: center;
-  margin: 25% 10%;
+  margin: 15% 10%;
   font-size: 1.4em;
   color: #999;
   cursor: pointer;

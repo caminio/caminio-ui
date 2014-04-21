@@ -182,11 +182,23 @@ div.btn.icon-only{
 
 .box{
   border: 1px solid #ccc;
+  position: relative;
 }
 
 .box.fill-box{
   background: #fafafa;
   border: 1px solid #ddd;
+}
+.box .center-box{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: -40px auto auto;
+  text-align: center;
+  width: 50%;
+
 }
 .box-title{
   color: #666;
