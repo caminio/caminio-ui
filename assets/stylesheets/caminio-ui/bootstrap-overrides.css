@@ -16,6 +16,10 @@ body .modal-header h3{
   font-size: 1.2rem;
 }
 
+hr{
+  border-color: #dfdfdf;
+}
+
 /*body a{
   color: #f91;
 }*/

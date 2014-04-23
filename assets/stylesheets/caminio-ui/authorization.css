@@ -30,7 +30,7 @@ body, html{
 }
 
 .login-box .row-wrap{
-  background: #fafafa;
+  background: #f5f5f5;
   border: 2px solid #333;
   padding: 5px;
 }
@@ -122,7 +122,7 @@ form.auth input[type=text],
 form.auth input[type=password]{
   border-radius: 0;
   text-indent: 2.5rem;
-  padding: 5px 0;
+  padding: 6px 0;
   transition: all 0.5s;
   width: 100%;
   font-weight: 600;

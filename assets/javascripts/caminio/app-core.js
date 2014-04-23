@@ -122,6 +122,15 @@
     }
   });
 
+  /**
+   * example:
+   * {{view App.Select2SelectView
+        id="mySelect"
+        contentBinding="App.staticData"
+        optionValuePath="content.id"
+        optionLabelPath="content.label"
+        selectionBinding="controller.selectedId"}}
+   */
   window.App.Select2SelectView = Ember.Select.extend({
 
     prompt: Em.I18n.t('please_select'),
@@ -140,7 +149,15 @@
 
     willDestroyElement: function () {
       this.$().select2("destroy");
-    }
+    },
+
+    selectedDidChange : function(){
+      var self = this;
+      setTimeout(function(){
+        self.$().select2('val', self.get('value'));
+      },100);
+    }.observes('selection.@each')
+
   });
 
   window.App.Select2TagView = Ember.TextField.extend({

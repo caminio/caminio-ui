@@ -7,8 +7,6 @@ append head
     link( rel='stylesheet', href='/stylesheets/caminio-profiles/profile.css' )
 
 append foot
-  script(type='text/javascript').
-    var profileId = '!{user._id}';
 
   if env === 'production'
     script(type='text/javascript', src='/javascripts/caminio-profiles.min.js')
@@ -21,6 +19,9 @@ append foot
 
   script(type='text/x-handlebars' data-template-name='index')
     include hbs/index.hbs
+
+  script(type='text/x-handlebars' data-template-name='password_modal')
+    include hbs/password_modal.hbs
 
 block content
 

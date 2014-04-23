@@ -2,19 +2,23 @@ input[type=text],
 input[type=password],
 textarea{
   padding: 6px;
-  border: 1px solid #ccc;
+  /*border: 1px solid #ccc;*/
+  border: none;
+  box-shadow: 0 1px 3px rgba(128, 128, 128, 0.2);
   border-radius: 0;
   transition: all 0.8s;
 }
 
 form.caminio .form-control:hover,
 form.caminio .form-control:focus{
-  box-shadow: none;
   border-color: #777;
+  box-shadow: 0 1px 3px rgba(100, 100, 100, 0.5);
 }
 
 form.caminio textarea.form-control{
   border-radius: 0;
+  border: none;
+  box-shadow: 0 1px 3px rgba(128, 128, 128, 0.2);
 }
 
 form.caminio .form-actions{
@@ -42,6 +46,12 @@ form.caminio .field-with-error input{
 
 label{
   font-weight: 500;
+}
+
+form.caminio label.big-label{
+  font-size: 1.15em;
+  font-weight: 600;
+  color: #999;
 }
 
 form.caminio .checkbox-field{

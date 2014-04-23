@@ -33,7 +33,7 @@
         name += this.get('email');
       return name;
     }.property('firstname', 'lastname'),
-    name: function(){
+    name: function(name){
       return this.get('fullname');
     }.property('firstname','lastname')
   });

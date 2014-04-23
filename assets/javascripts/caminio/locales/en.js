@@ -6,6 +6,9 @@
   
   var translations = {
 
+    'de': 'German',
+    'en': 'English',
+    
     'hi': 'Hi',
     'today_is': 'Today is',
     'session_started': 'Session started',
@@ -14,6 +17,7 @@
     'back': 'Back',
     'edit': 'Edit',
     'close': 'Close',
+    'done': 'Done',
     'cancel': 'Cancel',
     'create': 'Create',
     'remove': 'Remove',
