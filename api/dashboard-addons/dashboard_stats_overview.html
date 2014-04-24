@@ -36,7 +36,7 @@
     $('#total-users-box').block({ message: null});
     $.getJSON( '/caminio/users' )
       .then( function( response ){
-        $('#total-users-box .big-title').text( response.users.length );
+        $('#total-users-box .big-title').text( response.length );
         $('#total-users-box').unblock();
       });
   });

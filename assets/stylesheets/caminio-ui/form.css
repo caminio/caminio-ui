@@ -84,3 +84,62 @@ form.caminio .required-exp{
 form.caminio .close-inside-form{
   margin: 0 -5px 0 10px;
 }
+
+form.caminio .select2-container .select2-choice{
+  border: none;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(128, 128, 128, 0.2);
+  border-radius: 0;
+}
+form.caminio .select2-container .select2-choice .select2-arrow{
+  border: none;
+  background: #fff;
+  border-radius: 0;
+}
+form.caminio .select2-container .select2-choice .select2-arrow b{
+  background: none;
+}
+form.caminio .select2-container .select2-choice .select2-arrow b:before{
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f107";
+  float: right;
+  margin: 9px 10px 0;
+}
+body .select2-drop-active{
+  border: none;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+  border-radius: 0;
+}
+
+body .select-2search{
+  position: relative;
+}
+
+body .select2-search input{
+  background: #fff;
+  font-size: 14px;
+  padding: 10px;
+  border: none;
+  box-shadow: none;
+}
+
+body .select2-search:after{
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f002";
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  position: absolute;
+  right: 16px;
+  top: 10px;
+  font-size: 16px;
+  color: #999;
+}

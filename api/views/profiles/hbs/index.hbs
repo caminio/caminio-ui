@@ -1,4 +1,4 @@
-<section class="main-wrapper">
+<section class="plain-wrapper">
 
   <header>
     <div class="box title-box website">
@@ -32,9 +32,32 @@
 
     <div class="row">
       <div class="col-md-3 align-right">
+        
         <div class="main-avatar">
-          <img class="img-thumbnail" src='/images/bot_128x128.png'>
+          <img class="img-thumbnail" {{bind-attr src='picUrl'}}>
         </div>
+
+        <div class="avatar-actions">
+          <a href="#" {{action 'changePic'}}>
+            {{t 'profile.change_picture'}}
+          </a>
+          <div>
+            {{#if remotePicUrl}}
+              <br>
+              {{t 'profile.currently_using_gravatar'}}
+            {{else}}
+              {{t 'or'}}
+            {{/if}}
+          </div>
+          <a href="#" {{action 'useGravatar'}}>
+            {{#if remotePicUrl}}
+              {{t 'profile.stop_gravatar'}}
+            {{else}}
+              {{t 'profile.use_gravatar'}}
+            {{/if}}
+          </a>
+        </div>
+
       </div>
 
       <div class="col-md-9 profile-info">
@@ -73,4 +96,4 @@
 
 </section>
 
-{{outlet 'password-modal'}}
+{{outlet 'modal'}}

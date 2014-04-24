@@ -8,6 +8,7 @@ $(function(){
    * @param {String} type [error,info]
    * @param {String} msg the message
    * @param {Object} options
+   * @param {Boolean} options.keepVisible does not remove the notification after timeout
    * @param {Function} options.undo a function that will be triggered when user clicks on 'undo'
    * @param {Boolean} options.clearAll removes all current notifications before showing the new one
    */
@@ -38,12 +39,13 @@ $(function(){
     $('#notifications .notifications-collection').append( $notification );
     $notification.slideDown();
 
-    setTimeout( function(){
-      $notification.slideUp();
+    if( !options.keepVisible )
       setTimeout( function(){
-        $notification.remove();
-      },500);
-    },5000);
+        $notification.slideUp();
+        setTimeout( function(){
+          $notification.remove();
+        },500);
+      },5000);
     
   }
 

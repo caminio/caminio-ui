@@ -19,16 +19,17 @@
 }
 
 .notification:before{
-  background-color: rgba(0,0,0,0.1);
-  color: #fff;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #FFFFFF;
   display: inline-block;
   font-family: FontAwesome;
-  font-size: 13px;
-  font-weight: 500; 
-  position: absolute;
-  top: 0;
+  font-size: 22px;
+  font-weight: 500;
   left: 0;
+  line-height: 16px;
   padding: 11px 14px;
+  position: absolute;
+  top: 0px;
   height: 100%;
 }
 
@@ -38,8 +39,7 @@
 
 .notification-info:before{
   background-color: rgba(0,0,0,0.1);
-  content: "\f05a";;
-  padding: 11px 14px;
+  content: "\f05a";
 }
 
 .notification-error{
@@ -54,16 +54,16 @@
   position: absolute;
   right: 0;
   padding: 8px 12px;
-  top: 0px;
+  top: -2px;
   opacity: 0.7;
 }
 .notifications .close:after{
   color: #fff;
-  content: "\f057";
+  content: "\f00d";
   display: inline-block;
   font-family: 'FontAwesome';
-  font-size: 17px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 400;
 }
 .notifications .close:hover{
   opacity: 1;

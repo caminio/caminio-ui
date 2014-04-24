@@ -10,6 +10,8 @@
     'en': 'Englisch',
     
     'hi': 'Hi',
+    'or': 'oder',
+    
     'today_is': 'Heute ist',
     'session_started': 'Sitzung begonnen',
     'name': 'Name',
@@ -26,6 +28,7 @@
     'root': 'Wurzel',
     'actions': 'Aktionen',
     'more': 'mehr',
+    'perc_completed': 'Prozent abgeschlossen',
 
     'email': 'Email',
     'phone': 'Telefon',

@@ -10,6 +10,8 @@
     'en': 'English',
     
     'hi': 'Hi',
+    'or': 'or',
+    
     'today_is': 'Today is',
     'session_started': 'Session started',
     'name': 'Name',
@@ -26,6 +28,7 @@
     'root': 'root',
     'actions': 'Actions',
     'more': 'more',
+    'perc_completed': 'percent completed',
 
     'cut': 'Cut',
     'copy': 'Copy',

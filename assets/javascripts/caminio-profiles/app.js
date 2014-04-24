@@ -13,12 +13,18 @@
       changePassword: function(){
         this.render('password_modal',{
           into: 'index',
-          outlet: 'password-modal'
+          outlet: 'modal'
         });
       },
-      closePasswordModal: function(){
+      changePic: function(){
+        this.render('pic_modal',{
+          into: 'index',
+          outlet: 'modal'
+        });
+      },
+      closeModal: function(){
         this.disconnectOutlet({
-          outlet: 'password-modal',
+          outlet: 'modal',
           parentView: 'index'
         });
       },
@@ -53,19 +59,67 @@
         user.save().then(function(){
           notify('info', Em.I18n.t('profile.lang_saved', { lang: lang }));
         });
+      },
+      useGravatar: function(){
+        var user = this.get('model');
+
+        if( user.get('remotePicUrl') )
+          user.set('remotePicUrl', null);
+        else{
+          user.get('mediafiles').removeObject(user.get('mediafiles.firstObject'));
+
+          var hash = md5( user.get('email').toLowerCase() );
+          user.set('remotePicUrl', 'https://secure.gravatar.com/avatar/'+hash+'?s=128');
+        }
+        user.save().then(function(){
+          notify('info', Em.I18n.t('profile.avatar_saved'));
+        });
+        
       }
     }
   });
 
   App.PasswordModalView = Ember.View.extend({
     didInsertElement: function(){
-      this.$('#password-modal').modal()
+      this.$('#modal').modal()
         .find('input[type=password]:first').focus();
     }
   });
 
-  App.ChangePicView = Ember.View.extend({
+  App.PicModalView = Ember.View.extend({
     didInsertElement: function(){
+      this.$('#modal').modal();
+
+      var controller = this.get('controller');
+      var user = this.get('controller.content');
+
+      this.$('#fileupload').fileupload({
+        dataType: 'json',
+        dropZone: this.$('.title'),
+        url: '/caminio/mediafiles/embedded/user/'+user.get('id'),
+        done: function (e, data) {
+          setTimeout(function(){
+            $('#progress').removeClass('active');
+          },1000);
+          user.reload();
+          $('.top-panel img.avatar').attr('src', '/caminio/domains/'+currentDomain._id+'/preview/'+data.result.mediafiles[0].name);
+          notify('info', Em.I18n.t('profile.avatar_saved'));
+          $('#modal').modal('hide');
+          //controller.send('closeModal');
+        },
+        progressall: function (e, data) {
+          $('#progress').addClass('active');
+          var progress = parseInt(data.loaded / data.total * 100, 10);
+          $('#progress .progress-bar').css(
+            'width',
+            progress + '%'
+          )
+          .attr('aria-valuenow', progress)
+          .find('.perc-text').text(progress+'%');
+        }
+      }).on('fileuploadsubmit', function( e, data ){
+        data.formData = { only_one: true };
+      });
 
     }
   });
@@ -78,7 +132,8 @@
     newPasswordError: false,
     actions: {
       close: function(){
-        this.send('closePasswordModal');
+        $('#modal').modal('hide');
+        this.send('closeModal');
       },
       savePassword: function(){
         var self = this;
@@ -93,8 +148,8 @@
           { oldPassword: this.get('oldPassword'),
             newPassword: this.get('newPassword') }).done(function(response){
               notify('info', Em.I18n.t('profile.password_saved'));
-              $('#password-modal').modal('hide');
-              self.send('closePasswordModal');
+              $('#modal').modal('hide');
+              self.send('closeModal');
               self.set('oldPassword','');
               self.set('newPassword','');
             }).fail(function(xhr,textStatus,text){

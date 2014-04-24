@@ -15,6 +15,16 @@
     camDomains: DS.attr('array'),
     apiEnabled: DS.attr('boolean'),
     clients: DS.hasMany('client'),
+    remotePicUrl: DS.attr('string'),
+    mediafiles: DS.hasMany('mediafile', { embedded: 'always' }),
+    picUrl: function(){
+      if( this.get('mediafiles.length') > 0 )
+        return '/caminio/domains/'+currentDomain._id+'/preview/'+this.get('mediafiles.firstObject').get('name');
+      if( this.get('remotePicUrl') )
+        return this.get('remotePicUrl');
+      //default:
+      return '/images/bot_128x128.png';
+    }.property('remotePicUrl', 'mediafiles.@each'),
     mailto: function(){
       return 'mailto:'+this.get('email');
     }.property('email'),
