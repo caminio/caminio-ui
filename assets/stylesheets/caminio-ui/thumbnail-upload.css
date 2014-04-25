@@ -9,12 +9,21 @@
   padding: 4px;
   transition: all 0.2s ease-in-out 0s;
 }
+
 .thumbnail-upload .title{
   text-align: center;
   margin: 15% 10%;
   font-size: 1.4em;
   color: #999;
   cursor: pointer;
+}
+
+.thumbnail-upload.md .title{
+  font-size: 1em;
+}
+
+.thumbnail-upload.md .title .fa{
+  font-size: 1.2em;
 }
 
 .thumbnail-upload .title .fa{
