@@ -241,4 +241,26 @@
     }
   });
 
+  window.App.CodeMirrorView = Ember.TextArea.extend({
+
+    classNames: ['CodeMirror'],
+
+    didInsertElement: function() {
+      Ember.run.scheduleOnce('afterRender', this, 'processChildElements');
+    },
+
+    processChildElements: function() {
+      this._codeMirror = CodeMirror.fromTextArea( this.$()[0], {
+          mode: 'markdown',
+          tabMode: 'indent',
+          lineWrapping: true
+      });
+    },
+
+    willDestroyElement: function () {
+      this.$().select2("destroy");
+    }
+  });
+
+
 })();
