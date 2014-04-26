@@ -21,7 +21,7 @@ header.top-panel .toggle-side-panel{
   transition: background 0.5s;
 }
 header.top-panel .toggle-side-panel:hover{
-  background: #eee;
+  background: #666;
   transition: background 0.5s;
 }
 header.top-panel .brand{
@@ -42,7 +42,7 @@ header.top-panel .ctrl-btn.icn{
 }
 header.top-panel .ctrl-btn:hover,
 header.top-panel .ctrl-btn:focus{
-  background-color: #eee;
+  background-color: #666;
   transition: all 0.5s;
 }
 header.top-panel .account-info,
