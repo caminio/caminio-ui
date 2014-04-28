@@ -136,6 +136,11 @@
    *    promptTranslation='my.translation' // will be translated using Em.I18n
    *    createAction='actionName' // action must be present in current controller
    *    createTranslation='my.create.translation' // same as promptTranslation
+   *
+   * the createAction gets:
+   * @param {String} name (the entered name)
+   * @param {JQuery} the jquery object of this select2 instance
+   * 
    */
   window.App.Select2SelectView = Ember.Select.extend({
 
@@ -157,13 +162,14 @@
         if( !self.get('createAction') )
           return;
         $('#select2-drop .select2-input').off().on('keyup', function(e){
-          if( $('#select2-drop .select2-results').length < 2 )
-            $('#select2-drop .select2-result-label').text( Em.I18n.t(self.get('createTranslation')));
+          if( $('#select2-drop .select2-results').length < 2 && this.value.length > 0 )
+            $('#select2-drop .select2-result-label:first').text( Em.I18n.t(self.get('createTranslation')));
           else
-            $('#select2-drop .select2-result-label').text( Em.I18n.t(self.get('promptTranslation')));
+            $('#select2-drop .select2-result-label:first').text( Em.I18n.t(self.get('promptTranslation')));
           if( e.keyCode !== 13 )
             return;
-          self.get('controller').send(self.get('createAction'), this.value);
+          self.get('controller').send(self.get('createAction'), this.value, self.$() );
+          self.$().select2('close');
         });
       });
     },
