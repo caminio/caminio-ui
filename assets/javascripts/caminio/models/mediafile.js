@@ -14,9 +14,11 @@
     description: DS.attr(),
     copyright: DS.attr(),
     thumbnails: DS.attr('array'),
+    parent: DS.attr('string'),
+    relPath: DS.attr('string'),
     url: function(){
       if( domainSettings.isCaminioHosted )
-        return '/caminio/domains/'+currentDomain._id+'/preview/'+this.get('name');
+        return '/caminio/domains/'+currentDomain._id+'/preview/'+this.get('relPath');
       return null;
     }.property('name'),
     isImage: function(){
@@ -39,6 +41,11 @@
       pref.thumbs[dim] = val;
       this.set('preferences', pref);
     },
+    updateRelPath: function(){
+      var pth = this.get('parent');
+      pth = pth.length > 0 ? pth + '/' : '';
+      this.set('relPath', pth+this.get('name') );
+    }.observes('name','parent'),
     getBackgroundImage: function(){
       if( this.get('isImage') )
         return 'background-image: url("'+this.get('url')+'");';

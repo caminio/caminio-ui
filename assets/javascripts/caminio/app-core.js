@@ -130,20 +130,40 @@
         optionValuePath="content.id"
         optionLabelPath="content.label"
         selectionBinding="controller.selectedId"}}
+   *
+   * advanced
+   *    promptTranslation='my.translation' // will be translated using Em.I18n
+   *    createAction='actionName' // action must be present in current controller
+   *    createTranslation='my.create.translation' // same as promptTranslation
    */
   window.App.Select2SelectView = Ember.Select.extend({
 
     prompt: Em.I18n.t('please_select'),
     classNames: ['input-xlarge'],
 
+    willInsertElement: function(){
+      if( this.get('promptTranslation') )
+        this.set('prompt', Em.I18n.t(this.get('promptTranslation')));
+    },
+
     didInsertElement: function() {
       Ember.run.scheduleOnce('afterRender', this, 'processChildElements');
     },
 
     processChildElements: function() {
-      this.$().select2({
-          // do here any configuration of the
-          // select2 component
+      var self = this;
+      this.$().select2().on('select2-open', function(){
+        if( !self.get('createAction') )
+          return;
+        $('#select2-drop .select2-input').off().on('keyup', function(e){
+          if( $('#select2-drop .select2-results').length < 2 )
+            $('#select2-drop .select2-result-label').text( Em.I18n.t(self.get('createTranslation')));
+          else
+            $('#select2-drop .select2-result-label').text( Em.I18n.t(self.get('promptTranslation')));
+          if( e.keyCode !== 13 )
+            return;
+          self.get('controller').send(self.get('createAction'), this.value);
+        });
       });
     },
 

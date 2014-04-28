@@ -218,6 +218,11 @@ div.btn.icon-only{
   margin: -5px 5px 0;
 }
 
+.box-title .ctrl{
+  float: right;
+  margin: -7px -12px 0 0;
+}
+
 .box-header{
   padding: 5px;
 }
