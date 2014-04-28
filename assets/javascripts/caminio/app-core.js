@@ -46,7 +46,8 @@
           if( record._relationships[i] )
             record._relationships[i].forEach( function( rel ){
               var obj = rel.serialize( rel, options );
-              obj._id = rel.id;
+              if( rel.id ) // do not make null _ids
+                obj._id = rel.id;
               data[root][i].push( obj );
             });
         }
