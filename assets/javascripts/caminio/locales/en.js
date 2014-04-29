@@ -27,6 +27,7 @@
     'delete_selected': 'Delete selected',
     'root': 'root',
     'actions': 'Actions',
+    'preview': 'Preview',
     'more': 'more',
     'perc_completed': 'percent completed',
 

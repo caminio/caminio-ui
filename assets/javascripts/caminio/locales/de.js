@@ -27,6 +27,7 @@
     'delete_selected': 'Ausgewählte löschen',
     'root': 'Wurzel',
     'actions': 'Aktionen',
+    'preview': 'Vorschau',
     'more': 'mehr',
     'perc_completed': 'Prozent abgeschlossen',
 
