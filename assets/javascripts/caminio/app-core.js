@@ -282,6 +282,10 @@
           tabMode: 'indent',
           lineWrapping: true
       });
+      var self = this;
+      this._codeMirror.on('change', function(){
+        self.set('value', self._codeMirror.getValue());
+      });
     },
 
     willDestroyElement: function () {

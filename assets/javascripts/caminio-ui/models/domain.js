@@ -1,8 +1,8 @@
-(function(){
+(function( App ){
 
   'use strict';
 
-  window.App.Domain = DS.Model.extend({
+  App.Domain = DS.Model.extend({
     name: DS.attr('string'),
     fqdn: DS.attr('string'),
     description: DS.attr('string'),
@@ -31,10 +31,7 @@
         return;
       pref.thumbs = value.split(',').replace(/\ /g,'');
       this.set('preferences', pref);
-    }.property('preferences'),
+    }.property('preferences')
   });
 
-  window.App.Enums = {};
-  window.App.Enums.availableAppNames = ['admin','contacts','shop'];
-
-})();
+})( App );

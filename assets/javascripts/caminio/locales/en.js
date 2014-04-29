@@ -36,6 +36,12 @@
 
     'email': 'Email',
     'phone': 'Phone',
+    'address': 'Address',
+    'street': 'Street',
+    'zip': 'Zip',
+    'state': 'State',
+    'country': 'Country',
+    'city': 'City',
 
     'properties': 'properties',
     'date': 'Date',

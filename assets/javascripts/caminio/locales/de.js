@@ -32,6 +32,12 @@
 
     'email': 'Email',
     'phone': 'Telefon',
+    'address': 'Adresse',
+    'street': 'Straße',
+    'zip': 'PLZ',
+    'state': 'Bundesland',
+    'country': 'Land',
+    'city': 'Stadt',
 
     'cut': 'Ausschneiden',
     'copy': 'Bearbeiten',

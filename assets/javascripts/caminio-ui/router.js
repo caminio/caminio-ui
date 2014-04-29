@@ -1,5 +1,8 @@
 ( function( App ){
 
+  App.Enums = {};
+  App.Enums.availableAppNames = [ 'dashboard', 'admin','contacts','shop','lineup', 'websites', 'calendar', 'projects', 'social-networks'];
+
   App.Router.map( function(){
 
     // domains
