@@ -6,7 +6,7 @@
   "dependencies": {
     "caminio": "~1.1.1",
     "caminio-auth": "~0.0.5",
-    "caminio-media": "~0.0.1",
+    "caminio-media": "~1.0.0",
     "grunt": "~0.4.2",
     "express-hbs": "git+https://github.com/barc/express-hbs#0.7.5",
     "jade": "~1.1.5",
