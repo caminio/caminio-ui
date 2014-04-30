@@ -293,5 +293,16 @@
     }
   });
 
+  window.App.setupCtrlS = function( content, msg ){
+    $(document).on('keydown', function(e){
+      if( !( e.keyCode === 83 && ( e.metaKey || e.ctrlKey ) ) )
+        return;
+      e.preventDefault();
+      content.save().then(function(){
+        notify('info', msg);
+      });
+    })
+  }
+
 
 })();
