@@ -248,6 +248,9 @@
           if( a.text.toLowerCase() === b.text.toLowerCase() ) return 0;
         });
         self.set('content', countries);
+        setTimeout(function(){
+          self.$().select2('val', self.get('value'));
+        },100);
       });
       return dfd;
     },
@@ -265,7 +268,16 @@
 
     willDestroyElement: function () {
       this.$().select2("destroy");
-    }
+    },
+
+    selectedDidChange : function(){
+      var self = this;
+      setTimeout(function(){
+        console.log(self.$().select2('val'), self.get('value'));
+        self.$().select2('val', self.get('value'));
+      },100);
+    }.observes('value')
+
   });
 
   window.App.CodeMirrorView = Ember.TextArea.extend({

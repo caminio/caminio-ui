@@ -59,6 +59,7 @@
     'latest_activities': 'Letzte Aktivitäten',
     'users_in_total': 'BenutzerInnen gesamt',
     'please_select': 'Bitte auswählen...',
+    'select_country': 'Land auswählen...',
 
     'settings': 'Einstellungen',
 
