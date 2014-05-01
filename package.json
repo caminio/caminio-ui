@@ -4,9 +4,8 @@
   "version": "0.0.3",
   "private": true,
   "dependencies": {
-    "caminio": "~1.1.1",
-    "caminio-auth": "~0.0.5",
-    "caminio-media": "~1.0.0",
+    "caminio": "git://github.com/caminio/caminio#master",
+    "caminio-media": "git://github.com/caminio/caminio-media#master",
     "grunt": "~0.4.2",
     "express-hbs": "git+https://github.com/barc/express-hbs#0.7.5",
     "jade": "~1.1.5",
