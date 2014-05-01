@@ -142,6 +142,14 @@ form.auth input[type=password]:focus{
   transition: all 0.5s;
 }
 
+.version{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.8em;
+}
+
 @media (max-width: 768px) {
   .login-box{
     width: 90%;
@@ -159,4 +167,4 @@ form.auth input[type=password]:focus{
   .password-container:before{
     bottom: 21px;
   }
-}  
+}

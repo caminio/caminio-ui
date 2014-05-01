@@ -43,6 +43,14 @@ html(lang=i18n.locale())
 
     block content
 
+    .version
+      p 
+        | site version 
+        = siteVersion
+        | &nbsp; caminio version 
+        = caminioVersion
+
+
     block foot
 
     script(type='text/javascript').
