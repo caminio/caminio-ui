@@ -1,11 +1,10 @@
 {
   "name": "caminio-ui",
   "description": "(end)user interface for caminio",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "caminio": "git://github.com/caminio/caminio#master",
-    "caminio-media": "git://github.com/caminio/caminio-media#master",
+    "caminio": "~1.1.2",
     "grunt": "~0.4.2",
     "express-hbs": "git+https://github.com/barc/express-hbs#0.7.5",
     "jade": "~1.1.5",
