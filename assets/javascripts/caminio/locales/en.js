@@ -15,6 +15,8 @@
     'today_is': 'Today is',
     'session_started': 'Session started',
     'name': 'Name',
+    'title': 'Title',
+    'filename': 'Filename',
     'save': 'Save',
     'back': 'Back',
     'edit': 'Edit',

@@ -15,6 +15,8 @@
     'today_is': 'Heute ist',
     'session_started': 'Sitzung begonnen',
     'name': 'Name',
+    'title': 'Titel',
+    'filename': 'Dateiname',
     'save': 'Speichern',
     'back': 'Zurück',
     'edit': 'Bearbeiten',
