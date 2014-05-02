@@ -273,7 +273,6 @@
     selectedDidChange : function(){
       var self = this;
       setTimeout(function(){
-        console.log(self.$().select2('val'), self.get('value'));
         self.$().select2('val', self.get('value'));
       },100);
     }.observes('value')
@@ -296,13 +295,24 @@
       });
       var self = this;
       this._codeMirror.on('change', function(){
+        self._preventLoop = true;
         self.set('value', self._codeMirror.getValue());
       });
     },
 
     willDestroyElement: function () {
       this.$().select2("destroy");
-    }
+    },
+
+    selectedDidChange : function(){
+      var self = this;
+      if( self._preventLoop ){
+        self._preventLoop = false;
+        return;
+      }
+      self._codeMirror.setValue(self.get('value'));
+    }.observes('value')
+
   });
 
   window.App.setupCtrlS = function( content, msg ){

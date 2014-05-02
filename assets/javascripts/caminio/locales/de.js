@@ -88,6 +88,8 @@
 
     'label.select_color': 'Farbe wählen',
 
+    'translation.title': 'Sprache',
+
     'content_here': 'Hier sollte noch Text eingetragen werden!',
     
     'errors.db_field': '{{name}}: {{message}}',

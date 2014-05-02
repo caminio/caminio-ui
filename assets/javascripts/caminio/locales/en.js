@@ -80,6 +80,8 @@
 
     'content_here': 'Here should go some text!',
 
+    'translation.title': 'Language',
+
     'label.created': 'Label {{name}} has been created successfully',
     'label.saved': 'Label settings for {{name}} have been saved successfully',
     'label.delete': 'Delete this label',
