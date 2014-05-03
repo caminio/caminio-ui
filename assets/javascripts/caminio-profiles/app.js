@@ -102,7 +102,7 @@
             $('#progress').removeClass('active');
           },1000);
           user.reload();
-          $('.top-panel img.avatar').attr('src', '/caminio/domains/'+currentDomain._id+'/preview/'+data.result.mediafiles[0].name);
+          $('.top-panel img.avatar').attr('src', '/caminio/profile_pics/'+user.get('id')+'?d='+moment().toDate().getTime().toString());
           notify('info', Em.I18n.t('profile.avatar_saved'));
           $('#modal').modal('hide');
           //controller.send('closeModal');

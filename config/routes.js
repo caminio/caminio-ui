@@ -16,6 +16,8 @@ module.exports.routes = {
 
   '/caminio/profiles': 'ProfilesController#show',
 
+  '/caminio/profile_pics/:id': 'ProfilesController#pics',
+
   'GET /caminio/util/countries': 'UtilController#countries'
 
 };

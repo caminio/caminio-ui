@@ -19,7 +19,7 @@
     mediafiles: DS.hasMany('mediafile', { embedded: 'always' }),
     picUrl: function(){
       if( this.get('mediafiles.length') > 0 )
-        return '/caminio/domains/'+currentDomain._id+'/preview/'+this.get('mediafiles.firstObject').get('name');
+        return '/caminio/profile_pics/'+this.get('id')+'?d='+moment().toDate().getTime().toString();
       if( this.get('remotePicUrl') )
         return this.get('remotePicUrl');
       //default:
