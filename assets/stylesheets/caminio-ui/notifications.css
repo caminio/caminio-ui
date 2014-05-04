@@ -33,6 +33,7 @@
   height: 100%;
 }
 
+.notification-warn:before,
 .notification-error:before{
   content: "\f071";
 }
@@ -44,6 +45,10 @@
 
 .notification-error{
   background: #e25440;
+}
+
+.notification-warn{
+  background: #F0AD4E;
 }
 
 .notification-info{
