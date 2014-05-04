@@ -285,3 +285,12 @@ div.btn.icon-only{
   color: #c83737;
   font-weight: 600;
 }
+
+.btn.status-indicator{
+  border: none;
+  float: left;
+  height: 2.3em;
+  margin: -5px 20px 0 -5px;
+  padding: 0;
+  width: 5px;
+}

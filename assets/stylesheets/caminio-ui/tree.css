@@ -99,12 +99,3 @@
   background-color: #4877D6;
   color: #fff;
 }
-
-.ember-tree .btn.status-indicator{
-  border: none;
-  float: left;
-  height: 2.3em;
-  margin: -5px 20px 0 -5px;
-  padding: 0;
-  width: 5px;
-}
