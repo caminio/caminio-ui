@@ -85,21 +85,21 @@ form.caminio .close-inside-form{
   margin: 0 -5px 0 10px;
 }
 
-form.caminio .select2-container .select2-choice{
+body .select2-container .select2-choice{
   border: none;
   background: #fff;
   box-shadow: 0 1px 3px rgba(128, 128, 128, 0.2);
   border-radius: 0;
 }
-form.caminio .select2-container .select2-choice .select2-arrow{
+body .select2-container .select2-choice .select2-arrow{
   border: none;
   background: #fff;
   border-radius: 0;
 }
-form.caminio .select2-container .select2-choice .select2-arrow b{
+body .select2-container .select2-choice .select2-arrow b{
   background: none;
 }
-form.caminio .select2-container .select2-choice .select2-arrow b:before{
+body .select2-container .select2-choice .select2-arrow b:before{
   display: inline-block;
   font-family: FontAwesome;
   font-style: normal;

@@ -32,6 +32,7 @@
     'preview': 'Vorschau',
     'more': 'mehr',
     'perc_completed': 'Prozent abgeschlossen',
+    'system_status': 'Systemstatus',
 
     'email': 'Email',
     'phone': 'Telefon',
@@ -99,6 +100,7 @@
     'errors.invalid_email_address': 'Ungültige Email Adresse',
     'errors.duplicate_key': '{{name}} existiert bereits und darf nicht doppelt vorkommen',
 
+    'really_delete': '{{name}} wirklich löschen',
   };
 
   for( var i in translations )

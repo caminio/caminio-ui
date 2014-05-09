@@ -32,6 +32,7 @@
     'preview': 'Preview',
     'more': 'more',
     'perc_completed': 'percent completed',
+    'system_status': 'System status',
 
     'cut': 'Cut',
     'copy': 'Copy',
@@ -97,6 +98,8 @@
     'errors.required': 'This field is required',
     'errors.invalid_email_address': 'The email address is invalid',
     'errors.duplicate_key': '{{name}} is duplicate and can\'t be saved twice',
+    
+    'really_delete': 'Really delete label {{name}}',
 
   };
 

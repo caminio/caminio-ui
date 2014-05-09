@@ -131,6 +131,12 @@
         optionValuePath="content.id"
         optionLabelPath="content.label"
         selectionBinding="controller.selectedId"}}
+
+    {{view App.Select2SelectView
+        class="pull-right select-num-rows"
+        contentBinding="availableRows"
+        valueBinding="numRows"}}
+
    *
    * advanced
    *    promptTranslation='my.translation' // will be translated using Em.I18n
@@ -148,6 +154,8 @@
     classNames: ['input-xlarge'],
 
     willInsertElement: function(){
+      if( this.get('noPrompt') )
+        this.set('prompt','');
       if( this.get('promptTranslation') )
         this.set('prompt', Em.I18n.t(this.get('promptTranslation')));
     },
@@ -158,7 +166,12 @@
 
     processChildElements: function() {
       var self = this;
-      this.$().select2().on('select2-open', function(){
+      var options = {};
+
+      if( this.get('noSearch') )
+        options.minimumResultsForSearch = -1;
+
+      this.$().select2( options ).on('select2-open', function(){
         if( !self.get('createAction') )
           return;
         $('#select2-drop .select2-input').off().on('keyup', function(e){

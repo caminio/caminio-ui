@@ -49,7 +49,7 @@ $(function(){
     
   }
 
-  notify.processError = function notifyProcessError( obj ){
+  notify.processError = function notifyProcessError( obj, name ){
     if( typeof(obj.details) === 'object' ){
       if( obj.details.code && obj.details.code === 11000 )
         notify( 'error', Ember.I18n.t('errors.duplicate_key', {name: obj.details.err.split(' dup key: { :')[1].replace(/[\\\\"\}]*/g,'')}));
@@ -65,6 +65,8 @@ $(function(){
         notify( 'error', obj.details );
     } else if( obj.errors ){
       for( var field in obj.errors )
+        if( obj.errors[field].split('.').length > 1 )
+          return notify('error', Ember.I18n.t(obj.errors[field], {name: name}));
         notify( 'error', Ember.I18n.t('errors.db_field', {name: field, message: obj.errors[field]}) );
     } else {
       notify( 'error', obj.details );
