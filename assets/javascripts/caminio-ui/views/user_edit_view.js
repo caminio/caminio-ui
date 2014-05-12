@@ -1,5 +1,7 @@
 (function(App){
 
+  'use strict';
+
   App.UserEditView = Ember.View.extend({
 
     didInsertElement: function(){
