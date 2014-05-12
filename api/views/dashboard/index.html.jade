@@ -12,10 +12,69 @@ append foot
     jQuery(function($){
       caminio.translateDataFields();
     });
+  if env === 'production'
+    script(type='text/javascript', src='/javascripts/caminio-dashboard.min.js')
+  else
+    script(type='text/javascript', src='/javascripts/caminio-dashboard/models/micro_note.js')
+    script(type='text/javascript', src='/javascripts/caminio-dashboard/locales/#{currentLang}.js')
+    script(type='text/javascript', src='/javascripts/caminio-dashboard/router.js')
+           
+  script(type="text/x-handlebars")
+    include hbs/app.hbs
 
 block content
-  style.
+
 
   .main-view.dashboard
-    each dashboardBox in dashboardBoxes
-      !=dashboardBox
+
+    #dashboard-info-container.top-info-box.wide-box.clearfix.box
+      .col.col-md-4
+        strong(data-translate='hi')
+        |, 
+        strong=currentUser.fullname
+      .col.col-md-4
+        label
+          i.fa.fa-clock-o
+          span(data-translate='last_login')
+        br
+        span#current-user-last-login
+      .col.col-md-4
+        label
+          i.fa.fa-calendar-o
+          span(data-translate='today_is')
+        br    
+        span#today-is
+    
+    #live-ticker.live-ticker
+      h4
+        i.fa.fa-comments
+        i#toggle-live-ticker.fa.fa-angle-right
+        span.text(data-translate='live_ticker')
+
+      form#new-message-form.caminio.composer
+        #composer-placeholder.composer-placeholder(data-translate='live_ticker.something_to_say')
+        textarea#new-message.fill-width
+        .composer-ctrl
+          button.abtn(href='#', data-translate-title='live_ticker.media')
+            i.fa.fa-camera
+          button.btn.primary.small(type='submit', data-translate='live_ticker.post')
+
+      .entries
+
+    .micro-wiki
+
+    .dashboard-boxes
+      each dashboardBox in dashboardBoxes
+        !=dashboardBox
+
+  script.
+    $('#today-is').text( moment().format('dddd, DD. MMMM YYYY') );
+    $('#current-user-last-login').text( moment( currentUser.lastSessionAt ).fromNow() );
+
+    $(document).ready(function(){
+    $('.dashboard-boxes').masonry({
+      itemSelector: '.dashboard-box',
+      gutter: 20,
+      columnWidth: 200
+    });
+    });

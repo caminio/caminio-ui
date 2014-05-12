@@ -71,6 +71,9 @@
       $('[data-translate]').each( function(){
         $(this).text( Ember.I18n.t($(this).attr('data-translate')) );
       });
+      $('[data-translate-title]').each( function(){
+        $(this).attr('title', Ember.I18n.t($(this).attr('data-translate-title')) );
+      });
     });
   }
 

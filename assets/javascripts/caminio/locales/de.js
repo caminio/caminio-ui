@@ -13,7 +13,12 @@
     'or': 'oder',
     
     'today_is': 'Heute ist',
-    'session_started': 'Sitzung begonnen',
+    'last_login': 'Letztes Mal online',
+    'live_ticker': 'Live Ticker',
+    'live_ticker.post': 'Abschicken',
+    'live_ticker.something_to_say': 'Notiz oder Nachricht schreiben',
+    'live_ticker.message': 'Nachricht',
+    'live_ticker.media': 'Fotos / Dateien',
     'name': 'Name',
     'title': 'Titel',
     'filename': 'Dateiname',
