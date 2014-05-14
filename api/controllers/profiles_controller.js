@@ -28,8 +28,6 @@ module.exports = function ProfilesController( caminio, policies, middleware ){
       function( req, res ){
         var filename = join(req.user.camDomains[0].contentPath, 'public', 'users', 
                             (req.user.mediafiles.length > 0 ? req.user.mediafiles[0]._id : '') + '.jpg');
-
-        console.log('filename', filename);
         if( !fs.existsSync( filename ) )
           return res.send(404, 'File not found');
         return res.sendfile( filename );

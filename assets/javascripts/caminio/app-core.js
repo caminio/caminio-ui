@@ -30,7 +30,8 @@
         });
     },
     serializeBelongsTo: function(record, json, relationship){
-      if( relationship.options.embedded && relationship.options.embedded === 'always' )
+      if( relationship.options.embedded && relationship.options.embedded === 'always' &&
+          record.get(relationship.key) )
         json[relationship.key] = record.get(relationship.key).toJSON();
       // added for label/webpage parent keys to be set
       else if( record.get(relationship.key) )
@@ -59,6 +60,9 @@
     },
     primaryKey: '_id'
   });
+
+  window.App.set('_currentUser', currentUser);
+  window.App.set('_currentDomain', currentDomain);
 
   /**
    *  Creates an array type for the ember model
@@ -98,23 +102,32 @@
   window.App.register("transform:array", DS.ArrayTransform);
   window.App.register("transform:object", DS.ObjectTransform);
 
-  caminio.translateDataFields();
 
-  $(document).ready(function(){
-    
-    $('#toggle-side-panel').on('click', function(){
-      $('body').toggleClass('side-panel-active');
+  bootbox.setDefaults({ locale: currentLang });
+  moment.lang( currentLang );
+
+  window.setupCaminio = function setupCaminio($view){
+
+    var toggleApps = function toggleApps(e){
+      if( $(e.target).hasClass('toggle-apps-btn') || $(e.target).closest('.toggle-apps-btn').length > 0 )
+        return;
+      $('body').removeClass('toggle-apps')
+      $(document).off('click', toggleApps);
+    }
+
+    $view.find('.toggle-apps-btn').on('click', function(){
+      $('body').toggleClass('toggle-apps');
+      if( $('body').hasClass('toggle-apps') )
+        setTimeout( function(){ 
+          $(document).on('click', toggleApps);
+        }, 10);
+      else
+        $(document).off('click', toggleApps);
     });
 
-    // $('.main-view').css({ height: $(window).height() - 80 });
-    // $(window).on('resize', function(){
-    //   $('.main-view').css({ height: $(window).height() - 80 });
-    // })
+    caminio.translateDataFields();
 
-    bootbox.setDefaults({ locale: currentLang });
-    moment.lang( currentLang );
-
-  });
+  };
 
   $.ajaxSetup({
     beforeSend: function(xhr, settings) {

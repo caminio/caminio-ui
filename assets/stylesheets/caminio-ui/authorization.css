@@ -1,14 +1,13 @@
 body, html{
   height: 100%;
   font-size: 12px;
-  background: #bd3d3a; /* Old browsers */
-  background: -moz-linear-gradient(top,  #bd3d3a 0%, #d3544b 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#bd3d3a), color-stop(100%,#d3544b)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  #bd3d3a 0%,#d3544b 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  #bd3d3a 0%,#d3544b 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  #bd3d3a 0%,#d3544b 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  #bd3d3a 0%,#d3544b 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bd3d3a', endColorstr='#eba37b',GradientType=0 ); /* IE6-9 */
+  background: #48d;
+  background: -moz-linear-gradient(top,  #48d 0%, #15a 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#48d), color-stop(100%,#15a)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #48d 0%,#15a 100%); /* Chrome10+,Safari5.1+ */
+  background: -ms-linear-gradient(top,  #48d 0%,#15a 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #48d 0%,#15a 100%); /* W3C */
+  fi$lter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#48d', endColorstr='#15a',GradientType=0 ); /* IE6-9 */
 }
 
 .logo{
@@ -23,16 +22,15 @@ body, html{
 }
 
 .login-box{
-  width: 600px;
+  width: 740px;
   display: table;
   height: 90%;
   margin: 0 auto;
 }
 
 .login-box .row-wrap{
-  background: #f5f5f5;
-  border: 2px solid #333;
-  padding: 5px;
+  background: #fff;
+  padding: 15px;
 }
 
 .login-box .row{
@@ -121,7 +119,7 @@ form.auth button{
 form.auth input[type=text],
 form.auth input[type=password]{
   border-radius: 0;
-  text-indent: 2.5rem;
+  text-indent: 30px;
   padding: 6px 0;
   transition: all 0.5s;
   width: 100%;
@@ -138,6 +136,7 @@ form.auth input[type=password]:focus{
   border-radius: 2px;
   box-shadow: none;
   background-color: #fff;
+  box-shadow: 1px 1px 3px #bbb;
   outline: none !important;
   transition: all 0.5s;
 }

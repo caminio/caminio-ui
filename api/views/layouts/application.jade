@@ -30,7 +30,6 @@ html(lang=i18n.locale())
       link( rel='stylesheet', href='/stylesheets/caminio-ui/top_panel.css' )
       link( rel='stylesheet', href='/stylesheets/caminio-ui/loader.css' )
       link( rel='stylesheet', href='/stylesheets/caminio-ui/notifications.css' )
-      link( rel='stylesheet', href='/stylesheets/caminio-ui/search.css' )
       link( rel='stylesheet', href='/stylesheets/caminio-ui/tabs.css' )
       link( rel='stylesheet', href='/stylesheets/caminio-ui/thumbnail-upload.css' )
       link( rel='stylesheet', href='/stylesheets/caminio-ui/main.css' )
@@ -91,11 +90,16 @@ html(lang=i18n.locale())
 
     block head
 
-  body.side-panel-active
-    include ../common/top_panel
+  body
+
+    aside#notifications.notifications
+
+    script(type="text/x-handlebars")
+      include ../common/top_panel
+
+    script(type='text/x-handlebars', data-template-name='navbar-accounts')
+      include ../common/hbs/navbar_accounts.html
 
     block content
-      
-    include ../common/side_panel
 
     block foot

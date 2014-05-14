@@ -11,8 +11,23 @@
     
     'hi': 'Hi',
     'or': 'oder',
-    
+    'sign_out': 'Abmelden',
+    'edit_profile': 'Profil bearbeiten',
+    'change_password': 'Passwort ändern',
+
+    'go_to_dashboard': 'zum Dashboard gehen',
+    'go_to_calendar': 'zum Kalendar gehen',
+    'apps.settings': 'Settings',
+    'apps.lineup': 'Spielplan',
+    'apps.webmaker': 'WebMaker',
+    'apps.shop': 'Shop',
+    'apps.people': 'Personen',
+    'apps.calendar': 'Kalender',
+    'apps.open_app_bar': 'Anwendungsleiste öffnen',
+
     'today_is': 'Heute ist',
+    'today': 'Heute',
+    'tomorrow': 'Morgen',
     'last_login': 'Letztes Mal online',
     'live_ticker': 'Live Ticker',
     'live_ticker.post': 'Abschicken',
@@ -106,6 +121,8 @@
     'errors.duplicate_key': '{{name}} existiert bereits und darf nicht doppelt vorkommen',
 
     'really_delete': '{{name}} wirklich löschen',
+
+    'pic.drop_here': 'Hochladen'
   };
 
   for( var i in translations )

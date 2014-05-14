@@ -45,7 +45,7 @@
       this.set('preferences', pref);
     },
     updateRelPath: function(){
-      var pth = this.get('parent');
+      var pth = this.get('parent') ? this.get('parent') : '';
       pth = pth.length > 0 ? pth + '/' : '';
       this.set('relPath', pth+this.get('name') );
     }.observes('name','parent'),

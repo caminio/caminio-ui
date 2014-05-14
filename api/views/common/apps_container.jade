@@ -1,0 +1,10 @@
+.apps-container
+  each app in allowedApps
+    if !(app.admin && !currentUser.admin)
+      a.app-item( href=app.path, class=(app.name === controllerName.replace('controller','').toLowerCase() ? 'active' : '')+' '+app.name )
+        i.fa(class=app.icon)
+        .title(data-translate='apps.'+app.name)
+  if currentUser.isAdmin
+    a.app-item( href='/caminio/admin', class=('admin' === controllerName.replace('controller','').toLowerCase() ? 'active' : '')+' admin' )
+      i.fa.fa-cogs
+      .title(data-translate='apps.settings')

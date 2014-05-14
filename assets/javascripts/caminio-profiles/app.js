@@ -1,6 +1,7 @@
 ( function( App ){
 
   App.Router.map( function(){
+    this.route('change_password', { path: '/passwd/:id' });
     this.resource('index', { path: '/:id' });
   });
 
@@ -28,6 +29,26 @@
           parentView: 'index'
         });
       },
+    }
+  });
+
+  App.ChangePasswordRoute = App.IndexRoute.extend({
+    model: function( params ){
+      return this.store.find('user', params.id);
+    },
+    setupController: function(controller,model){
+      this.set('indexCtrl', this.controllerFor('index'));
+      this.get('indexCtrl').set('model', model );
+    },
+    renderTemplate: function(){
+      this.render('index',{
+        into: 'application',
+        controller: this.get('indexCtrl')
+      });
+      this.render('password_modal',{
+        into: 'index',
+        outlet: 'modal'
+      });
     }
   });
 
@@ -157,6 +178,12 @@
                 return self.set('oldPasswordError',true);
             });
       }
+    }
+  });
+
+  App.ApplicationView = Em.View.extend({
+    didInsertElement: function(){
+      setupCaminio(this.$());
     }
   });
 

@@ -1,21 +1,13 @@
 header.top-panel.fixed
+  include ../common/apps_container
   .brand.pull-left
-    a#toggle-side-panel.btn.transparent.toggle-side-panel.borderless.pull-left
-      i.fa.fa-bars
+    a#toggle-apps.btn.transparent.toggle-apps.toggle-apps-btn.borderless.pull-left(data-translate-title='apps.open_app_bar')
+      i.toggle-icn
+  .dashboard-link.pull-left
+    a(href='/', data-translate-title='go_to_dashboard')
+      img#logo.logo(src='/images/logo_84x32.png')
 
-  ul.ctrl.pull-right
-    li.pull-right
-      a.ctrl-btn.icn.pull-right(href='/caminio/logout')
-        i.fa.fa-sign-out
-    li.pull-right
-      a.account-info.ctrl-btn.pull-right( href='/caminio/profiles#/'+currentUser._id )
-        img.avatar.pull-left( src=currentUser.profilePic )
-        span.pull-left.username=currentUser.fullname
-    li.pull-right.dropdown
-      a.dropdown-toggle.dropdown-hover.domain.ctrl-btn.pull-right( data-toggle='dropdown' )
-        span.pull-left.domainname=(currentDomain ? currentDomain.name : 'no domain')
-        i.fa.fa-caret-down
-      ul.dropdown-menu( role='menu' )
-        each camDomain in currentUser.camDomains
-          li( role='presentation' )
-            a(href='/caminio/admin?camDomainId='+camDomain.id)=camDomain.name
+  {{partial 'navbar'}}
+
+section#layout.main-view
+  {{outlet}}

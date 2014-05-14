@@ -4,25 +4,15 @@ html,body{
   /*font: 14px 'OpenSans', 'Open Sans', sans-serif;*/
 }
 .main-view{
-  background: #f5f5f5;
-  box-shadow: 2px 0 2px #ccc, -2px 0 2px #ccc;
   min-height: 500px;
-  border-right: 4px solid transparent;
-}
-.main-view,
-.plain-view{
-  margin-top: 80px;
   max-width: 1200px;
+  margin: 80px auto 10px;
 }
 
 .plain-view header{
   margin-bottom: 20px;
 }
 
-body.side-panel-active .plain-view,
-body.side-panel-active .main-view{
-  margin-left: 240px;
-}
 .main-inner-wrap{
   position: relative;
 }
@@ -47,72 +37,6 @@ body.side-panel-active .main-view{
   width: 100px;
   height: 100px;
 }
-.navbar-container{
-  position: absolute;
-  top: -26px;
-  left: 25px;
-  right: 0;
-  height: 20px;
-}
-
-.navbar-container .navbar{
-  min-height: 26px;
-}
-
-/* -------------------------------------------------------- navbar */
-
-.navbar{
-  list-style: none;
-  margin: 0;
-}
-.navbar li{
-  float: left;
-  margin: 0 5px;
-}
-.navbar li a{
-  color: #555;
-  text-decoration: none;
-  padding: 5px 35px;
-  font-size: 12px;
-  position: relative;
-  outline: 0;
-  transition: background 0.6s;
-  text-transform: uppercase;
-}
-
-.navbar li a:active,
-.navbar li a.active{
-  color: #444;
-  font-weight: 700;
-  /*box-shadow: -2px -2px 1px #ddd;*/
-  transition: background 0.6s;
-}
-
-.navbar li a.active:before{
-  border-left: 15px solid rgba(0, 0, 0, 0);
-  border-right: 15px solid rgba(0, 0, 0, 0);
-  border-top: 15px solid #ccc;
-  bottom: -16px;
-  content: "";
-  height: 0;
-  left: 50%;
-  margin-left: -15px;
-  position: absolute;
-  width: 0;
-}
-
-.navbar li a.active:after{
-  border-left: 15px solid rgba(0, 0, 0, 0);
-  border-right: 15px solid rgba(0, 0, 0, 0);
-  border-top: 15px solid #EEEEEE;
-  bottom: -15px;
-  content: "";
-  height: 0;
-  position: absolute;
-  left: 50%;
-  width: 0;
-  margin-left: -15px;
-}
 
 .main-content{
   background: #fafafa;
@@ -123,77 +47,9 @@ body.side-panel-active .main-view{
   margin-top: 80px;
 }
 
-.sub-nav-wrapper .ctrl{
-  float: right;
-  margin-top: 3px;
-}
-
-.sub-nav-wrapper .ctrl .btn{
-  margin: 0 3px;
-  float: right;
-}
-
-.sub-nav-wrapper .ctrl .close{
-  padding: 5px 11px 6px;
-  margin-right: 0;
-}
-
-.sub-nav-wrapper .ctrl .btn:hover{
-  background: #fafafa;
-  border-color: #ccc;
-  border-bottom-color: #fafafa;
-}
-
-.sub-nav-wrapper .ctrl .icon-text .fa{
-  font-size: 1rem;
-  margin: 3px 6px 0 0;
-  float: left;
-}
-
-.sub-navbar{
-  margin-bottom: -1px;
-  z-index: 10;
-}
-
-.sub-navbar > li{
-  padding: 0 20px;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-  border-top: 1px solid #ddd;
-  border-left: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  margin-right: 1px;
-}
-.sub-navbar > li.active{
-  background: #fafafa;
-  /*box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.4)*/
-}
-
-.nav-pills.sub-navbar > li.active a,
-.nav-pills.sub-navbar > li.active a:active,
-.nav-pills.sub-navbar > li.active a:focus,
-.nav-pills.sub-navbar > li.active a:visited,
-.nav-pills.sub-navbar > li.active a:hover{
-  color: #333;
-  outline: none;
-}
-
-.sub-navbar > li a{
-  padding: 8px 0;
-}
-
-.main-ctrl{
-  margin-bottom: 20px;
-  padding: 0;
-}
-
 .icon-text .fa{
   margin: 0 5px 0 0;
   font-size: 1rem;
-}
-
-.main-ctrl .btn-group a{
-  margin: 0 5px;
 }
 
 .main-content .title{
@@ -207,13 +63,6 @@ body.side-panel-active .main-view{
   font-size: 32px;
   color: #aaa;
   font-weight: 600;
-}
-
-.with-ctrl .main-ctrl{
-  margin-top: 8px;
-}
-.with-ctrl h1{
-  margin-top: 20px;
 }
 
 .box.title-box{
@@ -240,6 +89,22 @@ body.side-panel-active .main-view{
 .title-box .main-ctrl{
   float: right;
   margin: 15px 25px 0;
+}
+
+.title-box .btn{
+  padding: 7px 20px;
+  margin-top: -5px;
+}
+
+.title-box .btn .fa{
+  margin: 2px 12px 0px 0px;
+  font-size: 1.2em;
+  float: left;
+}
+
+.title-box .text-icon .fa,
+.title-box .dropdown .fa-angle-down{
+  float: none;
 }
 
 .main-content .nav{
@@ -320,4 +185,44 @@ fieldset.with-border legend{
   width: auto;
   padding: 0 5px;
   border: none;
+}
+.search-group .search-btn{
+  position: absolute;
+  top: 5px;
+  right: 30px;
+  font-size: 14px;
+  color: #999;
+  border: none;
+  background: none;
+}
+
+.search-btn2{
+  float: right;
+  margin: -10px 0;
+  padding: 5px 15px 6px;
+}
+
+.search-group .adv-search-btn{
+  position: absolute;
+  top: 6px;
+  right: 5px;
+  font-size: 14px;
+  color: #ccc;
+  border: none;
+  background: none;
+}
+
+.search-group .adv-search-btn:hover,
+.search-group .search-btn:hover{
+  color: #777;
+}
+
+.search-actions .btn{
+  margin: 1px;
+  float: right;
+  padding: 4px 5px;
+}
+
+.search-group{
+  margin-bottom: 0;
 }

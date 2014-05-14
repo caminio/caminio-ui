@@ -22,7 +22,7 @@ block content
             .password-container.col-md-5
               input(type='password', placeholder=t('auth.confirm_password'), name='password_confirm' )
             .col-md-2
-              button.btn(type='submit', title=t('login'))
+              button.btn.primary(type='submit', title=t('login'))
                 i.fa.fa-arrow-right
 
         input(type='hidden', name='_csrf', value=csrf)

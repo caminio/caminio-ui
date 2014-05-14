@@ -191,115 +191,134 @@
   font-size: 0.8em;
 }
 
-.live-ticker{
-  float: right;
-  width: 320px;
-  background: #fff;
-  border: 1px solid #ddd;
-  color: #333;
-  padding: 0;
-  margin-right: 20px;
+.top-info-box strong{
+  font-size: 1.2em;
 }
 
-.live-ticker h4{
-  text-align: right;
-  margin: 0;
-  padding: 5px;
-  font-size: 1em;
+.top-info-box .today-box{
+  width: 50px;
+  height: 40px;
+  padding-right: 7px;
+  text-align: center;
+  border-right: 3px solid #ccc;
+  float: left;
+  cursor: pointer;
+}
+
+.top-info-box .today-box .dayname{
+  color: #777;
+  font-size: 9px;
   line-height: 1.2em;
 }
 
-.live-ticker form.caminio{
-  padding: 0;
-}
-
-.live-ticker .fa{
-  font-size: 18px;
-  float: left;
-  margin: -1px;
-  color: #777;
-}
-.live-ticker h4 .text{
+.top-info-box .today-box .day{
+  font-size: 24px;
+  line-height: 32px;
+  color: #444;
   font-weight: 100;
-  color: #999;
-  text-transform: uppercase;
-}
-#toggle-live-ticker{
-  padding: 0 3px;
-  margin-left: 5px;
 }
 
-.live-ticker .composer-ctrl{
-  text-align: right;
-  margin-top: 5px;
-  background: #f7f7f7;
-  border-top: 1px solid #ddd;
-}
-
-.live-ticker .composer .btn{
-  margin:2px;
-  float: right;
-}
-
-.live-ticker .composer-ctrl .abtn{
-  padding: 7px 10px;
-  border: none;
-  background: none;
-  border-left: 1px solid #ccc;
-}
-
-.live-ticker .composer-ctrl .abtn .fa{
-  color: #bbb;
-}
-
-.live-ticker .composer-status{
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 5px;
-  padding-bottom: 5px;
-}
-.live-ticker .composer-status .btn{
-  font-size: 0.85em;
-  background: none;
-  border: none;
-  font-weight: 600;
+.top-info-box .appointments{
+  list-style: none;
+  margin-left: 70px;
   padding: 0;
-  margin-right: 5px;
-}
-.live-ticker .composer-status .btn .fa{
-  color: #fff;
-  font-size: 1em;
-  padding: 3px 4px;
-  float: left;
-  margin: -1px 5px 0 0;
-  border: 1px solid #36b;
-  background-color: #4877D6;
-}
-.live-ticker .composer-status .btn:hover,
-.live-ticker .composer-status .btn:focus{
-  background: inherit;
-  color: inherit;
 }
 
-.live-ticker .composer-placeholder{
+.top-info-box .appointments li{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 1px;
+}
+
+.top-info-box .appointments li a{
+  text-decoration: none;
+  font-size: 11px;
+  line-height: 14px;
+  color: #555;
+}
+
+.top-info-box .appointments li a:hover{
+  color: #111;
+}
+
+.top-info-box .no-appointments{
   color: #999;
-  font-size: 1.1em;
-  margin: 5px;
+  margin-top: 10px;
 }
 
-.live-ticker .composer textarea{
-  display: none;
+.top-info-box .no-appointments .fa{
+  font-size: 1.5em;
+  float: left;
+  margin: 0px 10px;
 }
 
-.live-ticker .entries{
-}
-
-.live-ticker .entry{
-
-}
-
-.micro-wiki{
-  border: 1px solid #ddd;
-  min-height: 100px;
+form.search{
+  margin: 20px;
   background: #fff;
-  margin: 0 350px 0 20px;
+  box-shadow: 0 0 3px #aaa;
+}
+
+form.search input[type=text]{
+  border: none;
+  box-shadow: none;
+  background: none;
+  padding: 15px;
+  width: 100%;
+}
+
+form.search .input-wrapper{
+  box-sizing: border-box;
+  margin: 0 80px 0 400px;
+}
+
+form.search .search-opt{
+  float: left;
+}
+
+form.search button[type=submit],
+form.search .search-opt button{
+  color: #777;
+  background: none;
+  border: none;
+  padding: 15px 30px;
+  border-right: 1px solid #eee;
+}
+
+form.search .search-opt .fa{
+  margin-left: 15px;
+}
+
+form.search button[type=submit]{
+  float: right;
+  background: #59e;
+  border-color: #59e;
+  font-size: 18px;
+  color: #fff;
+  padding: 11px 30px;
+}
+
+.mini-apps-container{
+  margin: 0 20px;
+  text-align: right;
+}
+
+.mini-apps-container .app-item{
+  margin-left: 5px;
+  width: 70px;
+  display: inline-block;
+  color: #333;
+  opacity: 0.7;
+  text-align: center;
+  transition: opacity 0.8s;
+ }
+
+.mini-apps-container .title{
+  font-size: 10px;
+}
+
+.mini-apps-container .app-item:hover{
+  opacity: 1;
+  text-decoration: none;
+  transition: opacity 0.3s;
 }

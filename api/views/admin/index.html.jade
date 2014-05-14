@@ -19,8 +19,8 @@ append foot
     script(type='text/javascript', src='/javascripts/caminio-ui/views/user_edit_view.js')
     script(type='text/javascript', src='/javascripts/caminio-ui/router.js')
            
-  script(type="text/x-handlebars")
-    include hbs/app.hbs
+  script(type="text/x-handlebars", data-template-name="navbar")
+    include hbs/navbar.hbs
 
   script(type="text/x-handlebars", data-template-name="users/index")
     include hbs/users/index.hbs

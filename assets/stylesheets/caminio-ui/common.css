@@ -107,9 +107,17 @@ div.btn.icon-only{
 }
 
 .btn.primary{
-  background: #4877D6;
+  /*background: #4877D6;
+  border-color: #25b;*/
+  background: #59e;
+  border-color: #59e;
   color: #fff;
-  border-color: #25b;
+}
+
+.btn.primary:focus,
+.btn.primary:hover{
+  background: #48d;
+  border-color: #48d;
 }
 
 .btn.secondary{
@@ -176,9 +184,16 @@ div.btn.icon-only{
   background-color: #373737;
 }
 
+.big-desc,
 .desc{
   color: #777;
   font-size: 0.8em;
+}
+
+.big-desc{
+  font-size: 1.2em;
+  padding: 20px 40px;
+  text-align: center;
 }
 
 .box{

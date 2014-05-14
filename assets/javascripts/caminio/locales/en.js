@@ -6,13 +6,28 @@
   
   var translations = {
 
-    'de': 'German',
+    'de': 'Deutsch',
     'en': 'English',
-    
+
     'hi': 'Hi',
     'or': 'or',
-    
+    'sign_out': 'Sign out',
+    'edit_profile': 'Edit profile',
+    'change_password': 'Change password',
+
+    'go_to_dashboard': 'go to dashboard',
+    'go_to_calendar': 'go to calendar',
+    'apps.settings': 'Settings',
+    'apps.lineup': 'Line-up',
+    'apps.webmaker': 'WebMaker',
+    'apps.shop': 'Shop',
+    'apps.people': 'People',
+    'apps.calendar': 'Calendar',
+    'apps.open_app_bar': 'Open app panel',
+
     'today_is': 'Today is',
+    'today': 'today',
+    'tomorrow': 'tomorrow',
     'last_login': 'Last login',
     'live_ticker': 'Live ticker',
     'live_ticker.post': 'Post',
@@ -105,6 +120,8 @@
     'errors.duplicate_key': '{{name}} is duplicate and can\'t be saved twice',
     
     'really_delete': 'Really delete label {{name}}',
+
+    'pic.drop_here': 'Upload'
 
   };
 
