@@ -24,11 +24,11 @@
 
 .labels-list li.active{
   font-weight: 600;
+  background: #ffc !important;
 }
 
 .labels-list li:hover{
-  background: #eee;
-  border-color: #ddd;
+  background: #ffe;
 }
 
 .labels-list .color{

@@ -66,6 +66,31 @@ body .caminio .form-group input[type="radio"]{
   margin-top: 3px;
 }
 
+body .dropdown-hover:hover .dropdown-menu{
+  display: block;
+  background: #fff;
+  border: none;
+  width: 100%;
+  padding: 0;
+  margin-top: -1px;
+  text-align: right;
+}
+body .dropdown-hover:hover .dropdown-menu a{
+  padding: 7px;
+}
+
+body .dropdown.as-btn{
+  display: inline-block;
+}
+
+body .dropdown.as-btn .btn{
+  padding: 8px 10px;
+}
+
+body .dropdown.as-btn .btn .fa{
+  margin: 0;
+}
+
 body .dropdown-menu{
   border-radius: 0;
 }

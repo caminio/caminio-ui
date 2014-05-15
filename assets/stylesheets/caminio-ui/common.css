@@ -1,3 +1,8 @@
+/**
+ * colors:
+ * RED #C83737;
+ * BLUE #59e;
+ */
 .align-right{
   text-align: right;
 }
@@ -97,7 +102,7 @@ div.btn.icon-only{
 .btn.close{
   background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
   color: #AAAAAA;
-  font-size: 1.2rem;
+  font-size: 15px;
   margin: -10px 0;
   padding: 6px 8px;
 }
@@ -160,6 +165,7 @@ div.btn.icon-only{
 
 .btn.transparent:hover{
   background-color: #ddd;
+  box-shadow: none;
   transition: background-color 0.5s;
 }
 
@@ -309,4 +315,18 @@ div.btn.icon-only{
   margin: -5px 20px 0 -5px;
   padding: 0;
   width: 5px;
+}
+
+.btn.publish-indicator{
+  width: 16px;
+  height: 17px;
+  border-radius: 2px;
+}
+.btn.publish-indicator .fa-lock,
+.btn.publish-indicator .fa-globe{
+  float: left;
+  margin: 3px 0 0 5px;
+}
+.btn.publish-indicator .fa-globe{
+  margin: 3px 0 0 4px;
 }

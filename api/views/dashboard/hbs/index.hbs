@@ -28,8 +28,8 @@
       {{#each appointments itemController='appointments_item'}}
       <li>
         <a href='/caminio/calendar' {{bind-attr title='content.title'}}>
-          {{formatAppointmentDate}} &nbsp;
-          {{content.title}}
+          <div class="title">{{content.title}}</div>
+          <time {{bind-attr datetime=content.start}}>{{formatAppointmentDate}}</time>
         </a>
       </li>
       {{else}}

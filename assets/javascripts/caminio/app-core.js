@@ -115,6 +115,13 @@
       $(document).off('click', toggleApps);
     }
 
+    $(document).on('keypress', function(e){
+      if( $(e.target).get(0).nodeName.match(/INPUT|TEXTAREA/) )
+        return;
+      if( e.which === 99 ) // character 'c'
+        $('.toggle-apps-btn').click();
+    });
+
     $view.find('.toggle-apps-btn').on('click', function(){
       $('body').toggleClass('toggle-apps');
       if( $('body').hasClass('toggle-apps') )
@@ -299,7 +306,8 @@
     selectedDidChange : function(){
       var self = this;
       setTimeout(function(){
-        self.$().select2('val', self.get('value'));
+        if( self.get('value') )
+          self.$().select2('val', self.get('value'));
       },100);
     }.observes('value')
 

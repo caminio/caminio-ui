@@ -77,6 +77,7 @@ module.exports = function(grunt) {
             'assets/javascripts/caminio/ember-tree.js',
             'assets/javascripts/caminio/helpers/*.js',
             'assets/javascripts/caminio/app-core.js',
+            'assets/javascripts/caminio/table_controller.js',
             'assets/javascripts/caminio-ui/models/client.js',
             'assets/javascripts/caminio/models/*.js',
             'assets/javascripts/caminio/labels.js',

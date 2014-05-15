@@ -67,17 +67,15 @@ html,body{
 
 .box.title-box{
   border: none;
-  height: 60px;
-  padding-top: 15px;
 }
 
 .title-box h1{
-  font-size: 2.3em;
+  border-bottom: 1px solid #DDDDDD;
+  color: #555555;
+  font-size: 1.3em;
   font-weight: 100;
-  margin: 0 25px 0 30px;
+  margin: 15px 25px 0 30px;
   padding: 9px 0 5px;
-  color: #555;
-  border-bottom: 1px solid #ddd;
 }
 
 .title-box h1 .desc{
@@ -88,7 +86,7 @@ html,body{
 
 .title-box .main-ctrl{
   float: right;
-  margin: 15px 25px 0;
+  margin: 0 25px 0;
 }
 
 .title-box .btn{
@@ -100,6 +98,18 @@ html,body{
   margin: 2px 12px 0px 0px;
   font-size: 1.2em;
   float: left;
+}
+
+.title-box .btn.text-icon .fa{
+  margin: 2px 0px 0 20px;
+}
+
+.title-box .publish-status.btn{
+  padding: 7px 10px;
+}
+.title-box .publish-status .fa{
+  float: none;
+  margin: 0;
 }
 
 .title-box .text-icon .fa,
@@ -225,4 +235,13 @@ fieldset.with-border legend{
 
 .search-group{
   margin-bottom: 0;
+}
+
+.col-table{
+  margin-right: 320px;
+}
+
+.col-sidebar{
+  width: 300px;
+  float: right;
 }

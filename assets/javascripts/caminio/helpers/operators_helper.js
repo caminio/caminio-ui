@@ -14,7 +14,10 @@
   });
 
   Ember.Handlebars.registerHelper( 'tKey', function( key, options ){
-    return Em.I18n.t(options.hash.prefix+'.'+this.get(key));
+    var attr = this.get(key);
+    if( options.hash.prefix )
+      attr = options.hash.prefix+'.'+attr;
+    return Em.I18n.t(attr);
   });
 
 })();

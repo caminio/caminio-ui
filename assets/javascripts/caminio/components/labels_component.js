@@ -148,6 +148,7 @@
   });
 
   function getEditLabelContent( label ){
+    console.log('colors', caminio.labels.getColors());
     var str = '<form class="bootbox-form">'+
               '<div class="form-group row">'+
               '<input type="text" value="'+(label.get('name') || '')+'" autocomplete="off" class="bootbox-input bootbox-input-text form-control name col-md-12">'+

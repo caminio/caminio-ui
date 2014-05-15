@@ -23,7 +23,8 @@
     'apps.shop': 'Shop',
     'apps.people': 'People',
     'apps.calendar': 'Calendar',
-    'apps.open_app_bar': 'Open app panel',
+    'apps.open_app_bar': 'Open app panel, also with: shortcut [c]',
+    'apps.profile': 'Profile',
 
     'today_is': 'Today is',
     'today': 'today',
@@ -52,7 +53,9 @@
     'preview': 'Preview',
     'more': 'more',
     'perc_completed': 'percent completed',
-    'system_status': 'System status',
+    'status': 'Status',
+    'total': 'Total',
+    'adv_search': 'Advanced search',
 
     'cut': 'Cut',
     'copy': 'Copy',
@@ -75,6 +78,8 @@
 
     'published': 'published',
     'draft': 'draft',
+    'published_click_to_change': 'published - click to change status',
+    'draft_click_to_change': 'draft - click to change status',
 
     'user_activity': 'User activity',
     'disk_quota': 'Disk Quota',
@@ -98,8 +103,11 @@
 
     'unsaved_data_continue': 'The opened form contains unsaved data which would be lost. Really continue?',
     
+    'labels': 'Labels',
     'labels.title': 'Labels',
     'labels.new': 'New label',
+    'labels.select_entries_then_click_on_label': 'Select one or more items then click on the label to add them',
+    'labels.items_selected': 'label {{count}} items with'
 
     'content_here': 'Here should go some text!',
 

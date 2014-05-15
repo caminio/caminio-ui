@@ -23,7 +23,8 @@
     'apps.shop': 'Shop',
     'apps.people': 'Personen',
     'apps.calendar': 'Kalender',
-    'apps.open_app_bar': 'Anwendungsleiste öffnen',
+    'apps.open_app_bar': 'Anwendungsleiste öffnen, auch: Taste [c]',
+    'apps.profile': 'Profil',
 
     'today_is': 'Heute ist',
     'today': 'Heute',
@@ -52,7 +53,9 @@
     'preview': 'Vorschau',
     'more': 'mehr',
     'perc_completed': 'Prozent abgeschlossen',
-    'system_status': 'Systemstatus',
+    'status': 'Status',
+    'total': 'Gesamt',
+    'adv_search': 'Erweiterte Suche',
 
     'email': 'Email',
     'phone': 'Telefon',
@@ -75,6 +78,8 @@
 
     'published': 'veröffentlicht',
     'draft': 'Entwurf',
+    'published_click_to_change': 'veröffentlicht - klicken, um den Status zu ändern',
+    'draft_click_to_change': 'Entwurf - klicken, um den Status zu ändern',
 
     'user_activity': 'Aktivität',
     'disk_quota': 'Festplatte',
@@ -99,8 +104,11 @@
 
     'unsaved_data_continue': 'Das Formular enthält ungespeicherte Daten. Wirklich fortfahren?',
 
+    'labels': 'Labels',
     'labels.title': 'Labels',
     'labels.new': 'Neues Label',
+    'labels.select_entries_then_click_on_label': 'Zuerst Einträge auswählen, um sie mit einem Label zu markieren',
+    'labels.items_selected': '{{count}} Einträge zu Label hinzufügen',
 
     'label.created': 'Label {{name}} wurde erfolgreich angelegt',
     'label.saved': 'Einstellungen {{name}} wurden gespeichert',

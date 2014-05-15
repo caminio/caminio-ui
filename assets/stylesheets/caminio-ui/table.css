@@ -83,7 +83,7 @@ table.caminio td.nr{
 }
 table.caminio td{
   padding: 10px;
-  font-size: 14px;
+  font-size: 13px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -117,14 +117,17 @@ table.caminio th.actions,
 table.caminio td.actions{
   width: 120px;
   opacity: 0.5;
+  text-align: right;
+  padding-right: 2px;
 }
 table.caminio td.actions:hover{
   opacity: 1;
 }
 table.caminio td.actions .btn-group{
-  float:right;
-  margin-bottom: -5px;
+  float: right;
   font-size: 0.9em;
+  margin-bottom: -5px;
+  margin-top: -5px;
 }
 
 table.caminio td a{
@@ -172,8 +175,8 @@ table.caminio td table.caminio{
 .caminio-table-footer .pagination > li.active > a:hover,
 .caminio-table-footer .pagination > li.active > a:focus,
 .caminio-table-footer .pagination > li.active > a{
-  background-color: #C83737;
-  border-color: #a81717;
+  background-color: #59e;
+  border-color: #48d;
   color: #fff;
   font-weight: 600;
 }
@@ -198,4 +201,48 @@ table.caminio td table.caminio{
 }
 .caminio-table-footer .select2-container .select2-choice .select2-arrow b:before{
   margin-top: 6px;
+}
+.caminio-table-wrapper.loading table{
+  display: none;
+}
+
+.caminio-table-wrapper{
+  min-height: 400px;
+}
+
+.caminio-table-wrapper .loader{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  font-size: 50px;
+  line-height: 50px;
+  color: #333;
+}
+
+.caminio-table-wrapper.loading .loader{
+  display: block;
+}
+
+table.caminio .checker{
+  font-size: 16px;
+  color: #999;
+  background-color: #f5f5f5;
+}
+
+table.caminio .checker.greyed{
+  background: #ddd;
+}
+
+table.caminio .favorite{
+  width: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+table.caminio .favorite .fa{
+  float: left;
 }
