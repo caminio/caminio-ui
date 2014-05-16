@@ -88,7 +88,7 @@ module.exports = function(grunt) {
             'assets/javascripts/caminio-ui/locales/*.js',
             'assets/javascripts/caminio-ui/router.js',
             'assets/javascripts/caminio-ui/models/domain.js',
-            'assets/javascripts/caminio-ui/controllers/*.js'
+            'assets/javascripts/caminio-ui/controllers/*.js',
             'assets/javascripts/caminio-ui/views/*.js'
           ],
           'build/javascripts/caminio-profiles.min.js': [
