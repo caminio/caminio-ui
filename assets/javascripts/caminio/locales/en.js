@@ -107,7 +107,7 @@
     'labels.title': 'Labels',
     'labels.new': 'New label',
     'labels.select_entries_then_click_on_label': 'Select one or more items then click on the label to add them',
-    'labels.items_selected': 'label {{count}} items with'
+    'labels.items_selected': 'label {{count}} items with',
 
     'content_here': 'Here should go some text!',
 
