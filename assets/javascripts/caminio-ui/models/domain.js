@@ -10,6 +10,7 @@
     custom: DS.attr('object'),
     lang: DS.attr('string', { defaultValue: 'de'}),
     diskQuotaM: DS.attr('number'),
+    isCaminioHosted: DS.attr('boolean', { defaultValue: true }),
     diskUploadLimitM: DS.attr('number'),
     usersQuota: DS.attr('number'),
     allowedAppNames: DS.attr('array'),

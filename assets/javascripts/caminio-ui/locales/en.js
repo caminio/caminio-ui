@@ -54,7 +54,8 @@
     'invalid_email': 'The email address entered is not valid: {{value}}',
     'required_fields': 'Required fields',
 
-    'domain.name': 'Domainname',
+    'domain.name': 'Domain name',
+    'domain.settings': 'Settings',
     'domain.owner': 'Owner',
     'domain.fqdn': 'FQDN',
     'domain.new': 'New domain',
@@ -65,6 +66,7 @@
     'domain.allowed_apps': 'Allowed applications',
     'domain.default_lang': 'Default language for users',
     'domain.available_langs': 'Available languages',
+    'domain.is_caminio_hosted': 'Domain is hosted on caminio',
     'domain.currency': 'Default currency for webshop',
     'domain.vat': 'VAT %',
     'domain.thumbs': 'Thumbnail sizes',

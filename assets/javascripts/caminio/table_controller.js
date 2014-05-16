@@ -90,6 +90,7 @@
     actions: {
     
       selectTableItem: function(){
+        console.log('here');
         var item = this.get('content');
         var isSelected = App._selTableItems.findBy('id', item.id);
         if( isSelected )

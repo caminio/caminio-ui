@@ -54,6 +54,7 @@
     'invalid_email': 'Die Emailadresse {{value}} ist ungültig',
 
     'domain.name': 'Name',
+    'domain.settings': 'Einstellungen',
     'domain.owner': 'Besitzer',
     'domain.fqdn': 'FQDN',
     'domain.new': 'Neue Domäne',
@@ -66,6 +67,7 @@
     'domain.currency': 'Standardwährung für Webshop',
     'domain.vat': 'MwSt %',
     'domain.available_langs': 'Verfügbare Sprachen',
+    'domain.is_caminio_hosted': 'Domain wird auf caminio bereitgestellt',
     'domain.thumbs': 'Thumbnailgrößen',
 
     'domain.danger': 'Gefahrenzone',

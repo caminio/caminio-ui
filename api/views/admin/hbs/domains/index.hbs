@@ -21,6 +21,7 @@
       <thead>
         <tr>
           <th>{{t domain.name}}</th>
+          <th>{{t domain.settings}}</th>
           <th>{{t domain.owner}}</td>
           <th class="actions align-right"></th>
         </tr>
@@ -31,6 +32,11 @@
         <tr {{bind-attr class="isCurrentDomain:active"}}>
           <td {{action goToDomain this on='doubleClick'}}>
             {{name}}
+          </td>
+          <td>
+            {{#if isCaminioHosted}}
+              <span class="label label-primary">camin.io</span>
+            {{/if}}
           </td>
           <td {{action goToDomain this on='doubleClick'}}>{{user.fullname}}</td>
           <td class="actions align-right">
