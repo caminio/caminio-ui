@@ -20,7 +20,6 @@
     lvalue = typeof(this.get) === 'function' ? this.get(lvalue) : ( typeof(App.get(lvalue)) === 'undefined' ? lvalue : App.get(lvalue) );
     rvalue = typeof(this.get) === 'function' ? this.get(rvalue) : ( typeof(App.get(rvalue)) === 'undefined' ? rvalue : App.get(rvalue) );
 
-    console.log('comparing', lvalue, rvalue, this);
     if( lvalue === rvalue )
       return options.fn(this);
     if(  typeof(options.inverse) === 'function' )
