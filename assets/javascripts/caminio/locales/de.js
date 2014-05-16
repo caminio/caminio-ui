@@ -41,6 +41,7 @@
     'save': 'Speichern',
     'back': 'Zurück',
     'edit': 'Bearbeiten',
+    'show': 'Anzeigen',
     'close': 'Schließen',
     'done': 'Fertig',
     'cancel': 'Abbrechen',

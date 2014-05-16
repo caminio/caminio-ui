@@ -41,6 +41,7 @@
     'save': 'Save',
     'back': 'Back',
     'edit': 'Edit',
+    'show': 'Show',
     'close': 'Close',
     'done': 'Done',
     'cancel': 'Cancel',

@@ -22,7 +22,7 @@ module.exports = function(grunt) {
         files: {
           'build/stylesheets/caminio-ui.min.css': [ 'assets/stylesheets/3rdparty/*.css',
                                                     'assets/stylesheets/caminio-ui/*.css' ],
-          'build/stylesheets/caminio-auth.min.css': [ 'assets/stylesheets/caminio-ui/authorization.css' ],
+          'build/stylesheets/caminio-auth.min.css': [ 'assets/stylesheets/caminio-auth/authorization.css' ],
           'build/stylesheets/caminio-profiles.min.css': [ 'assets/stylesheets/caminio-profiles/*.css' ]
         }
       }
