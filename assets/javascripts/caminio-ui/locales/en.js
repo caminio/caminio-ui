@@ -33,6 +33,17 @@
     'user.password_confirmation': 'Repeat password',
 
     'user.admin': 'Administrator',
+    'user.editor': 'Editor',
+    'user.api.enabled': 'enabled',
+    'user.api.disabled': 'disabled',
+
+    'user.access_rights': 'Access rights',
+    'user.roles.no_access': 'no access',
+    'user.roles.comments_only': 'comments only',
+    'user.roles.default': 'default',
+    'user.roles.editor': 'editor',
+    'user.roles.trustee': 'trustee',
+    'user.roles.admin': 'administrator',
 
     'user.lang': 'Language',
     'user.photo': 'Photo',

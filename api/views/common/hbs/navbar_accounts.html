@@ -23,5 +23,17 @@
         {{t 'sign_out'}}
       </a>
     </li>
+    <li class="divider"></li>
+    <li class="title">
+    <strong>{{t 'other_domains'}}</strong>
+    </li>
+    {{#each App._currentUser.camDomains}}
+      {{#equal2 '_id' '_currentDomain._id'}}
+      {{else}}
+        <li>
+        <a {{bind-attr href=changeUrl}}>{{name}}</a>
+        </li>
+      {{/equal2}}
+    {{/each}}
   </ul>
 </li>

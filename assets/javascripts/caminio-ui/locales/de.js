@@ -32,7 +32,18 @@
     'user.password': 'Passwort',
     'user.password_confirmation': 'Wiederholen',
 
-    'user.admin': 'Administrator',
+    'user.admin': 'AdministratorIn',
+    'user.editor': 'RedakteurIn',
+    'user.api.enabled': 'aktiviert',
+    'user.api.disabled': 'deaktiviert',
+
+    'user.access_rights': 'Zugriffsrechte',
+    'user.roles.no_access': 'Kein Zugriff',
+    'user.roles.comments_only': 'Nur kommentieren',
+    'user.roles.default': 'Standard',
+    'user.roles.editor': 'Redaktion',
+    'user.roles.trustee': 'Vertrauliche Redaktion',
+    'user.roles.admin': 'Administration',
 
     'user.lang': 'Sprache',
     'user.photo': 'Photo',

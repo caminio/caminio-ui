@@ -6,7 +6,18 @@
     firstname: DS.attr('string'),
     lastname: DS.attr('string'),
     email: DS.attr('string'),
-    admin: DS.attr('boolean'),
+    roles: DS.attr('object'),
+    currentDomainRole: function( ns, val ){
+      if( val )
+        Ember.set( this.get('roles'), currentDomain._id, val);
+      return Ember.get( this.get('roles'), currentDomain._id) || 0;
+    }.property('roles'),
+    isAdmin: function(){
+      return this.get('roles')[currentDomain._id] === 100;
+    }.property('roles.'+currentDomain._id),
+    isEditor: function(){
+      return this.get('roles')[currentDomain._id] >= 60;
+    }.property('roles.'+currentDomain._id),
     lang: DS.attr('string', { defaultValue: currentDomain.lang || 'en' }),
     description: DS.attr('string'),
     superuser: DS.attr('boolean'),

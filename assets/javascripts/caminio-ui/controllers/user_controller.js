@@ -4,18 +4,9 @@
 
   var userControllerCommon = {
 
-    isAdminToggled: function(){
-      return this.get('admin');
-    }.property('admin'),
-
     emailError: function(){
       if( this.get('errors') )
         return ('email' in this.get('errors'));
-    }.property('errors'),
-
-    langError: function(){
-      if( this.get('errors') )
-        return ('lang' in this.get('errors'));
     }.property('errors'),
 
     actions: {
@@ -26,10 +17,6 @@
             if( response.user )
               notify('info', Em.I18n.t('user.sent_credentials_again'));
           });
-      },
-
-      toggleAdmin: function(){
-        this.set('admin',!this.get('admin'));
       },
 
       toggleAPI: function(){

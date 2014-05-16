@@ -61,8 +61,12 @@
     primaryKey: '_id'
   });
 
+  currentUser.camDomains.map(function(domain){
+    domain.changeUrl = '/caminio/admin?camDomainId='+domain._id;
+  });
   window.App.set('_currentUser', currentUser);
   window.App.set('_currentDomain', currentDomain);
+  window.App.set('_availableLanguages', Em.A(['de', 'en']));
 
   /**
    *  Creates an array type for the ember model

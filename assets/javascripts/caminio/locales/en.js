@@ -13,6 +13,7 @@
     'or': 'or',
     'sign_out': 'Sign out',
     'edit_profile': 'Edit profile',
+    'other_domains': 'Other domains',
     'change_password': 'Change password',
 
     'go_to_dashboard': 'go to dashboard',
@@ -21,7 +22,7 @@
     'apps.lineup': 'Line-up',
     'apps.webmaker': 'WebMaker',
     'apps.shop': 'Shop',
-    'apps.people': 'People',
+    'apps.people': 'Contacts',
     'apps.calendar': 'Calendar',
     'apps.open_app_bar': 'Open app panel, also with: shortcut [c]',
     'apps.profile': 'Profile',

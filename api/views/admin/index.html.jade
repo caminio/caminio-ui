@@ -10,7 +10,9 @@ append head
 append foot
   if env === 'production'
     script(type='text/javascript', src='/javascripts/caminio-ui.min.js')
+    script(type='text/javascript', src='/javascripts/caminio-admin.min.js')
   else
+    script(type='text/javascript', src='/javascripts/caminio-admin/3rdparty/bootstrap.slider.js')
     script(type='text/javascript', src='/javascripts/caminio-ui/locales/#{currentLang}.js')
     script(type='text/javascript', src='/javascripts/caminio-ui/models/domain.js')
     script(type='text/javascript', src='/javascripts/caminio-ui/controllers/user_controller.js')

@@ -32,9 +32,12 @@
           <tr>
             <td {{action goToUser this on='doubleClick'}}>
               {{fullname}}
-              {{#isAdmin this}}
-                <span class="lbl danger"><i class="fa fa-gears"></i></span>
-              {{/isAdmin}}
+              {{#if isAdmin}}
+                <span class="label label-danger"><i class="fa fa-gears"></i></span>
+              {{/if}}
+              {{#if isEditor}}
+                <span class="label label-primary"><i class="fa fa-pencil"></i></span>
+              {{/if}}
             </td>
             <td {{action goToUser this on='doubleClick'}}>{{email}}</td>
             <td class="actions align-right">

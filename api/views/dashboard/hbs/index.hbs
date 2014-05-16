@@ -29,7 +29,7 @@
       <li>
         <a href='/caminio/calendar' {{bind-attr title='content.title'}}>
           <div class="title">{{content.title}}</div>
-          <time {{bind-attr datetime=content.start}}>{{formatAppointmentDate}}</time>
+          <time {{bind-attr datetime=content.start}}>{{smartDate content.start}}</time>
         </a>
       </li>
       {{else}}

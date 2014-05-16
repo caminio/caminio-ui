@@ -14,6 +14,21 @@
 
     availableRows: [10,30,50],
 
+    closestPages: function(){
+      var start = this.get('page');
+      var end = this.get('pages')[ this.get('pages').length-1];
+      if( start > 3 )
+        start = start-3;
+      else if( start > 2 )
+        start = start-2;
+      else if( start > 1 )
+        start = start-1;
+      end = (start + 5 <= end ) ? start + 5 : end;
+      if( end - 5 < start && this.get('pages').length > 5 )
+        start = end - 5;
+      return this.get('pages').slice( start-1, end );
+    }.property('pages.length'),
+
     paginatedContent: function(){
       var start = (this.get('page') - 1 ) * this.get('numRows');
       var end = this.get('page') * this.get('numRows');

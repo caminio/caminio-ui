@@ -22,7 +22,7 @@ $(function(){
     }.property(),
 
     languages: function(){
-      return ['de', 'en'];
+      return App.get('_availableLanguages');
     }.property(),
 
     isWebshopEnabled: function(){

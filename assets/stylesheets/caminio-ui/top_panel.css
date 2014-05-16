@@ -110,7 +110,7 @@ body:not(.toggle-apps) .top-panel .toggle-apps-btn:hover .toggle-icn:before{
 }
 
 .top-panel .navbar{
-  margin: 0 0 0 150px;
+  margin: 0 0 0 130px;
   width: auto;
   list-style: none;
   border: none;
@@ -150,7 +150,7 @@ body:not(.toggle-apps) .top-panel .toggle-apps-btn:hover .toggle-icn:before{
 
 .top-panel .navbar > li.title{
   color: #bbb;
-  padding: 18px 40px 13px 20px;
+  padding: 18px 50px 13px 0;
   font-size:  1em;
   text-transform:  uppercase;
   font-weight: 100;
@@ -160,6 +160,18 @@ body:not(.toggle-apps) .top-panel .toggle-apps-btn:hover .toggle-icn:before{
   float: right;
   margin-right: 50px;
   cursor: pointer;
+}
+
+.top-panel .account-actions .divider{
+  background-color: #555;
+}
+
+.top-panel .account-actions li.title{
+  text-align: right;
+  color: #ddd;
+  padding: 5px 15px;
+  font-size: 11px;
+  font-weight: 600;
 }
 
 .top-panel .avatar{

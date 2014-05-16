@@ -47,46 +47,60 @@
   </div>
 
   <div class="form-group">
-    <label class="col-md-2 control-label">{{t user.admin}}</label>
-    <div class="col-md-1 check-box-lbl">
-      <span {{action toggleAdmin}}{{bind-attr class=":lbl :danger isAdminToggled::disabled"}}><i class="fa fa-gears"></i></span>
-    </div>
-    <label class="col-md-1 control-label">API</label>
-    <div class="col-md-2 check-box-lbl">
-      <span {{action toggleAPI}}{{bind-attr class=":lbl :warning model.apiEnabled::disabled"}}><i class="fa fa-code"></i></span>
+    <label class="col-md-2 control-label">{{t user.access_rights}}</label>
+    <div class="col-md-10">
+      <div class="role-choices">
+        <div class="choice">
+          {{t 'user.roles.no_access'}}
+        </div>
+        <div class="choice">
+          {{t 'user.roles.comments_only'}}
+        </div>
+        <div class="choice">
+          {{t 'user.roles.default'}}
+        </div>
+        <div class="choice">
+          {{t 'user.roles.editor'}}
+        </div>
+        <div class="choice">
+          {{t 'user.roles.trustee'}}
+        </div>
+        <div class="choice">
+          {{t 'user.roles.admin'}}
+        </div>
+      </div>
+      <input type="text" id="role-slider" class="slider fill-width">
     </div>
   </div>
 
   <h4 class="sub-header">{{t user.lang}}</h4>
 
   <div class="form-group">
-    <label class="col-md-2 control-label required">{{t user.lang}}</label>
-    <div {{bind-attr class=":col-md-4 emailError:field-with-error"}}>
-      {{input valueBinding='model.lang' class='form-control'}}
-      {{#if langError}}<span class="help-block">{{errors.lang}}</span>{{/if}}
+    <label class="control-label col-md-2">{{t user.lang}}</label>
+    <div class="col-md-10">
+      {{view Ember.Select valueBinding='model.lang'
+                          content=App._availableLanguages}}
     </div>
   </div>
 
-  {{#if model.id}}
-    <h4 class="sub-header">{{t user.danger}}</h4>
 
-    <div class="form-group">
-      <div class="col-md-8 col-md-offset-2">
-        <div class="desc row clearfix">
-          <div class="col-md-4" style="margin: 1em 0;">
-            {{t 'user.remove_desc'}}
-          </div>
-        </div>
-        <button class="btn large danger icon-text" {{action 'removeUser'}}>
-          <i class="fa fa-trash-o"></i>
-          {{t 'user.remove'}}
-        </button>
-      </div>
+  <h4 class="sub-header">{{t user.api}}</h4>
+  
+  <div class="form-group">
+    <label class="control-label col-md-2">API</label>
+    <div class="col-md-10">
+      <button {{action toggleAPI}}
+        class="btn adapt-to-form primary">
+        {{#if model.apiEnabled}}
+          {{t 'user.api.enabled'}}
+        {{else}}
+          {{t 'user.api.disabled'}}
+        {{/if}}
+      </button>
     </div>
-  {{/if}}
+  </div>
 
   {{#if model.apiEnabled}}
-    <h4 class="sub-header">{{t user.api}}</h4>
 
     <div class="form-group">
       <label class="col-md-2 control-label">{{t 'user.remote_clients'}}</label>
@@ -121,3 +135,22 @@
       </div>
     </div>
   {{/if}}
+
+  {{#if model.id}}
+    <h4 class="sub-header">{{t user.danger}}</h4>
+
+    <div class="form-group">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="desc row clearfix">
+          <div class="col-md-4" style="margin: 1em 0;">
+            {{t 'user.remove_desc'}}
+          </div>
+        </div>
+        <button class="btn large danger icon-text" {{action 'removeUser'}}>
+          <i class="fa fa-trash-o"></i>
+          {{t 'user.remove'}}
+        </button>
+      </div>
+    </div>
+  {{/if}}
+
