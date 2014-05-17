@@ -38,7 +38,7 @@ module.exports = function ProfilesController( caminio, policies, middleware ){
      * known email addresses
      */
     'knownEmailAddresses': [
-      function( req, res, next ){ req.params.id = res.locals.currentUser._id; next() },
+      function( req, res, next ){ req.params.id = res.locals.currentUser._id; next(); },
       getUser,
       getEmailAddresses,
       function( req, res ){
