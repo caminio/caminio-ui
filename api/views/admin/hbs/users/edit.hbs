@@ -12,7 +12,7 @@
           <i class="fa fa-envelope-o"></i>
           {{t user.send_login_info}}
         </button>
-        <button class="btn success" {{action create this}}>
+        <button {{bind-attr class=":btn isDirty:primary"}} {{action create this}}>
           {{t user.save}}
         </button>
 

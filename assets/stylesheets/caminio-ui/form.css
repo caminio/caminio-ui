@@ -229,3 +229,7 @@ form.caminio .CodeMirror pre{
 form.caminio .inline-editor .CodeMirror-lines{
   padding: 0;
 }
+
+form.caminio .twitter-typeahead{
+  width: 100%;
+}

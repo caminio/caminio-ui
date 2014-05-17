@@ -12,7 +12,10 @@
   <div class="form-group">
     <label class="col-md-2 control-label required">{{t user.email}}</label>
     <div {{bind-attr class=":col-md-4 emailError:field-with-error"}}>
-      {{input valueBinding='model.email' class='form-control'}}
+      {{view App.Select2AjaxTextFieldView
+        contentUrl="/caminio/profile/known_email_addresses?q=%QUERY"
+        valueBinding="email"
+        class='form-control'}}
       {{#if emailError}}<span class="help-block">{{errors.email}}</span>{{/if}}
     </div>
   </div>
@@ -87,7 +90,7 @@
   <h4 class="sub-header">{{t user.api}}</h4>
   
   <div class="form-group">
-    <label class="control-label col-md-2">API</label>
+    <label class="control-label col-md-2">{{t 'status'}}</label>
     <div class="col-md-10">
       <button {{action toggleAPI}}
         class="btn adapt-to-form primary">

@@ -1,5 +1,6 @@
 var join          = require('path').join;
 var fs            = require('fs');
+var async         = require('async');
 
 module.exports = function ProfilesController( caminio, policies, middleware ){
 
@@ -33,6 +34,18 @@ module.exports = function ProfilesController( caminio, policies, middleware ){
         return res.sendfile( filename );
       }],
 
+    /**
+     * known email addresses
+     */
+    'knownEmailAddresses': [
+      function( req, res, next ){ req.params.id = res.locals.currentUser._id; next() },
+      getUser,
+      getEmailAddresses,
+      function( req, res ){
+        res.json( req.emails.map( function(email){ return { value: email }; } ));
+      }
+    ]
+
   };
 
   function getUser( req, res, next ){
@@ -46,5 +59,16 @@ module.exports = function ProfilesController( caminio, policies, middleware ){
     });
   }
 
+  function getEmailAddresses( req, res, next ){
+    var regexp = new RegExp(req.param('q'),'i');
+    User
+      .find({ camDomains: { '$in': req.user.populated('camDomains') }, email: regexp})
+      .sort({ email: 'asc' })
+      .exec( function( err, users ){
+        if( err ){ console.error(err); return res.json(500, { error: 'server_error', details: err } ); }
+        req.emails = users.map(function(user){ return user.email; });
+        next();
+      });
+  }
 
 };
