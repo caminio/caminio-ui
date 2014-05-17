@@ -1,3 +1,5 @@
+1.0.1
+  - roles for each domain
 0.0.2
   - travis activated
   - tests for data_service (client side) written and passing
