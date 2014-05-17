@@ -8,9 +8,10 @@
 
       var controller = this.get('controller');
 
-      this.get('controller').set('apiClients',
-        this.get('controller.store').find('client', { user: this.get('controller.model.id')})
-      );
+      if( this.get('controller.model.id') )
+        this.get('controller').set('apiClients',
+          this.get('controller.store').find('client', { user: this.get('controller.model.id')})
+        );
 
       this.$('#role-slider').slider({
         tooltip: 'hide',
@@ -26,5 +27,7 @@
     }
 
   });
+
+  App.UsersNewView = App.UserEditView.extend();
 
 })(App);

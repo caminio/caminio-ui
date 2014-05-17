@@ -103,7 +103,9 @@
 
   App.UsersNewRoute = Ember.Route.extend({
     model: function() {
-      var model = this.store.createRecord('user');
+      var roles = {};
+      roles[currentDomain._id] = 40;
+      var model = this.store.createRecord('user', { roles: roles });
       return model;
     }
   });
