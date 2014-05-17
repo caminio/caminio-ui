@@ -12,7 +12,7 @@
   <div class="form-group">
     <label class="col-md-2 control-label required">{{t user.email}}</label>
     <div {{bind-attr class=":col-md-4 emailError:field-with-error"}}>
-      {{view App.Select2AjaxTextFieldView
+      {{view App.TypeaheadTextFieldView
         contentUrl="/caminio/profile/known_email_addresses?q=%QUERY"
         valueBinding="email"
         class='form-control'}}

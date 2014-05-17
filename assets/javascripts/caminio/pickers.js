@@ -1,5 +1,35 @@
 (function($){
 
+  'use strict';
+
+  $.fn.caminioTimepicker = function( options ){
+  
+    this.addClass('hasTimepicker');
+    
+    $(this).on('keydown', function(e){
+      var curVal = $(this).val();
+      if(!( e.keyCode === 40 || e.keyCode === 38 ))
+        return;
+      curVal = curVal.match(/\d\d:\d\d/) ? curVal : '20:00';
+      var hour = parseInt(curVal.split(':')[0]);
+      var min = parseInt(curVal.split(':')[1]);
+      if( e.keyCode === 40 ) // down
+        hour = hour - 1;
+      else if( e.keyCode === 38 ) // up
+        hour = hour + 1;
+      if( hour > 23 )
+        hour = 0;
+      if( hour < 0 )
+        hour = 23;
+      hour = hour.toString();
+      hour = hour.length < 2 ? '0' + hour : hour;
+      min = min.toString();
+      min = min.length < 2 ? '0' + min : min;
+      $(this).val(hour+':'+min);
+    });
+
+  };
+
   $.fn.caminioPhonePicker = function( options ){
 
     var settings = $.extend({

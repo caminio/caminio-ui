@@ -28,6 +28,10 @@
         json[relationship.key] = record.get(relationship.key).map( function(item){
           return item.toJSON();
         });
+      else if( relationship.options.embedded && relationship.options.embedded === 'keys' ){
+        json[relationship.key] = [];
+        json[relationship.key] = record.get(relationship.key).mapBy('id');
+      }
     },
     serializeBelongsTo: function(record, json, relationship){
       if( relationship.options.embedded && relationship.options.embedded === 'always' &&
@@ -41,18 +45,18 @@
       var self = this;
       var root = Ember.String.decamelize(type.typeKey);
       data[root] = this.serialize(record, options);
-      if( record._relationships ){
-        for( var i in record._relationships){
-          data[root][i] = [];
-          if( record._relationships[i] )
-            record._relationships[i].forEach( function( rel ){
-              var obj = rel.serialize( rel, options );
-              if( rel.id ) // do not make null _ids
-                obj._id = rel.id;
-              data[root][i].push( obj );
-            });
-        }
-      }
+      //if( record._relationships ){
+      //  for( var i in record._relationships){
+      //    data[root][i] = [];
+      //    if( record._relationships[i] )
+      //      record._relationships[i].forEach( function( rel ){
+      //        var obj = rel.serialize( rel, options );
+      //        if( rel.id ) // do not make null _ids
+      //          obj._id = rel.id;
+      //        data[root][i].push( obj );
+      //      });
+      //  }
+      //}
     }, 
     typeForRoot: function(root) {
       var camelized = Ember.String.camelize(root);

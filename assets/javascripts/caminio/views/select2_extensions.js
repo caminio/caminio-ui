@@ -23,8 +23,12 @@
    *    createTranslation='my.create.translation' // same as promptTranslation
    *
    * the createAction gets:
-   * @param {String} name (the entered name)
-   * @param {JQuery} the jquery object of this select2 instance
+   * @param name {String} the entered name
+   * @param obj {JQuery} the jquery object of this select2 instance
+   * 
+   * the changeAction gets:
+   * @param name {String} (the entered name)
+   * @param obj {JQuery} jquery object of this select2 instance
    * 
    */
   App.Select2SelectView = Ember.Select.extend({
@@ -53,16 +57,25 @@
       this.$().select2( options ).on('select2-open', function(){
         if( !self.get('createAction') )
           return;
-        $('#select2-drop .select2-input').off().on('keyup', function(e){
+        if( $('#select2-drop .select2-input').data('emberized') )
+          return;
+        $('#select2-drop .select2-input').data('emberized',true);
+        $('#select2-drop .select2-input').on('keyup', function(e){
+          if( e.keyCode === 27 )
+            self.$().select2('close');
           if( $('#select2-drop .select2-results').length < 2 && this.value.length > 0 )
-            $('#select2-drop .select2-result-label:first').text( Em.I18n.t(self.get('createTranslation')));
-          else
-            $('#select2-drop .select2-result-label:first').text( Em.I18n.t(self.get('promptTranslation')));
+            $('#select2-drop .select2-no-results').text( Em.I18n.t(self.get('createTranslation')));
+          else if( this.value.length > 0 )
+            $('#select2-drop .select2-no-results').text( Em.I18n.t(self.get('promptTranslation')));
           if( e.keyCode !== 13 )
             return;
           self.get('controller').send(self.get('createAction'), this.value, self.$() );
           self.$().select2('close');
-        });
+        })
+      })
+      .on('change', function(){
+        if( self.get('changeAction') )
+          self.get('controller').send(self.get('changeAction'), this.value, self.$() );
       });
     },
 
@@ -173,7 +186,7 @@
   });
 
   /**
-   * Select2AjaxTextFieldView
+   * TypeaheadTextFieldView
    * example:
    * {{view App.Select2AjaxTextFieldView
         contentUrl="/caminio/get/data.json"
@@ -203,7 +216,7 @@
    * and should return a select2 compatible result array
    *
    */
-  App.Select2AjaxTextFieldView = Ember.TextField.extend({
+  App.TypeaheadTextFieldView = Ember.TextField.extend({
 
     classNames: ['input-xlarge'],
 
@@ -213,11 +226,19 @@
 
     processChildElements: function() {
       var self = this;
-      var sources = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        remote:  this.get('contentUrl')
-      });
+      var sources;
+      if( this.get('contentUrl') )
+        sources = new Bloodhound({
+          datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+          queryTokenizer: Bloodhound.tokenizers.whitespace,
+          remote:  this.get('contentUrl')
+        });
+      else if( this.get('localContent') )
+        sources = new Bloodhound({
+          datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+          queryTokenizer: Bloodhound.tokenizers.whitespace,
+          local: $.map( this.get('localContent'), function(c){ return { value: c } })
+        });
 
       sources.initialize();
 
@@ -226,6 +247,10 @@
         source: sources.ttAdapter()
       });
     },
+
+    willDestroyElement: function () {
+      this.$().typeahead('destroy');
+    }
 
   });
 

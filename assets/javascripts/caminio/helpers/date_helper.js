@@ -40,5 +40,10 @@ $( function(){
     return new Handlebars.SafeString("<time title='" + parsedDate.format('LLLL') + "' datetime='" + parsedDate.format('LLLL') +"'>" + str + "</time>");
   });
 
+  Ember.Handlebars.registerHelper('thisYear', function( date, options ){
+    if( moment(this.get(date)).format('YYYY') === moment().format('YYYY') )
+      return options.fn(this);
+    return options.inverse(this);
+  });
 
 });

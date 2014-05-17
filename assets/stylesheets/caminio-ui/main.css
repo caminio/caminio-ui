@@ -9,6 +9,11 @@ html,body{
   margin: 80px auto 10px;
 }
 
+.default-max{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .plain-view header{
   margin-bottom: 20px;
 }
