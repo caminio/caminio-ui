@@ -91,7 +91,10 @@
 <div class="form-group">
   <label class="control-label required">{{t user.email}}</label>
   <div {{bind-attr class="emailError:field-with-error"}}>
-    {{input valueBinding='domain.user.email' class='form-control'}}
+    {{view App.TypeaheadTextFieldView
+      contentUrl="/caminio/profile/known_email_addresses?q=%QUERY"
+      valueBinding="domain.user.email"
+      class='form-control'}}
     {{#if emailError}}<span class="help-block">{{errors.email}}</span>{{/if}}
   </div>
 </div>

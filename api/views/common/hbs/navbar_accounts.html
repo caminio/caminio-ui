@@ -23,6 +23,7 @@
         {{t 'sign_out'}}
       </a>
     </li>
+    {{#if App._currentUserHasMultiDomains}}
     <li class="divider"></li>
     <li class="title">
     <strong>{{t 'other_domains'}}</strong>
@@ -35,5 +36,6 @@
         </li>
       {{/equal2}}
     {{/each}}
+    {{/if}}
   </ul>
 </li>

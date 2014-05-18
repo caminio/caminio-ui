@@ -1,10 +1,13 @@
+'use strict';
+
 var join          = require('path').join;
 var fs            = require('fs');
-var async         = require('async');
+var _             = require('lodash');
 
 module.exports = function ProfilesController( caminio, policies, middleware ){
 
-  var User = caminio.models.User;
+  var User   = caminio.models.User;
+  var Domain = caminio.models.Domain;
 
   return {
 
@@ -61,14 +64,26 @@ module.exports = function ProfilesController( caminio, policies, middleware ){
 
   function getEmailAddresses( req, res, next ){
     var regexp = new RegExp(req.param('q'),'i');
-    User
-      .find({ camDomains: { '$in': req.user.populated('camDomains') }, email: regexp})
-      .sort({ email: 'asc' })
-      .exec( function( err, users ){
+    var domains = req.user.populated('camDomains');
+    if( req.user.superuser )
+      Domain.find({}, function( err, domains ){
         if( err ){ console.error(err); return res.json(500, { error: 'server_error', details: err } ); }
-        req.emails = users.map(function(user){ return user.email; });
-        next();
+        runGetEmails( _.map( domains, '_id') );
       });
+    else
+      runGetEmails( domains );
+
+    function runGetEmails( domains ){
+      User
+        .find({ camDomains: { '$in': domains }, email: regexp})
+        .sort({ email: 'asc' })
+        .exec( function( err, users ){
+          if( err ){ console.error(err); return res.json(500, { error: 'server_error', details: err } ); }
+          req.emails = users.map(function(user){ return user.email; });
+          next();
+        });
+    }
+
   }
 
 };
