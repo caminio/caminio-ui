@@ -59,16 +59,31 @@
 
       removeUser: function() {
         var model = this.get('model');
+        var self = this;
         if( model.get('id') === currentDomain.owner )
           return bootbox.alert( Em.I18n.t('user.cannot_delete_domain_owner') );
-        bootbox.prompt( Em.I18n.t('user.really_delete', { fullname: model.get('fullname') }), function( username ){
-          if( username === model.get('fullname') ){
-            model.deleteRecord();
-            model.save().then(function(){
-              notify('info', Em.I18n.t('user.removed', {name: model.get('fullname') }));
-            });
-          }
-        });
+        if( model.get('camDomains').length > 1 )
+          bootbox.confirm( Em.I18n.t('user.really_remove_from_domain', { fullname: model.get('fullname') }), function( result ){
+            if( result ){
+              model.get('camDomains').removeObject( currentDomain._id );
+              model
+                .save()
+                .then( function(){
+                  notify('info', Em.I18n.t('user.removed_from_domain', { fullname: model.get('fullname') }));
+                  self.transitionToRoute('users');
+                });
+            }
+          });
+        else
+          bootbox.prompt( Em.I18n.t('user.really_delete', { fullname: model.get('fullname') }), function( username ){
+            if( username === model.get('fullname') ){
+              model.deleteRecord();
+              model.save().then(function(){
+                notify('info', Em.I18n.t('user.removed', {name: model.get('fullname') }));
+                self.transitionToRoute('users');
+              });
+            }
+          });
       }
 
     }

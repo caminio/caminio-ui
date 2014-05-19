@@ -61,6 +61,8 @@
     'user.remove': 'Dieses Benutzerkonto löschen',
     'user.really_delete': 'Dieses Benutzerkonto wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden. Um fortzufahren, gib den vollen Namen des Benutzerkontos <strong>{{fullname}}</strong> in das Feld unterhalb ein',
     'user.removed': 'Das Benutzerkonto {{name}} wurde gelöscht',
+    'user.really_remove_from_domain': 'Das Benutzerkonto {{fullname}} von dieser Domäne entfernen?',
+    'user.removed_from_domain': 'Das Benutzerkonto {{fullname}} wurde von dieser Domäne entfernt',
 
     'invalid_email': 'Die Emailadresse {{value}} ist ungültig',
 
@@ -68,6 +70,9 @@
     'domain.settings': 'Einstellungen',
     'domain.owner': 'Besitzer',
     'domain.fqdn': 'FQDN',
+    'domain.remote_addr': 'Entfernter Server Adresse',
+    'domain.remote_user': 'Entfernter Server Login',
+    'domain.remote_pass': 'Entfernter Server Passwort',
     'domain.new': 'Neue Domäne',
     'domain.edit': 'Domäne bearbeiten',
     'domain.save': 'Domäne speichern',
@@ -97,6 +102,7 @@
     'domain.create': 'Domäne erstellen',
 
     'errors.invalid_domain_name': 'Ungültiger Domänenname',
+    'errors.already_member': 'Die angegebene Email Adresse ist bereits Mitglied dieser Domäne',
 
     'client.create': 'Neuen API Key erstellen',
     'client.saved': 'API Key {{name}} wurde gespeichert',

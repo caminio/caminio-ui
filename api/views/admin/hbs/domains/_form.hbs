@@ -19,6 +19,31 @@
   <label>{{t domain.is_caminio_hosted}}</label>
 </div>
 
+{{#unless domain.isCaminioHosted}}
+
+<div class="form-group">
+  <label class="control-label">{{t 'domain.remote_addr'}}</label>
+  <div>
+    {{input valueBinding='domain.remotAddr' class='form-control'}}
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label">{{t 'domain.remote_user'}}</label>
+  <div>
+    {{input valueBinding='domain.remotUser' class='form-control'}}
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label">{{t 'domain.remote_pass'}}</label>
+  <div>
+    {{input valueBinding='domain.remotPass' class='form-control'}}
+  </div>
+</div>
+
+{{/unless}}
+
 <hr>
 
 <div class="form-group">

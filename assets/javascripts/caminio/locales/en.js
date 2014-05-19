@@ -49,6 +49,7 @@
     'create': 'Create',
     'remove': 'Remove',
     'delete': 'Delete',
+    'undo': 'Undo',
     'delete_selected': 'Delete selected',
     'root': 'root',
     'actions': 'Actions',

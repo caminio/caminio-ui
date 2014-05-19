@@ -45,7 +45,7 @@ $(function(){
         setTimeout( function(){
           $notification.remove();
         },500);
-      },5000);
+      }, (options.undo ? 15000 : 5000) );
     
   }
 

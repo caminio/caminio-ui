@@ -49,6 +49,7 @@
     'create': 'Erstellen',
     'remove': 'Löschen',
     'delete': 'Löschen',
+    'undo': 'Rückgängig',
     'delete_selected': 'Ausgewählte löschen',
     'root': 'Wurzel',
     'actions': 'Aktionen',

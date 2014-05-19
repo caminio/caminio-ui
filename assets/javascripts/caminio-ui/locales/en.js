@@ -56,6 +56,8 @@
     'user.remove_desc': 'If you remove this account, all comments will be removed, all items shared with others will be nullified (ownership will be set to the domain owner',
     'user.remove': 'Remove this user account',
     'user.really_delete': 'Really delete this user? This action cannot be undone. Please type the user\'s name <strong>{{fullname}}</strong> into the field below to continue.',
+    'user.really_remove_from_domain': 'Really remove user {{fullname}} from this domain?',
+    'user.removed_from_domain': 'The user account {{fullname}} has been removed from this domain',
     'user.removed': 'User {{name}} has been removed',
 
     'user.errors.prohibited_save': 'Errors prohibited this form to be saved',
@@ -69,6 +71,9 @@
     'domain.settings': 'Settings',
     'domain.owner': 'Owner',
     'domain.fqdn': 'FQDN',
+    'domain.remote_addr': 'Remote address',
+    'domain.remote_user': 'Remote username',
+    'domain.remote_pass': 'Remote password',
     'domain.new': 'New domain',
     'domain.edit': 'Edit domain',
     'domain.save': 'Save domain',
@@ -97,6 +102,7 @@
     'domain.create': 'Create domain',
 
     'errors.invalid_domain_name': 'The entered value is not a valid domain name',
+    'errors.already_member': 'The chosen email address is already member of this domain',
 
     'client.create': 'Add new client id',
     'client.saved': 'Client {{name}} has been saved',
