@@ -138,9 +138,10 @@ body .select2-search input.select2-active{
 }
 
 body .input-group-addon{
-  background-color: #eee;
+  background-color: #f0f0f0;
   border: none;
   border-radius: 0;
+  box-shadow: 0 1px 3px rgba(128, 128, 128, 0.2);
 }
 
 body .dropdown-menu > li > a{

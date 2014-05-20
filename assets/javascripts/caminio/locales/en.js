@@ -20,7 +20,7 @@
     'go_to_calendar': 'go to calendar',
     'apps.settings': 'Settings',
     'apps.lineup': 'Line-up',
-    'apps.webmaker': 'WebMaker',
+    'apps.web': 'WebMaker',
     'apps.shop': 'Shop',
     'apps.people': 'Contacts',
     'apps.calendar': 'Calendar',
