@@ -3,7 +3,7 @@
     if !(app.admin && !currentUser.isAdmin( currentDomain ) )
       a.app-item( href=app.path, class=(app.name === controllerName.replace('controller','').toLowerCase() ? 'active' : '')+' '+app.name )
         i.fa(class=app.icon)
-        .title(data-translate='apps.'+app.name)
+        .title=(app.i18n[currentLang] || app.title)
   if currentUser.isAdmin( currentDomain )
     a.app-item( href='/caminio/admin', class=('admin' === controllerName.replace('controller','').toLowerCase() ? 'active' : '')+' admin' )
       i.fa.fa-cogs
