@@ -26,6 +26,8 @@ $( function(){
     if( parsedDate.clone().subtract('d',7) >= moment().startOf('day').subtract('d',8) ){
       if( parsedDate.format('YYYY-MM-DD') === moment().format('YYYY-MM-DD') )
         str = Em.I18n.t('today') + ', ' + parsedDate.format('HH:mm');
+      else if( parsedDate.format('YYYY-MM-DD') === moment().subtract('d',1).format('YYYY-MM-DD') )
+        str = Em.I18n.t('yesterday') + ', ' + parsedDate.format('HH:mm');
       else
         str = parsedDate.format('dddd HH:mm');
     } else {

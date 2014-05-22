@@ -29,6 +29,7 @@
 
     'today_is': 'Today is',
     'today': 'today',
+    'yesterday': 'Yesterday',
     'tomorrow': 'tomorrow',
     'last_login': 'Last login',
     'live_ticker': 'Live ticker',
@@ -60,6 +61,8 @@
     'total': 'Total',
     'adv_search': 'Advanced search',
 
+    'o_clock': 'o\'clock',
+
     'cut': 'Cut',
     'copy': 'Copy',
     'paste': 'Paste',
@@ -75,6 +78,7 @@
 
     'properties': 'properties',
     'date': 'Date',
+    'time': 'Time',
 
     'select_all': 'Select all',
     'upload_file': 'Upload a file',

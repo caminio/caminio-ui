@@ -71,7 +71,7 @@
             return;
           self.get('controller').send(self.get('createAction'), this.value, self.$() );
           self.$().select2('close');
-        })
+        });
       })
       .on('change', function(){
         if( self.get('changeAction') )
@@ -86,6 +86,7 @@
     selectedDidChange : function(){
       var self = this;
       setTimeout(function(){
+        if( !self.$() ){ return; } // exit if view has gone meantime
         self.$().select2('val', self.get('value'));
       },100);
     }.observes('selection.@each')

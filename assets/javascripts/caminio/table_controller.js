@@ -90,7 +90,7 @@
 
   });
 
-  App.TableItemController = Ember.Controller.extend({
+  App.TableItemController = Ember.ObjectController.extend({
 
     isSelectedTableItem: function(){
       var item = this.get('content');

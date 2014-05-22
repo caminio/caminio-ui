@@ -29,6 +29,7 @@
 
     'today_is': 'Heute ist',
     'today': 'Heute',
+    'yesterday': 'Gestern',
     'tomorrow': 'Morgen',
     'last_login': 'Letztes Mal online',
     'live_ticker': 'Live Ticker',
@@ -60,6 +61,8 @@
     'total': 'Gesamt',
     'adv_search': 'Erweiterte Suche',
 
+    'o_clock': 'Uhr',
+
     'email': 'Email',
     'phone': 'Telefon',
     'address': 'Adresse',
@@ -75,6 +78,7 @@
 
     'properties': 'Eigenschaften',
     'date': 'Datum',
+    'time': 'Zeit',
 
     'select_all': 'Alle auswählen',
     'upload_file': 'Hochladen',

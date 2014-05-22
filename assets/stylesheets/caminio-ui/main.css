@@ -250,3 +250,7 @@ fieldset.with-border legend{
   width: 300px;
   float: right;
 }
+
+.col-border-left{
+  border-left: 1px solid #ddd;
+}
