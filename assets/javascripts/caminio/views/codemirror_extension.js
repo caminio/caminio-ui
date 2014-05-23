@@ -7,10 +7,6 @@
     classNames: ['CodeMirror'],
 
     didInsertElement: function() {
-      Ember.run.scheduleOnce('afterRender', this, 'processChildElements');
-    },
-
-    processChildElements: function() {
       this._codeMirror = CodeMirror.fromTextArea( this.$()[0], {
           mode: 'markdown',
           tabMode: 'indent',
@@ -33,7 +29,8 @@
         self._preventLoop = false;
         return;
       }
-      self._codeMirror.setValue(self.get('value'));
+      if( self.get('value') )
+        self._codeMirror.setValue(self.get('value'));
     }.observes('value')
 
   });

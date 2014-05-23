@@ -26,7 +26,7 @@
       // DS.hasMany( 'fieldname', { embedded: 'always' } )
       if( relationship.options.embedded && relationship.options.embedded === 'always' )
         json[relationship.key] = record.get(relationship.key).map( function(item){
-          var jItem = item.toJSON();
+          var jItem = item.serialize();
           if( item.get('id') ) // only add id if not null (case when creating new records)
             jItem._id = item.get('id');
           return jItem;

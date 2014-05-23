@@ -82,7 +82,7 @@ table.caminio td.nr{
   width: 30px;
 }
 table.caminio td{
-  padding: 10px;
+  padding: 11px 10px;
   font-size: 13px;
   white-space: nowrap;
   overflow: hidden;
