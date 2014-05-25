@@ -134,9 +134,11 @@
     }.property('parentController.sortProperties.@each', 'parentController.sortAscending'),
     calculateStyle: function(){
       if( this.get('content.width') )
-        return 'width: ' + this.get('content.width');
+        return 'width: ' + this.get('content.width') + ';';
+      if( this.get('content.align') )
+        return 'text-align: '+this.get('content.align') + ';';
       return '';
-    }.property('content.width')
+    }.property('content.width', 'content.align')
   });
 
 })( App );

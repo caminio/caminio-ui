@@ -20,6 +20,15 @@
     }
   });
 
+  //window.App.Store = DS.Store.extend({
+  //  didSaveRecord: function( record, data ){
+  //    console.log(record.get('id'), data);
+  //    if( record.get('id') )
+  //      this.getById(record.constructor, data.id).unloadRecord();
+  //    this._super( record, data );
+  //  }
+  //});
+
   window.App.ApplicationSerializer = DS.RESTSerializer.extend({
     serializeHasMany: function(record, json, relationship) {
       // only apply if embedded option is set in record with
@@ -41,6 +50,9 @@
           record.get(relationship.key) )
         json[relationship.key] = record.get(relationship.key).toJSON();
       // added for label/webpage parent keys to be set
+      else if( relationship.options.embedded && relationship.options.embedded === 'keys' ){
+        json[relationship.key] = record.get(relationship.key).get('id');
+      }
       else if( record.get(relationship.key) )
         json[relationship.key] = record.get(relationship.key).id;
     },
@@ -69,7 +81,7 @@
   });
 
   currentUser.camDomains.map(function(domain){
-    domain.changeUrl = '/caminio/admin?camDomainId='+domain._id;
+    domain.changeUrl = '/?camDomainId='+domain._id;
   });
   window.App.set('_currentUser', currentUser);
   window.App.set('_currentUserHasMultiDomains', currentUser.camDomains.length > 1);
