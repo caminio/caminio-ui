@@ -77,6 +77,8 @@
         if( self.get('changeAction') )
           self.get('controller').send(self.get('changeAction'), this.value, self.$() );
       });
+      if( self.get('selectFirst') && self.get('content.length') > 0 )
+        self.$().select2('val', self.get('content.firstObject.id'));
     },
 
     willDestroyElement: function () {
@@ -155,7 +157,11 @@
         });
         self.set('content', countries);
         setTimeout(function(){
-          self.$().select2('val', self.get('value'));
+          if( self.get('value') )
+            self.$().select2('val', self.get('value'));
+          else if( App.get('_currentDomain.preferences.defaultCountry') )
+            self.$().select2('val', App.get('_currentDomain.preferences.defaultCountry'));
+
         },100);
       });
       return dfd;
@@ -166,10 +172,8 @@
     },
 
     processChildElements: function() {
-      this.$().select2({
-          // do here any configuration of the
-          // select2 component
-      });
+      var self = this;
+      this.$().select2();
     },
 
     willDestroyElement: function () {

@@ -81,6 +81,7 @@
     'domain.created': 'Domain {{name}} has been created successfully',
     'domain.allowed_apps': 'Allowed applications',
     'domain.default_lang': 'Default language for users',
+    'domain.default_country': 'Always select country',
     'domain.available_langs': 'Available languages',
     'domain.is_caminio_hosted': 'Domain is hosted on caminio',
     'domain.currency': 'Default currency for webshop',

@@ -54,10 +54,20 @@
 </div>
 
 <div class="form-group">
-  <label class="control-label">{{t domain.default_lang}}</label>
-  <div style="width: 5em">
-    {{view Ember.Select valueBinding='domain.lang'
-                        content=languages}}
+  <div class="row">
+    <div class="col-md-6">
+      <label class="control-label">{{t domain.default_lang}}</label>
+      <div style="width: 5em">
+        {{view Ember.Select valueBinding='domain.lang'
+        content=languages}}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label class="control-label">{{t domain.default_country}}</label>
+      {{view App.Select2CountryView
+             valueBinding="domain.preferences.defaultCountry"
+             class="fill-width form-control"}}
+    </div>
   </div>
 </div>
 
