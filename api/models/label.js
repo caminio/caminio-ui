@@ -6,7 +6,10 @@
  
 module.exports = function Label( caminio, mongoose ){
 
-  var ObjectId = mongoose.Schema.Types.ObjectId;
+  'use strict';
+
+  var _         = require('lodash');
+  var ObjectId  = mongoose.Schema.Types.ObjectId;
 
   var schema = new mongoose.Schema({
 
@@ -86,6 +89,14 @@ module.exports = function Label( caminio, mongoose ){
 
   schema.virtual('private').get(function(){
     return this.usersAccess && this.usersAccess.length > 0;
+  });
+
+  schema.post('remove', function(){
+    var label = this;
+    _.forEach( caminio.models, function( M ){
+      M.update( { label: label._id }, { $set:{ label: null }}).exec();
+      M.update( { labels: label._id }, { $pull: { labels: label._id }}).exec();
+    });
   });
 
   schema.publicAttributes = [ 'private' ];
