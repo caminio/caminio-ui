@@ -11,6 +11,8 @@
     // LOG_ACTIVE_GENERATION: true
   });
   
+  window.App._curLang = currentLang;
+
   window.App.ApplicationAdapter = DS.RESTAdapter.extend({
     host: caminioHostname+'/caminio',
     headers: {

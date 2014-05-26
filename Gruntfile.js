@@ -102,6 +102,9 @@ module.exports = function(grunt) {
           ],
           'build/javascripts/caminio-dashboard.min.js': [
             'assets/javascripts/caminio-dashboard/**/*.js'
+          ],
+          'build/javascripts/caminio-components.min.js': [
+            'assets/javascripts/caminio/components/*.js'
           ]
         }
       }

@@ -15,6 +15,7 @@
   window.caminio.util.uid = uid;
   window.caminio.util.generatePassword = generatePassword;
   window.caminio.util.translateDataFields = translateDataFields;
+  window.caminio.util.createNum = createNum;
   
   window.caminio.util.currencyCode2Symbol = transformCurrencyCode2Symbol;
 
@@ -90,6 +91,14 @@
       case 'USD':
         return '$';
     }
+  }
+
+  function createNum( num, places ){
+    places = places || 5;
+    num = num.toString();
+    while( num.length < places )
+      num = '0'+num;
+    return num;
   }
 
 })();

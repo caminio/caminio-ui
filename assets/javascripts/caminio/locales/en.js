@@ -115,6 +115,8 @@
     'labels.new': 'New label',
     'labels.select_entries_then_click_on_label': 'Select one or more items then click on the label to add them',
     'labels.items_selected': 'label {{count}} items with',
+    'labels.no_labels': 'No labels set',
+    'labels.click': 'Click a label to mark this element with it',
 
     'content_here': 'Here should go some text!',
 

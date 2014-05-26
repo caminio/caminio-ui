@@ -116,6 +116,8 @@
     'labels.new': 'Neues Label',
     'labels.select_entries_then_click_on_label': 'Zuerst Einträge auswählen, um sie mit einem Label zu markieren',
     'labels.items_selected': '{{count}} Einträge zu Label hinzufügen',
+    'labels.no_labels': 'Keine Labels gesetzt',
+    'labels.click': 'Auf ein Label klicken um dieses Element damit zu verknüpfen',
 
     'label.created': 'Label {{name}} wurde erfolgreich angelegt',
     'label.saved': 'Einstellungen {{name}} wurden gespeichert',

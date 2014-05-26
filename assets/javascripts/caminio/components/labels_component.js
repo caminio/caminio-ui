@@ -21,11 +21,13 @@
     actions: {
       
       'removeLabel': function( label ){
+        var self = this;
         bootbox.confirm( Em.I18n.t('label.really_delete', {name: label.get('name')}), function( result ){
           if( result ){
             label.deleteRecord();
             label.save()
               .then(function(){
+                self.set('labels', App.User.store.find('label', self._getOpts() ));
                 notify('info', Em.I18n.t('label.deleted', {name: label.get('name')}));
               })
               .catch( function(err){
@@ -37,7 +39,15 @@
 
       'toggleLabelAppointments': function(label){
         label.set('hide', !label.get('hide'));
-        alert('toggle');
+      },
+
+      'toggleLabel': function( label ){
+        if( !this.get('content.labels') )
+          return;
+        if( this.get('content.labels').findBy('id', label.get('id')) )
+          this.get('content.labels').removeObject(label);
+        else
+          this.get('content.labels').pushObject(label);  
       },
 
       'showLabelContactsOrAddLabel': function( label ){
@@ -111,7 +121,7 @@
                 notify('info', Em.I18n.t('label.created', {name: label.get('name')}) );
               else
                 notify('info', Em.I18n.t('label.saved', {name: label.get('name')}) );
-              self.set('labels', App.User.store.find('label', { type: 'contact' }));
+              self.set('labels', App.User.store.find('label', self._getOpts() ));
             })
             .catch( function(err){
               console.error(err);
@@ -148,7 +158,6 @@
   });
 
   function getEditLabelContent( label ){
-    console.log('colors', caminio.labels.getColors());
     var str = '<form class="bootbox-form">'+
               '<div class="form-group row">'+
               '<input type="text" value="'+(label.get('name') || '')+'" autocomplete="off" class="bootbox-input bootbox-input-text form-control name col-md-12">'+
