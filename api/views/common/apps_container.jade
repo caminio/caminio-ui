@@ -1,6 +1,6 @@
 .apps-container
   each app in allowedApps
-    if !(app.admin && !currentUser.isAdmin( currentDomain ) )
+    if( (!app.requireAdmin || currentUser.isAdmin( currentDomain ) ) && (!app.requireEditor || currentUser.isEditor( currentDomain ) ) && (!app.requireTrusted || currentUser.isTrusted( currentDomain ) ) )
       a.app-item( href=app.path, class=(app.name === controllerName.replace('controller','').toLowerCase() ? 'active' : '')+' '+app.name )
         i.fa(class=app.icon)
         .title=(app.i18n[currentLang] || app.title)

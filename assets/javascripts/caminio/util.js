@@ -16,6 +16,7 @@
   window.caminio.util.generatePassword = generatePassword;
   window.caminio.util.translateDataFields = translateDataFields;
   window.caminio.util.createNum = createNum;
+  window.caminio.util.fqdnify = fqdnify;
   
   window.caminio.util.currencyCode2Symbol = transformCurrencyCode2Symbol;
 
@@ -99,6 +100,15 @@
     while( num.length < places )
       num = '0'+num;
     return num;
+  }
+
+  function fqdnify( domainName ){
+    var fqdn = domainName
+    if( fqdn.indexOf('http') != 0 )
+      fqdn = 'http://'+domainName;
+    if( fqdn[fqdn.length-1] === '/' )
+      return fqdn.substring(0, fqdn.length-2);
+    return fqdn;
   }
 
 })();

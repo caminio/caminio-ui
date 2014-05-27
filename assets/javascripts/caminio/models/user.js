@@ -2,11 +2,14 @@
 
   'use strict';
 
+  var defaultRoles = {};
+  defaultRoles[ currentDomain._id ] = 50;
+
   App.User = DS.Model.extend({
     firstname: DS.attr('string'),
     lastname: DS.attr('string'),
     email: DS.attr('string'),
-    roles: DS.attr('object'),
+    roles: DS.attr('object', { defaultValue: defaultRoles }),
     currentDomainRole: function( ns, val ){
       if( val )
         Ember.set( this.get('roles'), currentDomain._id, val);
