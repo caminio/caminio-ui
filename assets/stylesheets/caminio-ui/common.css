@@ -9,6 +9,9 @@
 .align-center{
   text-align: center;
 }
+.align-top{
+  vertical-align: top;
+}
 .horizontal-scroll{
   overflow-x: auto;
 }

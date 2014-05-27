@@ -21,6 +21,9 @@
     isEditor: function(){
       return this.get('roles')[currentDomain._id] >= 60;
     }.property('roles.'+currentDomain._id),
+    isTrusted: function(){
+      return this.get('roles')[currentDomain._id] >= 80;
+    }.property('roles.'+currentDomain._id),
     lang: DS.attr('string', { defaultValue: currentDomain.lang || 'en' }),
     description: DS.attr('string'),
     superuser: DS.attr('boolean'),
