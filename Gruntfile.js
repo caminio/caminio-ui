@@ -105,6 +105,10 @@ module.exports = function(grunt) {
           ],
           'build/javascripts/caminio-components.min.js': [
             'assets/javascripts/caminio/components/*.js'
+          ],
+          'build/javascripts/caminio-api-app.min.js': [
+            'assets/javascripts/caminio-api-app/*.js',
+            'assets/javascripts/caminio-api-app/3rdparty/caminio-api-3rd.min.js'
           ]
         }
       }
