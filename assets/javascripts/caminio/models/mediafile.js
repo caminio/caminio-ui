@@ -20,9 +20,7 @@
     parent: DS.attr('string'),
     relPath: DS.attr('string'),
     url: function(){
-      if( currentDomain.isCaminioHosted )
-        return '/caminio/domains/'+currentDomain._id+'/preview/'+this.get('relPath');
-      return null;
+      return '/caminio/domains/'+currentDomain._id+'/preview/'+this.get('relPath');
     }.property('name'),
     isImage: function(){
       return this.get('contentType').indexOf('image') === 0;

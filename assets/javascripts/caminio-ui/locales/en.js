@@ -28,6 +28,13 @@
     'user.tabs.history': 'History',
     'user.send_login_info': 'Send login info again',
     'user.sent_credentials_again': 'Login credentials have been sent successfully',
+    'user.api_gen_failed': 'API generation failed. Please try again',
+    'user.convert_api_user': 'Convert into API account',
+    'user.api_key_generated': 'API key has been generated for {{name}}',
+    'user.api_key': 'API key',
+    'user.api_role_not_allowed': 'Role not allowed for API accounts',
+    'user.converted_into_api': 'User {{name}} is now an API user',
+    'user.converted_back': 'User {{name}} is no longer an API user',
 
     'user.password': 'Password',
     'user.password_confirmation': 'Repeat password',

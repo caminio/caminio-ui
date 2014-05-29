@@ -31,6 +31,8 @@
     passwordConfirmation: DS.attr(),
     camDomains: DS.attr('array'),
     apiEnabled: DS.attr('boolean'),
+    apiKey: DS.attr('string'),
+    apiUser: DS.attr('boolean', { defaultValue: false }),
     clients: DS.hasMany('client'),
     remotePicUrl: DS.attr('string'),
     mediafiles: DS.hasMany('mediafile', { embedded: 'always' }),
@@ -62,7 +64,14 @@
     }.property('firstname', 'lastname'),
     name: function(name){
       return this.get('fullname');
-    }.property('firstname','lastname')
+    }.property('firstname','lastname'),
+    apiUserRightsObserver: function(){
+      if( this.get('apiUser') && this.get('roles.'+currentDomain._id) > 60 ){
+        this.set('roles.'+currentDomain._id, 60);
+        $('#role-slider').slider('setValue',60);
+        notify('error', Em.I18n.t('user.api_role_not_allowed'));
+      }
+    }.observes('apiUser','roles.'+currentDomain._id)
   });
 
 })( App );

@@ -133,11 +133,12 @@
           !this.get('parentController.sortAscending') );
     }.property('parentController.sortProperties.@each', 'parentController.sortAscending'),
     calculateStyle: function(){
+      var style = '';
       if( this.get('content.width') )
-        return 'width: ' + this.get('content.width') + ';';
+        style += 'width: ' + this.get('content.width') + ';';
       if( this.get('content.align') )
-        return 'text-align: '+this.get('content.align') + ';';
-      return '';
+        style += 'text-align: '+this.get('content.align') + ';';
+      return style;
     }.property('content.width', 'content.align')
   });
 

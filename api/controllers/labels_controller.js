@@ -22,8 +22,11 @@ module.exports = function Labels( caminio, policies, middleware ){
 
   return {
 
+    _policies: {
+      '*!( index, show)': policies.ensureLogin,
+      'index, show': policies.ensureLoginOrApiOrToken,
+    },
     _before: {
-      '*': policies.ensureLogin,
       'create,update': cleanupUsersAccess
     },
 

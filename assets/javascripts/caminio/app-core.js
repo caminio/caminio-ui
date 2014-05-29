@@ -144,7 +144,7 @@
     $(document).on('keypress', function(e){
       if( $(e.target).get(0).nodeName.match(/INPUT|TEXTAREA/) )
         return;
-      if( e.which === 99 ) // character 'c'
+      if( e.which === 99 && !e.ctrlKey && !e.metaKey) // character 'c'
         $('.toggle-apps-btn').click();
     });
 

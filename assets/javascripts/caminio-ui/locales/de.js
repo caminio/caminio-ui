@@ -28,6 +28,13 @@
     'user.tabs.history': 'Protokoll',
     'user.send_login_info': 'Login Informationen noch einmal schicken',
     'user.sent_credentials_again': 'Login Information wurden erfolgreich versandt',
+    'user.api_gen_failed': 'API Schlüsselerzeugung fehlgeschlagen. Bitte nochmal probieren',
+    'user.convert_api_user': 'API Konto konvertieren',
+    'user.api_key_generated': 'API Schlüssel wurde für {{name}} erzeugt',
+    'user.api_key': 'API Schlüssel',
+    'user.api_role_not_allowed': 'Rolle nicht erlaubt für API Konten',
+    'user.converted_into_api': '{{name}} ist jetzt ein API Konto',
+    'user.converted_back': '{{name}} ist jetzt ein reguläres Konto',
 
     'user.password': 'Passwort',
     'user.password_confirmation': 'Wiederholen',

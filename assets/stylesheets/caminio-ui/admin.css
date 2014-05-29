@@ -144,3 +144,8 @@ textarea.settings{
   padding: 10px;
   vertical-align: bottom;
 }
+.api-key{
+  border: 1px solid #ddd;
+  background: #fafafa;
+  padding: 10px 20px;
+}
