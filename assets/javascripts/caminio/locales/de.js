@@ -15,6 +15,7 @@
     'edit_profile': 'Profil bearbeiten',
     'other_domains': 'Andere Organisationen',
     'change_password': 'Passwort ändern',
+    'only_mine': 'Nur meine',
 
     'go_to_dashboard': 'zum Dashboard gehen',
     'go_to_calendar': 'zum Kalendar gehen',

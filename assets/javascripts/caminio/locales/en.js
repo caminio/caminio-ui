@@ -15,6 +15,7 @@
     'edit_profile': 'Edit profile',
     'other_domains': 'Other domains',
     'change_password': 'Change password',
+    'only_mine': 'Only mine',
 
     'go_to_dashboard': 'go to dashboard',
     'go_to_calendar': 'go to calendar',
