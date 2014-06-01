@@ -42,14 +42,14 @@
         this.$().closest('.box').css({ maxHeight: $( this.get('adaptHeightElem') ).height()-20, overflow: 'auto' });;
       }
 
-      if( this.get('root') )
-        $(document).off('keydown', catchDeleteKey)
-                  .on('keydown', catchDeleteKey);
+      //if( this.get('root') )
+      //  $(document).off('keydown', catchDeleteKey)
+      //            .on('keydown', catchDeleteKey);
 
-      function catchDeleteKey(e){
-        if( e.keyCode === 46 && controller.get('curSelectedItem') )
-          controller.send('removeSelectedItem');
-      }
+      //function catchDeleteKey(e){
+      //  if( e.keyCode === 46 && controller.get('curSelectedItem') )
+      //    controller.send('removeSelectedItem');
+      //}
 
       var self = this;
 

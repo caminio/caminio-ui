@@ -22,6 +22,9 @@
     url: function(){
       return '/caminio/domains/'+currentDomain._id+'/preview/'+this.get('relPath');
     }.property('name'),
+    publicUrl: function(){
+      return '/files/'+this.get('relPath');
+    }.property('name'),
     isImage: function(){
       return this.get('contentType').indexOf('image') === 0;
     }.property('contentType'),
