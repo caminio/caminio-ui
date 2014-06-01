@@ -132,6 +132,7 @@
 
   bootbox.setDefaults({ locale: currentLang });
   moment.lang( currentLang );
+  CLDR.defaultLanguage = currentLang;
 
   window.setupCaminio = function setupCaminio($view){
 
