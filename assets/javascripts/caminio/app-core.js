@@ -85,6 +85,7 @@
   currentUser.camDomains.map(function(domain){
     domain.changeUrl = '/?camDomainId='+domain._id;
   });
+
   window.App.set('_currentUser', currentUser);
   window.App.set('_currentUserHasMultiDomains', currentUser.camDomains.length > 1);
   window.App.set('_currentDomain', currentDomain);
