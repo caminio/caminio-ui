@@ -20,6 +20,8 @@ module.exports.routes = {
 
   '/caminio/profile_pics/:id': 'ProfilesController#pics',
 
-  'GET /caminio/util/countries': 'UtilController#countries'
+  'GET /caminio/util/countries': 'UtilController#countries',
+
+  'POST /caminio/usersexchange/import:format': 'UsersExchangeController#import'
 
 };

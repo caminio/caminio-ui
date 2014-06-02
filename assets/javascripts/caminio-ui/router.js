@@ -144,6 +144,26 @@
       edit: function( model ) {
         this.transitionTo( 'user.edit', model.copy() );
       },
+      importCSV: function(){
+        bootbox.dialog({
+          title: Em.I18n.t('users.import_csv'),
+          message: '<form action="/caminio/usersexchange/import.csv" method="post" enctype="multipart/form-data">'+
+                   '<input type="file" name="csv_file"></form>', 
+          buttons: {
+            upload: {
+              label: 'upload',
+              className: 'primary',
+              callback: function(e){
+                var $form = $(e.target).closest('.modal').find('form');
+                $form.slideUp();
+                $form.after('<div class="progress progress-striped active"><div class="progress-bar"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">processing import</span></div></div>');
+                $form.submit();
+              }
+            }
+          }
+        });
+      },
+
       cancel: function( model ) {
         Ember.run( model, "destroy" );
         this.store.refresh(App.User);

@@ -7,7 +7,7 @@ block content
       form.auth.clearfix( action='/caminio/login', method='post' )
 
         if message.info
-          .message=message.info
+          .message!=message.info
         if message.error
           .message.error!=message.error
       

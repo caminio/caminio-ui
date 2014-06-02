@@ -6,14 +6,4 @@ module.exports = function( t ){
   t.navbar.admin = 'Administration';
   t.navbar.dashboard = 'Dashboard';
   
-  t.email = 'Email';
-  t.name = 'Name';
-
-  // USERS
-  t.user = t.user || {};
-  t.user.passwords_missmatch = 'Passwörter stimmen nicht überein';
-  t.user.password_too_short = 'Das gewählte Passwort ist zu kurz (mind. 6 Zeichen)';
-  t.user.password_saved = 'Neues Passwort wurde gespeichert';
-  t.user.password_reset_saved = 'Neues Passwort wurde gespeichert. Du kannst dich jetzt mit deiner Email Adresse __email__ und deinem eben gewählten Passwort anmelden.';
-  
 };

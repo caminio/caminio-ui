@@ -12,6 +12,8 @@
 
     'unknown': 'Unbekannt',
 
+    'users.import_csv': 'Benutzerkonten von CSV importieren',
+
     'user.name': 'Name',
     'user.save': 'Speichern',
     'user.created': '{{name}} wurde erfolgreich gespeichert',

@@ -8,9 +8,9 @@ block content
 
         if message
           if message.info
-            .message=message.info
+            .message!=message.info
           if message.error
-            .message.error=message.error
+            .message.error!=message.error
         else
           .message=t('auth.enter_new_password')
       

@@ -8,6 +8,15 @@
           <i class="fa fa-plus"></i>
           {{t 'user.new'}}
         {{/link-to}}
+
+        <div class="dropdown dropdown-hover as-btn">
+          <button type="button" class="btn transparent borderless">
+            <i class="fa fa-bars"></i>
+          </button>
+          <ul class="dropdown-menu adapt-width align-left pull-right">
+            <li><a class="icon-text" href="#" {{action 'importCSV'}}><i class="fa fa-upload"></i>{{t 'users.import_csv'}}</a></li>
+          </ul>
+        </div>
       </div>
 
       <h1>{{t 'nav.users'}}</h1>

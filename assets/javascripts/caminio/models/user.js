@@ -8,6 +8,7 @@
   App.User = DS.Model.extend({
     firstname: DS.attr('string'),
     lastname: DS.attr('string'),
+    nickname: DS.attr('string'),
     email: DS.attr('string'),
     roles: DS.attr('object', { defaultValue: defaultRoles }),
     currentDomainRole: function( ns, val ){

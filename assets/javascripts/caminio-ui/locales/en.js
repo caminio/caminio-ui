@@ -12,6 +12,8 @@
 
     'unknown': 'Unknown',
 
+    'users.import_csv': 'Import users from csv file',
+
     'user.name': 'Name',
     'user.save': 'Save',
     'user.created': 'User {{name}} has been created successfully',
