@@ -71,7 +71,6 @@
 
       $(this).val( settings.regexp( val ) );
 
-      console.log(start);
       if( start && end ){
         if( start === 4 || start === 6 )
           start = ++end;

@@ -242,8 +242,10 @@
         sources = new Bloodhound({
           datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
           queryTokenizer: Bloodhound.tokenizers.whitespace,
-          local: $.map( this.get('localContent'), function(c){ return { value: c } })
+          local: $.map( this.get('localContent'), function(c){ return { value: c }; })
         });
+      if( !sources )
+        return;
 
       sources.initialize();
 

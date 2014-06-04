@@ -24,7 +24,6 @@
 
   //window.App.Store = DS.Store.extend({
   //  didSaveRecord: function( record, data ){
-  //    console.log(record.get('id'), data);
   //    if( record.get('id') )
   //      this.getById(record.constructor, data.id).unloadRecord();
   //    this._super( record, data );

@@ -34,7 +34,6 @@ $(function(){
       removeDomain: function( model ) {
         model = ( model instanceof DS.PromiseObject ) ? model.content : model;
         var self = this;
-        console.log('model', model);
         bootbox.prompt( Em.I18n.t('domain.really_delete', { name: model.get('name') }), function( name ){
           if( name === model.get('name') ){
             model.deleteRecord();
