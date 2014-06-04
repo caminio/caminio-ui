@@ -117,23 +117,25 @@ module.exports = function UsersExchangeController( caminio, policies, middleware
   }
 
   function sendWelcome( user, report, next ){
-  
-    caminio.mailer.send(
-      user.email,
-      'Willkommen auf der neuen Spielplan-Plattform von Das andere Theater',
-      'users/welcome',
-      { 
-        locals: {
-          welcome: true,
-          user: user,
-          domain: report.currentDomain,
-          url: ( caminio.config.hostname + '/caminio/accounts/' + user.id + '/reset/' + user.confirmation.key)
-        } 
-      },
-      function( err ){
-        if( err ){ report.errors.push( _.merge({ user: user.toObject() }, err ) ); }
-        next();
-      });
+
+    return next();
+
+    //caminio.mailer.send(
+    //  user.email,
+    //  'Willkommen auf der neuen Spielplan-Plattform von Das andere Theater',
+    //  'users/welcome',
+    //  { 
+    //    locals: {
+    //      welcome: true,
+    //      user: user,
+    //      domain: report.currentDomain,
+    //      url: ( caminio.config.hostname + '/caminio/accounts/' + user.id + '/reset/' + user.confirmation.key)
+    //    } 
+    //  },
+    //  function( err ){
+    //    if( err ){ report.errors.push( _.merge({ user: user.toObject() }, err ) ); }
+    //    next();
+    //  });
   }
 
 
