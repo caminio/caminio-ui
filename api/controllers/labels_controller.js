@@ -40,8 +40,11 @@ module.exports = function Labels( caminio, policies, middleware ){
             usersAccess: res.locals.currentUser._id
           }
         ]);
+      var type = req.param('type');
+      if( type.match(/^regexp/) )
+        type = new RegExp( req.param('type').replace('regexp(/','').replace('/)',''));
       if( req.param('type') )
-        q.where({type: req.param('type')});
+        q.where({type: type});
 
       q.sort({ name: 1 });
       q.exec( function( err, labels ){

@@ -23,7 +23,8 @@
    * @class CaminioAPI
    * @constructor
    */
-  var CaminioAPI = window.CaminioAPI = Ember.Namespace.create({ VERSION: '1.0'}); 
+  var CaminioAPI = window.CaminioAPI = Ember.Namespace.create({ VERSION: '1.0'});
+  CaminioAPI.lang = 'en';
 
   /**
    * initialize the caminio API
@@ -110,8 +111,10 @@
   CaminioAPIModel.reopenClass({
     storageKey: '_id',
     _cache: Em.A(),
-    createFromProperties: function( attrs ){
-      return this.create( parseTranslations( attrs ) );
+    pushPayload: function( attrs ){
+      var content = this.create( parseTranslations( attrs ) );
+      this._cache.pushObject( content );
+      return content;
     },
 
   });
@@ -134,9 +137,66 @@
    */
   CaminioAPI.OrderItem = CaminioAPIModel.extend({
     item: null,
-    price: null,
-    amount: null
+    price: 0,
+    vat: 0,
+    amount: null,
+    lineup_Entry: null
   });
+
+  /**
+   * @class LineupEntry
+   * @module CaminioAPI
+   * @constructor
+   */
+  CaminioAPI.LineupEntry = CaminioAPIModel.extend({
+    title: null,
+    mediafiles: Em.A(),
+    curTranslation: function(){
+      var cur = this.get('translations').findBy('locale', CaminioAPI.lang);
+      if( cur )
+        return cur;
+      return this.get('translations.firstObject');
+    }.property('translations'),
+    serialize: function() {
+      return this.getProperties([ 'id', 'title' ]);
+    }
+  });
+
+  /**
+   * @class LineupEntry
+   * @module CaminioAPI
+   * @method find
+   * @param conditions {Object} a hash of conditions for fetching
+   *
+   * loads one or many LineupEntries
+   */
+  CaminioAPI.LineupEntry.find = function findLineupEntry( id, conditions ){
+
+    if( typeof(id) === 'object' )
+      conditions = id;
+
+    conditions = conditions || {};
+    
+    return new Promise( getAndInitLineupEntries );
+
+    function getAndInitLineupEntries( response, reject ){
+      $.getJSON( options.host+'/caminio/lineup_entries/events', conditions)
+        .then(function( items ){
+          response( 
+                   Ember.A( 
+                           items.map( function( item ){
+                                          return CaminioAPI.LineupEntry.pushPayload( item );
+                                        }) 
+                  )
+          );
+        })
+        .fail(function(){
+          reject();
+        });
+
+    }
+
+  };
 
   /**
    * @class ShopItem
@@ -195,20 +255,12 @@
     return new Promise( getAndInitShopItems );
 
     function getAndInitShopItems( response, reject ){
-      var shopItems;
       $.getJSON( options.host+'/caminio/shop_items', conditions )
       .then(function( items ){
-        shopItems = items;
-        return $.getJSON( options.host+'/caminio/lineup_entries/events');
-      })
-      .then(function( items ){
-        shopItems = [].concat(items).concat(shopItems);
-        shopItems = Ember.A( shopItems.map( function( item ){
-          var i = CaminioAPI.ShopItem.createFromProperties( item );
-          CaminioAPI.ShopItem._cache.pushObject( i );
-          return i;
+        items = Ember.A( items.map( function( item ){
+          return CaminioAPI.ShopItem.pushPayload( item );
         }) );
-        loadMediafiles( shopItems, continueCache, reject );
+        loadMediafiles( items, continueCache, reject );
       })
       .fail(function(){
         reject();

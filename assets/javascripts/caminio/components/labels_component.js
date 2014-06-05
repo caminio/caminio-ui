@@ -37,10 +37,6 @@
         });
       },
 
-      'toggleLabelAppointments': function(label){
-        label.set('hide', !label.get('hide'));
-      },
-
       'toggleLabel': function( label ){
         if( !this.get('content.labels') )
           return;

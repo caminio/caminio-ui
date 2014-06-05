@@ -31,11 +31,11 @@ $( function(){
       else
         str = parsedDate.format('dddd HH:mm');
     } else {
-      str = parsedDate.format('DD.');
+      str = parsedDate.format('DD. ');
       if( parsedDate.format('MM.YYYY') === moment().format('MM.YYYY') )
         str += parsedDate.format('MMMM');
       else
-        str += parsedDate.format('MM.');
+        str += parsedDate.format('MMMM');
       if( parsedDate.format('YYYY') !== moment().format('YYYY') )
         str += parsedDate.format('YYYY');
     }
