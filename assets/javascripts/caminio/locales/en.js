@@ -20,6 +20,7 @@
     'go_to_dashboard': 'go to dashboard',
     'go_to_calendar': 'go to calendar',
     'apps.settings': 'Settings',
+    'apps.domains': 'Domains',
     'apps.lineup': 'Line-up',
     'apps.web': 'WebMaker',
     'apps.shop': 'Shop',

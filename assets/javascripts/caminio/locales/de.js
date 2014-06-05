@@ -20,6 +20,7 @@
     'go_to_dashboard': 'zum Dashboard gehen',
     'go_to_calendar': 'zum Kalendar gehen',
     'apps.settings': 'Einstellungen',
+    'apps.domains': 'Domänen',
     'apps.lineup': 'Spielplan',
     'apps.webmaker': 'WebMaker',
     'apps.shop': 'Shop',

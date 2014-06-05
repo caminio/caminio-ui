@@ -63,7 +63,7 @@
         name += this.get('email');
       return name;
     }.property('firstname', 'lastname'),
-    name: function(name){
+    name: function(){
       return this.get('fullname');
     }.property('firstname','lastname'),
     apiUserRightsObserver: function(){

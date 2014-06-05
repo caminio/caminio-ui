@@ -8,3 +8,9 @@
     a.app-item( href='/caminio/admin', class=('admin' === controllerName.replace('controller','').toLowerCase() ? 'active' : '')+' admin' )
       i.fa.fa-cogs
       .title(data-translate='apps.settings')
+  if currentUser.superuser
+    a.app-item( href='/caminio/admin#/domains', class=('admin' === controllerName.replace('controller','').toLowerCase() ? 'active' : '')+' admin' )
+      i.fa.fa-cogs
+      .title(data-translate='apps.domains')
+
+    

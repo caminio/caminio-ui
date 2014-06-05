@@ -198,11 +198,11 @@
       var shopItems;
       $.getJSON( options.host+'/caminio/shop_items', conditions )
       .then(function( items ){
-        var shopItems = items;
+        shopItems = items;
         return $.getJSON( options.host+'/caminio/lineup_entries/events');
       })
-      .done(function( items ){
-        console.log(items);
+      .then(function( items ){
+        shopItems = [].concat(items).concat(shopItems);
         shopItems = Ember.A( shopItems.map( function( item ){
           var i = CaminioAPI.ShopItem.createFromProperties( item );
           CaminioAPI.ShopItem._cache.pushObject( i );

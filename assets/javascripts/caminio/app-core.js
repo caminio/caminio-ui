@@ -138,9 +138,9 @@
     var toggleApps = function toggleApps(e){
       if( $(e.target).hasClass('toggle-apps-btn') || $(e.target).closest('.toggle-apps-btn').length > 0 )
         return;
-      $('body').removeClass('toggle-apps')
+      $('body').removeClass('toggle-apps');
       $(document).off('click', toggleApps);
-    }
+    };
 
     $(document).on('keypress', function(e){
       if( $(e.target).get(0).nodeName.match(/INPUT|TEXTAREA/) )
@@ -160,6 +160,18 @@
     });
 
     caminio.translateDataFields();
+
+    var u = { user: {} };
+    for( var i in currentUser )
+      if( !i.match(/camDomains|mediafiles/) )
+        u.user[i] = currentUser[i];
+
+    if( !App.User.store )
+      return;
+
+    App.User.store.pushPayload( 'user', u );
+    App.set('emberUser', App.User.store.getById('user', currentUser._id));
+
 
   };
 
