@@ -32,6 +32,7 @@
    *
    * available options
    * - host (required) e.g.: https://camin.io
+   * - fqdn (optional) e.g.: http://my.hostname.where.images.are.stored.com
    * - apiKey (required) e.g.: '12345...XZZ' (generate the API key inside a caminio user form
    * - lang (default: 'en') a language attribute (wherever translations are available, they will be used)
    * - rootElement (default: '#caminio-api-root') e.g.: '#my-container'
@@ -194,14 +195,20 @@
     return new Promise( getAndInitShopItems );
 
     function getAndInitShopItems( response, reject ){
+      var shopItems;
       $.getJSON( options.host+'/caminio/shop_items', conditions )
+      .then(function( items ){
+        var shopItems = items;
+        return $.getJSON( options.host+'/caminio/lineup_entries/events');
+      })
       .done(function( items ){
-        items = Ember.A( items.map( function( item ){
+        console.log(items);
+        shopItems = Ember.A( shopItems.map( function( item ){
           var i = CaminioAPI.ShopItem.createFromProperties( item );
           CaminioAPI.ShopItem._cache.pushObject( i );
           return i;
         }) );
-        loadMediafiles( items, continueCache, reject );
+        loadMediafiles( shopItems, continueCache, reject );
       })
       .fail(function(){
         reject();
@@ -246,7 +253,7 @@
     $.getJSON( options.host+'/caminio/mediafiles', { parent: 'in('+items.mapBy('_id').join(',')+')' })
       .done(function( mediafiles ){
         mediafiles.forEach(function(mediafile){
-          mediafile.url = options.host+'/caminio/domains/'+currentDomain._id+'/preview/'+mediafile.relPath;
+          mediafile.url = (options.fqdn ? options.fqdn : options.host)+'/files/'+mediafile.relPath;
           var item = items.findBy('_id',mediafile.parent);
           item.mediafiles.pushObject( mediafile );
           item.teaser = item.mediafiles.get('firstObject');
