@@ -73,6 +73,9 @@
     'user.really_remove_from_domain': 'Das Benutzerkonto {{fullname}} von dieser Domäne entfernen?',
     'user.removed_from_domain': 'Das Benutzerkonto {{fullname}} wurde von dieser Domäne entfernt',
 
+    'user.notify_settings': 'Einstellungen',
+    'user.notifications': 'Benachrichtigungen',
+
     'invalid_email': 'Die Emailadresse {{value}} ist ungültig',
 
     'domain.name': 'Name',

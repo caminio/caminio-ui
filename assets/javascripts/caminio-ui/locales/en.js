@@ -69,6 +69,9 @@
     'user.removed_from_domain': 'The user account {{fullname}} has been removed from this domain',
     'user.removed': 'User {{name}} has been removed',
 
+    'user.notify_settings': 'Settings',
+    'user.notifications': 'Notifications',
+
     'user.errors.prohibited_save': 'Errors prohibited this form to be saved',
 
     'user.security': 'Security',
