@@ -41,7 +41,7 @@ module.exports = function Labels( caminio, policies, middleware ){
           }
         ]);
       var type = req.param('type');
-      if( type.match(/^regexp/) )
+      if( type && type.match(/^regexp/) )
         type = new RegExp( req.param('type').replace('regexp(/','').replace('/)',''));
       if( req.param('type') )
         q.where({type: type});
