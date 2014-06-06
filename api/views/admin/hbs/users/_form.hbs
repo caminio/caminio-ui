@@ -89,6 +89,15 @@
   </div>
 </div>
 
+<h4 class="sub-header">{{t user.notifications}}</h4>
+
+<div class="form-group">
+  <label class="col-md-2 control-label">{{t user.notify}}</label>
+  <div class="col-md-4">
+    {{input valueBinding='model.notify' class='form-control'}}
+  </div>
+</div>
+
 {{#unless model.apiUser}}
 <h4 class="sub-header">{{t user.lang}}</h4>
 

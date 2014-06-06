@@ -37,6 +37,7 @@
     clients: DS.hasMany('client'),
     remotePicUrl: DS.attr('string'),
     mediafiles: DS.hasMany('mediafile', { embedded: 'always' }),
+    notify: DS.attr('object'),
     picUrl: function(){
       if( this.get('mediafiles.length') > 0 )
         return '/caminio/profile_pics/'+this.get('id')+'?d='+moment().toDate().getTime().toString();
