@@ -29,6 +29,9 @@ module.exports = function Labels( caminio, policies, middleware ){
     _before: {
       'create,update': cleanupUsersAccess
     },
+    _beforeResponse: {
+//      'destroy': cleanupZombieDocs
+    },
 
     index: function( req, res ){
       var q = Label.find({ camDomain: res.locals.currentDomain._id })
@@ -53,7 +56,20 @@ module.exports = function Labels( caminio, policies, middleware ){
       });
     }
 
+
   };
+
+  //function cleanupZombieDocs( req, res, next ){
+  // 
+  //  var affectedTotal = 0;
+  //  async.eachSeries( Object.keys(caminio.models), function( Model, nextModel ){
+  //    Model.update({ labels: req.label._id }, { $pull: { labels: req.label._id }}, { multi: true }, function( err, affected ){
+  //      affectedTotal += affected;
+  //      nextModel();
+  //    });
+  //  }, next );
+
+  //}
 
   function cleanupUsersAccess( req, res, next ){
     if( req.body.label && req.body.label.usersAccess && 

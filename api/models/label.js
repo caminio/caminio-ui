@@ -91,11 +91,14 @@ module.exports = function Label( caminio, mongoose ){
     return this.usersAccess && this.usersAccess.length > 0;
   });
 
-  schema.post('remove', function(){
-    var label = this;
+  schema.post('remove', function(label){
     _.forEach( caminio.models, function( M ){
-      M.update( { label: label._id }, { $set:{ label: null }}).exec();
-      M.update( { labels: label._id }, { $pull: { labels: label._id }}).exec();
+      M.update( { label: label._id }, { $set:{ label: null }}).exec(function( err ){
+        if( err ){ caminio.logger.debug('label unlinking error (model: '+M.modelName+') ', err); }
+      });
+      M.update( { labels: label._id }, { $pull: { labels: label._id }}, { multi: true }, function( err ){
+        if( err ){ caminio.logger.debug('label unlinking error (model: '+M.modelName+') ', err); }
+      });
     });
   });
 
