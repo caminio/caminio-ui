@@ -364,6 +364,9 @@ div.btn.icon-only{
   padding: 20px;  
 }
 
+.md-margin-top{
+  margin-top: 20px;
+}
 .margin-top{
   margin-top: 10px;
 }
