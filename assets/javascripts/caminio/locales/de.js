@@ -11,6 +11,8 @@
     
     'hi': 'Hi',
     'or': 'oder',
+    'at': 'um',
+    'ago': 'vor',
     'sign_out': 'Abmelden',
     'edit_profile': 'Profil bearbeiten',
     'other_domains': 'Andere Organisationen',

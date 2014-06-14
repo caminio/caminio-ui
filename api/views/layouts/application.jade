@@ -43,6 +43,8 @@ html(lang=i18n.locale())
       window.currentUser = !{JSON.stringify(currentUser)};
       window.currentDomain = !{JSON.stringify(currentDomain)};
       window.csrf = '!{csrf}';
+      window.siteVersion = !{JSON.stringify(siteVersion)};
+      window.caminioVersion = !{JSON.stringify(caminioVersion)};
     
     if env === 'production'
       script(type='text/javascript', data-pace-options='{ "ajax": true }', src='/javascripts/3rdparties.min.js')

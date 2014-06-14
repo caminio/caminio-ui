@@ -11,6 +11,8 @@
 
     'hi': 'Hi',
     'or': 'or',
+    'at': 'at',
+    'ago': 'ago',
     'sign_out': 'Sign out',
     'edit_profile': 'Edit profile',
     'other_domains': 'Other domains',

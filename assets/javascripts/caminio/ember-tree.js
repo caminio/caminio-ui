@@ -182,6 +182,10 @@
         }
       });
     },
+    doubleClick: function(e){
+      if( this.get('parentView.doubleClickAction') )
+        this.get('controller').send( this.get('parentView.doubleClickAction'), this.get('content') );
+    },
     click: function(e){ this._clickView(e); },
     _clickView: function( e, forceReload ){
       if( e )

@@ -1,17 +1,113 @@
 html,body{
   font: 13px 'OpenSans', sans-serif;
   background: #eee;
+  height: 100%;
   /*font: 14px 'OpenSans', 'Open Sans', sans-serif;*/
 }
+
+.ember-view{
+  height: 100%;
+}
+
 .main-view{
-  min-height: 500px;
+  height: 100%;
   max-width: 1200px;
-  margin: 80px auto 10px;
+  margin: 0 auto;
+  padding-top: 50px;
+  overflow: auto;
 }
 
 .default-max{
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.with-footer{
+  overflow: auto;
+  height: 100%;
+  padding-bottom: 30px;
+}
+
+.with-header{
+  padding-top: 50px;
+}
+
+footer.main-footer{
+  height: 30px;
+  margin-top: -30px;
+  position: relative;
+  clear: both;
+  background: #eee;
+  padding: 5px 15px;
+  z-index: 5;
+}
+
+header.level2{
+  height: 40px;
+  margin: 0 0 -50px 0;
+  position: absolute;
+  padding: 5px;
+  top: 60px;
+  left: 25px;
+  right: 25px;
+  background: #fafafa;
+}
+
+header.level2 .title{
+  font-size: 24px;
+  line-height: 1em;
+  margin: 5px;
+}
+
+header.level2 .header-input{
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+  border: medium none;
+  box-shadow: none;
+  float: left;
+  line-height: 30px;
+  margin: -4px 5px;
+  padding: 0 50px 0 5px;
+  position: relative;
+  width: 70%;
+}
+
+header.level2 .back-btn.btn{
+  box-shadow: none;
+  float: left;
+  font-size: 16px;
+  line-height: 24px;
+  margin: -10px 0 0 -10px;
+  padding: 8px 14px;
+  opacity: 0.5;
+}
+
+header.level2:hover .back-btn.btn{
+  opacity: 1;
+}
+
+header.level2 .settings-btn.btn{
+  box-shadow: none;
+  float: right;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+  padding: 10px 15px;
+}
+
+header.level2 .settings-btn.btn .fa{
+  margin: 1px 0 0;
+}
+
+header.level2 .dropdown.as-btn .btn{
+  padding: 4px 10px;
+}
+
+header.level2 .title-box .save-btn{
+  padding-right: 10px;
+}
+
+header.level2 .title-box{
+  margin: -5px -5px -5px 0;
 }
 
 .plain-view header{
@@ -89,7 +185,7 @@ html,body{
 }
 
 
-.title-box .main-ctrl{
+.main-ctrl{
   float: right;
   margin: 0 25px 0;
 }

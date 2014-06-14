@@ -17,6 +17,8 @@
         self._preventLoop = true;
         self.set('value', self._codeMirror.getValue());
       });
+
+      this.$().parent().find('.CodeMirror-vscrollbar').niceScroll();
     },
 
     willDestroyElement: function () {

@@ -22,6 +22,9 @@
     }
   });
 
+  window.App.caminioVersion = caminioVersion;
+  window.App.siteVersion = siteVersion;
+
   //window.App.Store = DS.Store.extend({
   //  didSaveRecord: function( record, data ){
   //    if( record.get('id') )
