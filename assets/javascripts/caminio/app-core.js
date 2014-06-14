@@ -185,15 +185,24 @@
     }
   });
 
+  window.registeredCtrlS = [];
+
   window.App.setupCtrlS = function( content, msg ){
-    $(document).on('keydown', function(e){
+  
+    if( window.registeredCtrlS.indexOf(content.id) >= 0 )
+      return;
+
+    window.registeredCtrlS.push(content.id);
+
+    $(document).on('keydown', function ctrlSFn(e){
       if( !( e.keyCode === 83 && ( e.metaKey || e.ctrlKey ) ) )
         return;
       e.preventDefault();
       content.save().then(function(){
         notify('info', msg);
       });
-    })
+    });
+
   }
 
 

@@ -22,10 +22,11 @@
     },
 
     willDestroyElement: function () {
-      this.$().select2("destroy");
+      this._codeMirror.toTextArea();
     },
 
     selectedDidChange : function(){
+      console.log('value changed', this.get('value'));
       var self = this;
       if( self._preventLoop ){
         self._preventLoop = false;
@@ -33,7 +34,14 @@
       }
       if( self.get('value') )
         self._codeMirror.setValue(self.get('value'));
-    }.observes('value')
+    }.observes('value'),
+
+    swapVal: function(value){
+      value = value || '';
+      this.set('value',value);
+      this._codeMirror.setValue(this.get('value'));
+      this._codeMirror.refresh();
+    }
 
   });
 
