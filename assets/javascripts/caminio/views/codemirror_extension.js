@@ -26,7 +26,6 @@
     },
 
     selectedDidChange : function(){
-      console.log('value changed', this.get('value'));
       var self = this;
       if( self._preventLoop ){
         self._preventLoop = false;
