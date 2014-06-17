@@ -4,6 +4,10 @@
   var join          = require('path').join;
   var fs            = require('fs');
   var _             = require('lodash');
+  var formidable    = require('formidable');
+  var inflection    = require('inflection');
+  var easyimg       = require('easyimage');
+  var mkdirp        = require('mkdirp');
   
   module.exports = function ProfilesController( caminio, policies, middleware ){
   
@@ -31,13 +35,55 @@
       'pics': [
         getUser,
         function( req, res ){
-          var filename = join(req.user.camDomains[0].contentPath, 'public', 'users', 
-                              (req.user.mediafiles.length > 0 ? req.user.mediafiles[0]._id : '') + '.jpg');
+          var filename = join( caminio.config.contentPath, '__users', req.user._id+'.jpg' );
           if( !fs.existsSync( filename ) )
-            return res.send(404, 'File not found');
+            return res.sendfile( __dirname+'/../../assets/images/bot_128x128.png' );
           return res.sendfile( filename );
         }],
-  
+
+      /**
+       * upload pic
+       */
+      'upload_pic': function( req, res ){
+        var form = new formidable.IncomingForm();
+        var mediafilename;
+        form.encoding = 'utf-8';
+        form.maxFieldsSize = 5 * 10^6;
+        req.mediafiles = [];
+        req.errors = [];
+
+        if( !fs.existsSync( form.uploadDir ) )
+          mkdirp.sync( form.uploadDir );
+        form.uploadDir = join( caminio.config.contentPath, '__users' );
+
+        if( !fs.existsSync( form.uploadDir ) )
+          mkdirp.sync( form.uploadDir );
+
+        form
+        .on('fileBegin', function(name, file){
+          file.path = mediafilename = join( form.uploadDir, res.locals.currentUser._id.toString() );
+        })
+        .on('end', function(){
+          easyimg.thumbnail({
+            src: mediafilename,
+            dst: mediafilename+'.jpg',
+            width: 128,
+            height: 128,
+            gravity: 'Center'}, function( err, image ){
+              if( err ){
+                caminio.logger.error(err);
+                req.err.push(err);
+              }
+              res.json(200);
+            });
+        })
+        .on('error', function(err){
+          caminio.logger.error(err);
+          res.send( 500, util.inspect(err) );
+        }).parse(req, function(err, fields, files){});
+
+      },
+
       /**
        * known email addresses
        */
@@ -49,20 +95,20 @@
           res.json( req.emails.map( function(email){ return { value: email }; } ));
         }
       ]
-  
+
     };
-  
+
     function getUser( req, res, next ){
       User.findOne({ _id: req.param('id') })
-        .populate('camDomains')
-        .exec( function( err, user ){
+      .populate('camDomains')
+      .exec( function( err, user ){
         if( err ){ return res.json(500, { error: 'server_error', details: err } ); }
         if( !user ){ return res.json(404, { erro: 'not_found' }); }
         req.user = user;
         next();
       });
     }
-  
+
     function getEmailAddresses( req, res, next ){
       var regexp = new RegExp(req.param('q'),'i');
       var domains = req.user.populated('camDomains');
@@ -71,11 +117,11 @@
           if( err ){ console.error(err); return res.json(500, { error: 'server_error', details: err } ); }
           runGetEmails( _.map( domains, '_id') );
         });
-      else
-        runGetEmails( domains );
-  
-      function runGetEmails( domains ){
-        User
+        else
+          runGetEmails( domains );
+
+        function runGetEmails( domains ){
+          User
           .find({ camDomains: { '$in': domains }, email: regexp})
           .sort({ email: 'asc' })
           .exec( function( err, users ){
@@ -83,10 +129,10 @@
             req.emails = users.map(function(user){ return user.email; });
             next();
           });
-      }
-  
+        }
+
     }
-  
+
   };
 
 })();

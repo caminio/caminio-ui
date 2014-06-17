@@ -39,13 +39,11 @@
     mediafiles: DS.hasMany('mediafile', { embedded: 'always' }),
     notify: DS.attr('object'),
     picUrl: function(){
-      if( this.get('mediafiles.length') > 0 )
-        return '/caminio/profile_pics/'+this.get('id')+'?d='+moment().toDate().getTime().toString();
       if( this.get('remotePicUrl') )
         return this.get('remotePicUrl');
-      //default:
-      return '/images/bot_128x128.png';
-    }.property('remotePicUrl', 'mediafiles.@each'),
+      return '/caminio/profile_pics/'+this.get('id')+'?d='+moment().toDate().getTime().toString();
+      //return '/images/bot_128x128.png';
+    }.property('remotePicUrl'),
     mailto: function(){
       return 'mailto:'+this.get('email');
     }.property('email'),

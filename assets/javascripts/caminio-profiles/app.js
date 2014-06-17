@@ -117,7 +117,7 @@
       this.$('#fileupload').fileupload({
         dataType: 'json',
         dropZone: this.$('.title'),
-        url: '/caminio/mediafiles/embedded/user/'+user.get('id'),
+        url: '/caminio/profile_pic',
         done: function (e, data) {
           setTimeout(function(){
             $('#progress').removeClass('active');
@@ -126,7 +126,6 @@
           $('.top-panel img.avatar').attr('src', '/caminio/profile_pics/'+user.get('id')+'?d='+moment().toDate().getTime().toString());
           notify('info', Em.I18n.t('profile.avatar_saved'));
           $('#modal').modal('hide');
-          //controller.send('closeModal');
         },
         progressall: function (e, data) {
           $('#progress').addClass('active');

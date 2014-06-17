@@ -16,6 +16,8 @@ module.exports.routes = {
 
   '/caminio/profiles': 'ProfilesController#show',
 
+  'POST /caminio/profile_pic': 'ProfilesController#upload_pic',
+
   '/caminio/profile/known_email_addresses': 'ProfilesController#knownEmailAddresses',
 
   '/caminio/profile_pics/:id': 'ProfilesController#pics',
