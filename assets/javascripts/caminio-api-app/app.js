@@ -37,6 +37,7 @@
    * - apiKey (required) e.g.: '12345...XZZ' (generate the API key inside a caminio user form
    * - lang (default: 'en') a language attribute (wherever translations are available, they will be used)
    * - rootElement (default: '#caminio-api-root') e.g.: '#my-container'
+   * - defaultCountry (default: '') set the select2 CountryView to this country
    */
   CaminioAPI.init = function initCaminioAPI( customOptions ){
   
@@ -82,6 +83,8 @@
 
     App.ApplicationView = Em.View.extend();
     App.ApplicationController = Em.Controller.extend();
+
+    setupHelpers( App );
 
     return App;
 
@@ -313,6 +316,64 @@
         response( items );
       })
       .fail( reject );
+  }
+
+
+  function setupHelpers( App ){
+    App.Select2CountryView = Ember.Select.extend({
+
+      prompt: Em.I18n.t('select_country'),
+      classNames: ['input-xlarge'],
+
+      willInsertElement: function(){
+
+        var self = this;
+        this.set('optionLabelPath', 'content.text');
+        this.set('optionValuePath', 'content.id');
+
+        var dfd = $.getJSON('https://camin.io/caminio/util/countries?lang='+App.options.lang);
+        dfd.done( function( response ){
+          var countries = [];
+          for( var code in response )
+            countries.push({ id: code, text: response[code] });
+          countries.sort(function(a,b){
+            if( a.text.toLowerCase() < b.text.toLowerCase() ) return -1;
+            if( a.text.toLowerCase() > b.text.toLowerCase() ) return 1;
+            if( a.text.toLowerCase() === b.text.toLowerCase() ) return 0;
+          });
+          self.set('content', countries);
+          setTimeout(function(){
+            if( self.get('value') )
+              self.$().select2('val', self.get('value'));
+            else if( App.options.defaultCountry )
+              self.$().select2('val', App.options.defaultCountry);
+          },100);
+        });
+        return dfd;
+      },
+
+      didInsertElement: function() {
+        Ember.run.scheduleOnce('afterRender', this, 'processChildElements');
+      },
+
+      processChildElements: function() {
+        var self = this;
+        this.$().select2();
+      },
+
+      willDestroyElement: function () {
+        this.$().select2("destroy");
+      },
+
+      selectedDidChange : function(){
+        var self = this;
+        setTimeout(function(){
+          if( self.get('value') )
+            self.$().select2('val', self.get('value'));
+        },100);
+      }.observes('value')
+
+    });
   }
 
 })();

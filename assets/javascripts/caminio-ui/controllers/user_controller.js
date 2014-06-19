@@ -23,8 +23,10 @@
         var model = this.get('model');
         $.post('/caminio/accounts/'+this.get('model.id')+'/gen_api_key')
         .done(function(user){
-          if( user && user.apiKey )
+          if( user && user.apiKey ){
             model.set('apiKey', user.apiKey);
+            model.set('apiEnabled',true);
+          }
           model.save()
             .then(function(){
               notify('info', Em.I18n.t('user.api_key_generated'));
