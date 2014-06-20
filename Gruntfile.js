@@ -24,7 +24,7 @@ module.exports = function(grunt) {
                                                     'assets/stylesheets/caminio-ui/*.css' ],
           'build/stylesheets/caminio-auth.min.css': [ 'assets/stylesheets/caminio-auth/authorization.css' ],
           'build/stylesheets/caminio-profiles.min.css': [ 'assets/stylesheets/caminio-profiles/*.css' ],
-          'build/stylesheets/caminio-dashboard.min.css': [ 'assets/stylesheets/caminio-dashboard/*.css' ]
+          'build/stylesheets/caminio-dashboard.min.css': [ 'assets/stylesheets/caminio-dashboard/*.css' ],
           'build/stylesheets/caminio-api-3rd.min.css': [ 'assets/stylesheets/caminio-api-app/**/*.css' ]
         }
       }
