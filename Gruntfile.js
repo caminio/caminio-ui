@@ -60,6 +60,16 @@ module.exports = function(grunt) {
           ],
         dest: 'build/javascripts/3rdparties.min.js'
       },
+      api3rd: {
+        src: [
+            'assets/javascripts/3rdparty/select2.min.js',
+            'assets/javascripts/3rdparty/handlebars-1.1.2.js',
+            'assets/javascripts/3rdparty/ember.prod.min.js',
+            'assets/javascripts/3rdparty/ember-data.prod.min.js',
+            'assets/javascripts/3rdparty/ember-i18n.js',
+        ],
+        dest: 'build/javascripts/caminio-api-app-3rd.min.js'
+      }
     },
 
     uglify: {
@@ -109,7 +119,6 @@ module.exports = function(grunt) {
           ],
           'build/javascripts/caminio-api-app.min.js': [
             'assets/javascripts/caminio-api-app/*.js',
-            'assets/javascripts/caminio-api-app/3rdparty/caminio-api-3rd.min.js'
           ]
         }
       }
@@ -168,7 +177,8 @@ module.exports = function(grunt) {
     'copy:img',
     'copy:fonts',
     'uglify',
-    'concat:dist'
+    'concat:dist',
+    'concat:api3rd'
   ]);
 
   grunt.registerTask('startServer', function(){
