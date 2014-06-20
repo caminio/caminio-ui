@@ -63,6 +63,7 @@ module.exports = function(grunt) {
       api3rd: {
         src: [
             'assets/javascripts/3rdparty/select2.min.js',
+            'assets/javascripts/3rdparty/marked.min.js',
             'assets/javascripts/3rdparty/handlebars-1.1.2.js',
             'assets/javascripts/3rdparty/ember.prod.min.js',
             'assets/javascripts/3rdparty/ember-data.prod.min.js',
