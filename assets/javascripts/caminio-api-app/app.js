@@ -24,7 +24,6 @@
    * @constructor
    */
   var CaminioAPI = window.CaminioAPI = Ember.Namespace.create({ VERSION: '1.0'});
-  CaminioAPI.lang = 'en';
 
   /**
    * initialize the caminio API
@@ -153,13 +152,18 @@
    */
   CaminioAPI.LineupEntry = CaminioAPIModel.extend({
     title: null,
-    mediafiles: Em.A(),
     curTranslation: function(){
       var cur = this.get('translations').findBy('locale', CaminioAPI.lang);
       if( cur )
         return cur;
       return this.get('translations.firstObject');
     }.property('translations'),
+    venue: function(){
+      return this.get('lineup_events.firstObject.lineup_org');
+    }.property('lineup_events'),
+    coach: function(){
+      return this.get('lineup_jobs.firstObject.lineup_person');
+    }.property('lineup_jobs'),
     serialize: function() {
       return this.getProperties([ 'id', 'title' ]);
     }
@@ -180,11 +184,15 @@
 
     conditions = conditions || {};
     
-    return new Promise( getAndInitLineupEntries );
+    var promise = new Promise( getAndInitLineupEntries );
+    promise = promise.then( getCoachMediafiles );
+    return promise;
 
     function getAndInitLineupEntries( response, reject ){
       $.getJSON( options.host+'/caminio/lineup_entries/events', conditions)
         .then(function( items ){
+          if( typeof(id) === 'string' )
+            return response( CaminioAPI.LineupEntry.pushPayload( items.find(function(i){ return i._id === id; }) ) );
           response( 
                    Ember.A( 
                            items.map( function( item ){
@@ -199,6 +207,30 @@
 
     }
 
+    function getCoachMediafiles( workshops ){
+      return new Promise( function( resolve, reject ){
+        if( !workshops )
+          return resolve();
+        workshops = workshops instanceof Array ? workshops : [ workshops ];
+        var ids = [];
+        var workshop_ids = [];
+        workshops.forEach(function(workshop){
+          ids.push( workshop.get('lineup_jobs.firstObject.lineup_person._id') );
+          workshop_ids.push( workshop.get('_id') );
+        });
+        $.getJSON( options.host+'/caminio/mediafiles', { parent: 'in('+ids.join(',')+')' })
+          .done(function( mediafiles ){
+            mediafiles.forEach(function(mediafile){
+              mediafile.url = (options.fqdn ? options.fqdn : options.host)+'/files/'+mediafile.relPath;
+              var item = workshops.findBy('_id',workshop_ids[ ids.indexOf(mediafile.parent) ]);
+              item.set('coachPic', mediafile);
+            });
+            resolve( typeof(id) === 'string' ? workshops[0] : workshops );
+          })
+          .fail( reject );
+      });
+    }
+
   };
 
   /**
@@ -208,7 +240,9 @@
    */
   CaminioAPI.ShopItem = CaminioAPIModel.extend({
     title: null,
-    mediafiles: Em.A(),
+    init: function(){
+      this.set('mediafiles', Em.A());
+    },
     serialize: function() {
       return this.getProperties([ 'id', 'title' ]);
     }
@@ -305,7 +339,8 @@
   }
 
   function loadMediafiles( items, response, reject ){
-    $.getJSON( options.host+'/caminio/mediafiles', { parent: 'in('+items.mapBy('_id').join(',')+')' })
+    var ids = items.mapBy('_id').join(',');
+    $.getJSON( options.host+'/caminio/mediafiles', { parent: 'in('+ids+')' })
       .done(function( mediafiles ){
         mediafiles.forEach(function(mediafile){
           mediafile.url = (options.fqdn ? options.fqdn : options.host)+'/files/'+mediafile.relPath;
@@ -331,7 +366,11 @@
         this.set('optionLabelPath', 'content.text');
         this.set('optionValuePath', 'content.id');
 
-        var dfd = $.getJSON('https://camin.io/caminio/util/countries?lang='+App.options.lang);
+        var dfd = $.ajax({
+          url: 'https://camin.io/caminio/util/countries?lang='+App.options.lang,
+          crossDomain: true,
+          dataType: 'json'
+        });
         dfd.done( function( response ){
           var countries = [];
           for( var code in response )
