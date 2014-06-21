@@ -106,12 +106,14 @@
         if( model.get('camDomains').length > 1 )
           bootbox.confirm( Em.I18n.t('user.really_remove_from_domain', { fullname: model.get('fullname') }), function( result ){
             if( result ){
-              model.get('camDomains').removeObject( currentDomain._id );
               model
-                .save()
-                .then( function(){
+                .destroyRecord()
+                .then(function(){
                   notify('info', Em.I18n.t('user.removed_from_domain', { fullname: model.get('fullname') }));
                   self.transitionToRoute('users');
+                })
+                .catch( function(err){
+                  notify.processError(err);
                 });
             }
           });
