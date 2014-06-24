@@ -2,10 +2,10 @@
   'use strict';
   
   var join          = require('path').join;
+  var resolvePath   = require('path').resolve;
   var fs            = require('fs');
   var _             = require('lodash');
   var formidable    = require('formidable');
-  var inflection    = require('inflection');
   var easyimg       = require('easyimage');
   var mkdirp        = require('mkdirp');
   
@@ -37,7 +37,7 @@
         function( req, res ){
           var filename = join( caminio.config.contentPath, '__users', req.user._id+'.jpg' );
           if( !fs.existsSync( filename ) )
-            return res.sendfile( __dirname+'/../../assets/images/bot_128x128.png' );
+            return res.sendfile( resolvePath(__dirname+'/../../assets/images/bot_128x128.png') );
           return res.sendfile( filename );
         }],
 
