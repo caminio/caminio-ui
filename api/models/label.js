@@ -112,7 +112,7 @@ module.exports = function Label( caminio, mongoose ){
    *  @example
    *  
    *      new Label({ name: 'test' });
-   *      // The following will produce an validation error
+   *      // The following will produce a validation error
    *      new Label({ name: 'test' });
    *      // also 
    *      new Label({ name: 'TEST' });
