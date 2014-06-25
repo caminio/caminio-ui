@@ -1,10 +1,28 @@
-var _         = require('lodash');
-var async     = require('async');
 
 module.exports = function(grunt) {
 
+  'use strict';
+
+  var _         = require('lodash');
+  var async     = require('async');
+  var fs = require('fs');
+
   // Project configuration.
   grunt.initConfig({
+
+    mochaTest: {
+      test: {
+        options: {
+          globals: ['should'],
+          timeout: 4000,
+          bail: true,
+          ignoreLeaks: false,
+          ui: 'bdd',
+          reporter: 'spec'
+        },
+        src: ['test/**/*.test.js']
+      }
+    }, 
 
     pkg: grunt.file.readJSON('package.json'),
 
@@ -214,8 +232,39 @@ module.exports = function(grunt) {
 
   });
 
+  grunt.loadNpmTasks('grunt-mocha-test');
+
+  grunt.registerTask('test', 'runs all tests', function(){
+    grunt.task.run('clearLogs');
+    grunt.config('mochaTest.test.src', ['test/**/*.test.js']);
+    grunt.task.run('mochaTest');
+  });
+
+  grunt.registerTask('testUnit', 'runs only unit tests', function(){
+    grunt.task.run('clearLogs');
+    grunt.config('mochaTest.test.src', ['test/**/*.unit.test.js']);
+    grunt.task.run('mochaTest');
+  });
+
+  grunt.registerTask('testModels', 'runs only model tests', function(){
+    grunt.task.run('clearLogs');
+    grunt.config('mochaTest.test.src', ['test/**/*model.unit.test.js']);
+    grunt.task.run('mochaTest');
+  });
+
+  grunt.registerTask('testApi', 'runs only api tests', function(){
+    grunt.task.run('clearLogs');
+    grunt.config('mochaTest.test.src', ['test/**/*.api.*.test.js']);
+    grunt.task.run('mochaTest');
+  });
+
+  grunt.registerTask('clearLogs', function(){
+    if( fs.existsSync('test.log') )
+      fs.unlinkSync('test.log');
+  });
+
   grunt.registerTask('default', ['build']);
-  grunt.registerTask('test', [
+  grunt.registerTask('todo', [
     'jshint',
     'startServer',
     'mocha_phantomjs'

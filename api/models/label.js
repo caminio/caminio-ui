@@ -102,6 +102,50 @@ module.exports = function Label( caminio, mongoose ){
     });
   });
 
+  schema.pre('save', checkUniquenessOfName );
+
+  /** 
+   *  Checks if the name of the label is already taken by anotherone.
+   *  Labelnames are caseinsensitiv and must be unique.
+   *  @param next { Function }
+   *  @param next.err { Object } Null if name is not taken.
+   *  @example
+   *  
+   *      new Label({ name: 'test' });
+   *      // The following will produce an validation error
+   *      new Label({ name: 'test' });
+   *      // also 
+   *      new Label({ name: 'TEST' });
+   *      // and
+   *      new Label({ name: 'Test' });
+   */
+  function checkUniquenessOfName( next ){
+    /*jshint validthis:true */
+    validateKey( this, 'name', next );
+  }
+
+  function validateKey( actual, key, next ){
+    var Label = caminio.models.Label; 
+
+    var q = Label.findOne({ 
+      camDomain: actual.camDomain
+    });
+
+    q.where( key ).equals( actual[key] );
+    q.where('_id').ne(actual._id);
+    q.exec( function( err, field ){
+      var error = null;
+      if( err ) error = err;
+      if( field ) {
+        error = new Error( 'Another Label found with same ' + key + ': ' + field._id ); 
+        error.name = 'validation_error';
+        error.details = 'Another Label found with same ' + key + ': ' + field._id;
+      }
+      next( error );
+    });
+  }
+
+
   schema.publicAttributes = [ 'private' ];
 
   return schema;
