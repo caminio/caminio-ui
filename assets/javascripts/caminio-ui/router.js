@@ -95,8 +95,8 @@
   });
 
   App.UserEditRoute = Ember.Route.extend({
-    model: function(prefix, options){
-      var model = this.store.find('user', options.params.id);
+    model: function(params){
+      var model = this.store.find('user', params.id);
       return model;
     }
   });

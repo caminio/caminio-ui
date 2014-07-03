@@ -20,17 +20,12 @@
       },
 
       genApiKey: function(){
-        var model = this.get('model');
-        $.post('/caminio/accounts/'+this.get('model.id')+'/gen_api_key')
-        .done(function(user){
-          if( user && user.apiKey ){
-            model.set('apiKey', user.apiKey);
-            model.set('apiEnabled',true);
-          }
-          model.save()
-            .then(function(){
-              notify('info', Em.I18n.t('user.api_key_generated'));
-            });
+        var user = this.get('model');
+        $.post('/caminio/accounts/'+this.get('model.id')+'/gen_api_private_key')
+        .done(function(userJson){
+          user.set('apiPrivateKey', userJson.apiPrivateKey);
+          user.set('apiPublicKey', userJson.apiPublicKey);
+          notify('info', Em.I18n.t('user.api_key_generated'));
         })
         .fail(function(){
           notify('error', Em.I18n.t('user.api_gen_failed'));
@@ -47,6 +42,7 @@
         if( this.get('model.apiEnabled') && this.get('apiClients').content.content.length < 1 )
           setupFirstAPIClient( this.get('model'), this );
       },
+
       create: function( model ) {
         var self = this;
         //return notify('error', Ember.I18n.t('user.errors.prohibited_save'));

@@ -8,7 +8,7 @@
 (function(){
 
   'use strict';
-  /*global marked: true, CLDR: true */
+  /*global marked: true, CLDR: true, paymill: true */
 
   var App;
   var currentUser;
@@ -83,6 +83,10 @@
     App.ApplicationView = Em.View.extend();
     App.ApplicationController = Em.Controller.extend();
 
+    App.vendors = vendors;
+    App.util = util;
+    App.basket = CaminioAPI.ShopOrder.create();
+
     setupHelpers( App );
 
     return App;
@@ -121,6 +125,46 @@
 
   });
 
+  /**
+   * @class ShopCustomer
+   * @module CaminioAPI
+   * @constructor
+   */
+  CaminioAPI.ShopCustomer = CaminioAPIModel.extend({
+    firstname: '',
+    lastname: '',
+    title: '',
+    gender: '',
+    organization: '',
+    
+    shipFirstname: '',
+    shipLastname:  '',
+    shipOrganization: '',
+    shipStreet: '',
+    shipZip: '',
+    shipCity: '',
+    shipCountry: '',
+    shipState:  '',
+
+    billOrganization: '',
+    billFirstname:  '',
+    billLastname:  '',
+    billStreet:  '',
+    billZip:  '',
+    billCity: '',
+    billCountry: '',
+    billState: '',
+
+    phone: '',
+    email: '',
+
+    useOrigName: true,
+    useShipForBill: true,
+    hasErrors: function(){
+      return (Em.isEmpty( this.get('firstname') ) || Em.isEmpty( this.get('lastname') ) || Em.isEmpty( this.get('email') ) );
+    }.property('firstname','lastname','email')
+  });
+
 
   /**
    * @class ShopOrder
@@ -129,7 +173,82 @@
    */
   CaminioAPI.ShopOrder = CaminioAPIModel.extend({
     order_items: Em.A(),
-    shop_customer: null
+    shop_customer: null,
+    priceTotal: function(){
+      var total = 0;
+      this.get('order_items').forEach(function(item){ 
+        var subtotal = item.get('price') * item.get('amount');
+        total += subtotal + subtotal * 0.01 * item.get('vat'); 
+      });
+      return total;
+    },
+    number: function(){
+      return this.get('formattedNumber').replace(/-/g,'');
+    }.property('formattedNumber'),
+    cvc: 111,
+    expiryMonth: null,
+    expiryYear: null,
+    holderName: 'Test Demo',
+    formattedNumber: '4111-1111-1111-1111',
+    apiError: null,
+    validNumber: function(){
+      return paymill.validateCardNumber( this.get('number') );
+    }.property('number'),
+    numberEnteredAndInvalid: function(){
+      return !Em.isEmpty(this.get('formattedNumber')) && !this.get('validNumber');
+    }.property('formattedNumber'),
+    validCvc: function(){
+      return paymill.validateCvc( this.get('cvc'), this.get('number') );
+    }.property('number','cvc'),
+    cvcEnteredAndInvalid: function(){
+      return !Em.isEmpty(this.get('cvc')) && !this.get('validCvc');
+    }.property('number','cvc'),
+    holderNameEntered: function(){
+      return !Em.isEmpty(this.get('holderName'));
+    }.property('holderName'),
+    validExpiry: function(){
+      return paymill.validateExpiry( this.get('expiryMonth'), this.get('expiryYear') );
+    }.property('expiryYear','expiryMonth'),
+    allValid: function(){
+      return this.get('validExpiry') && this.get('validCvc') && this.get('validNumber') && this.get('holderNameEntered');
+    }.property('number','cvc','expiryMonth','expiryYear'),
+    invAllValid: function(){
+      return !this.get('allValid');
+    }.property('number','cvc','expiryMonth','expiryYear'),
+    years: ['',2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],
+    months: ['','01','02','03','04','05','06','07','08','09','10','11','12'],
+    formattedPriceTotal: function(){
+      return new Handlebars.SafeString('&#163; ' + util.priceIncl( this.priceTotal(), 0 ) );
+    }.property('order_items.@each'),
+    getCardDataObject: function(){
+      return {
+        number: this.get('number'),
+        exp_month: this.get('expiryMonth'),
+        exp_year: this.get('expiryYear'),
+        cvc: this.get('cvc'),
+        amount_int: ( this.priceTotal() * 100),
+        currency: 'GBP',
+        cardholder: this.get('holderName')
+      };
+    },
+    getCheckDataObject: function(){
+      return {
+        ids: this.get('order_items').map(function(item){ return { id: item.get('_id'), amount: item.get('amount') }; }),
+        priceTotal: this.priceTotal()
+      };
+    },
+    createToken: function( callback ){
+      console.log('App', App.options.host+'/caminio/shop_orders', JSON.parse(JSON.stringify(this)));
+      $.ajax({
+        url: App.options.host + '/caminio/shop_orders',
+        type: 'post',
+        data: JSON.parse(JSON.stringify(this))
+      }).done( function( result ){
+        callback( null, result );  
+      }).fail( function( err ){
+        callback( err.responseJSON );
+      });
+    }
   });
 
   /**
@@ -143,6 +262,14 @@
     vat: 0,
     amount: null,
     lineup_Entry: null
+  });
+
+  /**
+   * @class CardData
+   * @module CaminioAPI
+   * @constructor
+   */
+  CaminioAPI.CardData = CaminioAPIModel.extend({
   });
 
   /**
@@ -385,7 +512,7 @@
             if( self.get('value') )
               self.$().select2('val', self.get('value'));
             else if( App.options.defaultCountry )
-              self.$().select2('val', App.options.defaultCountry);
+              self.set('value', App.options.defaultCountry);
           },100);
         });
         return dfd;
@@ -413,6 +540,34 @@
       }.observes('value')
 
     });
+  }
+
+  // 3rdparty addons
+  var vendors = {};
+
+  // paymill.com
+  vendors.paymill = {};
+  vendors.paymill.requestToken = function( cardModel, options ){
+    cardModel.set('transactionActive',true);
+    paymill.createToken( cardModel.getCardDataObject(), function( err, paymillResult ){
+      cardModel.set('transactionActive',false);
+      if( err )
+        return cardModel.set('apiError', err.apierror);
+      console.log('result', paymillResult);
+      cardModel.createToken( function(err, caminioResult){
+        $.ajax({  url: options.postUrl, 
+                  type: 'post',
+                  data: { paymillToken: paymillResult.token, caminioToken: caminioResult.token, order: cardModel.getCheckDataObject() }
+        }).done(function(response){
+          console.log(response);
+        });
+      })
+    });
+  };
+
+  var util = {};
+  util.priceIncl = function( price, vat ){
+    return (parseFloat(price) + parseFloat(price) * parseFloat(vat) * 0.01 ).toFixed(2);
   }
 
 })();
