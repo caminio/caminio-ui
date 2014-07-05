@@ -58,7 +58,7 @@
 
     $.ajaxSetup({
       headers: {
-        Authorization: 'API-KEY '+options.apiKey
+        Authorization: 'API-PUBLIC-KEY '+options.apiKey
       }
     });
 
@@ -180,7 +180,7 @@
         var subtotal = item.get('price') * item.get('amount');
         total += subtotal + subtotal * 0.01 * item.get('vat'); 
       });
-      return total;
+      return parseFloat(total.toFixed(2));
     },
     number: function(){
       return this.get('formattedNumber').replace(/-/g,'');
@@ -233,16 +233,30 @@
     },
     getCheckDataObject: function(){
       return {
-        ids: this.get('order_items').map(function(item){ return { id: item.get('_id'), amount: item.get('amount') }; }),
-        priceTotal: this.priceTotal()
+        ids: this.get('order_items').map(function(item){ return { id: item.get('_id'), amount: item.get('amount'), price: item.get('price') }; }),
+        priceTotal: this.priceTotal(),
+        _id: this.get('_id')
       };
     },
     createToken: function( callback ){
-      console.log('App', App.options.host+'/caminio/shop_orders', JSON.parse(JSON.stringify(this)));
+      var order = this;
       $.ajax({
-        url: App.options.host + '/caminio/shop_orders',
+        url: App.options.host + '/caminio/shop_customers/find_or_create',
         type: 'post',
-        data: JSON.parse(JSON.stringify(this))
+        data: {
+          shop_customer: JSON.parse( JSON.stringify( this.get('shop_customer') ) )
+        }
+      }).then( function(shopCustomer){
+        return $.ajax({
+          url: App.options.host + '/caminio/shop_orders',
+          type: 'post',
+          data: { 
+            shop_order: {
+              shop_customer: shopCustomer._id,
+              order_items: order.get('order_items').toArray().map(function(item){ return item.toJSON(); })
+            }
+          }
+        });
       }).done( function( result ){
         callback( null, result );  
       }).fail( function( err ){
@@ -259,9 +273,20 @@
   CaminioAPI.OrderItem = CaminioAPIModel.extend({
     item: null,
     price: 0,
+    selPriceId: null,
     vat: 0,
     amount: null,
-    lineup_Entry: null
+    lineup_entry: null,
+    toJSON: function(){
+      return {
+        item: this.get('item._id'),
+        selPriceId: this.get('selPriceId'),
+        price: this.get('selPriceId'),
+        priceValue: this.get('price'),
+        amount: this.get('amount'),
+        lineup_entry: this.get('lineup_entry_id')
+      };
+    }
   });
 
   /**
@@ -549,15 +574,19 @@
   vendors.paymill = {};
   vendors.paymill.requestToken = function( cardModel, options ){
     cardModel.set('transactionActive',true);
+    console.log('sending paymill', cardModel.getCardDataObject());
     paymill.createToken( cardModel.getCardDataObject(), function( err, paymillResult ){
       cardModel.set('transactionActive',false);
       if( err )
         return cardModel.set('apiError', err.apierror);
       console.log('result', paymillResult);
       cardModel.createToken( function(err, caminioResult){
+        console.log('err',err,caminioResult);
+        cardModel.set('_id', caminioResult._id); 
         $.ajax({  url: options.postUrl, 
                   type: 'post',
-                  data: { paymillToken: paymillResult.token, caminioToken: caminioResult.token, order: cardModel.getCheckDataObject() }
+                  data: { paymill_token: paymillResult.token, 
+                          shop_order: cardModel.getCheckDataObject() }
         }).done(function(response){
           console.log(response);
         });

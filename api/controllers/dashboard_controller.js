@@ -3,6 +3,8 @@
  */
 module.exports = function DashboardController( caminio, policies, middleware ){
 
+  'use strict';
+
   return {
 
     _before: {
@@ -24,7 +26,6 @@ module.exports = function DashboardController( caminio, policies, middleware ){
 
     'locales':
       function( req, res ){
-        var lang = req.param('lang').replace('.json','');
         res.json( caminio.i18n.find( req.param('lang')) );
       }
 
