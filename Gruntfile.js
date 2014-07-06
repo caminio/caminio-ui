@@ -86,7 +86,7 @@ module.exports = function(grunt) {
             'assets/javascripts/3rdparty/ember.prod.min.js',
             'assets/javascripts/3rdparty/ember-data.prod.min.js',
             'assets/javascripts/3rdparty/ember-i18n.js',
-            'assets/javascripts/3rdparty/jquery.inputmask.min.js',
+            'assets/javascripts/3rdparty/jquery.inputmask.bundle.min.js',
             'assets/javascripts/caminio-api-app/app.js',
         ],
         dest: 'build/javascripts/caminio-api.bundle.min.js'

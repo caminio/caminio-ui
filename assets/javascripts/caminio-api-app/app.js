@@ -284,20 +284,24 @@
    */
   CaminioAPI.OrderItem = CaminioAPIModel.extend({
     item: null,
+    lineup_event: null,
     price: 0,
     selPriceId: null,
     vat: 0,
     amount: null,
-    lineup_entry: null,
     toJSON: function(){
-      return {
-        item: this.get('item._id'),
+      var props = {
         selPriceId: this.get('selPriceId'),
         price: this.get('selPriceId'),
         priceValue: this.get('price'),
         amount: this.get('amount'),
-        lineup_entry: this.get('lineup_entry_id')
       };
+      if( this.get('item') ) 
+        props.item = this.get('item._id');
+      else if( this.get('lineup_event') )
+        props.lineup_event = this.get('lineup_event');
+      console.log('props are', props);
+      return props;
     }
   });
 
