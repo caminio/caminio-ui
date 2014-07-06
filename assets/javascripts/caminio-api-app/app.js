@@ -84,6 +84,7 @@
     App.ApplicationController = Em.Controller.extend();
 
     App.vendors = vendors;
+    App.notify = notify;
     App.util = util;
     App.basket = CaminioAPI.ShopOrder.create();
 
@@ -262,6 +263,17 @@
       }).fail( function( err ){
         callback( err.responseJSON );
       });
+    },
+    init: function(){
+      this._super();
+      var propertyNames = [ 'cvc', 'formattedNumber', 'holderName', 'expiryMonth', 'expiryYear', 'apiError'];
+      var props = this.getProperties.apply(this, propertyNames);
+      this.set('origProps', props);
+    },
+    reset: function(){
+      var props = this.get('origProps');
+      Ember.setProperties(this, props);
+      this.get('order_items').clear();
     }
   });
 
@@ -572,31 +584,58 @@
 
   // paymill.com
   vendors.paymill = {};
-  vendors.paymill.requestToken = function( cardModel, options ){
+  vendors.paymill.requestToken = function( cardModel, options, callback ){
     cardModel.set('transactionActive',true);
-    console.log('sending paymill', cardModel.getCardDataObject());
+    if( cardModel.get('orderNum') )
+      return notify.error( Em.I18n.t('order_completed_cannot_be_sent_twice') );
     paymill.createToken( cardModel.getCardDataObject(), function( err, paymillResult ){
-      cardModel.set('transactionActive',false);
       if( err )
         return cardModel.set('apiError', err.apierror);
-      console.log('result', paymillResult);
       cardModel.createToken( function(err, caminioResult){
-        console.log('err',err,caminioResult);
         cardModel.set('_id', caminioResult._id); 
         $.ajax({  url: options.postUrl, 
                   type: 'post',
                   data: { paymill_token: paymillResult.token, 
                           shop_order: cardModel.getCheckDataObject() }
         }).done(function(response){
-          console.log(response);
+          cardModel.set('transactionActive',false);
+          cardModel.reset();
+          callback( response.num );
         });
-      })
+      });
     });
   };
 
   var util = {};
   util.priceIncl = function( price, vat ){
     return (parseFloat(price) + parseFloat(price) * parseFloat(vat) * 0.01 ).toFixed(2);
+  };
+
+  function notify( type, message ){
+    if( arguments.length < 2 ){
+      message = type;
+      type = 'info';
+    }
+    var $msg = $('<div/>')
+                  .addClass('alert notification')
+                  .html( message );
+
+    if( type === 'info' )
+      $msg.addClass('alert-success');
+    else
+      $msg.addClass('alert-danger');
+
+    $('.notifier').html( $msg );
+    $msg.slideDown();
+
   }
+
+  notify.error = function errorNotify( message ){
+    notify( 'error', message );
+  };
+
+  notify.info = function errorNotify( message ){
+    notify( 'info', message );
+  };
 
 })();
