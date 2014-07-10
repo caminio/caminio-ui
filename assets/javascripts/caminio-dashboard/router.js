@@ -1,5 +1,6 @@
 ( function( App ){
 
+  /* global setupCaminio */
   'use strict';
 
   App.IndexRoute = Ember.Route.extend({
@@ -8,7 +9,18 @@
     }
   });
 
+  App.set('dashboardAddons', Em.A());
+
   App.IndexController = Ember.Controller.extend({
+    addons: function(){
+      return App.dashboardAddons;
+    }.property('App.dashboardAddons')
+  });
+
+  App.ApplicationRoute = Em.Route.extend({
+    beforeModel: function(){
+      return this.store.find('user'); // get all users we need them for comments
+    }
   });
 
   App.AppointmentsItemController = Ember.Controller.extend({

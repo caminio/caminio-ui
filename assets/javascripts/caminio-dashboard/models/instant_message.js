@@ -2,7 +2,7 @@
 
   'use strict';
 
-  App.MicroNote = DS.Model.extend({
+  App.InstantMessage = DS.Model.extend({
     name: DS.attr('string'),
     tags: DS.attr('array'),
     label: DS.belongsTo('label'),

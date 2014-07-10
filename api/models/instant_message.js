@@ -1,10 +1,10 @@
 /**
  *
- * @class MicroNote
+ * @class InstantMessage
  *
  */
  
-module.exports = function MicroNote( caminio, mongoose ){
+module.exports = function InstantMessage( caminio, mongoose ){
 
   var ObjectId = mongoose.Schema.Types.ObjectId;
 
