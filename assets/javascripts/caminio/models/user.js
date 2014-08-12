@@ -3,7 +3,7 @@
   'use strict';
 
   var defaultRoles = {};
-  defaultRoles[ currentDomain._id ] = 50;
+  defaultRoles[ currentDomain.id ] = 50;
 
   App.User = DS.Model.extend({
     firstname: DS.attr('string'),
@@ -13,18 +13,18 @@
     roles: DS.attr('object', { defaultValue: defaultRoles }),
     currentDomainRole: function( ns, val ){
       if( val )
-        Ember.set( this.get('roles'), currentDomain._id, val);
-      return Ember.get( this.get('roles'), currentDomain._id) || 0;
+        Ember.set( this.get('roles'), currentDomain.id, val);
+      return Ember.get( this.get('roles'), currentDomain.id) || 0;
     }.property('roles'),
     isAdmin: function(){
-      return this.get('superuser') || this.get('roles')[currentDomain._id] === 100;
-    }.property('roles.'+currentDomain._id),
+      return this.get('superuser') || this.get('roles')[currentDomain.id] === 100;
+    }.property('roles.'+currentDomain.id),
     isEditor: function(){
-      return this.get('superuser') || this.get('roles')[currentDomain._id] >= 60;
-    }.property('roles.'+currentDomain._id),
+      return this.get('superuser') || this.get('roles')[currentDomain.id] >= 60;
+    }.property('roles.'+currentDomain.id),
     isTrusted: function(){
-      return this.get('superuser') || this.get('roles')[currentDomain._id] >= 80;
-    }.property('roles.'+currentDomain._id),
+      return this.get('superuser') || this.get('roles')[currentDomain.id] >= 80;
+    }.property('roles.'+currentDomain.id),
     lang: DS.attr('string', { defaultValue: currentDomain.lang || 'en' }),
     description: DS.attr('string'),
     superuser: DS.attr('boolean'),
@@ -49,7 +49,7 @@
       return 'mailto:'+this.get('email');
     }.property('email'),
     inCurrentDomain: function(){
-      return this.get('camDomains').indexOf(currentDomain._id) >= 0;
+      return this.get('camDomains').indexOf(currentDomain.id) >= 0;
     }.property('camDomains'),
     fullname: function(){
       var name = '';
@@ -67,12 +67,12 @@
       return this.get('fullname');
     }.property('firstname','lastname'),
     apiUserRightsObserver: function(){
-      if( this.get('apiUser') && this.get('roles.'+currentDomain._id) > 60 ){
-        this.set('roles.'+currentDomain._id, 60);
+      if( this.get('apiUser') && this.get('roles.'+currentDomain.id) > 60 ){
+        this.set('roles.'+currentDomain.id, 60);
         $('#role-slider').slider('setValue',60);
         notify('error', Em.I18n.t('user.api_role_not_allowed'));
       }
-    }.observes('apiUser','roles.'+currentDomain._id)
+    }.observes('apiUser','roles.'+currentDomain.id)
   });
 
 })( App );
