@@ -6,7 +6,7 @@
   App.TableController = Ember.ArrayController.extend({
 
     page: 1,
-    numRows: 10,
+    numRows: 50,
     pages: [],
 
     sortProperties: [],
