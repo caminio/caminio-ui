@@ -173,9 +173,8 @@
       return;
 
     App.User.store.pushPayload( 'user', u );
-    App.User.store.pushPayload( 'domain', { domain: currentDomain });
     App.set('emberUser', App.User.store.getById('user', currentUser._id));
-    App.set('emberDomain', App.User.store.getById('domain', currentDomain.id));
+    App.set('emberDomain', App.User.store.find('domain', currentDomain._id));
 
   };
 
