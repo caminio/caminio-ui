@@ -19,6 +19,13 @@
   <label>{{t domain.is_caminio_hosted}}</label>
 </div>
 
+<div class="form-group">
+  <label class="control-label">{{t 'domain.email_from'}}</label>
+  <div>
+    {{input valueBinding='domain.preferences.from' class='form-control'}}
+  </div>
+</div>
+
 {{#unless domain.isCaminioHosted}}
 
 <div class="form-group">
