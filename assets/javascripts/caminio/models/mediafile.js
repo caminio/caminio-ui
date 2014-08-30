@@ -20,7 +20,7 @@
     parent: DS.attr('string'),
     relPath: DS.attr('string'),
     url: function(){
-      return '/caminio/domains/'+currentDomain.id+'/preview/'+this.get('relPath');
+      return '/caminio/domains/'+currentDomain._id+'/preview/'+this.get('relPath');
     }.property('name'),
     publicUrl: function(){
       return '/files/'+this.get('relPath');
