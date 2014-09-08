@@ -49,7 +49,7 @@
       return 'mailto:'+this.get('email');
     }.property('email'),
     inCurrentDomain: function(){
-      return this.get('camDomains').indexOf(currentDomain.id) >= 0;
+      return this.get('camDomains').indexOf(currentDomain._id) >= 0;
     }.property('camDomains'),
     fullname: function(){
       var name = '';

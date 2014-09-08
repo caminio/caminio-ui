@@ -89,8 +89,8 @@
 
   // users
   App.UsersIndexRoute = Ember.Route.extend({
-    setupController: function( controller, model ) {
-      controller.set('users', this.store.find('user') );
+    model: function(){
+      return this.store.find('user'); 
     }
   });
 

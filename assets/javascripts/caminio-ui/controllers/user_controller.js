@@ -134,7 +134,7 @@
     controller.set('apiClients', App.User.store.all('client', { user: model.get('id') }));
   }
 
-  App.UsersController = Ember.Controller.extend( userControllerCommon );
+  App.UsersController = Ember.ArrayController.extend( userControllerCommon );
   App.UserEditController = Ember.ObjectController.extend( userControllerCommon );
   App.UsersNewController = Ember.ObjectController.extend( userControllerCommon );
 
