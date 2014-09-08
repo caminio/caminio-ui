@@ -13,17 +13,17 @@
     roles: DS.attr('object', { defaultValue: defaultRoles }),
     currentDomainRole: function( ns, val ){
       if( val )
-        Ember.set( this.get('roles'), currentDomain.id, val);
-      return Ember.get( this.get('roles'), currentDomain.id) || 0;
+        Ember.set( this.get('roles'), currentDomain._id, val);
+      return Ember.get( this.get('roles'), currentDomain._id) || 0;
     }.property('roles'),
     isAdmin: function(){
-      return this.get('superuser') || this.get('roles')[currentDomain.id] === 100;
+      return this.get('superuser') || this.get('roles')[currentDomain._id] === 100;
     }.property('roles.'+currentDomain.id),
     isEditor: function(){
-      return this.get('superuser') || this.get('roles')[currentDomain.id] >= 60;
+      return this.get('superuser') || this.get('roles')[currentDomain._id] >= 60;
     }.property('roles.'+currentDomain.id),
     isTrusted: function(){
-      return this.get('superuser') || this.get('roles')[currentDomain.id] >= 80;
+      return this.get('superuser') || this.get('roles')[currentDomain._id] >= 80;
     }.property('roles.'+currentDomain.id),
     lang: DS.attr('string', { defaultValue: currentDomain.lang || 'en' }),
     description: DS.attr('string'),
